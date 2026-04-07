@@ -1,0 +1,11 @@
+<!-- Administration > Configuration -->
+
+# Configuration
+
+Configuring your software effectively is essential for optimizing performance, ensuring security, and aligning the system with your specific needs. Both the Designer and Server components start with default configurations that are generally suitable for initial use. However, to fully harness the capabilities of the software and adapt it to your operational environment, you will need to make adjustments to these settings.
+
+For the **Designer**, you can customize a range of settings, including [runtime configuration](designer-configuration.md#runtime-configuration) (change default logging level or add libraries to classpath), or [tweak Designer-Server integration](designer-configuration.md#cloverdx-server-integration). You can also manage [used Java instances](designer-configuration.md#java-configuration) or learn more about [engine settings](designer-configuration.md#engine-configuration).
+
+When configuring the **Server**, it’s important to note that the [Server architecture](architecture.md) involves two separate JVMs (Java Virtual Machines) that must be configured independently. A significant portion of the configuration can be managed through the [Setup module](setup.md), which provides a user-friendly interface for adjusting various Server properties. For detailed guidance on making configuration changes, be sure to follow the recommendations provided in the [Configuration introduction](server-config-index.md#configuration-introduction) section, which includes best practices and specific advice for optimizing your setup.
+
+[User management and access control](users-groups-index.md) are crucial aspects of Server configuration to ensure that only authorized users can access sensitive data and perform critical tasks. By implementing proper user security measures, you can protect your system from unauthorized access and potential breaches. Integrating with [LDAP](ldap-authentication.md) or [SAML](saml-authentication.md) for authentication can streamline user access, enhance security, and reduce the administrative burden of managing user accounts. Additionally, [securing sensitive data](securing-data.md) and managing [temporary space](tempspace.md) are critical tasks to prevent data loss and maintain system performance.

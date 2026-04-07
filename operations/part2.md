@@ -1,0 +1,21 @@
+<!-- Automation and operations > Operations -->
+
+# Operations
+
+This chapter offers essential tools and insights to help you effectively manage, monitor, and troubleshoot your CloverDX Server operations. We’ve compiled a comprehensive set of resources to assist you in monitoring system performance, identifying and troubleshooting problems, and taking proactive steps to maintain a healthy CloverDX environment. Whether you’re a seasoned administrator or just getting started, this chapter is your go-to resource for ensuring the long-term health and efficiency of your CloverDX Server environment.
+
+The first part focuses on Monitoring, where you’ll be introduced to the [**Operations Dashboard**](ops-dashboard.md)—a central hub for overseeing system health and activity. The Operations Dashboard offers a tool for creating a comprehensive overview of data processing activities within your CloverDX Server environment. By visualizing the status of Monitors, which can track automations like Event Listeners, Schedules, and Data Services, you can quickly identify potential issues or confirm the smooth operation of your business processes. The dashboard automatically refreshes, providing real-time updates without manual intervention. You can investigate specific failures, such as failed graphs, to pinpoint the root cause. You can create multiple dashboards to monitor different projects or teams, tailoring the view to your specific needs. The public REST API allows for seamless integration with your existing monitoring infrastructure.
+
+The [**Resources**](monitoring.md) section describes the Resources feature in CloverDX Server, which provides a comprehensive view of the server’s current status and recent performance history. It focuses on technical aspects such as heap space, system memory, and CPU utilization. Upon logging into CloverDX Server, you’ll automatically be directed to this section, where you can also [manage](monitoring.md#server-management) Server Core and Worker processes.
+
+In [**Status History**](monitoring-status-history.md), you can learn how to monitor the server’s current status and analyze historical data to detect patterns or anomalies.
+
+The [**Server logs & troubleshooting**](logs-troubleshooting.md) section provides detailed information on server logs, including the Server [logs directory](logging.md#server-logs-directory), the implemented [logging framework](logging.md#logging-framework-in-cloverdx-server), and how to [customize it](logging.md#logging-customization). You’ll learn how to access and interpret individual logs, which are invaluable tools for troubleshooting. Additionally, you’ll discover how to access [server logs within the Server Console](monitoring-server-logs.md) and gain insights into [additional diagnostics options](diagnostics.md) or [how to resolve Worker issues](administration-troubleshooting-worker.md), such as troubleshooting failed startups, crashes, and classloading problems.
+
+For more complex diagnostic needs, the [**Support package**](support-package.md) section details how to gather and download a comprehensive support package, which can be crucial when contacting technical support for assistance.
+
+A portion of this chapter is dedicated to the [**Job queue logic and troubleshooting**](job-queue.md). You’ll explore the architecture of the job queue, learn how to manage load metrics, handle emergency modes, and understand the queue algorithm. Detailed scenarios and troubleshooting guides are provided to help you resolve issues related to job execution efficiently.
+
+The chapter concludes with a deep dive into [**Execution History**](execution-history-main.md#execution-history-viewing-job-runs) and [**Job Inspector**](execution-history-main.md#job-inspector). These sections show how to view, filter, and order job runs, analyze job performance using the Job Inspector tab, and manually run or inspect jobs in real time. You’ll also learn about the advanced tracking and configuration options available in the Job Inspector, providing a powerful toolset for maintaining control over job execution and performance.
+> [!TIP]
+> If you’re interested in learning more about this subject, we offer the [Administration and Operations course](https://academy.cloverdx.com/courses/operations-workshop) in our CloverDX Academy.
