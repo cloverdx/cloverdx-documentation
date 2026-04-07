@@ -1,0 +1,14 @@
+<!-- Development > Projects -->
+
+# Projects
+
+This section provides detailed guidance on creating, managing, and configuring projects in CloverDX. Projects are central to how CloverDX organizes data transformations, workflows, and job configurations. It helps users understand the different types of projects, their structures, and the workflows involved in managing them on both local environments and CloverDX Server. This section is designed to give users the foundational knowledge to effectively create, manage, and collaborate on CloverDX projects, ensuring smooth development workflows and consistent project configurations across different environments.
+
+- [Types of CloverDX projects](cloverdx-projects-type.md) introduces the different project types, including [local projects](cloverdx-projects-type.md#cloverdx-local-project) used for individual development and [server projects](cloverdx-projects-type.md#cloverdx-server-project) that support team collaboration and deployment.
+- [Structure of CloverDX projects](structure-of-projects.md) explains the standard structure shared by all projects, including key files such as [.classpath](structure-of-projects.md#the-classpath-file) and [workspace.prm](structure-of-projects.md#workspaceprm-file), which are important for configuring project dependencies and parameters.
+- [Creating CloverDX projects](first-cloverdx-project.md) covers the steps for setting up new projects, whether they are local, server-based, or based on prebuilt examples to accelerate development.
+- [Converting CloverDX projects](projects-conversion.md) provides instructions for transforming projects between local and server formats, making it easy to switch development environments or prepare for deployment.
+- [Working with CloverDX Server projects](server-projects-usage.md) explores [working offline](server-projects-usage.md#working-offline), [conflict resolution](server-projects-usage.md#handling-conflicts), and how to handle [project-specific configurations](server-projects-usage.md#project-configuration) when collaborating on server-based projects. This section also covers connecting to CloverDX Server through HTTP, HTTPS, or proxy settings, as well as best practices for handling files and project configuration.
+- [Versioning of server project content](server-projects-versioning.md) focuses on managing version control in server projects, from initial check-out to integrating changes from a repository, ensuring that all team members work on synchronized and versioned codebases.
+- [Export project as library](export-library.md) explains how to package your projects as reusable libraries, making it easy to share components like graphs, jobflows, and subgraphs across multiple projects or environments.
+- The [Import Wrangler mapping](import-wrangler-mapping.md) section describes how to bring in mappings from CloverDX Wrangler.

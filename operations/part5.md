@@ -1,0 +1,15 @@
+<!-- Automation and operations > Libraries, Sandboxes, and AI / ML Models modules -->
+
+# Libraries, Sandboxes, and AI / ML Models modules
+
+**Libraries** and **sandboxes** are fundamental components of CloverDX, enabling enhanced functionality and secure content management. This section provides a comprehensive overview of both concepts, including their creation, usage, installation, configuration, and management.
+
+[**Libraries**](libraries.md) serve as extensions to CloverDX, offering additional capabilities and features. We begin by exploring the [usage of libraries](libraries.md#usage). The installation process is explained in detail, covering both [single uploads](libraries.md#single-library-upload) and [repository-based installations](libraries.md#library-repository), along with [installation settings](libraries.md#installation-settings) and [installation logic](libraries.md#installation-logic).
+
+The Libraries section also includes detailed explanations of several important tabs that users interact with while managing libraries: the [Overview](libraries.md#overview-tab), [Documentation](libraries.md#documentation-tab), and [Configuration tabs](libraries.md#configuration-tab). Each of these tabs serves a distinct purpose, allowing users to efficiently control the library’s status and functionality.
+
+[Permissions](libraries.md#permissions-tab) play a crucial role in securing libraries and their associated data connectors. We discuss how permissions are structured at different levels and how to effectively manage access control. Additionally, practical guidance is provided on [editing](libraries.md#library-editing), [deleting](libraries.md#library-deleting), [exporting](libraries.md#library-and-library-repository-configuration-exports), and [importing](libraries.md#library-and-library-repository-configuration-import) library configuration, as well as leveraging [REST APIs](libraries.md#library-management-through-rest-api) for automation and large-scale management.
+
+The [**AI / ML Models** module](ai-ml-module.md) lists machine learning modules installed through the **Libraries module**. It provides a quick overview of each module, including related library details and additional technical specifications.
+
+[**Sandboxes**](sandboxes.md) are secure environments designed to isolate and manage content. We explore [sandbox content security](sandboxes.md#sandbox-content-security-and-permissions), including how permissions are managed to protect the content. Practical operations, such as [downloading](sandboxes.md#download-sandbox-as-zip), [uploading](sandboxes.md#upload-zip-to-sandbox), and [creating files](sandboxes.md#create-file) and [directories](sandboxes.md#create-directory) are also covered. [Execution properties](sandboxes.md#execution-properties), [OAuth2 connections](sandboxes.md#oauth2-connections), [and WebDAV access](sandboxes.md#webdav-access-to-sandboxes) to sandboxes are discussed, providing users with tools to efficiently manage and integrate sandboxes into their workflows.
