@@ -435,6 +435,7 @@ Local or Remote Data Manager can be configured in the Server Console under **Con
 | datamanager.jdbc.password | Password for the database connection. |  |
 | datamanager.datasource.jndiName | JNDI location of a database DataSource. It is applied only if `datamanager.datasource.type` is set to `JNDI`. |  |
 | datamanager.lookup.home | Name of a sandbox used for storing lookup data. This sandbox needs to be created manually. | DataManagerReferenceData |
+| datamanager.request.timeout | Specifies the timeout in milliseconds for HTTP requests made by the Data Manager web application to the Data Manager API. If a request does not complete within this time, it times out. | 30000 |
 
 ##### AI-related properties
 
@@ -546,6 +547,7 @@ These configuration properties control how the CloverDX Server integrates with t
 | [datamanager.jdbc.url](list-of-properties.md#lop-datamanager-jdbc-url) |
 | [datamanager.jdbc.username](list-of-properties.md#lop-datamanager-jdbc-username) |
 | [datamanager.lookup.home](list-of-properties.md#lop-datamanager-lookup-home) |
+| [datamanager.request.timeout](list-of-properties.md#lop-datamanager-request-timeout) |
 | [dataservice.access.control.allow.credentials](list-of-properties.md#lop-dataservice-access-control-allow-credentials) |
 | [dataservice.access.control.allow.headers](list-of-properties.md#lop-dataservice-access-control-allow-headers) |
 | [dataservice.access.control.allow.methods](list-of-properties.md#lop-dataservice-access-control-allow-methods) |
