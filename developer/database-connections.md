@@ -456,15 +456,15 @@ Windows authentication means creating a database connection to Microsoft SQL Ser
 ![AuthenticMSSQL settingDB](../figures/AuthenticMSSQL-settingDB.png)
 *Figure 254. Connecting to MS SQL with Windows authentication.*
 
-**CloverDX** comes with a bundled Microsoft SQL Server JDBC driver. However, it does not contain native libraries required for Windows authentication on Microsoft SQL Server. Thus, it is necessary to download the native `dll` (`mssql-jdbc_auth-12.4.2.x64.dll`) and perform some additional settings.
+**CloverDX** comes with a bundled Microsoft SQL Server JDBC driver. However, it does not contain native libraries required for Windows authentication on Microsoft SQL Server. Thus, it is necessary to download the native `dll` (`mssql-jdbc_auth-13.4.0.x64.dll`) and perform some additional settings.
 
 ##### Getting the native library
 
-**CloverDX** bundles **Microsoft SQL Server JDBC driver v. 12.4.2.**. To download the driver follow these instructions:
+**CloverDX** bundles **Microsoft SQL Server JDBC driver v. 13.4.0.**. To download the driver follow these instructions:
 
 1. Get the [dist package](https://go.microsoft.com/fwlink/?linkid=2247576).
-2. Extract the contents and go to folder `sqljdbc_12.4\enu\auth\x64\`.
-3. Copy the `mssql-jdbc_auth-12.4.2.x64.dll` file to a folder, e.g. `C:\mssql_dll`.
+2. Extract the contents and go to folder `sqljdbc_13.4\enu\auth\x64\`.
+3. Copy the `mssql-jdbc_auth-13.4.0.x64.dll` file to a folder, e.g. `C:\mssql_dll`.
 
 ##### Installation
 
