@@ -17,7 +17,7 @@ This guide provides an overview of CloverDX Wrangler and Data Manager, helping u
 
 ---
 
-*This guide refers to CloverDX 7.4.1 release.*
+*This guide refers to CloverDX 7.4.2 release.*
 
 *Copyright © 2010-2026 CloverDX a.s. All rights reserved.*
 
