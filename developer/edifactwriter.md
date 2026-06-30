@@ -106,7 +106,7 @@ Mapping different ports on parts of an EDIFACT message format allows to insert m
 The example below creates one EDIFACT interchange for each record obtained from port 0 and one AUTHOR message for each record obtained from port 2.
 
 ![EDIFACTWriter example 01](../figures/EDIFACTWriter-example-01.png)
-*Figure 367. EDIFACTWriter - mapping input records on different parts of a message*
+*Figure 385. EDIFACTWriter - mapping input records on different parts of a message*
 
 #### Compatibility
 

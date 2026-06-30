@@ -12,9 +12,9 @@ This section outlines the hardware resources needed to run **CloverDX Designer**
 | --- | --- |
 | RAM | 4 GB; 8 GB or more for optimal performance |
 | Processors | Dual-core CPU; quad core CPU for optimal performance |
-| Disk space (installation) | 1 GB |
-| Disk space (data) | 1 GB (minimum; depending on data) |
-| Screen resolution | Best on Full HD |
+| Disk space (installation) | 2 GB |
+| Disk space (data) | 1 GB (minimum; depending on data) |
+| Screen resolution | Best on FullHD or 4K |
 
 #### Software
 
@@ -23,12 +23,12 @@ This section details the operating systems and Java versions supported by Clover
 | Operating system | Note |
 | --- | --- |
 | **Microsoft Windows** | MS Windows 10 or 11, 64-bit. |
-| **macOS** | *macOS 13 (Ventura) or newer*, running on *Apple Silicon* (M1, M2 or M3 CPUs). *Intel CPUs* are not supported since CloverDX 7.0. |
+| **macOS** | *macOS 14 (Sonoma) or newer*, running on *Apple Silicon* (M1 or newer CPU). Intel CPUs are not supported since CloverDX 7.0. |
 | **Linux** | Linux 64-bit with GTK+ 3.22.0 or newer. While we primarily test on Ubuntu, the Designer should work on all modern Linux distributions. |
 
 | Java | Notes |
 | --- | --- |
-| **Eclipse Temurin JDK**[[1]](part-installation-instructions.md#sys-req-fn-01) | **Eclipse Temurin JDK 21**, 64-bit (formerly AdoptOpenJDK), which can be downloaded from the following site: [https://adoptium.net](https://adoptium.net). |
+| **Eclipse Temurin JDK**[[1]](part-installation-instructions.md#sys-req-fn-01) | **Eclipse Temurin JDK 21**, 64-bit (formerly AdoptOpenJDK), which can be downloaded from [Eclipse Temurin project site](https://adoptium.net/temurin). |
 
 | 1 | CloverDX Designer requires a Java Development Kit (JDK). Running with just JRE is not supported. |
 | --- | --- |
@@ -104,15 +104,19 @@ The executable to run is `CloverDXDesigner/CloverDXDesigner`.
 
 The first thing you will be prompted to define after the **CloverDX Designer** launches, is the **workspace** folder. **Workspace** is a place your projects will be stored at; usually a folder in the user’s `home` directory (e.g., `C:\Users\your_name\workspace` or `/home/your_name/CloverDX/workspace` )
 
-![starting 020](../figures/starting-020.png)
-*Figure 1. Workspace Selection Dialog*
+![cloverdx designer workspace selection](../figures/cloverdx-designer-workspace-selection.png)
+*Figure 1. Workspace selection shown during CloverDX Designer start-up.*
 
-Note that the **workspace** can be located anywhere. Make sure you have proper permissions to the location. If a non-existing folder is specified, it will be created.
+The **workspace** can be located anywhere. We do, however, recommend using path that does not contain any spaces as it makes it easier to use scripts within such location. If you specify a folder that does not exist, it will be created for you.
+
+If you only plan to use a single workspace, you can check the **Use this as the default…​** checkbox and the Designer will not longer ask during startup. If desired, you can then switch workspace using **File** ****Switch Workspace**.
+
+Note that workspaces can be quite large as they will by default contain various temporary files and logs needed by the Designer. An empty workspace can be easily more than 300 MB and can grow to multiple of that size if you are processing larger data volumes in the Designer.
 
 When the **workspace** is set, the welcome screen is displayed.
 
-![starting 030](../figures/starting-030.png)
-*Figure 2. CloverDX Designer Introductory Screen*
+![cloverdx designer welcome screen](../figures/cloverdx-designer-welcome-screen.png)
+*Figure 2. CloverDX Designer welcome page shown on first start.*
 
 When you have started for the first time, you are asked to activate the product.
 
@@ -128,34 +132,34 @@ The documentation is accessible from the main menu under **Help** ****Help Cont
 >
 > For more information about secure storage, see [Eclipse User Guide](https://help.eclipse.org/kepler/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Freference%2Fref-securestorage-start.htm).
 
-### Activating
+### Activating Designer
 
-**CloverDX Designer** needs activating before you can use it. If **Designer** without a valid license starts, you are instructed to activate it.
+**CloverDX Designer** must be activated before you can use it. If the **Designer** starts without a valid license, you will be instructed to activate it.
 
-Click **Activate using license key** to activate the **Designer**.
+The activation is done via Activation wizard.
 
-If you do not have a license key, the **I need a license key** button opens a web page where you can get a trial license.
+![license activation](../figures/license-activation.png)
+*Figure 4. Choose whether to activate the Designer or to get a new trial key.*
 
-![license activation 010](../figures/license_activation_010.png)
-*Figure 4. Choose licensing*
+If you already have your license, you can select You can either load the license **Activate using license key** to activate the **Designer**. If you do not have a license key yet, the **I need a license key** button opens a web page where you can get a trial license.
 
 #### Activation using license key
 
-The license can be activated using a license key. Internet connection isn’t necessary for this choice. Following pictures illustrates the process of new license activation.
+The license can be activated using a license key. Internet connection isn’t necessary for this choice, but you will have to have the license key ready. The license key itself is a long string of letters and numbers which encodes the licensing details (which parts of the product you can use and so on).
 
-Copy and paste the license text, or specify the path to the license file with **Load from File** button.
+You can either copy-paste the license key or load if from a file:
 
-![add license dialog](../figures/add_license_dialog.png)
-*Figure 5. Dialog for specifying license*
+![license add license dialog](../figures/license-add-license-dialog.png)
+*Figure 5. Add license dialog allows you to either copy-paste the license or load if from a file.*
 
-Confirm you accept the license agreement and click **Finish** button.
+Once you add the license, the *End User License Agreement* (EULA) for CloverDX products is shown. If you wish to use the Designer, you’ll have to accept the EULA.
 
-![license agreement](../figures/license_agreement.png)
-*Figure 6. License agreement*
+![license eula](../figures/license-eula.png)
+*Figure 6. License agreement shown after the license has been added.*
 
-The license has been applied, the **CloverDX Designer** has been activated.
+Once you confirm the EULA, your license will be applied and your instance of **CloverDX Designer** will be activated.
 
-Already activated license can be deleted with the help of [*License Manager*](part-installation-instructions.md#license-manager).
+You can see details about your license in [*License Manager*](part-installation-instructions.md#license-manager) dialog.
 > [!NOTE]
 > You should have received the license key by an email.
 >
@@ -163,14 +167,27 @@ Already activated license can be deleted with the help of [*License Manager*](pa
 >
 > The license key can be also acquired on your **CloverDX Account**: log in at [www.cloverdx.com/login](https://support.cloverdx.com/login) and under the section **Download** you see a **View license key** button.
 
+### Activating CloverDX AI Assistant
+
+**CloverDX AI Assistant** requires its own separate license. If you wish to use it, you’ll have to load the Assistant’s license into your CloverDX Designer after you’ve activated your Designer. To get your Assistant license, please visit [License keys](https://support.cloverdx.com/license-keys) on [CloverDX Customer Portal](https://support.cloverdx.com/myaccount).
+
+When you first start CloverDX if the Assistant is not yet activated, it will show you a welcome screen which will guide you through the activation process via a simple wizard.
+
+![assistant first start activate](../figures/assistant-first-start-activate.png)
+*Figure 7. First start of CloverDX AI Assistant will show you a welcome screen where you can easily add your Assistant license by clicking on the Activate Assistant button.*
+
+Alternatively, you can also add the license via [License Manager dialog](part-installation-instructions.md#license-manager).
+
+Once your Assistant is activated, you’ll have to configure the API keys so that it can access Large Language Model – the Assistant is a Bring-your-own-key experience (BYOK). See more details about the Assistant’s LLM configuration in [CloverDX AI Assistant configuration](designer-configuration.md#cloverdx-ai-assistant-configuration).
+
 ### License manager
 
-This chapter describes how you can add or remove **licenses** at CloverDX Designer.
+**License Manager** is a dialog that allows you to manage all licenses that have been loaded into your **CloverDX Designer**. Multiple licenses can be loaded at any time – some of them may be older, inactive licenses; or you can have a separate license that unlocks **CloverDX AI Assistant**, etc.
 
-**License Manager** is designed to easily add new licenses and remove or view existing licenses. The manager is accessible in the main menu - select **Help** ****CloverDX** ****License Manager**.
+The manager is accessible in the main menu – select **Help** ****CloverDX** ****License Manager**.
 
-![license manager](../figures/license_manager.png)
-*Figure 7. License Manager showing installed licenses.*
+![license manager](../figures/license-manager.png)
+*Figure 8. License Manager showing two installed and active licenses – the first one activates the Designer itself while the second one is for CloverDX AI Assistant.*
 
 License manager allows you to:
 
@@ -181,48 +198,48 @@ License manager allows you to:
   - **Expiration** - expiration date of the license.
 - Open [CloverDX License dialog](part-installation-instructions.md#cloverdx-license-dialog) to view all available information about the license.
 - Check available license sources. The license sources are shown after clicking on **License Manager Info**.
-- Open **Add New License** dialog. New license can be added with the help of this wizard. Click **Add New License** button to start the process of license activation. See [Activating](part-installation-instructions.md#activating).
+- Open **Add New License** dialog. New license can be added with the help of this wizard. Click **Add New License** button to start the process of license activation. See [Activating](part-installation-instructions.md#activating-designer).
 - Delete existing license. **Remove** button is shown if it is possible to remove activated license. Confirmation is required when deleting license.
 
 #### CloverDX license dialog
 
 **CloverDX** License dialog shows all available information about the license. **License terms** are available from this place. It can be opened from **License Manager** ([License Manager](part-installation-instructions.md#license-manager))
 
-![license dialog](../figures/license_dialog.png)
-*Figure 8. CloverDX License dialog*
-> [!NOTE]
-> License Terms needn’t to be accessible for some licenses.
+![license details dialog](../figures/license-details-dialog.png)
+*Figure 9. CloverDX License dialog*
 
 ### Troubleshooting
 
-This chapter contains some infrequent errors you may encounter and solutions to them.
+This chapter provides information about some common issues you may encounter while installing CloverDX Designer on your computer. If you cannot resolve your issues, please contact CloverDX Support via [Customer Portal](https://support.cloverdx.com/myaccount).
 
 #### Windows
 
 ##### Windows SmartScreen
 
-In the case of installation of **CloverDX Designer** on Microsoft Windows 8 the installer may be prevented from starting by SmartScreen.
+In the case of installation of **CloverDX Designer** on Microsoft Windows, the installer may be prevented from starting by SmartScreen. Microsoft Defender SmartScreen is a security feature built into Windows that is designed to protect you from malware. It picks up CloverDX since it uses exe-based installer rather than msi-based one.
 
-![SmartScreen1](../figures/SmartScreen1.png)
-*Figure 9. SmartScreen warning*
+![installation smart screen 1](../figures/installation-smart-screen-1.png)
+*Figure 10. SmartScreen warning.*
 
-To start the **CloverDX Designer** installer, click on **More info**, check that the publisher is **CloverDX a.s.** and then click on **Run anyway**.
+To run the Designer installer, you must click on **More info** button in the bottom right corner. This will show you additional information about the installer – its signature (certificate) overview and a **Run**.
 
-More information about SmartScreen:
+![installation smart screen 2](../figures/installation-smart-screen-2.png)
+*Figure 11. SmartScreen showing additional information about the installer. Note the "funny" characters are OK - SmartScreen warning does not support Czech characters which appear in the address on the certificate.*
 
-- *[http://www.howtogeek.com/123938/htg-explains-how-the-smartscreen-filter-works-in-windows-8/](http://www.howtogeek.com/123938/htg-explains-how-the-smartscreen-filter-works-in-windows-8/)*
-- *[http://en.wikipedia.org/wiki/Microsoft_SmartScreen](http://en.wikipedia.org/wiki/Microsoft_SmartScreen)*
+Click on the **Run** button to proceed with the installation.
 
 ##### User account control
 
-On **Microsoft Windows**, the **User Account Control** can prevent the installer of **CloverDX Designer** from running. Click **YES** to allow the installer to run.
+Installing CloverDX Designer on Microsoft Windows may require administrator privileges. As a security measure against automated installers, Windows will show a User Account Control prompt asking you to confirm that CloverDX Designer installer may make changes to your computer.
 
-![installation userAccountControl](../figures/installation_userAccountControl.png)
-*Figure 10. User Account Control Preventing the Installation*
+Click **YES** to allow the installer to run.
 
-##### Windows 10 firewall
+![installation user account control](../figures/installation-user-account-control.png)
+*Figure 12. User Account Control asking for confirmation to continue with the installation.*
 
-Windows 10 shows security warning when Designer’s Runtime is starting.
+##### Windows firewall
+
+Windows shows security warning when Designer’s Runtime is starting.
 
 **CloverDX Designer** application starts as two processes: **CloverDX Designer GUI** and **CloverDX Runtime**. These processes need to communicate with each other over TCP protocol. You should allow the mutual communication with **Allow access** button.
 
@@ -255,23 +272,6 @@ This parameter forces **CloverDX Designer** to run using GTK 2 which may fix the
 **Note:** do not use the parameter on systems using GTK 3 (e.g. Manjaro with KDE Plasma 5), as it may cause other problems (e.g. non-functional tooltips in the graph editor).
 
 #### Others
-
-##### Subclipse
-
-If you use **CloverDX Designer** with **Subclipse** plugin, and perform the following steps: In a project, create a directory `aaa`, create a file `bbb`, delete the directory `aaa`, and rename file `bbb` to `aaa`; you may encounter the message:
-
-```
-An exception has been caught while processing the refactoring 'Rename resource'.
-Reason:
-Problems encountered while moving resources.
-
-Error deleting markers for resource bbb.
-Resource aaa does not exist.
-```
-
-This problem is caused by caching resources by the **Subclipse** plugin and is not related to **CloverDX**.
-
-If this message appears, refresh the project in **Project Explorer**.
 
 #### Online activity
 

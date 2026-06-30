@@ -34,4 +34,24 @@ By default, a component will cause the graph to fail if it fails to perform the 
 
 If the component fails, it will not execute subsequent operations unless the **Stop processing on fail** option is disabled. The information about skipped operations will be sent to the error output port.
 
+##### Preserve file timestamps
+
+[CopyFiles](copyfiles.md) and [MoveFiles](movefiles.md) components can preserve last modified timestamps of files and directories. This feature depends on the source file system’s ability to provide a last modified date, and on the target file system’s ability to set it.
+
+The following table shows general support of preserving timestamps:
+
+| File system | Provides last modified | Sets last modified |
+| --- | --- | --- |
+| Local | yes | yes |
+| Sandbox | yes | yes |
+| SMB | yes | Files: yes; Dirs: no |
+| SMB2 | yes | yes |
+| FTP | Server-dependent | no |
+| SFTP | yes | yes |
+| Amazon S3 | Files: yes; Dirs: no | no |
+| Azure Blob | yes | no |
+| Hadoop | yes | Files: yes; Dirs: no |
+
+Depending on the source and target file systems, the operation can be performed by a system call that can preserve timestamps natively. A Move operation can be performed as a Rename call, which preserves the timestamps of the moved file or directory without modification. In such cases the timestamps are preserved automatically, even if **Preserve file timestamps** attribute is set to **No special handling**.
+
 See [File Operations](file-operations.md) next.

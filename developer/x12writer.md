@@ -117,7 +117,7 @@ Mapping different ports on parts of an X12 transaction set format allows to inse
 The example below creates one X12 interchange for each record obtained from port 0 and one Invoice (TS_810) transaction set for each record obtained from port 1.
 
 ![X12Writer example 01](../figures/X12Writer-example-01.png)
-*Figure 394. X12Writer - mapping input records on different parts of a transaction set*
+*Figure 412. X12Writer - mapping input records on different parts of a transaction set*
 
 #### Compatibility
 

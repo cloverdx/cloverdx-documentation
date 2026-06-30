@@ -20,7 +20,7 @@ The marketplace offerings consist of virtual machine images and templates. The t
 The virtual machine is designed to run a standalone **CloverDX Server** instance:
 
 ![marketplace architecture](../figures/marketplace-architecture.png)
-*Figure 12. Architecture - CloverDX Server in Cloud Marketplaces*
+*Figure 14. Architecture - CloverDX Server in Cloud Marketplaces*
 
 **It has external dependencies:**
 

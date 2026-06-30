@@ -79,7 +79,7 @@ If a record is rejected and an email is not sent, an error message is created an
 To define the **Message** attribute, you can use the following wizard:
 
 ![emailsendWizard](../figures/emailsendWizard.png)
-*Figure 368. EmailSender Message Wizard*
+*Figure 386. EmailSender Message Wizard*
 
 In this wizard, you specify a content of particular parts of an email message: drag and drop the proper field from the **Fields** pane to the **Value** column.
 
@@ -111,14 +111,14 @@ The attachment is specified as a sequence of individual attachments separated by
 The attachments is added to the email using the following **Edit attachments** wizard:
 
 ![AttachmentsEdit](../figures/AttachmentsEdit.png)
-*Figure 369. Edit Attachments Wizard*
+*Figure 387. Edit Attachments Wizard*
 
 You add the items by clicking the **Plus sign** button and remove by clicking the **Minus sign** button. Input fields can be dragged to the **Attachment** column of the **Attachments** pane or the **Arrow** button can be used.
 
 If you want to edit any attachment definition, click the corresponding row in the **Attachment** column and the following attribute will open:
 
 ![Attachment](../figures/Attachment.png)
-*Figure 370. Attachment Wizard*
+*Figure 388. Attachment Wizard*
 
 In this wizard, you need to locate files, specify them using field names or the mentioned triplet. After clicking **OK**, the attachment is defined.
 

@@ -161,7 +161,7 @@ The **Mapping Editor** lets you map spreadsheet rows or columns to metadata fiel
 Fill in the **File URL** and **Sheet** attributes before opening the **Mapping editor**. After that, edit **Mapping** to open a visual mapping editor. It will preview the sheet you have selected:
 
 ![SpreadsheetDataReader mappingEditor](../figures/SpreadsheetDataReader-mappingEditor.png)
-*Figure 345. SpreadsheetDataReader Mapping Editor*
+*Figure 363. SpreadsheetDataReader Mapping Editor*
 
 The **Mapping editor** consists of these elements:
 
@@ -194,7 +194,7 @@ Typically, your Excel data contains headers in the first row and so can be easil
 - Optional (in case you have not extracted metadata as in [Extracting metadata from an XLS(X) File](creating-metadata.md#extracting-metadata-from-an-xlsx-file)): select the first row and drag its fields to the **Output metadata** pane. This will create fields for all cells in the selection. Types will be guessed automatically, but it is worth checking them yourself afterwards.
 - Select the whole first row (by clicking the "1" row header) and click either **Map by order** or **Map by name** (for explanation, see [Introduction to spreadsheet mapping](spreadsheetreader.md#introduction-to-spreadsheet-mapping)).
   ![SpreadsheetDataReader basicMapping](../figures/SpreadsheetDataReader-basicMapping.png)
-  *Figure 346. Basic Mapping – notice leading cells and dashed borders marking the area data will be taken from*
+  *Figure 364. Basic Mapping – notice leading cells and dashed borders marking the area data will be taken from*
 - In addition to cell values, it is possible to read other attributes of the input cell: format, formula and hyperlink. See [Advanced mapping options](spreadsheetreader.md#advanced-mapping-options) below.
 
 ##### Advanced mapping options
@@ -204,7 +204,7 @@ This section provides an explanation of some more concepts extending the [Basic 
 The first group of options allows reading additional attributes of the selected cell: format, formula and hyperlink.
 
 ![SpreadsheetDataReader advancedMappingProperties](../figures/SpreadsheetDataReader-advancedMappingProperties.png)
-*Figure 347. Advanced Mapping Properties - format, formula and hyperlink*
+*Figure 365. Advanced Mapping Properties - format, formula and hyperlink*
 
 - **Field for format**
   Target output field for Excel format pattern (as in Excel’s right-click menu – Format Cells).
@@ -212,7 +212,7 @@ The first group of options allows reading additional attributes of the selected 
   > [!NOTE]
   > If an Excel cell has the `General` format, the format cannot be transferred to **CloverDX** due to internal Excel formatting. Instead, the target field will bear a string "General".
   ![SpreadsheetDataReader formatField](../figures/SpreadsheetDataReader-formatField.png)
-  *Figure 348. Retrieving format from a date field. Field for format was set to the "Special" field as target.*
+  *Figure 366. Retrieving format from a date field. Field for format was set to the "Special" field as target.*
   Formats can also be extracted during the one-time metadata extraction process. In metadata, format is taken from a single cell which you supply as a sample value to the metadata extraction wizard. See [Extracting metadata from an XLS(X) File](creating-metadata.md#extracting-metadata-from-an-xlsx-file).
   If a cell has its format specified by the Excel format string (`excel:`), **SpreadsheetDataReader** can read it back. Other readers would ignore it. For further reading on format strings, see [Formatting cells (Field with format)](spreadsheetwriter.md#formatting-cells-field-with-format).
 - **Field for formula**
@@ -235,27 +235,27 @@ The second group are options that allow more fine-grained control over which cel
 > The arrow buttons in **Data offsets (global)** only *shift* the data offset property of each cell either up or down. So mixed offsets are retained, just shifted as desired. To *set* all data offsets to a single value, enter the value into the number field of Data offsets (global). Note that if there are some mixed offsets, the value is displayed in gray.
 
 ![SpreadsheetDataReader offsetComparison](../figures/SpreadsheetDataReader-offsetComparison.png)
-*Figure 349. The difference between global data offsets set to 1 (default) and 3.In the right hand figure, reading would start at row 4 (ignoring data in rows 2 and 3).*
+*Figure 367. The difference between global data offsets set to 1 (default) and 3.In the right hand figure, reading would start at row 4 (ignoring data in rows 2 and 3).*
 
 ![SpreadsheetDataReader dataOffset new](../figures/SpreadsheetDataReader-dataOffset-new.png)
-*Figure 350. Global data offset is set to 1 to all columns.In the third column, it is locally changed to 3.*
+*Figure 368. Global data offset is set to 1 to all columns.In the third column, it is locally changed to 3.*
 
 - **Rows per record**
   **Rows per record** is a **Global** property specifying how many rows form one record. Best imagined if you look at the figure below:
   ![SpreadsheetDataReader rowsPerRecord new](../figures/SpreadsheetDataReader-rowsPerRecord-new.png)
-  *Figure 351. Rows per record is set to 4.This makes SpreadsheetDataReader take 4 Excel rowsand create one record out of their cells.Cells actually becoming fields of a record are marked by a dashed border;therefore, the record is not populated by all data.Which cells populate a record is also determined by the data offsets setting, see the following bullet point.*
+  *Figure 369. Rows per record is set to 4.This makes SpreadsheetDataReader take 4 Excel rowsand create one record out of their cells.Cells actually becoming fields of a record are marked by a dashed border;therefore, the record is not populated by all data.Which cells populate a record is also determined by the data offsets setting, see the following bullet point.*
 - **Combination of Data offsets and Rows per record**
   Combination of **Data offsets** (global and local) and **Rows per record** – you can put the settings described in preceding bullet points together. See example:
 
 ![SpreadsheetDataReader comboOffsetRowsPerRec new](../figures/SpreadsheetDataReader-comboOffsetRowsPerRec-new.png)
-*Figure 352. Rows per record is set to 3.The first and third columns contribute to the record by their first row(because of the global data offset being 1).The second and fourth columns have (local) data offsets 2 and 4, respectively.Thus the first record will be formed by 'zig-zagged' cells (the yellow ones –follow them to make sure you understand this concept clearly).*
+*Figure 370. Rows per record is set to 3.The first and third columns contribute to the record by their first row(because of the global data offset being 1).The second and fourth columns have (local) data offsets 2 and 4, respectively.Thus the first record will be formed by 'zig-zagged' cells (the yellow ones –follow them to make sure you understand this concept clearly).*
 
 - **Max number of records**
   **Max number of records** is a **Global** property which you can specify via component attributes, too (see [SpreadsheetDataReader attributes](spreadsheetreader.md#spreadsheetdatareader-attributes)). If you reduce it, you will notice the number of dashed cells in the spreadsheet preview reduces as well (highlighting only the cells which will be mapped to records in fact).
 - **Multiple leading cells per column**
   In some spreadsheets, data in one column gets mixed, but you still need to process it all into one record. For example, imagine a column containing first names in odd rows and surnames in even rows one after another. In that case, you will create two leading cells above each other to be able to read both first names and surnames. Remember to set **Rows per record** to an appropriate value (2 in this example) not to read same data in all leading cells. Also, mind raising **Data offset** in the upper leading cell to start reading data where it truly begins. Look at the figure below:
   ![SpreadsheetDataReader leadingCellsSameColumn](../figures/SpreadsheetDataReader-leadingCellsSameColumn.png)
-  *Figure 353. Reading mixed data using two leading cells per column.Rows per record is 2, Data offset needed to be raised to 2 –looking at the first leading cell which has to start reading on the third row.*
+  *Figure 371. Reading mixed data using two leading cells per column.Rows per record is 2, Data offset needed to be raised to 2 –looking at the first leading cell which has to start reading on the third row.*
 
 #### Notes and limitations
 
@@ -270,7 +270,7 @@ The second group are options that allow more fine-grained control over which cel
 - **Reading date as string**
   **SpreadsheetDataReader** cannot guarantee that dates read into `string` fields will be displayed identically to how they appear in MS Excel. The reason is **CloverDX** interprets the format string stored in a cell otherwise than Excel - it depends on your locale.
   > [!IMPORTANT]
-  > It is recommended you read dates into `date` fields and convert them to `string` using a [CTL](part6.md) transformation.
+  > It is recommended you read dates into `date` fields and convert them to `string` using a [CTL](part5.md) transformation.
   **Built-in** Excel formats are interpreted according to the following table:
   | Format index stored in Excel cell | Format string |
   | --- | --- |

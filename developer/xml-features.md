@@ -14,6 +14,6 @@ The options for validation are the following:
 You can define this attribute using the following dialog:
 
 ![xmlfeatures](../figures/xmlfeatures.png)
-*Figure 321. XML features dialog*
+*Figure 339. XML features dialog*
 
 In this dialog, you can add features using the **Plus** button, select their `true` or `false` values, etc.

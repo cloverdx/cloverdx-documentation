@@ -91,10 +91,10 @@ In **X12Reader**, you can map input fields to the output in the same way as you 
 Mapping parts of X12 transaction set onto output metadata. It is possible to map a whole transaction set or its part onto **variant** field or to map individual values to fields of other data types.
 
 ![X12Reader example 01](../figures/X12Reader-example-01.png)
-*Figure 355. X12Reader - mapping part of a transaction set*
+*Figure 373. X12Reader - mapping part of a transaction set*
 
 ![X12Reader example 02](../figures/X12Reader-example-02.png)
-*Figure 356. X12Reader - mapping fields of a transaction set*
+*Figure 374. X12Reader - mapping fields of a transaction set*
 
 #### Compatibility
 

@@ -362,7 +362,7 @@ The following section describes what different permissions mean:
     See [Setup](setup.md).
   - **Heap memory dump**
     Allows the user to create a **Thread dump** and a **Heap Memory Dump**.
-    See [Diagnostics](../operations/diagnostics.md#).
+    See [Diagnostics](../operations/diagnostics.md).
 
 - **Open Server Console**
   Allows the user to log into the **Server Console**.

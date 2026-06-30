@@ -8,10 +8,10 @@ The **Filter rows based on formula** step allows you to filter your data set. It
 
 ###### Parameters
 
-- **Filter action**: select what to do with rows for which the formula returns true:
-  - **Keep rows**: default, keep the rows for which the formula returns true. All other rows are removed.
-  - **Remove rows**: remove the rows for which the formula returns true. All other rows are removed.
-- **Formula**: the formula (condition) which decides whether to keep or remove the rows. It must be a formula that returns true or false.
+- **Filter action**: select what to do with rows for which the formula returns `true`:
+  - **Keep rows**: default, keep the rows for which the formula returns `true`. All other rows are removed.
+  - **Remove rows**: remove the rows for which the formula returns `true`. All other rows are removed.
+- **Formula**: the formula (condition) which decides whether to keep or remove the rows. It must be a formula that returns `true` or `false`.
 
 ###### Usage
 

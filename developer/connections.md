@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Connections -->
 
-## 24. Connections
+## 25. Connections
 
 The Connections chapter provides comprehensive guidance on configuring and managing various types of connections in CloverDX job files. Understanding how to set up and maintain these connections is crucial for enabling seamless data integration and communication across different systems and services.
 

@@ -1,13 +1,17 @@
-<!-- Development > CTL2 - CloverDX Transformation Language -->
+<!-- Development > Component reference -->
 
-# CTL2 - CloverDX Transformation Language
+# Component reference
 
-This section offers a comprehensive guide to mastering CTL2, CloverDX’s powerful scripting language for data transformation and manipulation. It is designed to equip you with everything you need to effectively use CTL2 for data transformation, from basic syntax to advanced features, debugging strategies, and a thorough function reference. This chapter provides a structured and in-depth overview of CTL2, starting with a [general introduction to the language](ctl-overview.md) and then diving into its core components.
+This chapter provides a comprehensive guide to the various components available within CloverDX for building and executing data transformation jobs. It provides information essential for understanding how to effectively use each component to build robust and scalable data workflows. Each component plays a crucial role in facilitating data integration, manipulation, and processing tasks, allowing users to design complex workflows with flexibility and efficiency.
 
-The [Language reference](language-reference-ctl2.md) section breaks down the foundational elements of CTL2, including the [program structure](language-reference-ctl2.md#program-structure), how to add [comments](language-reference-ctl2.md#comments), or [importing](language-reference-ctl2.md#import) external resources from other `.ctl` files. You’ll explore the supported [data types](language-reference-ctl2.md#data-types-in-ctl2), [literals](language-reference-ctl2.md#literals), and [variables](language-reference-ctl2.md#variables). Essential programming concepts such as [operators](language-reference-ctl2.md#operators), [control statements](language-reference-ctl2.md#control-statements), and [error handling](language-reference-ctl2.md#error-handling) are discussed to help you create efficient and reliable code. The section also covers how to define custom [functions](language-reference-ctl2.md#functions) or how to write [conditional fail expressions](language-reference-ctl2.md#conditional-fail-expression), and methods for [accessing and mapping data records and fields](language-reference-ctl2.md#accessing-data-records-and-fields).
-
-The [CTL debugging](ctl-debugging.md) section is dedicated to helping you troubleshoot and optimize your CTL2 scripts. You’ll learn how to use the [debug perspective](ctl-debugging.md#debug-perspective), [manage breakpoints](ctl-debugging.md#importing-and-exporting-breakpoints), and [inspect variables and expressions](ctl-debugging.md#inspecting-variables-and-expressions). [Examples](ctl-debugging.md#examples) provide practical insights into debugging techniques, enhancing your ability to maintain high-quality scripts.
-
-In the [CTL2 functions](functions-reference-ctl2.md) reference, the chapter catalogs the wide array of CTL2 functions available to you. These include [conversion](conversion-functions-ctl2.md), [date](date-functions-ctl2.md), [mathematical](mathematical-functions-ctl2.md), and [string functions](string-functions-ctl2.md), as well as more specialized [mapping](mapping-functions-ctl2.md), [container](container-functions-ctl2.md), and [record functions](field-access-functions-ctl2.md). You’ll also find details on functions related to [lookup tables](lookup-table-functions-ctl2.md), [sequences](sequence-functions-ctl2.md), and [subgraphs](subgraph-functions-ctl2.md), as well as how to leverage [Data Service HTTP Library functions](http-ctl2.html) or how to create [custom functions](custom-functions-ctl2.md). This section provides a quick [reference guide](ctl2-list-of-functions.md) to all CTL2 functions, ensuring you can easily find and apply the right tools for any task.
-
-Finally, the chapter concludes with an [appendix listing national-specific characters](ctl2-appendix.md), providing additional support for handling multilingual or region-specific data.
+- [Readers](readers.md) focus on extracting data from various sources.
+- [Writers](writers.md) are used for outputting transformed data to different destinations, including databases, files, and external systems.
+- [Transformers](transformers.md) handle data manipulation tasks, applying transformations to datasets to cleanse, aggregate, or enrich data.
+- [AI / ML](ai-components.md) components allow to transform data using pre-trained machine learning models.
+- [Joiners](joiners.md) enable merging of datasets from multiple sources, facilitating relational operations across different data inputs.
+- [Job Control](job-control.md) components allow for the orchestration of complex workflows, providing tools to manage dependencies, triggers, and job execution.
+- [File Operations](file-operations.md) components offer functionalities for interacting with file systems, handling file management tasks like moving, copying, or deleting files.
+- [Data Partitioning](cluster-components.md) components optimize performance by splitting large datasets into manageable parts for parallel processing.
+- [Data Quality](data-quality.md) components are designed to ensure that data meets predefined quality standards, helping identify and correct anomalies or errors.
+- [Others](others.md) cover additional utility components that enhance the functionality of CloverDX.
+- [Deprecated](deprecated.md) lists components that are still available but no longer recommended for use, usually because they have been replaced by more advanced alternatives.

@@ -1,6 +1,6 @@
 <!-- Development > Projects > Versioning of server project content -->
 
-## 13. Versioning of server project content
+## 14. Versioning of server project content
 
 This section describes the most basic use cases of versioning server projects with two popular version control systems. It describes the way to use the particular version system and **CloverDX Designer** together. It does not serve to replace the documentation of any particular version control system.
 

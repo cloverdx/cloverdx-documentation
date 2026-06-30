@@ -1,6 +1,6 @@
 <!-- Development > Job types > Graphs & development basics -->
 
-## 16. Graphs & development basics
+## 17. Graphs & development basics
 
 ### Graphs - first steps
 

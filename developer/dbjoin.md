@@ -93,7 +93,7 @@ The data attached to the first input port is called **master**, the second data 
 The order of these field names must correspond to the order of the key fields from the database table (and their data types). The slave part of **Join key** must be defined in the **SQL query** attribute.
 
 One of the query attributes must contain the expression of the following form: `... where field_K=? and field_L=?`.
-Example 393. Join key for DBJoin
+Example 398. Join key for DBJoin
 
 ```ctl
 $first_name;$last_name
@@ -117,7 +117,7 @@ The transform in **DBJoin** lets you define a transformation that sends records 
 
 All **Joiners** share the same transformation template which can be found in [CTL templates for Joiners](ctl-templates-for-joiners.md).
 
-For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part6.md).
+For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part5.md).
 
 #### Java interfaces
 

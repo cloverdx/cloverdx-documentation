@@ -77,7 +77,7 @@ The **Rules** tab of the dialog is split up into three parts: [Available rules](
 Tab **Code** contains a text editor for editing validation rules in XML form, options to import and export of the validation rules, and an option to return to initial state of validation rules.
 
 ![Validator ValidatorRulesEditor](../figures/Validator-ValidatorRulesEditor.png)
-*Figure 433. Validator rules editor*
+*Figure 451. Validator rules editor*
 
 ##### Validation rules
 
@@ -97,7 +97,7 @@ The **Active rules** pane contains a tree of **active validation rules**. The ru
 A group named as **All rules** is the root of the tree of **active validation rules**. If any of active validation rules is chosen, the details of the rule settings are displayed in rule parameters below.
 
 ![Validator ActiveRules](../figures/Validator-ActiveRules.png)
-*Figure 434. Validator - Active rules*
+*Figure 452. Validator - Active rules*
 > [!IMPORTANT]
 > In the case of **more validation rules** having the same output field, the value acquired from the **last one** is used.
 > [!TIP]
@@ -170,7 +170,7 @@ Validation failure details from following fields can be used. The fields can be 
 | graphURL | string | A path to a graph. |
 
 ![Validator ErrorOutputMapping](../figures/Validator-ErrorOutputMapping.png)
-*Figure 435. Validator - Error output mapping*
+*Figure 453. Validator - Error output mapping*
 
 ##### Validator error codes
 
@@ -282,7 +282,7 @@ The conditionally processed validation subtrees work as groups too - zero, one o
 The **Else** branch is optional, it can be empty or omitted. The user can delete the **Else** if the else branch is not needed.
 
 ![Validator if then else](../figures/Validator-if-then-else.png)
-*Figure 436. Validator - If - then - else without else branch*
+*Figure 454. Validator - If - then - else without else branch*
 > [!NOTE]
 > Rule usage example
 > Input data contains fields *type*, *weight* and *pieces*. *Type* is type of cargo: *bulk* for bulk goods and *piece* for piece goods, *weight* is weight of cargo and *pieces* stands for number of pieces.

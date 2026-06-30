@@ -65,7 +65,7 @@ The logic of mapping is similar to [XMLWriter](extxmlwriter.md#details) - if you
 Before you can start mapping, you need to define contents of the output JavaBean. Start by editing the **Bean structure** attribute which opens this dialog:
 
 ![JavaBeanWriter beanStructure](../figures/JavaBeanWriter-beanStructure.png)
-*Figure 371. Defining the Bean structure - click the Select combo box to start*
+*Figure 389. Defining the Bean structure - click the Select combo box to start*
 
 - **Java object** - clicking it opens a dialog in which you can choose from Java classes. **Important**: if you intend to use a custom JavaBeans class, place it into the `trans` folder. The class will then be available in this dialog.
 - **Collection** - adds a list consisting of other objects, maps or other collections.
@@ -80,7 +80,7 @@ The very basics of the mapping are:
 - Edit the component’s **Mapping** attribute. This will open the visual mapping editor:
 
 ![JavaBeanWriter blankMapping](../figures/JavaBeanWriter-blankMapping.png)
-*Figure 372. Mapping editor in JavaBeanWriter after first open.*
+*Figure 390. Mapping editor in JavaBeanWriter after first open.*
 
 Metadata on the input edge(s) are displayed on the left hand side. The right hand pane is where you design the desired output tree - it is pre-defined by your bean’s structure (note: in the example, the bean contains employees and projects they are working on). Mapping is then performed by dragging metadata from left to right (and performing additional tasks described below).
 
@@ -91,9 +91,9 @@ Metadata on the input edge(s) are displayed on the left hand side. The right han
   - Maps
   Click the green '+' sign to **Add entry**. This adds a new item into the tree - its type depends on context (the node you have selected). **Remember** the button is not available every time as the output structure is determined by [bean structure](beanwriter.md#defining-bean-structure).
 - Connect input records to output nodes to create [Binding](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields).
-  Example 374. Creating Binding
+  Example 379. Creating Binding
   ![JavaBeanWriter binding](../figures/JavaBeanWriter-binding.png)
-  *Figure 373. Example mapping in JavaBeanWriter*
+  *Figure 391. Example mapping in JavaBeanWriter*
   In the example above, you can see the employees are joined with projects they work on. Fields in bold (their content) will be printed to the output dictionary, i.e. they are used in the mapping.
 - At any time, you can switch to the [Source tab](extxmlwriter.md#creating-the-mapping-source-tab) and write/check the mapping yourself in code.
 - If the basic instructions found here are not satisfying, consult XMLWriter’s [Details](extxmlwriter.md#details) where the whole mapping process is described in detail.

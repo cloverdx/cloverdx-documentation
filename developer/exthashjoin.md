@@ -104,7 +104,7 @@ $CUSTOMERID=$CUSTOMERID#$ORDERID=$ORDERID;$PRODUCTID=$PRODUCTID
 The order of these mappings must correspond to the order of the slave input ports. If some of these mappings are empty or missing for some of the slave input ports, the mapping of the first slave input port is used instead.
 > [!NOTE]
 > Different slaves can be joined with the master using different master fields!
-Example 394. Slave part of join key for ExtHashJoin
+Example 399. Slave part of join key for ExtHashJoin
 
 ```ctl
 $master_field1=$slave_field1;$master_field2=$slave_field2;...;$master_fieldN=$slave_fieldN
@@ -112,7 +112,7 @@ $master_field1=$slave_field1;$master_field2=$slave_field2;...;$master_fieldN=$sl
 
 - If some `$slave_fieldJ` is missing (i.e. if the subexpression looks like this: `$master_fieldJ=`), it is supposed to be the same as the `$master_fieldJ`.
 - If some `$master_fieldK` is missing, `$master_fieldK` from the first port is used.
-Example 395. Join key for ExtHashJoin
+Example 400. Join key for ExtHashJoin
 
 ```ctl
 $first_name=$fname;$last_name=$lname#=$lname;$salary=;$hire_date=$hdate
@@ -136,7 +136,7 @@ $first_name=$fname;$last_name=$lname#=$lname;$salary=;$hire_date=$hdate
 To create the **Join key** attribute, use the **Join key** dialog. When you click the **Join key** attribute row, a button appears in this row. By clicking this button, you open the dialog.
 
 ![00 00170](../figures/00_00170.png)
-*Figure 415. Hash join key dialog*
+*Figure 433. Hash join key dialog*
 
 In the dialog, you can see tabs for all of the slave input ports. In each slave tab, there are two panes: **Slave fields** and **Key mappings**.
 
@@ -188,7 +188,7 @@ All **Joiners** share the same transformation template which can be found in [CT
 
 The mapping of unmatched records to the second (optional) port is performed without being explicitly specified.
 
-For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part6.md).
+For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part5.md).
 
 #### Examples
 

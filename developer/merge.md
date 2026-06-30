@@ -53,7 +53,7 @@ All input metadata must be the same. Metadata name and field names may differ, b
 **Merge** receives sorted data records through two or more input ports. The component merges a serie of input records into one.
 
 ![Merge diagram](../figures/Merge-diagram.png)
-*Figure 409. Merge*
+*Figure 427. Merge*
 > [!IMPORTANT]
 > Remember that all key fields must be sorted in ascending order.
 

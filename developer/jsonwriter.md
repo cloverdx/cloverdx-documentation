@@ -77,7 +77,7 @@ As a consequence, you map the input records to the output file in a manner simil
 
 - Connect input edges to **JSONWriter** and edit the component’s **Mapping** attribute. This will open the visual mapping editor:
   ![JSONWriter blankMappingEditor](../figures/JSONWriter-blankMappingEditor.png)
-  *Figure 377. Mapping editor in JSONWriter after first open. Metadata on the input edge(s)are displayed on the left hand side. The right hand paneis where you design the desired JSON tree.Mapping is then performed by dragging metadata from left to right(and performing additional tasks described below).*
+  *Figure 395. Mapping editor in JSONWriter after first open. Metadata on the input edge(s)are displayed on the left hand side. The right hand paneis where you design the desired JSON tree.Mapping is then performed by dragging metadata from left to right(and performing additional tasks described below).*
 - In the right hand pane, design your JSON tree consisting of
   - [Elements](extxmlwriter.md#element)
     > [!IMPORTANT]
@@ -85,9 +85,9 @@ As a consequence, you map the input records to the output file in a manner simil
   - **Arrays** - arrays are ordered sets of values in JSON enclosed between the `[` and `]` brackets. To learn how to map them in **JSONWriter**, see [Writing arrays II](jsonwriter.md#writing-arrays-ii).
   - [Wildcard elements](extxmlwriter.md#wildcard-element)- another option to mapping elements explicitly. You use the **Include** and **Exclude** patterns to generate element names from respective metadata.
 - Connect input records to output (wildcard) elements to create [Binding](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields).
-  Example 377. Creating Binding
+  Example 382. Creating Binding
   ![JSONWriter mappingWithBindings](../figures/JSONWriter-mappingWithBindings.png)
-  *Figure 378. Example mapping in JSONWriter - employees are joined with projectsthey work on.Fields in bold (their content) will be printed to the output file - see below.*
+  *Figure 396. Example mapping in JSONWriter - employees are joined with projectsthey work on.Fields in bold (their content) will be printed to the output file - see below.*
   Excerpt from the output file related to [the figure above](jsonwriter.md#jsonwriter-fig-mapping) (example of one employee written as JSON):
   ```json
   "employee" : {
@@ -159,7 +159,7 @@ Set up the **File URL** and **Mapping** attributes.
 | Mapping | ```xml <?xml version="1.0" encoding="UTF-8"?> <root xmlns:clover="http://www.cloveretl.com/ns/xmlmapping">   <Commodity  clover:inPort="0">     <CommodityName>$0.CommodityName</CommodityName>     <Unit>$0.Unit</Unit>     <Price>$0.Price</Price>     <Currency>$0.Currency</Currency>   </Commodity> </root> ``` |
 
 ![JSONWriter example 01 010](../figures/JSONWriter-example-01-010.png)
-*Figure 379. JSONWriter mapping*
+*Figure 397. JSONWriter mapping*
 
 ###### Produced JSON File
 

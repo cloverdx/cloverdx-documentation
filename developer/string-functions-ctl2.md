@@ -16,8 +16,10 @@
 | [contains](string-functions-ctl2.md#contains) |
 | [countChar](string-functions-ctl2.md#countchar) |
 | [cut](string-functions-ctl2.md#cut) |
+| [decode](string-functions-ctl2.md#decode) |
 | [editDistance](string-functions-ctl2.md#editdistance) |
 | [endsWith](string-functions-ctl2.md#endswith) |
+| [escapeJson](string-functions-ctl2.md#escapejson) |
 | [escapeUrl](string-functions-ctl2.md#escapeurl) |
 | [escapeUrlFragment](string-functions-ctl2.md#escapeurlfragment) |
 | [escapeXML](string-functions-ctl2.md#escapexml) |
@@ -79,6 +81,7 @@
 | [toProjectUrl](string-functions-ctl2.md#toprojecturl) |
 | [translate](string-functions-ctl2.md#translate) |
 | [trim](string-functions-ctl2.md#trim) |
+| [unescapeJson](string-functions-ctl2.md#unescapejson) |
 | [unescapeUrl](string-functions-ctl2.md#unescapeurl) |
 | [unescapeUrlFragment](string-functions-ctl2.md#unescapeurlfragment) |
 | [unescapeXML](string-functions-ctl2.md#unescapexml) |
@@ -393,6 +396,46 @@ The `cut(string,integer[])` function is available since **CloverETL 3.0.0**.
 Example 166. Usage of cut The function `cut("somestringasanexample",[2,3,1,5])` returns `["mes","omest"]`.
 **See also:**[matchGroups](string-functions-ctl2.md#matchgroups)
 
+#### decode
+
+```ctl
+string decode(variant expression,
+                      variant search1, string result1,
+                      variant search2, string result2,
+                      variant..., string..., variant defaultResult);
+integer decode(variant expression,
+                      variant search1, integer result1,
+                      variant search2, integer result2,
+                      variant..., integer..., integer defaultResult);
+```
+
+The `decode()` function creates a small lookup from search-result pairs. It compares the `expression` to each `search` value one by one, and returns the corresponding `result` value. If no match is found, then `defaultResult` is returned. If `defaultResult` is ommitted, then `null` is returned.
+
+If the first argument is `null` or an empty string, the function returns default value.
+
+**Compatibility**
+
+The `decode()` function is available since **CloverETL 7.5.0**.
+Example 167. Usage of decode
+The function `decode(1, 1, "value1", "default")` returns "value1".
+
+The following example:
+
+```
+integer code = 3;
+
+decode(code, 1, 'Southlake',
+             2, 'San Francisco',
+             3, 'New Jersey',
+             4, 'Seattle', 'Non domestic');
+```
+
+returns:
+
+```
+"New Jersey"
+```
+
 #### editDistance
 
 ```ctl
@@ -422,7 +465,7 @@ If one or both of the input strings to compare are empty strings or `null`, the 
 **Compatibility**
 
 The `editDistance()` function is available since **CloverETL 3.0.0**.
-Example 167. Usage of editDistance 1
+Example 168. Usage of editDistance 1
 The function `editDistance("see", "sea")` returns `1`.
 
 The function `editDistance("bike", "bill")` returns `2`.
@@ -446,7 +489,7 @@ The function returns the number of letters that should be changed to transform o
 For more details, see another version of the `editDistance()` function below - the ["editDistance (string, string, integer, string, integer)"](string-functions-ctl2.md#editdistance) function.
 
 If one or both of the input strings to compare are empty strings or `null` function fails with an error.
-Example 168. Usage of editDistance 2
+Example 169. Usage of editDistance 2
 The function `editDistance("âgé", "âge", "en.US")` returns `1`.
 
 The function `editDistance("âgé", "âge", "fr.FR")` returns `1`.
@@ -464,7 +507,7 @@ The function returns the number of letters that should be changed to transform o
 For more details, see another version of the `editDistance()` function below - the ["editDistance (string, string, integer, string, integer)"](string-functions-ctl2.md#editdistance) function.
 
 If one or both of the input strings to compare are empty strings or `null`, the function fails with an error.
-Example 169. Usage of editDistance 3
+Example 170. Usage of editDistance 3
 The function `editDistance("computer", "preposition", 4)` returns `4`.
 
 The function `editDistance("computer", "preposition", 7)` fails.
@@ -486,7 +529,7 @@ The function returns the number of letters that should be changed to transform o
 For more details, see another version of the `editDistance()` function below - the ["editDistance (string, string, integer, string, integer)"](string-functions-ctl2.md#editdistance) function.
 
 If one or both of the input strings to compare are empty strings or `null`, the function fails with an error.
-Example 170. Usage of editDistance 4
+Example 171. Usage of editDistance 4
 The function `editDistance("âgé", "âge", 2, "en.US")` returns `1`.
 
 The function `editDistance("âgé", "âge", 2, "fr.FR")` returns `0`.
@@ -504,7 +547,7 @@ The function returns the number of letters that should be changed to transform o
 For more details, see another version of the `editDistance()` function below - the ["editDistance (string, string, integer, string, integer)"](string-functions-ctl2.md#editdistance) function.
 
 If one or both of the input strings to compare are empty strings or `null`, the function fails with an error.
-Example 171. Usage of editDistance 5 The function `editDistance("bike", "bicycle", "en.US", 2)` returns `2`.
+Example 172. Usage of editDistance 5 The function `editDistance("bike", "bicycle", "en.US", 2)` returns `2`.
 
 ```ctl
 integer editDistance(string arg1, string arg2, integer strength, integer maxDifference);
@@ -519,7 +562,7 @@ The function returns the number of letters that should be changed to transform o
 For more details, see another version of the `editDistance()` function below - the ["editDistance (string, string, integer, string, integer)"](string-functions-ctl2.md#editdistance) function.
 
 If one or both of the input strings to compare are empty strings or `null`, the function fails with an error.
-Example 172. Usage of editDistance 6
+Example 173. Usage of editDistance 6
 `editDistance("OAK", "oak", 3, 1)` returns `0`.
 
 `editDistance("OAK", "oak", 4, 3)` returns `3`.
@@ -547,7 +590,7 @@ The function returns the number of letters that should be changed to transform o
 Actually the function is implemented for the following locales: CA, CZ, ES, DA, DE, ET, FI, FR, HR, HU, IS, IT, LT, LV, NL, NO, PL, PT, RO, SK, SL, SQ, SV, TR. These locales have one thing in common: they all contain language-specific characters. A complete list of these characters can be examined in [CTL2 Appendix - List of National-specific Characters](ctl2-appendix.md).
 
 If one or both of the input strings to compare are empty strings or `null`, the function fails with an error.
-Example 173. Usage of editDistance 7 The function `editDistance("OAK", "oak", 4, "en.US", 1)` returns `2`.
+Example 174. Usage of editDistance 7 The function `editDistance("OAK", "oak", 4, "en.US", 1)` returns `2`.
 #### endsWith
 
 ```ctl
@@ -563,7 +606,7 @@ If the parameter `substr` is `null`, the function fails.
 **Compatibility**
 
 The `endsWith(string,string)` function is available since **CloverETL 4.0.0-M1**.
-Example 174. Usage of endsWith
+Example 175. Usage of endsWith
 The function `endsWith("products.txt", ".txt")` returns `true`.
 
 The function `endsWith("tree.png", ".ico")` returns `false`.
@@ -573,6 +616,22 @@ The function `endsWith(null, ".pdf")` returns `false`.
 The function `endsWith("dog.ogg", null)` fails.
 
 **See also:**[contains](string-functions-ctl2.md#contains), [startsWith](string-functions-ctl2.md#startswith)
+
+#### escapeJson
+
+```ctl
+string escapeJson(string input);
+```
+
+The `escapeJson` function converts string to Json value safe string.
+
+**Compatibility**
+
+The `escapeJson(string)` function is available since **CloverDX 7.5.0**.
+Example 176. Usage of escapeJson
+The function `escapeJson('{"msg": "He said "hi""}')` returns `{\"msg\": \"He said \"hi\"\"}`.
+
+**See also:**[unescapeJson](string-functions-ctl2.md#unescapejson)
 
 #### escapeUrl
 
@@ -587,7 +646,7 @@ The function accepts a valid URL only. For an invalid URL, empty string or `null
 **Compatibility**
 
 The `escapeUrl(string)` function is available since **CloverETL 3.1.0**.
-Example 175. Usage of escapeUrl The function `escapeUrl("http://www.example.com/The URL")` returns `http://www.example.com/The%20URL`
+Example 177. Usage of escapeUrl The function `escapeUrl("http://www.example.com/The URL")` returns `http://www.example.com/The%20URL`
 **See also:**[escapeUrlFragment](string-functions-ctl2.md#escapeurlfragment), [isUrl](string-functions-ctl2.md#isurl), [unescapeUrl](string-functions-ctl2.md#unescapeurl), [unescapeUrlFragment](string-functions-ctl2.md#unescapeurlfragment)
 
 #### escapeUrlFragment
@@ -606,7 +665,7 @@ The optional parameter `encoding` enables to change encoding of the result strin
 **Compatibility**
 
 The `escapeUrlFragment(string)` function is available since **CloverETL 4.0.0-M1**.
-Example 176. Usage of escapeUrlFragment
+Example 178. Usage of escapeUrlFragment
 The function `escapeUrlFragment("The URL")` returns `The+URL`.
 
 The function `escapeUrlFragment("Žlutý kůň")` returns `%C5%BDlut%C3%BD+k%C5%AF%C5%88`.
@@ -638,7 +697,7 @@ List of reserved characters: `' , ", &, <, >`
 **Compatibility**
 
 The `escapeXML(string)` function is available since **CloverDX 6.4.0**.
-Example 177. Usage of escapeXML
+Example 179. Usage of escapeXML
 The function `escapeXML(<element name="&myname;">)` returns `&lt;element name=&quot;&amp;myname;&quot;&gt;`.
 
 The following example:
@@ -677,7 +736,7 @@ The third argument specifies which regular expression group to use.
 The `find(string,string)` function is available since **CloverETL 3.0.0**.
 
 The `find(string,string,integer)` function is available since **CloverETL 3.4.x**.
-Example 178. Usage of find
+Example 180. Usage of find
 The function `find("A quick brown fox jumps over the lazy dog.", " [a-z]")` returns `[ q, b, f, j, o, t, l, d]`.
 
 The function `find("A quick brown fox jumps over the lazy dog.", " [a-z]*")` returns `[ quick, brown, fox, jumps, over, the, lazy, dog]`.
@@ -724,7 +783,7 @@ Here are some examples of placeholders with different formats:
 By understanding the [Java java.text.MessageFormat syntax](https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html) and the various formatting options available, you can create more sophisticated and customized message templates for your applications.
 
 The **formatMessage** and **formatMessageWithLocale** functions support using [multi-line strings](language-reference-ctl2.md#multiline-string) strings as the template, which can help improve the readability and formatting of complex templates.
-Example 179. Usage of `formatMessage()` usage with a multi-line string:
+Example 181. Usage of `formatMessage()` usage with a multi-line string:
 
 ```
 formatMessage("""
@@ -755,7 +814,7 @@ It produces the following result:
 ```
 
 The `formatMessageWithLocale(locale, template, parameters)` function extends the functionality of the `formatMessage` function by allowing you to specify a locale for the formatting process. This is particularly useful when you need to format messages according to specific language or regional settings, such as date, time, or number formatting.
-Example 180. Usage of `formatMessageWithLocale()` usage with a multi-line string:
+Example 182. Usage of `formatMessageWithLocale()` usage with a multi-line string:
 
 ```
 formatMessageWithLocale(“es.ES”, """
@@ -807,7 +866,7 @@ If the `takeNumeric` is present and set to true and `takeAlpha` is set to false,
 **Compatibility**
 
 The `getAlphanumericChars(string)` and `getAlphanumericChars(string,boolean,boolean)` functions are available since **CloverETL 3.0.0**.
-Example 181. Usage of getAlphanumericChars
+Example 183. Usage of getAlphanumericChars
 The function `getAlphanumericChars("34% of books")`returns `34ofbooks`.
 
 The function `getAlphanumericChars("(8+4)*2")`returns `842`.
@@ -839,7 +898,7 @@ If `propertyName` does not match the name of any existing attribute, the functio
 **Compatibility**
 
 The `getComponentProperty()` function is available since **CloverETL 4.0**.
-Example 182. Usage of getComponentProperty
+Example 184. Usage of getComponentProperty
 The function `getComponentProperty("type")` returns `DATA_GENERATOR` in **DataGenerator**.
 
 The function `getComponentProperty("id")` returns `MAP2` in the third **Map**.
@@ -865,7 +924,7 @@ The function returns `null` value for `null` input.
 **Compatibility**
 
 The `getFileExtension(decimal)` and `log(number)` functions are available since **CloverETL 4.1.0-M1**.
-Example 183. Usage of getFileExtension
+Example 185. Usage of getFileExtension
 The function `getFileExtension("theDir/library.src.zip")` returns `zip`.
 
 The function `getFileExtension("ftp://ftp.example.com/home/user1/my.documents/log")` returns `empty string`.
@@ -887,7 +946,7 @@ The function returns `null` value for `null` input.
 **Compatibility**
 
 The `getFileName(string)` function is available since **CloverETL 4.1.0-M1**.
-Example 184. Usage of getFileName
+Example 186. Usage of getFileName
 The function `getFileName("http://www.example.com/theDir/theExample.html")` returns `theExample.html`.
 
 The function `getFileName("C:/Users/Public/Desktop/January")` returns `January`.
@@ -911,7 +970,7 @@ The function returns `null` value for `null` input.
 **Compatibility**
 
 The `getFileNameWithoutExtension(string)` function is available since **CloverETL 4.1.0-M1**.
-Example 185. Usage of getFileNameWithoutExtension
+Example 187. Usage of getFileNameWithoutExtension
 The function `getFileNameWithoutExtension("http://www.example.com/theDir/library.src.zip")` returns `library.src`.
 
 The function `getFileNameWithoutExtension("sandbox://shared/data-in/documents/.index")` returns *empty string*.
@@ -933,7 +992,7 @@ The function returns `null` value for `null` input.
 **Compatibility**
 
 The `getFilePath(string)` function is available since **CloverETL 4.1.0-M1**.
-Example 186. Usage of getFilePath
+Example 188. Usage of getFilePath
 The function `getFilePath("C:\\Program Files\\.\\Java\\src.zip")` returns `C:/Program Files/./Java/`.
 
 The function `getFilePath("index.html")` returns *empty string*.
@@ -955,7 +1014,7 @@ The function returns `null` value for an empty string and `null` input.
 **Compatibility**
 
 The `getUrlHost(string)` function is available since **CloverETL 3.1.0**.
-Example 187. Usage of getUrlHost
+Example 189. Usage of getUrlHost
 The function `getUrlHost("http://www.example.com/theDir/theExample.html")` returns `www.example.com`.
 
 The function `getUrlHost("file:///home/user1/documents/cat.png")` returns *empty string*.
@@ -977,7 +1036,7 @@ The function returns `null` value for an empty string and `null` input.
 **Compatibility**
 
 The `getUrlPath(string)` function is available since **CloverETL 3.1.0**.
-Example 188. Usage of getUrlPath The function `getUrlPath("http://www.example.com/theDir/theExample.html")` returns `/theDir/theExample.html`
+Example 190. Usage of getUrlPath The function `getUrlPath("http://www.example.com/theDir/theExample.html")` returns `/theDir/theExample.html`
 **See also:**[getUrlHost](string-functions-ctl2.md#geturlhost), [getUrlPort](string-functions-ctl2.md#geturlport), [getUrlProtocol](string-functions-ctl2.md#geturlprotocol), [getUrlQuery](string-functions-ctl2.md#geturlquery), [getUrlUserInfo](string-functions-ctl2.md#geturluserinfo), [getUrlRef](string-functions-ctl2.md#geturlref), [isUrl](string-functions-ctl2.md#isurl)
 
 #### getUrlPort
@@ -995,7 +1054,7 @@ The function returns `-2` value for an empty string and `null` input.
 **Compatibility**
 
 The `getUrlPort(string)` function is available since **CloverETL 3.1.0**.
-Example 189. Usage of getUrlPort
+Example 191. Usage of getUrlPort
 The function `getUrlPort("http://www.example.com/theDir/theExample.html")` returns `-1`.
 
 The function `getUrlPort("http://www.example.com:8080/theDir/theExample.html")` returns `8080`.
@@ -1017,7 +1076,7 @@ The function returns `null` value for the empty string and `null` input.
 **Compatibility**
 
 The `getUrlProtocol(string)` function is available since **CloverETL 3.1.0**.
-Example 190. Usage of getUrlProtocol The function `getUrlProtocol("http://www.example.com/theDir/theExample.html")` returns `http`.
+Example 192. Usage of getUrlProtocol The function `getUrlProtocol("http://www.example.com/theDir/theExample.html")` returns `http`.
 **See also:**[getUrlHost](string-functions-ctl2.md#geturlhost), [getUrlPath](string-functions-ctl2.md#geturlpath), [getUrlPort](string-functions-ctl2.md#geturlport), [getUrlQuery](string-functions-ctl2.md#geturlquery), [getUrlUserInfo](string-functions-ctl2.md#geturluserinfo), [getUrlRef](string-functions-ctl2.md#geturlref), [isUrl](string-functions-ctl2.md#isurl)
 
 #### getUrlQuery
@@ -1035,7 +1094,7 @@ The function returns `null` value for the empty string and `null` input.
 **Compatibility**
 
 The `getUrlQuery(string)` function is available since **CloverETL 3.1.0**.
-Example 191. Usage of getUrlQuery
+Example 193. Usage of getUrlQuery
 The function `getUrlQuery("http://www.example.com/theDir/theExample.html")` returns *empty string*.
 
 The function `getUrlQuery("http://www.example.com/theDir/theExample.html?a=file&name=thefile.txt")` returns `a=file&name=thefile.txt`.
@@ -1057,7 +1116,7 @@ The function returns `null` value for the empty string and `null` input.
 **Compatibility**
 
 The `getUrlRef(string)` function is available since **CloverETL 3.1.0**.
-Example 192. Usage of getUrlRef
+Example 194. Usage of getUrlRef
 The function `getUrlRef("http://www.example.com/index.html")` returns *empty string*.
 
 The function `getUrlRef("http://www.example.com/Index.html#abc014")` returns `abc014`.
@@ -1079,7 +1138,7 @@ The function returns `null` value for the empty string and `null` input.
 **Compatibility**
 
 The `getUrlUserInfo(string)` function is available since **CloverETL 3.1.0**.
-Example 193. Usage of getUrlUserInfo
+Example 195. Usage of getUrlUserInfo
 The function `getUrlUserInfo("http://www.example.com/theDir/theExample.html")` returns *empty string*.
 
 The function `getUrlUserInfo("http://user1:passwor123@www.example.com/theDir/theExample.html")` returns `user1:passwor123`.
@@ -1108,7 +1167,7 @@ The `indexOf(string,string)` and `indexOf(string,string,integer)` functions are 
 In **CloverETL 3.5.x** and earlier the function fails with an error if the `arg` argument is `null`.
 
 For example `indexOf(null, "chair")` in **CloverETL 3.5.x** and earlier fails.
-Example 194. Usage of indexOf
+Example 196. Usage of indexOf
 The function `indexOf("Hello world!", "world")` returns `6`.
 
 The function `indexOf("Hello world", "o")` returns `4`.
@@ -1138,7 +1197,7 @@ If the input is `null` or empty string, the function returns `true`.
 **Compatibility**
 
 The `isAscii(string)` function is available since **CloverETL 3.0.0**.
-Example 195. Usage of isAscii
+Example 197. Usage of isAscii
 The function `isAscii("Hello world! ")` returns `true`.
 
 The function `isAscii("voilà")` returns `false`.
@@ -1159,7 +1218,7 @@ The function returns a boolean value depending on whether the parameter contains
 
 - The `isBlank(string)` function is available since **CloverETL 3.0.0**.
 - The overloads for types other than string are available since **CloverDX 7.3.0**.
-Example 196. Usage of isBlank
+Example 198. Usage of isBlank
 
 ```ctl
 // string
@@ -1202,7 +1261,7 @@ The `isDate(string,string)` and `isDate(string,string,string)` functions are ava
 The `isDate(string,string,string,string)` is available since **CloverETL 3.5.0-M1**.
 
 The functions `isDate(string, string, boolean)`, `isDate(string, string, string, boolean)` and `isDate(string, string, string, string, boolean)` are available since **CloverETL 4.1.0**.
-Example 197. Usage of isDate
+Example 199. Usage of isDate
 The function `isDate("2012-06-11", "yyyy-MM-dd")` returns `true`.
 
 The function `isDate("2012-06-11", "yyyy-MM-dd H:m:s")` returns `false`.
@@ -1238,7 +1297,7 @@ The `isDecimal(string)` function is available since **CloverETL 4.0.0-M1**.
 The `isDecimal(string, format)` and `isDecimal(string, format, locale)` functions are available since **CloverETL 4.9.0**.
 
 Since **CloverDX 6.4.0** the whole string argument must be successfully parsed according to the `format`. If any part of the argument does not match format, the function returns `false`.
-Example 198. Usage of isDecimal
+Example 200. Usage of isDecimal
 The function `isDecimal(null)` returns `false`.
 
 The function `isDecimal("")` returns `false`.
@@ -1270,7 +1329,7 @@ If `arg` is `null`, function returns `true`.
 **Compatibility**
 
 The `isEmpty()` function is available since **CloverETL 4.1.0-M1**.
-Example 199. Usage of isEmpty
+Example 201. Usage of isEmpty
 `isEmpty("")` returns `true`.
 
 `string s = null; isEmpty(s);` returns `true`.
@@ -1300,7 +1359,7 @@ The `locale` parameter is described in [Locale](metadata-records-and-fields.md#l
 The `isInteger(string)` function is available since **CloverETL 3.0.0**.
 
 The `isInteger(string, format)` and `isInteger(string, format, locale)` functions are available since **CloverDX 6.4.0**.
-Example 200. Usage of isInteger
+Example 202. Usage of isInteger
 The function `isInteger("141592654")` returns `true`.
 
 The function `isInteger("-718281828")` returns `true`.
@@ -1336,7 +1395,7 @@ The `locale` parameter is described in [Locale](metadata-records-and-fields.md#l
 The `isLong(string)` function is available since **CloverETL 3.0.0**.
 
 The `isLong(string, format)` and `isLong(string, format, locale)` functions are available since **CloverDX 6.4.0**.
-Example 201. Usage of isLong
+Example 203. Usage of isLong
 The function `isLong("732050807568877293")` returns `true`.
 
 The function `isLong("-236067977499789696")` returns `true`.
@@ -1372,7 +1431,7 @@ The `locale` parameter is described in [Locale](metadata-records-and-fields.md#l
 The `isNumber(string)` function is available since **CloverETL 3.0.0**.
 
 The `isNumber(string, format)` and `isNumber(string, format, locale)` functions are available since **CloverDX 6.4.0**.
-Example 202. Usage of isNumber
+Example 204. Usage of isNumber
 The function `isNumber("41421356237")` returns `true`.
 
 The function `isNumber("-12345.6")` returns `true`.
@@ -1405,7 +1464,7 @@ If the parameter `form` is `null`, the function fails.
 **Compatibility**
 
 The `isUnicodeNormalized(string)` function is available since **CloverETL 4.0.0-M1**.
-Example 203. Usage of isUnicodeNormalized
+Example 205. Usage of isUnicodeNormalized
 The function `isUnicodeNormalized("\u0041"+"\u030A", "NFD")` returns `true`.
 
 The function `isUnicodeNormalized("\u00C5", "NFD")` returns `false`.
@@ -1450,7 +1509,7 @@ If the input is empty string or `null`, the function returns `false`.
 **Compatibility**
 
 The `isUrl()` function is available since **CloverETL 3.1.0**.
-Example 204. Usage of isUrl The function `isUrl("http://username:passw@host.com:8042/there/index.dtb?type=animal&name=cat#nose")` returns `true`.
+Example 206. Usage of isUrl The function `isUrl("http://username:passw@host.com:8042/there/index.dtb?type=animal&name=cat#nose")` returns `true`.
 **See also:**[escapeUrl](string-functions-ctl2.md#escapeurl), [getUrlHost](string-functions-ctl2.md#geturlhost), [getUrlPath](string-functions-ctl2.md#geturlpath), [getUrlPort](string-functions-ctl2.md#geturlport), [getUrlProtocol](string-functions-ctl2.md#geturlprotocol), [getUrlQuery](string-functions-ctl2.md#geturlquery), [getUrlUserInfo](string-functions-ctl2.md#geturluserinfo), [getUrlRef](string-functions-ctl2.md#geturlref), [unescapeUrl](string-functions-ctl2.md#unescapeurl)
 
 #### isValidCodePoint
@@ -1466,7 +1525,7 @@ If the parameter `code` is `null`, the function returns `false`.
 **Compatibility**
 
 The `isValidCodePoint(integer)` function is available since **CloverETL** 4.0.0-M1.
-Example 205. Usage of isValidCodePoint
+Example 207. Usage of isValidCodePoint
 The function `isValidCodePoint(-1)` returns `false`.
 
 The function `isValidCodePoint(0)` returns `true`.
@@ -1495,7 +1554,7 @@ If the delimiter is `null`, the function joins string representations of element
 **Compatibility**
 
 The `join()` function is available since **CloverETL Designer 3.0.0**.
-Example 206. Usage of join
+Example 208. Usage of join
 Let’s call a list containing values `a`, `b` and `c` as `myString`. The function `join(":", myString)` returns `a:b:c`.
 
 The function `join(null, myString)` using the list from previous example returns `abc`.
@@ -1524,7 +1583,7 @@ The parameter `index` denotes the position in the `input`, where the substring m
 **Compatibility**
 
 The `lastIndexOf(string,string)` and `lastIndexOf(string,string,integer)` functions are available since **CloverETL 4.0.0-M1**.
-Example 207. Usage of lastIndexOf
+Example 209. Usage of lastIndexOf
 The function `lastIndexOf(null, "quad")` returns `-1`.
 
 The function `lastIndexOf(null, "quad", 5)` returns `-1`.
@@ -1565,7 +1624,7 @@ If `spacePad` is set to `false`, the function behaves the same way as the `left(
 The `left(string,integer)` function is available since **CloverETL 3.0.0**.
 
 The `left(string,integer,boolean)` function is available since **CloverETL 3.1.0**.
-Example 208. Usage of left
+Example 210. Usage of left
 The function `left("A very long text", 6)` returns `A very`.
 
 The function `left("A very long text", 20)` returns `A very long text`.
@@ -1587,7 +1646,7 @@ If the argument is `null` or empty string, the function returns `0`.
 **Compatibility**
 
 The `length(string)` function is available since **CloverETL 3.0.0**.
-Example 209. Usage of length
+Example 211. Usage of length
 The function `length("string")` returns `6`.
 
 Let’s call a list containing values `ab`, `bc` and `cd` as `myString`. The function `length(myString)` returns `3`.
@@ -1607,7 +1666,7 @@ If the input is `null`, the function returns `null`.
 **Compatibility**
 
 The `lowerCase(string)` function is available since **CloverETL 3.0.0**.
-Example 210. Usage of lowerCase The function `lowerCase("Some string")` returns `some string`.
+Example 212. Usage of lowerCase The function `lowerCase("Some string")` returns `some string`.
 **See also:**[upperCase](string-functions-ctl2.md#uppercase), [properCase](string-functions-ctl2.md#propercase)
 
 #### lpad
@@ -1630,7 +1689,7 @@ It the `filler` parameter is `null`, *empty string* or longer than one character
 **Compatibility**
 
 The `lpad(string,integer,string)` and `lpad(string,integer,string)` functions are available since **CloverETL 4.0.0-M1**.
-Example 211. Usage of lpad
+Example 213. Usage of lpad
 The function `lpad("256", 0)` returns `256`.
 
 The function `lpad("256", 5)` returns `" 256"`.
@@ -1668,7 +1727,7 @@ If the `text` is `null`, the function returns `false`. If the `regex` is `null`,
 **Compatibility**
 
 The `matches(string,string)` function is available since **CloverETL 3.0.0**.
-Example 212. Usage of matches
+Example 214. Usage of matches
 The function `matches("abc", "[a-c]{3}")` returns `true`.
 
 The function `matches("abc", "[A-Z]{3}")` returns `false`.
@@ -1690,7 +1749,7 @@ If the text argument is `null`, the function returns `null`. If the `regex` is `
 **Compatibility**
 
 The `matchGroups(string,string)` function is available since **CloverETL 3.4.x**.
-Example 213. Usage of matchGroups
+Example 215. Usage of matchGroups
 The function `matchGroups("A fox", "([A-Z]) ([a-z]*)")` returns `[A fox, A, fox]`. The first group is a whole pattern, patterns enclosed in parentheses follow.
 
 The function `matchGroups("A quick brown fox jumps", "[A-Z] [a-z]{5} [a-z]{5} ([a-z]*) ([a-z]{5})")` returns `[A quick brown fox jumps, fox, jumps]`.
@@ -1715,7 +1774,7 @@ The function returns `null` value for the `null` input.
 **Compatibility**
 
 The `metaphone(string)` and `metaphone(string,integer)` function is available since **CloverETL 3.2.1** or earlier.
-Example 214. Usage of metaphone
+Example 216. Usage of metaphone
 The function `metaphone("cheep")` returns `XP`.
 
 The function `metaphone("sheep")` returns `XP`.
@@ -1743,7 +1802,7 @@ The `normalizeDecimal()` function preprocesses decimal number strings and remove
 **Compatibility**
 
 The normalizeDecimal(string) function is available since **CloverDX 6.7.0**.
-Example 215. Usage of normalizeDecimal
+Example 217. Usage of normalizeDecimal
 The function `normalizeDecimal("1,035")` returns `1.035`.
 
 The function `normalizeDecimal("1,035.24")` returns `1035.24`.
@@ -1781,7 +1840,7 @@ The function returns a `null` value for a `null` input.
 **Compatibility**
 
 The `normalizePath(string)` function is available since **CloverETL 4.1.0-M1**.
-Example 216. Usage of normalizePath
+Example 218. Usage of normalizePath
 The function `normalizePath("zip:(C:\\Data\\..\\archive.zip)#inner1/../inner2/./data.txt")` returns `zip:(C:/archive.zip)#inner2/data.txt`.
 
 The function `normalizePath("home/../../data")` returns `null`.
@@ -1808,7 +1867,7 @@ The function returns a `null` value for a `null` input.
 **Compatibility**
 
 The `normalizeWhitespaces(string)` function is available since **CloverETL 6.1.0**.
-Example 217. Usage of normalizeWhitespaces
+Example 219. Usage of normalizeWhitespaces
 The function `normalizeWhitespaces(" many spaces ")` returns `many spaces`.
 
 The function `normalizeWhitespaces("name:\t\tvalue")` returns `name: value`.
@@ -1830,7 +1889,7 @@ If the input of function is `null`, the function returns `null`. If the input of
 **Compatibility**
 
 The `NYSIIS(string)` function is available since **CloverETL 3.0.0**.
-Example 218. Usage of NYSIIS
+Example 220. Usage of NYSIIS
 The function `NYSIIS("cheep")` returns `CAP`.
 
 The function `NYSIIS("sheep")` returns `SAP`.
@@ -1857,7 +1916,7 @@ If the input is `null`, the function returns `null`.
 **Compatibility**
 
 The `properCase(string)` function is available since **CloverETL 6.1.0**.
-Example 219. Usage of properCase
+Example 221. Usage of properCase
 The function `properCase("The quick brown fox jumps over the lazy dog")` returns `The Quick Brown Fox Jumps Over The Lazy Dog`.
 
 The function `properCase("ijsland")` returns `Ijsland`.
@@ -1881,7 +1940,7 @@ If one of the given arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `randomString(integer,integer)` function is available since **CloverETL 3.0.0**.
-Example 220. Usage of randomString The function `randomString(3, 5)` returns for example `qjfxq`.
+Example 222. Usage of randomString The function `randomString(3, 5)` returns for example `qjfxq`.
 **See also:**[random](mathematical-functions-ctl2.md#random), [randomBoolean](mathematical-functions-ctl2.md#randomboolean), [randomDate](date-functions-ctl2.md#randomdate), [randomGaussian](mathematical-functions-ctl2.md#randomgaussian), [randomInteger](mathematical-functions-ctl2.md#randominteger), [randomUUID](string-functions-ctl2.md#randomuuid), [setRandomSeed](mathematical-functions-ctl2.md#setrandomseed), [addNoise](mathematical-functions-ctl2.md#addnoise)
 
 #### randomUUID
@@ -1903,7 +1962,7 @@ For more details on the algorithm used, see [the Java documentation](http://docs
 **Compatibility**
 
 The `randomUUID()` function is available since **CloverETL 3.2.0**.
-Example 221. Usage of randomUUID The function `randomUUID` returns, for example, `cee188a3-aa67-4a68-bcd2-52f3ec0329e6`.
+Example 223. Usage of randomUUID The function `randomUUID` returns, for example, `cee188a3-aa67-4a68-bcd2-52f3ec0329e6`.
 **See also:**[random](mathematical-functions-ctl2.md#random), [randomBoolean](mathematical-functions-ctl2.md#randomboolean), [randomDate](date-functions-ctl2.md#randomdate), [randomGaussian](mathematical-functions-ctl2.md#randomgaussian), [randomInteger](mathematical-functions-ctl2.md#randominteger), [randomString](string-functions-ctl2.md#randomstring), [setRandomSeed](mathematical-functions-ctl2.md#setrandomseed), [addNoise](mathematical-functions-ctl2.md#addnoise)
 
 #### removeBlankSpace
@@ -1921,7 +1980,7 @@ If the input is `null`, the function returns `null`.
 **Compatibility**
 
 The `removeBlankSpace()` function is available since **CloverETL 3.0.0**.
-Example 222. Usage of removeBlankSpace
+Example 224. Usage of removeBlankSpace
 The function `removeBlankSpace("a quick brown fox")` returns `aquickbrownfox`.
 
 The function `removeBlankSpace("1 000 000")` returns `1 000 000`, provided the string contains hard space (char 0xA0).
@@ -1941,7 +2000,7 @@ If the input is `null`, the function returns `null`.
 **Compatibility**
 
 The `removeDiacritic(string)` function is available since **CloverETL 3.0.0**.
-Example 223. Usage of removeDiacritic
+Example 225. Usage of removeDiacritic
 The function `removeDiacritic("Voyez le brick géant que j’examine.")` returns `Voyez le brick geant que j’examine.`
 
 The function `removeDiacritic("Küchen")` returns `Kuchen`.
@@ -1963,7 +2022,7 @@ If the input is `null`, the function returns `null`.
 **Compatibility**
 
 The `removeNonAscii(string)` function is available since **CloverETL 3.0.0**.
-Example 224. Usage of removeNonAscii
+Example 226. Usage of removeNonAscii
 The function `removeNonAscii("Voyez le brick géant que j’examine.")` returns `Voyez le brick gant que j’examine`.
 
 The function `removeNonAscii("Příšerný žluťoučký kůň úpěl ďábelské ódy.")` returns `Pern luouk k pl belsk dy.`
@@ -1989,7 +2048,7 @@ Note that since **CloverETL 3.5**, the function does not remove non-ASCII charac
 **Compatibility**
 
 The `removeNonPrintable(string)` function is available since **CloverETL 3.0.0**.
-Example 225. Usage of removeNonPrintable Let’s call a string containing chars `A` (code 0x41), `B` (code 0x42), `bell` (code 0x07) and `C` (code 0x43) as `myString`. The function `removeNonPrintable(myString)` returns `ABC`.
+Example 227. Usage of removeNonPrintable Let’s call a string containing chars `A` (code 0x41), `B` (code 0x42), `bell` (code 0x07) and `C` (code 0x43) as `myString`. The function `removeNonPrintable(myString)` returns `ABC`.
 **See also:**[isAscii](string-functions-ctl2.md#isascii), [removeBlankSpace](string-functions-ctl2.md#removeblankspace), [removeDiacritic](string-functions-ctl2.md#removediacritic), [removeNonAscii](string-functions-ctl2.md#removenonascii)
 
 #### replace
@@ -2013,7 +2072,7 @@ If the first argument of the function is `null`, the function returns `null`. If
 **Compatibility**
 
 The `replace(string,string,string)` function is available since **CloverETL 3.0.0**.
-Example 226. Usage of replace
+Example 228. Usage of replace
 The function `replace("Hello","[Ll]","t")` returns `"Hetto"`.
 
 The function `replace("Hello", "e(l+)", "a$1")` returns `"Hallo"`.
@@ -2039,7 +2098,7 @@ If the given string is `null`, the function returns `null`.
 **Compatibility**
 
 The `reverse(string)` function is available since **CloverETL 3.0.0**.
-Example 227. Usage of reverse Function `reverse("knot")` returns `tonk`.
+Example 229. Usage of reverse Function `reverse("knot")` returns `tonk`.
 **See also:** Record functions: [reverse(list)](container-functions-ctl2.md#reverse)
 
 #### right
@@ -2062,7 +2121,7 @@ If the `spacePad` argument is set to `true`, the new string is padded. Whereas i
 The `right(string,integer)` function is available since **CloverETL 3.0.0**.
 
 The `right(string,integer,boolean)` function is available since **CloverETL 3.1.0**.
-Example 228. Usage of right
+Example 230. Usage of right
 The function `right("A very long string", 4)` returns `ring`.
 
 The function `right("A very long string", 20)` returns `A very long string`.
@@ -2091,7 +2150,7 @@ The optional parameter `filler` defines the character used for pad. The function
 **Compatibility**
 
 The `rpad(string,integer)` and `rpad(string,integer,string)` functions are available since **CloverETL 4.0.0-M1**.
-Example 229. Usage of rpad
+Example 231. Usage of rpad
 The function `rpad("A quick brown fox", 2)`returns `"A quick brown fox"`.
 
 The function `rpad("A quick brown fox", 20)` returns `"A quick brown fox "`.
@@ -2129,7 +2188,7 @@ If the input is an empty string, the function returns an empty string.
 **Compatibility**
 
 The `soundex(string)` function is available since **CloverETL 3.0.0**.
-Example 230. Usage of soundex
+Example 232. Usage of soundex
 The function `soundex("cheep")` returns `C100`.
 
 The function `soundex("sheep")` returns `S100`.
@@ -2170,7 +2229,7 @@ The `split(string,string)` function is available since **CloverETL 3.0.0**.
 If the input (`arg`) of the function is `null`, the function returns a list with one `null` string in **CloverETL 3.5.x** and earlier.
 
 The `split(string,string,integer)` is available since **CloverETL 4.0.0-M1**.
-Example 231. Usage of split
+Example 233. Usage of split
 The function `split("anaconda", "a")` returns `[, n, cond]`.
 
 The function `split("abcdefg", "[ce]")` returns `["ab", "d", "fg"]`.
@@ -2218,7 +2277,7 @@ If the parameter `sub` is `null`, the function fails.
 **Compatibility**
 
 The `startsWith(string)` function is available since **CloverETL 4.0.0-M1**.
-Example 232. Usage of startsWith
+Example 234. Usage of startsWith
 The function `startsWith("quadratic", "quad")` returns `true`.
 
 The function `startsWith("quadratic", "linear")` returns `false`.
@@ -2259,7 +2318,7 @@ The function `substring()` fails, if any of integer parameters is `null` or out 
 The `substring(string,integer,integer)` function is available since **CloverETL 3.0.0**.
 
 The `substring(string, integer)` function is available since **CloverETL 4.0.0-M1**.
-Example 233. Usage of substring
+Example 235. Usage of substring
 The function `substring("elfish", 2)` returns `fish`.
 
 The function `substring("network", 20)` returns *empty string*.
@@ -2303,7 +2362,7 @@ If the parameter `path` is `null`, the function `toProjectUrl()` returns `null`.
 **Compatibility**
 
 The `toProjectUrl()` function is available since **CloverETL 4.0**.
-Example 234. Usage of toProjectURL
+Example 236. Usage of toProjectURL
 Following examples use sandbox called `documentation`. If you use examples in your sandbox, you will see `yourSandboxName` instead of `documentation`.
 
 The function `toProjectUrl("")` returns `sandbox://documentation/`.
@@ -2329,7 +2388,7 @@ If the input of the function is `null`, the function returns `null`.
 **Compatibility**
 
 The `translate(string,string,string)` function is available since **CloverETL 3.0.0**.
-Example 235. Usage of translate The function call `translate('Hello','eo','is')` results in the string `Hills`.
+Example 237. Usage of translate The function call `translate('Hello','eo','is')` results in the string `Hills`.
 **See also:**[replace](string-functions-ctl2.md#replace)[toAbsolutePath](miscellaneous-functions-ctl2.md#toabsolutepath)
 
 #### trim
@@ -2347,8 +2406,24 @@ If the input of the function is `null`, the function returns `null`.
 **Compatibility**
 
 The `trim(string)` function is available since **CloverETL 3.0.0**.
-Example 236. Usage of trim The function `trim(" Text and space chars ")` returns `Text and space chars`.
+Example 238. Usage of trim The function `trim(" Text and space chars ")` returns `Text and space chars`.
 **See also:**[isBlank](miscellaneous-functions-ctl2.md#isblank), [removeBlankSpace](string-functions-ctl2.md#removeblankspace), [replace](string-functions-ctl2.md#replace), [substring](string-functions-ctl2.md#substring)
+
+#### unescapeJson
+
+```ctl
+string unescapeJson(string input);
+```
+
+The `unescapeJson` function reverts conversion of `escapeJson`.
+
+**Compatibility**
+
+The `unescapeJson(string)` function is available since **CloverDX 7.5.0**.
+Example 239. Usage of unescapeJson
+The function `unescapeJson('{\"msg\": \"He said \"hi\"\"}')` returns `{"msg": "He said "hi""}`.
+
+**See also:**[escapeJson](string-functions-ctl2.md#escapejson)
 
 #### unescapeUrl
 
@@ -2365,7 +2440,7 @@ Function accepts a valid URL only. For an invalid URL, empty string or `null` in
 **Compatibility**
 
 The `unescapeUrl(string)` function is available since **CloverETL 3.1.0**.
-Example 237. Usage of unescapeUrl The function `unescapeUrl("http://www.example.com/the%20file.html")` returns `http://www.example.com/the file.html`
+Example 240. Usage of unescapeUrl The function `unescapeUrl("http://www.example.com/the%20file.html")` returns `http://www.example.com/the file.html`
 **See also:**[escapeUrl](string-functions-ctl2.md#escapeurl), [escapeUrlFragment](string-functions-ctl2.md#escapeurlfragment), [isUrl](string-functions-ctl2.md#isurl), [unescapeUrlFragment](string-functions-ctl2.md#unescapeurlfragment)
 
 #### unescapeUrlFragment
@@ -2384,7 +2459,7 @@ The parameter `encoding` is an encoding to be used in conversion. If the `encodi
 **Compatibility**
 
 The `unescapeUrlFragment(string)` function is available since **CloverETL 4.0.0-M1**.
-Example 238. Usage of unescapeUrlFragment
+Example 241. Usage of unescapeUrlFragment
 The function `unescapeUrlFragment(null)` returns `null`.
 
 The function `unescapeUrlFragment("")` returns *empty string*.
@@ -2408,7 +2483,7 @@ List of reserved characters: `' , ", &, <, >`
 **Compatibility**
 
 The `unescapeXML(string)` function is available since **CloverDX 6.4.0**.
-Example 239. Usage of unescapeXML
+Example 242. Usage of unescapeXML
 The function unescapeXML("&lt;element name=&quot;&amp;myname;&quot;&gt;") returns `<element name="&myname;">`.
 
 The function `unescapeXML("Peter O&apos;Brian")` returns `Peter O’Brian`.
@@ -2450,7 +2525,7 @@ If the parameter `form` is `null`, the function fails.
 **Compatibility**
 
 The `unicodeNormalize(string)` function is available since **CloverETL 4.0.0-M1**.
-Example 240. Usage of unicodeNormalize
+Example 243. Usage of unicodeNormalize
 The function `unicodeNormalize("\u00C5", "NFD")` returns `"\u0065\u030A"`.
 
 The function `unicodeNormalize("\u0041"+"\u030A", "NFD")` returns `"\u0065\u030A"`.
@@ -2478,7 +2553,7 @@ The function returns `null` for a `null` input.
 **Compatibility**
 
 The `upperCase(string)` function is available since **CloverETL 3.0.0**.
-Example 241. Usage of upperCase The function `upperCase("Some string")` returns `SOME STRING`.
+Example 244. Usage of upperCase The function `upperCase("Some string")` returns `SOME STRING`.
 **See also:**[lowerCase](string-functions-ctl2.md#lowercase), [properCase](string-functions-ctl2.md#propercase)
 
 #### validateCreditCard
@@ -2492,7 +2567,7 @@ The `validateCreditCard()` function takes string argument and uses Luhn algorith
 The function returns `null` if the validation passes or an error message if it fails.
 
 If the second parameter is `true` an empty string value is considered to be a valid value.
-Example 242. Usage of validateCreditCard
+Example 245. Usage of validateCreditCard
 The function `validateCreditCard("5305-7204-2019-5319", false)` returns `null`.
 
 The function `validateCreditCard("1234-5678-9012-3456", false)` returns `Checksum is not valid`.
@@ -2514,7 +2589,7 @@ The `validateEmail()` function takes string argument and performs syntactic chec
 The function returns `null` if the validation passes or an error message if it fails.
 
 If the second parameter is `true` an empty string value is considered to be a valid value.
-Example 243. Usage of validateEmail
+Example 246. Usage of validateEmail
 The function `validateEmail("john.doe@example.com", false)` returns `null`.
 
 The function `validateEmail("john.doeexamplecom", false)` returns `Missing final '@domain'`.
@@ -2538,7 +2613,7 @@ The second parameter is phone region in a form of two letters [ISO Alpha 2](http
 The function returns `null` if the validation passes or an error message if it fails.
 
 If the third parameter is `true` an empty string value is considered to be a valid value.
-Example 244. Usage of validatePhoneNumber
+Example 247. Usage of validatePhoneNumber
 The function `validatePhoneNumber("(800) 555-0111", null, false)` returns `null`.
 
 The function `validatePhoneNumber("8005550111", null, false)` returns `null`.

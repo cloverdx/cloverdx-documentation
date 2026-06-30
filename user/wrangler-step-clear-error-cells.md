@@ -15,14 +15,14 @@ In the example below we are trying to calculate the how many days past the due d
 This formula does not take into consideration *No value* cells in the `Date paid` column - these are there for invoices which have not been paid yet. This means that for those rows, the formula results in an error:
 
 ![clear error cells example input](../figures/clear-error-cells-example-input.png)
-*Figure 109. An error in Paid after days caused by not handling No value cells in the Date paid column.*
+*Figure 110. An error in Paid after days caused by not handling No value cells in the Date paid column.*
 
 To solve this, we can change the formula and only run it if we also have value in `Paid date`. This makes the formula harder to understand and especially in cases where the formula is more complex with more parameters it can be quite hard to see what it really does.
 
 A simpler solution is to leave the formula as is and simply clear the error values in `Paid after days` columns after the formula step. This can be done with **Clear error cells** step. Note that in this case using [Replace errors step](wrangler-step-replace-errors.md) does not make sense as there is no default value to use for unpaid invoices.
 
 ![clear error cells example output](../figures/clear-error-cells-example-output.png)
-*Figure 110. Data set after clearing the error values in Paid after days column.*
+*Figure 111. Data set after clearing the error values in Paid after days column.*
 
 ###### Remarks
 

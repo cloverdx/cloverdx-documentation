@@ -1,6 +1,6 @@
 <!-- Automation and operations > Libraries, Sandboxes, and AI / ML Models modules > AI / ML Models module -->
 
-## 15. AI / ML Models module
+## 17. AI / ML Models module
 
 The **AI / ML Models module** lists machine learning modules installed through CloverDX libraries in the [**Libraries module**](libraries.md). It provides a quick overview of each module, including related library information and additional technical specifications.
 > [!TIP]

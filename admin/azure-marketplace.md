@@ -41,7 +41,7 @@ High-level overview of steps:
 1. Navigate to the **CloverDX Server BYOL offering** on the Azure Marketplace and use the **GET IT NOW** button on the offering’s marketplace page. Accept the Terms and Conditions and proceed with the **Continue** button.
 2. You were redirected to the **CloverDX Server BYOL offering** inside the Azure Portal. To proceed, click the **Create** button. This will launch the wizard where you can configure the server deployment.
    ![marketplace azure wizard](../figures/marketplace-azure-wizard.png)
-   *Figure 22. Azure Marketplace Configuration Wizard*
+   *Figure 24. Azure Marketplace Configuration Wizard*
 
 | Parameter | Description |
 | --- | --- |
@@ -76,19 +76,19 @@ High-level overview of steps:
 1. The deployment will start. You will be redirected to the page in the Azure Portal where you can see the deployment progress. This process will take several minutes.
 
 ![marketplace azure deployment](../figures/marketplace-azure-deployment.png)
-*Figure 23. Azure Portal - Deployment in progress*
+*Figure 25. Azure Portal - Deployment in progress*
 
 **Success**. **CloverDX Server** is now available in Azure. You can find its URL in the *Outputs* tab of the *Deployment* - the `serverHttpsUrl` entry.
 
 ![marketplace azure deployment outputs](../figures/marketplace-azure-deployment-outputs.png)
-*Figure 24. Azure Portal - Deployment outputs*
+*Figure 26. Azure Portal - Deployment outputs*
 
 On the Server’s URL, you will see the login page where you can:
 
 - Activate the Server - the Server is licensed in BYOL (Bring Your Own License) mode. Load a compatible Server license - if you have an existing Server license, you can download it from our [Customer Portal](https://support.cloverdx.com/license-keys). If you do not have a license, reach out to your [Account Manager](https://support.cloverdx.com/contact).
 - To log in, use the credentials set in the configuration wizard.
   ![marketplace login page](../figures/marketplace-login-page.png)
-  *Figure 25. CloverDX Server login page*
+  *Figure 27. CloverDX Server login page*
 
 The Server is running with default settings and is immediately usable. It can be configured further to get it into full production quality.
 
@@ -100,14 +100,14 @@ Deployment steps and settings in this case are the same as described in [Quickst
 
 - On the **Network Settings** page, select option **Select existing or customize** for **Virtual network**. Using the additional controls, choose an existing virtual network you want to use. You will only be able to choose virtual networks in the same location as you chose at the start of the wizard. Subnets from the selected virtual network must be selected as well. The subnets require specific configuration to be usable; follow the instructions presented by the wizard.
   ![marketplace azure existing infrastructure network](../figures/marketplace-azure-existing-infrastructure-network.png)
-  *Figure 26. Azure - selecting an existing virtual network*
+  *Figure 28. Azure - selecting an existing virtual network*
 
 ##### Architecture
 
 The **CloverDX Server** Azure offering consists of a virtual machine image and an ARM template that orchestrates the required cloud resources:
 
 ![marketplace azure architecture](../figures/marketplace-azure-architecture.png)
-*Figure 27. Architecture - CloverDX Server in the Azure marketplace*
+*Figure 29. Architecture - CloverDX Server in the Azure marketplace*
 
 **Details of the Azure topology:**
 
@@ -173,7 +173,7 @@ The integration with the Azure Monitor service is not enabled by default. To sta
       ```
 5. Go to the Data Collection rule (DCR) you created in the previous step and create a new Data Source. Choose `Custom Text Logs` from the *Data source type* dropdown.:
    ![marketplace azure DCR add data source](../figures/marketplace-azure-DCR-add-data-source.png)
-   *Figure 28. Adding a data source to the Data collection rule*
+   *Figure 30. Adding a data source to the Data collection rule*
    The most important server log file is the `all` log. To collect the main log, we recommend the following setup:
    - File pattern: `/var/clover/cloverlogs/all*`
    - Table name: the name of the log table created in step 4, including the mandatory suffix `_CL`
@@ -230,7 +230,7 @@ When the certificate expiry time is less than 30 days, the server deployed in Az
 
 1. Locate and open the **Network Security Group** of the server. It’s in the same **Resource Group** where the server is deployed, next to all the other resources.
    ![marketplace azure resources](../figures/marketplace-azure-resources.png)
-   *Figure 29. Azure resources - network security group*
+   *Figure 31. Azure resources - network security group*
 2. Add a new *Inbound security rule* to allow access from Let’s Encrypt servers. Set the following properties:
    - *Source* - `Any`
    - *Source port ranges* - `*`

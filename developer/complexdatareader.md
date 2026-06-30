@@ -155,7 +155,7 @@ Each state has two major functions describing it:
 - `nextOutput`
 
 `integer nextState_stateNo()` returns a number saying which state follows the current state (`stateNo`). If you return `ALL`, it means **Let selector decide**. If you return `STOP`, it means **Flush and finish**.
-Example 361. Example state function
+Example 366. Example state function
 
 ```ctl
 nextState_0() {
@@ -186,7 +186,7 @@ By default, the selector takes the initial part of the data being read (a *prefi
 Rules are defined in the Selector properties pane. Notice the two extra attributes for regular expressions:
 
 ![ComplexDataReader selector](../figures/ComplexDataReader_selector.png)
-*Figure 322. Configuring prefix selector in ComplexDataReader*
+*Figure 340. Configuring prefix selector in ComplexDataReader*
 
 The selector can be configured by creating a list of *rules*. Every rule consists of:
 
@@ -197,7 +197,7 @@ The selector can be configured by creating a list of *rules*. Every rule consist
 As the selector is invoked, it goes through the list of rules (top to bottom) and searches for the first applicable rule. If successful, the automaton switches to the target state of the selected rule.
 > [!CAUTION]
 > **Be very careful:** the remaining rules are not checked at all, so you have to think thoroughly over the order of rules. If a rule with an empty prefix appears in the list, the selector will not get to the rules below it. Generally, the least specific rules should be at the end of the list. See example below:
-Example 362.
+Example 367.
 Let us have two rules and assume both are applicable in any state:
 
 - `.{1,3}PATH` (a regular expression)

@@ -28,10 +28,10 @@ If the fields of records are separated from each other by some delimiters, you m
 After selecting the file, its contents will be displayed in the **Input file** pane. See below:
 
 ![200390](../figures/200390.png)
-*Figure 229. Extracting metadata from delimited flat file*
+*Figure 246. Extracting metadata from delimited flat file*
 
 ![200400](../figures/200400.png)
-*Figure 230. Extracting metadata from fixed length flat file*
+*Figure 247. Extracting metadata from fixed length flat file*
 
 ##### Extracted metadata preview
 
@@ -61,7 +61,7 @@ In case you are creating internal metadata, click the **Finish** button. If you 
 If you expand the pane in the middle to the whole wizard window, you will see the following:
 
 ![00 00120](../figures/00_00120.png)
-*Figure 231. Setting up delimited metadata*
+*Figure 248. Setting up delimited metadata*
 
 You may need to specify which delimiter is used in the file (**Delimiter**). The delimiter can be a comma, colon, semicolon, space, tabulator, or a sequence of characters. You need to select the right option.
 
@@ -90,7 +90,7 @@ Examples:
 If you expand the pane in the middle to the whole wizard window, you will see the following:
 
 ![00 00110](../figures/00_00110.png)
-*Figure 232. Setting up fixed length metadata*
+*Figure 249. Setting up fixed length metadata*
 
 You must specify the sizes of each field (**Resize**). You may also want to split any column, merge columns, add one or more columns, remove columns. You can change the sizes by moving the borders of the columns.
 
@@ -101,7 +101,7 @@ If you want to extract metadata from an XLS(X) file, right-click **Metadata** (i
 > Equally, you can drag an XLS file from the **Project Explorer** area and drop it on **Metadata** in the **Outline**. This will also bring the extracting wizard described below.
 
 ![metadata 010](../figures/metadata_010.png)
-*Figure 233. Extract metadata from Excel Spreadsheet wizard*
+*Figure 250. Extract metadata from Excel Spreadsheet wizard*
 
 In this wizard:
 
@@ -120,7 +120,7 @@ Optional tasks you can do in this dialog:
 - **Extract formats** - for each field, its **Format** property will get populated with a pattern corresponding to the sample data. This format pattern will appear in the next step of the wizard, in **Property** ****Advanced** ****Format** as e.g. #0.00%. For more information, see [Numeric Format](metadata-records-and-fields.md#numeric-format).
 
 ![metadataFormat](../figures/metadataFormat.png)
-*Figure 234. Format extracted from Spreadsheet cell*
+*Figure 251. Format extracted from Spreadsheet cell*
 > [!CAUTION]
 > The format extracted from metadata is not relevant to **Format field** in [SpreadsheetDataReader](spreadsheetreader.md). **Format field** is an extra metadata field holding the Excel format of a particular cell (as a string).
 
@@ -141,19 +141,19 @@ If you want to extract metadata from a database (when you select the **Extract f
 In addition, if you want to extract internal metadata from a database, you can also right-click any connection item in the **Outline** pane and select **New metadata** ****Extract from database**.
 
 ![metadata 330](../figures/metadata_330.png)
-*Figure 235. Extracting internal metadata from a database*
+*Figure 252. Extracting internal metadata from a database*
 
 After each of these three options, a **Database Connection** properties dialog opens.
 
 ![db connection 0310](../figures/db-connection-0310.png)
-*Figure 236. Database connection properties dialog*
+*Figure 253. Database connection properties dialog*
 
 In order to extract metadata, you must first select database connection from the existing ones (using the **Connection** menu) or load a database connection using the **Load from file** button or create a new connection as shown in the corresponding section. Once it has been defined, **Name**, **User**, **Password**, **URL** and/or **JNDI** fields become filled in the **Database Connection** wizard.
 
 Then click **Next** to see a database schema.
 
 ![A00080](../figures/A00080.png)
-*Figure 237. Selecting columns for metadata*
+*Figure 254. Selecting columns for metadata*
 
 Now you have two possibilities:
 
@@ -164,7 +164,7 @@ If you want to generate the query, hold Ctrl on the keyboard, highlight individu
 See the following window:
 
 ![A00090](../figures/A00090.png)
-*Figure 238. Generating a query*
+*Figure 255. Generating a query*
 
 If you check the **Prefix table names with schema** checkbox, it will have the following form: `schema.table.column`. If you check the **Quote identifiers** checkbox, it will look like one of this: `"schema"."table"."column"` (**Prefix table names with schema** is checked) or `"table"."column"` only (the mentioned checkbox is not checked). This query is also generated using the default (**Generic**) JDBC specific. Only it does not include quotes.
 
@@ -199,7 +199,7 @@ When you want to extract metadata from a DBase file, you must select the **Extra
 Locate the file from which you want to extract metadata. The file will open in the following editor:
 
 ![dbfmetadataeditor](../figures/dbfmetadataeditor.png)
-*Figure 239. DBF metadata editor*
+*Figure 256. DBF metadata editor*
 
 **DBF type**, **DBF Code Page** will be selected automatically. If they do not correspond to what you want, change their values.
 
@@ -214,17 +214,17 @@ A wizard for metadata extraction from Salesforce opens.
 In the first step, select an existing Salesforce connection or create a new one.
 
 ![metadata 510](../figures/metadata_510.png)
-*Figure 240. Extract metadata from Salesforce - specify connection*
+*Figure 257. Extract metadata from Salesforce - specify connection*
 
 In the second step, enter an SOQL query. You can use Workbench, [https://workbench.developerforce.com/](https://workbench.developerforce.com/), to create an SOQL query and then paste the query to this metadata extraction wizard.
 
 ![metadata 520](../figures/metadata_520.png)
-*Figure 241. Extract metadata from Salesforce - enter SOQL query*
+*Figure 258. Extract metadata from Salesforce - enter SOQL query*
 
 In the last step, check the created metadata. In this step, you can do some customization, e.g. you can rename the record.
 
 ![metadata 530](../figures/metadata_530.png)
-*Figure 242. Extract metadata from Salesforce - edit created metadata*
+*Figure 259. Extract metadata from Salesforce - edit created metadata*
 
 ##### See also
 
@@ -239,7 +239,7 @@ In the last step, check the created metadata. In this step, you can do some cust
 To create metadata from an SQL query, right click **Metadata** in the **Outline** pane and select **New metadata** ****SQL query metadata**. After that, the SQL query metadata editor opens.
 
 ![sql query metadata editor](../figures/sql-query-metadata-editor.png)
-*Figure 243. SQL query metadata editor*
+*Figure 260. SQL query metadata editor*
 
 In the left pane of this editor, you have to provide a connection to database and an SQL query. You can either [create a new connection](database-connections.md#database-connection-properties), or [link to an existing one](database-connections.md#linking-external-shared-database-connections). The SQL Query can be validated - if the query is invalid an error message is shown.
 

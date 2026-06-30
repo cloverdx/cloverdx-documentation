@@ -9,7 +9,7 @@ You can get to your user profile by hovering over the profile icon in the top ri
 Users assigned to a [user group](groups.md) that has the [Edit own profile and password](groups.md#permission-edit-own-profile-and-password) permission can edit their profile or change their credentials.
 
 ![user profile](../figures/user-profile.png)
-*Figure 91. User profile details*
+*Figure 92. User profile details*
 
 To update your first name, last name, or email use the ![icon pencil button](../figures/icon-pencil-button.png) button.
 
@@ -20,4 +20,4 @@ If you want to change your username, you need to set a new password at the same 
 > Users who authenticate using `LDAP` or `SAML` cannot modify their own credentials.
 
 ![user profile change password](../figures/user-profile-change-password.png)
-*Figure 92. Change credentials*
+*Figure 93. Change credentials*

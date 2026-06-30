@@ -1,11 +1,11 @@
 <!-- Development > Designer user interface > Search functionality -->
 
-## 4. Search functionality
+## 5. Search functionality
 
 To search in **CloverDX Designer**, select **Search** ****Search…​** ****CloverDX Search** from the main menu.
 
 ![search](../figures/search.png)
-*Figure 65. CloverDX Search tab*
+*Figure 81. CloverDX Search tab*
 
 In the **CloverDX search** tab, you need to specify the query.
 
@@ -26,4 +26,4 @@ When you click the **Search** button, a new tab containing the results of search
 If you expand the **Search** tab, you can see the search results:
 
 ![searchresult](../figures/searchresult.png)
-*Figure 66. Search results*
+*Figure 82. Search results*

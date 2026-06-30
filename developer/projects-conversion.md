@@ -1,6 +1,6 @@
 <!-- Development > Projects > Converting CloverDX projects -->
 
-## 11. Converting CloverDX projects
+## 12. Converting CloverDX projects
 
 You can convert local project to **Server project** and you can convert **Server project** to local project.
 
@@ -11,12 +11,12 @@ To convert local project to server project, right click the project in **Project
 A **Convert local project to CloverDX Server project** wizard opens. In the first step of wizard, enter **CloverDX Server URL**, **User** name, and **Password**.
 
 ![project convert 01](../figures/project_convert_01.png)
-*Figure 111. Convert local project to CloverDX server project wizard*
+*Figure 127. Convert local project to CloverDX server project wizard*
 
 Choose **Create new Sandbox**. Enter the sandbox **Name**. If you need a specific configuration, you can change sandbox **Code** and sandbox **Root path**.
 
 ![project convert 02](../figures/project_convert_02.png)
-*Figure 112. Convert local project to CloverDX server project wizard II*
+*Figure 128. Convert local project to CloverDX server project wizard II*
 
 ### Converting server projects to local project
 

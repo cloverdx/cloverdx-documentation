@@ -60,7 +60,7 @@ The very basics of mapping are:
 
 - Connect input edges to **JavaMapWriter** and edit the component’s **Mapping** attribute. This will open the visual mapping editor:
   ![JavaMapWriter blankMappingEditor](../figures/JavaMapWriter-blankMappingEditor.png)
-  *Figure 374. Mapping editor in JavaMapWriter after first open.*
+  *Figure 392. Mapping editor in JavaMapWriter after first open.*
   Metadata on the input edge(s) are displayed on the left hand side. The right hand pane is where you design the desired output tree. Mapping is then performed by dragging metadata from left to right (and performing additional tasks described below).
 - In the right hand pane, design your output tree structure consisting of
   - [Elements](extxmlwriter.md#element)
@@ -69,9 +69,9 @@ The very basics of mapping are:
   - **Arrays** - arrays are ordered sets of values. To learn how to map them in, see [Writing arrays](mapwriter.md#javamapwriter-example-arrays).
   - [Wildcard elements](extxmlwriter.md#wildcard-element) - another option to mapping elements explicitly. You use the **Include** and **Exclude** patterns to generate element names from respective metadata.
 - Connect input records to output (wildcard) elements to create [Binding](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields).
-  Example 375. Creating Binding
+  Example 380. Creating Binding
   ![JavaMapWriter mappingWithBindings](../figures/JavaMapWriter-mappingWithBindings.png)
-  *Figure 375. Example mapping in JavaMapWriter*
+  *Figure 393. Example mapping in JavaMapWriter*
   In the example above, you can see the employees are joined with projects they work on. Fields in bold (their content) will be printed to the output dictionary.
   > [!NOTE]
   > If you extended your graph and had the output dictionary written to the console, you would get a structure like this. This excerpt is just to demonstrate how Java Maps, mapped in [the figure above](mapwriter.md#javamapwriter-fig-mapping), are stored internally:
@@ -90,10 +90,10 @@ The very basics of mapping are:
   >     customers=[Nestele, Traincorp, AnotherBank, Intershop], end=in progress}],
   >     lastName=Morrison, firstName=Brandon}]}]
   > ```
-  Example 376. Writing arrays
+  Example 381. Writing arrays
   Let us have the following mapping of the input file which contains information about actors. For explanatory reasons, we will part actors' personal data from their countries of origin. The summary of all countries will then be written into an array:
   ![JavaMapWriter mappingArrays](../figures/JavaMapWriter-mappingArrays.png)
-  *Figure 376. Mapping arrays in JavaMapWriter - notice the array contains a dummy element’State' which you bind the input field to.*
+  *Figure 394. Mapping arrays in JavaMapWriter - notice the array contains a dummy element’State' which you bind the input field to.*
   The array will be written to Maps as e.g.:
   ```java
   [ ...

@@ -58,12 +58,12 @@ This component is functionally analogous of the [ParallelPartition](clusterparti
 For more details about this component, consider following usage of the repartitioner:
 
 ![ClusterRepartitionExample1](../figures/ClusterRepartitionExample1.png)
-*Figure 427. Usage example of ParallelRepartition component*
+*Figure 445. Usage example of ParallelRepartition component*
 
 The **ParallelRepartition** component defines a boundary between two incompatible allocations. Data in front of ParallelRepartition is already partitioned on node1 and node2, let’s say according to a key A. The component allows changing an allocation (even cardinality), in our case the allocation behind the repartitioner is node1, node2 and node3, according to a new key B. All is done in one step. Let’s look at the following image, which shows how the repartitioner works.
 
 ![ClusterRepartitionExample2](../figures/ClusterRepartitionExample2.png)
-*Figure 428. Example of actual working of ParallelRepartition component in runtime*
+*Figure 446. Example of actual working of ParallelRepartition component in runtime*
 
 Three separate graphs are executed, one on each of three nodes - node1, node2 and node3. The **ParallelRepartition** component is substituted by one **Partition** component for each source partition and by one **SimpleGather** component for each target partition. So altogether, five components do the work instead of the **ParallelRepartition**. Each Partition splits the data from single input partition to all output partitions where the data is gathered by the **SimpleGather** component.
 > [!NOTE]

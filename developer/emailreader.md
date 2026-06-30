@@ -102,7 +102,7 @@ The content port will write one record per email message. The attachment port ca
 If you edit the **Field Mapping** attribute, you will get **Email to Clover Mapping** dialog:
 
 ![EmailReader mapping](../figures/EmailReader-mapping.png)
-*Figure 334. Mapping to Clover fields in EmailReader*
+*Figure 352. Mapping to Clover fields in EmailReader*
 
 In its two tabs - **Message** and **Attachments** - you map incoming email fields to Clover fields by dragging and dropping. You will see metadata fields in a particular tab only if a corresponding edge is connected and has metadata assigned. The first output port influences the **Message** tab, the second output port influences the **Attachments** tab.
 

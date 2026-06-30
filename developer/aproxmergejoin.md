@@ -95,12 +95,12 @@ Unlike other joiners, this component uses two keys for joining. First of all, th
 You can define **Join key** with help of the **Join key** wizard. In the wizard, there are two tabs: **Master key** and **Slave key**.
 
 ![200790](../figures/200790.png)
-*Figure 450. Join Key Wizard (Master Key Tab)*
+*Figure 468. Join Key Wizard (Master Key Tab)*
 
 In the **Master key** tab, select the driver (master) fields in the **Fields** pane on the left and drag and drop them to the **Master key** pane on the right. (You can also use the arrow buttons.)
 
 ![200790B](../figures/200790B.png)
-*Figure 451. Join Key Wizard (Slave Key Tab)*
+*Figure 469. Join Key Wizard (Slave Key Tab)*
 
 In the **Slave key** tab, you can see the **Fields** pane (containing all slave fields) on the left and the **Key mapping** pane on the right.
 
@@ -135,8 +135,8 @@ $driver_field1=$slave_field1(parameters);...;$driver_fieldN=$slave_fieldN(parame
 ```
 
 ![200800](../figures/200800.png)
-*Figure 452. An Example of the Join Key Attribute in ApproximativeJoin Component*
-Example 401. Join Key for ApproximativeJoin
+*Figure 470. An Example of the Join Key Attribute in ApproximativeJoin Component*
+Example 406. Join Key for ApproximativeJoin
 `$first_name=$fname(3 0.8 true false false false);$last_name=$lname(4 0.2 true false false false)`. In this **Join key**, `first_name` and `last_name` are fields from the first (master) data flow and `fname` and `lname` are fields from the second (slave) data flow.
 
 ##### Matching key
@@ -144,13 +144,13 @@ Example 401. Join Key for ApproximativeJoin
 The **Matching key** is defined using the **Matching key** wizard. You only need to select the desired master (driver) field in the **Master key** pane on the left and drag and drop it to the **Master key** pane on the right in the **Master key** tab. (You can also use the provided arrow buttons.)
 
 ![200810](../figures/200810.png)
-*Figure 453. Matching Key Wizard (Master Key Tab)*
+*Figure 471. Matching Key Wizard (Master Key Tab)*
 
 In the **Slave key** tab, you must select one of the slave fields in the **Fields** pane on the left and drag and drop it to the **Slave key field** column at the right from the **Master key field** column (containing the master field the **Master key** tab) in the **Key mapping** pane.
 
 ![200810B](../figures/200810B.png)
-*Figure 454. Matching Key Wizard (Slave Key Tab)*
-Example 402. Matching Key
+*Figure 472. Matching Key Wizard (Slave Key Tab)*
+Example 407. Matching Key
 **Matching key** looks like this:
 
 ```ctl
@@ -179,7 +179,7 @@ As the final step, the total conformity is calculated as a weighted average of f
 
 When you define your join attributes, you must specify a transformation that maps fields from input data sources to the output. This can be done using the **Transformations** tab of the **Transform Editor**. However, you may find that you are unable to specify more advanced transformations using this easiest approach. This is when you need to use CTL scripting.
 
-For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part6.md).
+For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part5.md).
 
 CTL scripting allows you to specify a custom field mapping using the simple CTL scripting language.
 

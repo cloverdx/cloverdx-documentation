@@ -278,7 +278,7 @@ Examples: let’s consider two examples: numbers 1234.05 and -1234.05 with langu
 | `###,##0.00` | 1,243.05 | -1,234.05 |
 | `$####,##0.00;($####,##0.00)` | $1,234.05 | ($1,234.05) |
 
-For more information about number formatting options see [Numeric formats](../metadata-records-and-fields.md#numeric-format).
+For more information about number formatting options see [Numeric formats](../developer/metadata-records-and-fields.md#numeric-format).
 
 ##### Date formatting
 
@@ -321,7 +321,7 @@ Examples: let’s imagine date/time value of **27th February 2023, 16:35:50.456*
 | `yyyy-MM-dd HH:mm:ss.SSS` | 2023-02-27 16:35:50.456 |
 | `yyyy-MM-dd’T’HH:mm:ss.SSSXXX` | 2023-02-27T16:35:50.456+01:00 *(English (United States)* language, +1:00 time zone) |
 
-For more information about possible patterns and formatting options see full documentation in [Date and time formats](../developer/data-formats.md#date-and-time-format).
+For more information about possible patterns and formatting options see full documentation in [Date and time formats](../developer/metadata-records-and-fields.md#date-and-time-format).
 
 #### Using formulas
 
@@ -332,9 +332,9 @@ For more information about possible patterns and formatting options see full doc
 The following transformation steps can be used to perform a wide range of data manipulation tasks through the use of formulas.
 
 - [**Calculate formula**](wrangler-step-formula.md): This step allows you to perform calculations involving existing columns and constants. You can leverage various built-in functions for mathematical operations, string manipulation, date calculations, and more.
-- [**Filter rows based on formula**](wrangler-step-filter-with-formula.md): This step enables you to filter your data set by defining a formula. Rows where the formula evaluates to true are retained, while others are excluded. This is useful for isolating specific data subsets based on conditions.
+- [**Filter rows based on formula**](wrangler-step-filter-with-formula.md): This step enables you to filter your data set by defining a formula. Rows where the formula evaluates to `true` are retained, while others are excluded. This is useful for isolating specific data subsets based on conditions.
 - [**Replace errors**](wrangler-step-replace-errors.md): This step lets you replace erroneous values in a column with a user-defined value or the result of a formula. You can use conditional logic within the formula to replace errors selectively based on specific criteria.
-- [**Validate with formula**](wrangler-step-validate-with-formula.md): This step allows you to define a formula that validates the data in a specific column. If the formula evaluates to false for any row, an error message is generated, indicating a data quality issue.
+- [**Validate with formula**](wrangler-step-validate-with-formula.md): This step allows you to define a formula that validates the data in a specific column. If the formula evaluates to `false` for any row, an error message is generated, indicating a data quality issue.
 
 **Step and group conditions**
 
@@ -737,13 +737,13 @@ Note that even though Wrangler does not support variant type, lists or maps as c
 in($transactionType, ["CASH", "CARD", "WIRE"])
 ```
 
-The formula uses `in` function to test whether value of a `$transactionType` column is one of the three values provided as a CTL `string[]` (list of strings) type. The formula will return true if the `$transactionType` is one of the three values and false otherwise.
+The formula uses `in` function to test whether value of a `$transactionType` column is one of the three values provided as a CTL `string[]` (list of strings) type. The formula will return `true` if the `$transactionType` is one of the three values and `false` otherwise.
 
 #### List of common functions
 
 ##### Date functions
 
-List of useful **date** functions for reference (full list of all date functions can be found [here](../developer/date-functions-ctl2.md,)):
+List of useful **date** functions for reference (full list of all date functions can be found [here](../developer/date-functions-ctl2.md)):
 
 | Function | Description |
 | --- | --- |
@@ -768,21 +768,21 @@ List of useful **string (text)** functions (full list of all string functions ca
 | --- | --- |
 | [chop](../developer/string-functions-ctl2.md#chop) | removes specified characters or line feed and carriage return characters |
 | [concat](../developer/string-functions-ctl2.md#concat) | concatenates multiple string values |
-| [contains](../developer/string-functions-ctl2.md#contains) | returns true/false values if the specified characters are found |
-| [endsWith](../developer/string-functions-ctl2.md#endswith) | returns true if the specified characters are found at the end of a string value, otherwise returns false |
-| [isBlank](../developer/string-functions-ctl2.md#isblank) | returns true if input consists of spaces, otherwise returns false |
-| [isDate](../developer/string-functions-ctl2.md#isdate) | returns true if input matches the date pattern, otherwise returns false |
-| [isDecimal](../developer/string-functions-ctl2.md#isdecimal) | returns true if input matches a decimal pattern, otherwise returns false |
-| [isEmpty](../developer/string-functions-ctl2.md#isempty) | returns true if input is empty, otherwise returns false |
-| [isInteger](../developer/string-functions-ctl2.md#isinteger) | returns true if input is an integer, otherwise returns false |
-| [isNumber](../developer/string-functions-ctl2.md#isnumber) | returns true if input is a number, otherwise returns false |
-| [isUrl](../developer/string-functions-ctl2.md#isurl) | returns true if input is an URL, otherwise returns false |
+| [contains](../developer/string-functions-ctl2.md#contains) | returns `true`/`false` values if the specified characters are found |
+| [endsWith](../developer/string-functions-ctl2.md#endswith) | returns `true` if the specified characters are found at the end of a string value, otherwise returns `false` |
+| [isBlank](../developer/string-functions-ctl2.md#isblank) | returns `true` if input consists of spaces, otherwise returns `false` |
+| [isDate](../developer/string-functions-ctl2.md#isdate) | returns `true` if input matches the date pattern, otherwise returns `false` |
+| [isDecimal](../developer/string-functions-ctl2.md#isdecimal) | returns `true` if input matches a decimal pattern, otherwise returns `false` |
+| [isEmpty](../developer/string-functions-ctl2.md#isempty) | returns `true` if input is empty, otherwise returns `false` |
+| [isInteger](../developer/string-functions-ctl2.md#isinteger) | returns `true` if input is an integer, otherwise returns `false` |
+| [isNumber](../developer/string-functions-ctl2.md#isnumber) | returns `true` if input is a number, otherwise returns `false` |
+| [isUrl](../developer/string-functions-ctl2.md#isurl) | returns `true` if input is an URL, otherwise returns `false` |
 | [lowerCase](../developer/string-functions-ctl2.md#lowercase) | converts all characters to lowercase |
 | [removeBlankSpace](../developer/string-functions-ctl2.md#removeblankspace) | removes blank spaces |
 | [removeDiacritic](../developer/string-functions-ctl2.md#removediacritic) | removes diacritical marks |
 | [removeNonAscii](../developer/string-functions-ctl2.md#removenonascii) | removes non-Ascii characters |
 | [reverse](../developer/string-functions-ctl2.md#reverse) | returns reverted string |
-| [startsWith](../developer/string-functions-ctl2.md#startswith) | returns true if the specified characters are found at the end of a string value, otherwise returns false |
+| [startsWith](../developer/string-functions-ctl2.md#startswith) | returns `true` if the specified characters are found at the end of a string value, otherwise returns `false` |
 | [trim](../developer/string-functions-ctl2.md#trim) | takes one string argument and returns another string with leading and trailing white spaces removed |
 | [upperCase](../developer/string-functions-ctl2.md#uppercase) | converts all characters to uppercase |
 

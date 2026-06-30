@@ -7,23 +7,31 @@
 MCP (Model Context Protocol) is an emerging standard that enables AI agents to interact with external services and data sources. It provides a standardized way for AI models to access tools, resources, and context from various applications, allowing them to perform tasks beyond their base capabilities.
 
 CloverDX provides MCP out of the box starting with CloverDX 7.3.0 and also allows exposing MCP on older instances (version 6.0 to 7.2) via [CloverDX MCP proxy](server-config-mcp.md#configuration-for-cloverdx-60-to-72). The ability to expose older versions of CloverDX as MCP servers via MCP proxy is especially useful for production instances where the upgrades to newer versions may not be that simple while MCP proxy only requires minimal configuration. This allows you to take advantage of the MCP integration for all Server instances newer than CloverDX 6.0 which was released in April 2023.
+> [!NOTE]
+> In CloverDX 7.5.0 we’ve significantly expanded the scope of the MCP Server by adding more than 40 new tools. Given this capability expansion, we are releasing the MCP APIs in CloverDX 7.5.0 as a **technology preview**.
+>
+> MCP Server and its tools are under active development. Tools may change in future releases, sometimes in incompatible ways, even be completely removed. **Use the MCP in dev/test environments only, not in production.** Treat it as a tool for evaluation and non-critical work, and review everything it produces before relying on it. Use it with caution since it is possible to edit files, run jobs or even read data flowing through them via MCP.
+>
+> Gathering feedback on how teams use the MPC Server in CloverDX is one of the goals of this technology preview. Contact your Account representative if you wish to provide feedback that could help us improve future versions of the MCP Server.
 
-CloverDX MCP Server exposes large amount of diagnostic functionality from CloverDX to AI agents:
+CloverDX MCP Server exposes a comprehensive set of tools that enable AI agents to fully interact with CloverDX:
 
-- **Server Info**: get current server status, version, and configuration details.
-- **CloverDX Info**: access CloverDX-specific system information.
-- **CloverDX Server Logs**: access general server logs for troubleshooting.
-- **Performance Logs**: monitor server performance metrics and bottlenecks.
-- **Access Logs**: review user access and authentication events.
-- **Job Run Logs**: examine detailed execution logs for specific jobs.
-- **Job Tracking Info**: query job execution history, status, and runtime details.
-- **CloverDX database SQL Select**: execute SELECT queries on CloverDX database.
-- **Report Support Issue**: report problem to CloverDx customer portal.
+- **Sandbox Management**: browse, read, write, and organize files within CloverDX sandboxes.
+- **Job Execution**: run graphs and jobflows, wait for results, monitor status, and abort running jobs.
+- **Graph Editing**: create and modify CloverDX graphs and jobflows using structured XML operations.
+- **Server Diagnostics**: access server logs, performance metrics, and internal system database.
+- **Component Reference**: discover and configure CloverDX component types.
+- **Knowledge Base**: access the CloverDX knowledge library and manage project-scoped knowledge entries.
+- **External Databases**: query and inspect databases accessible via JDBC.
+- **Support**: report issues directly to the CloverDX Support Portal.
 
-This allows AI agents to help with common maintenance and development tasks such as:
+For the complete list of available tools, see [MCP Tools Reference](../operations/server-mcp-api.md#mcp-tools-reference).
 
-- Troubleshooting failed jobs by analyzing logs
-- Monitoring server health and performance
+This allows AI agents to help with common development and maintenance tasks such as:
+
+- Building and editing CloverDX integration graphs and jobflows
+- Troubleshooting failed jobs by analyzing logs and tracking data
+- Monitoring server health and performance metrics
 - Automating routine administrative queries
 - Generating reports on job execution patterns
 
@@ -157,7 +165,7 @@ Once the library is installed and configured, you will be able to connect your c
 
 #### Client Setup
 
-This section describes how to connect AI desktop applications to your CloverDX Server using MCP. Currently supported clients include Claude Desktop and ChatGPT Desktop applications.
+This section describes how to connect AI applications to your CloverDX Server using MCP. Currently supported clients include Claude Desktop and ChatGPT web applications.
 > [!NOTE]
 > **Authentication Requirements:**
 >
@@ -193,27 +201,27 @@ To correctly the Claude client to use CloverDX Server MCP, follow these steps:
 2. You can choose which MCP prompt to use from the available options, or leave it unselected.
 
 ![MCP prompt selector in Claude](../figures/claude-chat-cloverdx-mcp-tools.png)
-*Figure 137. CloverDX MCP tools available in Claude client.*
+*Figure 138. CloverDX MCP tools available in Claude client.*
 
 ![MCP prompt selector in Claude](../figures/claude-chat-cloverdx-mcp-prompts1.png)
-*Figure 138. Add from CloverDX MCP menu provides access to example prompts provided by CloverDX MCP extension.*
+*Figure 139. Add from CloverDX MCP menu provides access to example prompts provided by CloverDX MCP extension.*
 
 ![Using CloverDX MCP in Claude chat](../figures/claude-chat-cloverdx-mcp-prompts2.png)
-*Figure 139. Example prompts provided by CloverDX MCP extension in Claude client.*
+*Figure 140. Example prompts provided by CloverDX MCP extension in Claude client.*
 
-##### ChatGPT Desktop Application
+##### ChatGPT web Application
 
-To use CloverDX MCP Server from OpenAI ChatGPT client, you will need the following:
+To use CloverDX MCP Server from OpenAI ChatGPT client ([https://chatgpt.com/](https://chatgpt.com/)), you will need the following:
 
 - ChatGPT subscription: a premium ChatGPT plan (Plus or above) is required since connectors are not supported in the Free and Go subscriptions plans.
-- Authentication requirements: OAuth2 is not supported for ChatGPT so you must use MCP with anonymous access only.
+- Authentication requirements: OAuth2 is supported with 'authorization code' type grant. (`Use PKCE`) option must be enabled in the CloverDX Server OAuth2 Authentication configuration.
 - CloverDX Server must use the HTTPS protocol, HTTP-only is not supported by OpenAI/ChatGPT.
   > [!TIP]
   > For local test environments, you can use a tunneling application such as ngrok ([https://ngrok.com/](https://ngrok.com/)) to expose your local HTTP server via HTTPS.
 
 To configure the ChatGPT client, follow these steps:
 
-1. Click on your profile name in the ChatGPT desktop app
+1. Click on your profile name in the ChatGPT web app
 2. Select **Settings → Apps**
 3. Scroll down to **Advanced settings** and expand it
 4. Enable **Developer mode**
@@ -223,5 +231,33 @@ To configure the ChatGPT client, follow these steps:
    - **Name**: `CloverDX Server` (or any descriptive name)
    - **MCP Server URL**: Your CloverDX MCP endpoint
      - Format: `https://your-server.example.com:port/clover/mcp/mcp`
-   - **Authentication**: Select "No Auth" option (OAuth2 is not supported)
+   - **Authentication**: Select "OAuth" option if you want to use OAuth2 Authentication
+     - Select "Advanced OAuth settings"
+     - Fill in 'OAuth2 Client ID' with some short text
+     - Copy 'Callback URL' and add it to your OAuth2 provider application configuration
 8. Click **Create**
+
+#### MCP tools permissions
+
+By default, all MCP tools are available to authenticated users. You can restrict which tools are exposed using the following configuration properties in the CloverDX configuration file.
+
+**Read-only mode** (`clover.mcp.read.only`): when set to `true`, write tools are blocked and only read-only tools are exposed to AI agents. This is the simplest way to limit AI agent access and is suitable for production environments where you want to allow monitoring and diagnostics without permitting write operations. Individual tool overrides take priority over this setting.
+
+```properties
+# Block all write tools. Only read-only tools are exposed.
+clover.mcp.read.only = true
+```
+
+**Individual tool control**: for fine-grained control, you can enable or disable specific tools by name regardless of the read-only mode setting:
+
+```properties
+# Comma-separated list of tool names to enable regardless of other settings.
+clover.mcp.tools.individual.enabled = sandbox_write_file,job_run
+
+# Comma-separated list of tool names to always disable.
+clover.mcp.tools.individual.disabled = db_execute_query,sandbox_delete_file
+```
+
+Tool names used in these properties must match exactly the names in the [MCP Tools Reference](../operations/server-mcp-api.md#mcp-tools-reference) table.
+
+A Server restart is required for permission changes to take effect.

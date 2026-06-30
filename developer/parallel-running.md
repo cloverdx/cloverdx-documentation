@@ -1,6 +1,6 @@
 <!-- Development > Advanced > Data partitioning (parallel running) -->
 
-## 47. Data partitioning (parallel running)
+## 48. Data partitioning (parallel running)
 
 This chapter describes ways to speed up graph runs with help of data partitioning.
 > [!TIP]
@@ -11,7 +11,7 @@ This chapter describes ways to speed up graph runs with help of data partitionin
 **Data partitioning** runs parts of graphs in parallel. A component that is a bottleneck of a graph is run in multiple instances and each instance processes one part of the original data stream.
 
 ![parallel run 0008new](../figures/parallel-run-0008new.png)
-*Figure 478. Illustration of parallel run*
+*Figure 496. Illustration of parallel run*
 
 The processing can be further scaled to cluster without modification to the graph.
 
@@ -42,7 +42,7 @@ Data partitioning is convenient to speed up processing when:
 In **Designer** and **Server**, you can speed up processing with copying the slow component and running it in parallel.
 
 ![parallel run 0010](../figures/parallel-run-0010.png)
-*Figure 479. Parallel run*
+*Figure 497. Parallel run*
 
 ### 2. Parallel processing in Server
 
@@ -53,17 +53,17 @@ To use this approach, replace [Partition](partition.md) with [ParallelPartition]
 Set allocation to the components positioned between the cluster components: right click the component and choose **Set Allocation**.
 
 ![parallel run 0020new](../figures/parallel-run-0020new.png)
-*Figure 480. Parallel run with cluster components*
+*Figure 498. Parallel run with cluster components*
 
 In **Component Allocation** dialog choose **By number of workers** and enter the number of parallel workers.
 
 ![parallel run 0030](../figures/parallel-run-0030.png)
-*Figure 481. Component allocation*
+*Figure 499. Component allocation*
 
 Components in your graph will contain text denoting the allocation.
 
 ![parallel run 0040new](../figures/parallel-run-0040new.png)
-*Figure 482. Component allocation*
+*Figure 500. Component allocation*
 
 ### 3. Parallel processing in Server cluster
 
@@ -88,7 +88,7 @@ First of all, the analysis finds an allocation for individual components. The co
 Resulted analysis shows how many instances (workers) of the graph need to be executed, on which cluster nodes they will be running and which components will be present in them. In other words, one executed graph can run in many instances, each instance can be processed on an arbitrary cluster node and each contains only convenient components.
 
 ![componentAllocationExample](../figures/componentAllocationExample.png)
-*Figure 483. Component allocations example*
+*Figure 501. Component allocations example*
 
 This figure shows a sample graph with components with various allocations.
 
@@ -100,7 +100,7 @@ This figure shows a sample graph with components with various allocations.
 Visualization of the transformation analysis is shown in the following figure:
 
 ![graphDecompositionExample](../figures/graphDecompositionExample.png)
-*Figure 484. Graph decomposition based on component allocations*
+*Figure 502. Graph decomposition based on component allocations*
 
 Three workers (graphs) will be executed, each on a different cluster node. Worker on cluster node1 contains **FlatFileReader** and first of three instances of the **FlatFileWriter** component. Both components are connected by remote edges with components which are running on node2. The worker running on node3 contains **FlatFileWriter** fed by data remotely transferred from **ParallelPartitioner** running on node2.
 
@@ -110,10 +110,10 @@ Allocation of a single component can be derived in several ways (list is ordered
 
 - **Explicit definition** - all components have a common attribute **Allocation**:
   ![allocationDialog](../figures/allocationDialog.png)
-  *Figure 485. Component allocation dialog*
+  *Figure 503. Component allocation dialog*
   Three different approaches are available for explicit allocation definition:
   - **Allocation based on the number of workers** - the component will be executed in requested instances on some cluster nodes which are preferred by **CloverDX** cluster. Server can use a build-in load balancing algorithm to ensure the fastest data processing.
-  - **Allocation based on reference on a partitioned sandbox** - component allocation corresponds with locations of given partitioned sandbox. Each partitioned sandbox has a list of locations, each bound to a specific cluster node. Thus allocation would be equivalent to the list of locations. For more information, see *Partitioned sandbox* in link:../admin/cluster-setup-index.html#id_clustering_sandboxes.
+  - **Allocation based on reference on a partitioned sandbox** - component allocation corresponds with locations of given partitioned sandbox. Each partitioned sandbox has a list of locations, each bound to a specific cluster node. Thus allocation would be equivalent to the list of locations. For more information, see [Partitioned sandboxes](../admin/cluster-setup-index.md#partitioned-sandbox).
   - **Allocation defined by a list of cluster node identifiers** (a single cluster node can be used more times)
 - **Reference to a partitioned sandbox** FlatFileReader, FlatFileWriter and ParallelReader components derive their allocation from the `fileURL` attribute. In case the URL refers to a file in a partitioned sandbox, the component allocation is automatically derived from locations of the partitioned sandbox. So in case you manipulate with one of these components with a file in partitioned sandbox, a suitable allocation is used automatically.
 - **Adoption from neighbor components** By default, allocation is inherited from neighbor components. Components on the left side have a higher priority. cluster partitioners and cluster gathers are nature bounds for recursive allocation inheritance.

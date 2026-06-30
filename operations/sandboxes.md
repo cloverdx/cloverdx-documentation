@@ -1,6 +1,6 @@
 <!-- Automation and operations > Libraries, Sandboxes, and AI / ML Models modules > Sandboxes -->
 
-## 16. Sandboxes
+## 18. Sandboxes
 
 A sandbox is a place where you store all your project’s transformation graph files, jobflows, data, and other resources. It’s a server side analogy to a Designer project. The Server adds additional features to sandboxes, like user permissions management and global per-sandbox configuration options.
 

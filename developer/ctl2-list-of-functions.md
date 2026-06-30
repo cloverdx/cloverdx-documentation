@@ -6,6 +6,7 @@
 | --- |
 | [acos](mathematical-functions-ctl2.md#acos) |
 | [addNoise](mathematical-functions-ctl2.md#addnoise) |
+| [addDataSetReloadNotification](http-ctl2.html#id_ctl2_adddatasetreloadnotification) |
 | [addResponseHeader](http-ctl2.html#id_ctl2_addresponseheader) |
 | [append](container-functions-ctl2.md#append) |
 | [appendAll](container-functions-ctl2.md#appendall) |
@@ -52,6 +53,7 @@
 | [createDate](date-functions-ctl2.md#createdate) |
 | [currentTimeMillis](miscellaneous-functions-ctl2.md#currenttimemillis) |
 | [cut](string-functions-ctl2.md#cut) |
+| [decode](string-functions-ctl2.md#decode) |
 | [date2long](conversion-functions-ctl2.md#date2long) |
 | [date2num](conversion-functions-ctl2.md#date2num) |
 | [date2str](conversion-functions-ctl2.md#date2str) |
@@ -65,6 +67,7 @@
 | [e](mathematical-functions-ctl2.md#e) |
 | [editDistance](string-functions-ctl2.md#editdistance) |
 | [endsWith](string-functions-ctl2.md#endswith) |
+| [escapeJson](string-functions-ctl2.md#escapejson) |
 | [escapeUrl](string-functions-ctl2.md#escapeurl) |
 | [escapeUrlFragment](string-functions-ctl2.md#escapeurlfragment) |
 | [escapeXML](string-functions-ctl2.md#escapexml) |
@@ -114,6 +117,7 @@
 | [getRawParamValues](miscellaneous-functions-ctl2.md#getrawparamvalues) |
 | [getRecordProperties](field-access-functions-ctl2.md#getrecordproperties) |
 | [getRequestBody](http-ctl2.html#id_ctl2_getrequestbody) |
+| [getRequestCertificateProperties](http-ctl2.html#id_ctl2_getrequestcertificateproperties) |
 | [getRequestClientIPAddress](http-ctl2.html#id_ctl2_getrequestclientipaddress) |
 | [getRequestContentType](http-ctl2.html#id_ctl2_getrequestcontenttype) |
 | [getRequestEncoding](http-ctl2.html#id_ctl2_getrequestencoding) |
@@ -285,6 +289,7 @@
 | [trim](string-functions-ctl2.md#trim) |
 | [trunc](date-functions-ctl2.md#trunc) |
 | [truncDate](date-functions-ctl2.md#truncdate) |
+| [unescapeJson](string-functions-ctl2.md#unescapejson) |
 | [unescapeUrl](string-functions-ctl2.md#unescapeurl) |
 | [unescapeUrlFragment](string-functions-ctl2.md#unescapeurlfragment) |
 | [unescapeXML](string-functions-ctl2.md#unescapexml) |

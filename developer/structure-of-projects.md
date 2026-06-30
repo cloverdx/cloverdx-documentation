@@ -1,6 +1,6 @@
 <!-- Development > Projects > Structure of CloverDX projects -->
 
-## 9. Structure of CloverDX projects
+## 10. Structure of CloverDX projects
 
 In this chapter, we present only a brief overview of what happens when you are creating any **CloverDX** project.
 
@@ -38,7 +38,7 @@ In the **CloverDX** perspective, there is a **Project Explorer** pane on the lef
 > Remember that using parameters in **CloverDX** ensures that such a graph, metadata or any other graph element can be used in any place without necessity of its renaming.
 
 ![project 4 1 010](../figures/project-4-1-010.png)
-*Figure 103. Project folder structure inside Project Explorer pane*
+*Figure 119. Project folder structure inside Project Explorer pane*
 
 ### The .classpath file
 
@@ -62,4 +62,4 @@ You can see the parameters of your new project.
 > The parameters of imported projects may differ from the default parameters of a new project.
 
 ![project 4 3 020](../figures/project-4-3-020.png)
-*Figure 104. Workspace.prm file*
+*Figure 120. Workspace.prm file*

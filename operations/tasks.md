@@ -286,18 +286,18 @@ In cluster environment, there is also one additional attribute **Node IDs to pro
 
 | Variable | Class | Description | Availability |
 | --- | --- | --- | --- |
-| event | com.cloveretl.server.events.AbstractServerEvent |  | every time |
+| event | com.cloveretl.server.events.types.AbstractServerEvent |  | every time |
 | task | com.cloveretl.server.persistent.Task |  | every time |
 | now | java.util.Date | current time | every time |
 | parameters | java.util.Properties | Properties of a task | every time |
-| user | com.cloveretl.server. persistent.User | Same as event.getUser() | every time |
-| run | com.cloveretl.server. persistent.RunRecord |  | When the event is an instance of GraphServerEvent |
-| tracking | com.cloveretl.server. worker.commons.persistent.TrackingGraph | same as run.getTrackingGraph() | When the event is an instance of GraphServerEvent |
-| sandbox | com.cloveretl.server. persistent.Sandbox | same as run.getSandbox() | When the event is an instance of GraphServerEvent |
-| schedule | com.cloveretl.server. persistent.Schedule | same as ((ScheduleServerEvent)event). getSchedule() | When the event is an instance of ScheduleServerEvent |
+| user | com.cloveretl.server.persistent.User | Same as event.getUser() | every time |
+| run | com.cloveretl.server.persistent.RunRecord |  | When the event is an instance of GraphServerEvent |
+| tracking | com.cloveretl.server.worker.commons.persistent.TrackingGraph | same as run.getTrackingGraph() | When the event is an instance of GraphServerEvent |
+| sandbox | com.cloveretl.server.persistent.Sandbox | same as run.getSandbox() | When the event is an instance of GraphServerEvent |
+| schedule | com.cloveretl.server.persistent.Schedule | same as ((ScheduleServerEvent)event). getSchedule() | When the event is an instance of ScheduleServerEvent |
 | servletContext | jakarta.servlet.ServletContext |  | every time |
 | cloverConfiguration | com.cloveretl.server.spring.CloverConfiguration | Configuration values for **CloverDX Server** | every time |
-| serverFacade | com.cloveretl.server.facade. api.ServerFacade | The reference to the facade interface. Useful for calling **CloverDX Server** core.  WAR file contains JavaDoc of facade API and it is accessible on URL: [http://host:port/clover/javadoc/index.html](http://host:port/clover/javadoc/index.html) | every time |
+| serverFacade | com.cloveretl.server.facade.api.ServerFacade | The reference to the facade interface. Useful for calling **CloverDX Server** core.  WAR file contains JavaDoc of facade API and it is accessible via http(s)://host:port/clover/javadoc/index.html. | every time |
 | sessionToken | String | A valid session token of the user who owns the event. It is useful for authorization to the facade interface. | every time |
 
 Variables run, tracking and sandbox are available only if the event is an instance of GraphServerEvent class. A variable schedule is only available for ScheduleServerEvent as an event variable class.

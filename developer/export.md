@@ -1,13 +1,13 @@
 <!-- Development > Designer user interface > Export -->
 
-## 7. Export
+## 8. Export
 
 **Export** converts graphs (and jobflow) to formats independent of **CloverDX Designer**, or exports metadata or converts graphs to jobflow, jobflow or subgraphs to graphs.
 
 If you want to export something, you can either select **File** ****Export…​** from the main menu or right-click in the **Project Explorer** pane and select **Export…​** from the context menu. After that, the **Export** wizard window opens. When you expand the **CloverDX** category, the window will look like this:
 
 ![export metadata 010](../figures/export-metadata-010.png)
-*Figure 94. Export Options*
+*Figure 110. Export Options*
 
 ### Convert graph to jobflow
 
@@ -22,7 +22,7 @@ Select **Convert Graph to Jobflow**.
 Select one graph to be converted to a jobflow.
 
 ![convert graph to jobflow 10](../figures/convert-graph-to-jobflow-10.png)
-*Figure 95. Converting graph to jobflow*
+*Figure 111. Converting graph to jobflow*
 
 Choose the file name and destination for the converted jobflow.
 
@@ -41,7 +41,7 @@ Select **Convert Jobflow to Graph**.
 Select one jobflow to be converted to a graph.
 
 ![convert jobflow to graph 10](../figures/convert-jobflow-to-graph-10.png)
-*Figure 96. Converting jobflow to graph*
+*Figure 112. Converting jobflow to graph*
 
 Choose destination for the graph.
 
@@ -64,14 +64,14 @@ Select **Convert Subgraph to Graph**.
 Select a subgraph to be converted to a graph and choose a directory and file name for the graph.
 
 ![convert subgraph to graph 10](../figures/convert-subgraph-to-graph-10.png)
-*Figure 97. Converting subgraph to graph*
+*Figure 113. Converting subgraph to graph*
 
 ### Export graphs to HTML
 
 If you select the **Export graphs to HTML** item, you can click the **Next** button and see the following window:
 
 ![export 4 010](../figures/export-4-010.png)
-*Figure 98. Export graphs to HTML*
+*Figure 114. Export graphs to HTML*
 
 You must select the graph(s) and specify to which output directory the selected graph(s) should be exported. You can also generate index file of the exported pages and corresponding graphs and/or images of the selected graphs. By switching the radio buttons, you are selecting either the scale of the output images, or the width and the height of the images. You can decide whether antialiasing should be used.
 
@@ -80,7 +80,7 @@ You must select the graph(s) and specify to which output directory the selected 
 **CloverDX Designer** now allows you to export any part of your projects to **CloverDX Server** sandboxes. To export, select the **Export to CloverDX Server sandbox** option. After that, the following wizard will open:
 
 ![sandboxexport](../figures/sandboxexport.png)
-*Figure 99. Export to CloverDX Server sandbox*
+*Figure 115. Export to CloverDX Server sandbox*
 
 Select the files and/or directories that should be exported and decide whether the files and/directories with identical names should be overwritten without warning or whether overwriting should be confirmed or whether the files and/or directories with identical names should not be overwritten at all, and also decide whether the sandbox should be cleaned before export.
 
@@ -95,6 +95,6 @@ Select a sandbox. Then click **Finish**. Selected files and/or directories will 
 If you select the **Export image** item, you can click the **Next** button and you will see the following window:
 
 ![export 6 010](../figures/export-6-010.png)
-*Figure 100. Export image*
+*Figure 116. Export image*
 
 This option allows you to export images of the selected graphs only. You must select the graph(s) and specify to which output directory the selected graph(s) images should be exported. You can also specify the format of output files - `bmp`, `jpeg` or `png`. By switching the radio buttons, you are selecting either the scale of the output images, or the width and the height of the images. You can decide whether antialiasing should be used.

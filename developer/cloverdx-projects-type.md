@@ -1,6 +1,6 @@
 <!-- Development > Projects > Types of CloverDX projects -->
 
-## 8. Types of CloverDX projects
+## 9. Types of CloverDX projects
 
 | [CloverDX (local) project](cloverdx-projects-type.md#cloverdx-local-project) |
 | --- |
@@ -33,9 +33,9 @@ See [Working with Server projects](server-projects-usage.md) for more informatio
 There is an older, legacy type of CloverDX Server projects, so-called RSE Server projects. These are not supported from CloverDX 5.10. The old RSE Server projects cannot be opened and used anymore. If you try to open such a project, you will get the following error:
 
 ![rse project open](../figures/rse-project-open.png)
-*Figure 101. Opening legacy CloverDX server project*
+*Figure 117. Opening legacy CloverDX server project*
 
 However, you will not lose your data as the old project was basically just a link to the CloverDX Server, where the data actually reside. You can create new CloverDX Server project to connect to the same sandbox and continue your work there. You can open Properties of the old project to find connection information, e.g. which sandbox was used by it:
 
 ![rse project properties](../figures/rse-project-properties.png)
-*Figure 102. Legacy CloverDX server project properties*
+*Figure 118. Legacy CloverDX server project properties*

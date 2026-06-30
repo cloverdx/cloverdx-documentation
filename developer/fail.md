@@ -56,7 +56,7 @@ Mapping in the **Fail** component is generally used for two purposes:
 > Only output dictionary entries can be changed.
 
 ![Fail Mapping](../figures/Fail-Mapping.png)
-*Figure 425. Example of mapping for the Fail component*
+*Figure 443. Example of mapping for the Fail component*
 
 The error message compiled by the mapping has the highest priority. If the mapping does not set **errorMessage**, the error message from the component attribute is used instead. If even this attribute is not set, predefined text user abort is used instead.
 

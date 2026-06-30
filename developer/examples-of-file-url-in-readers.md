@@ -74,8 +74,6 @@ Below are examples of possible URL for **Readers**:
   Reads all objects which satisfy the specified mask from an Amazon S3 web storage service from a given bucket using access key ID and a secret access key.
   It is recommended to connect to S3 via *region-specific* S3 URL: `s3://s3.eu-central-1.amazonaws.com/bucket.name/`. The region-specific URL has much better performance than the generic one (`s3://s3.amazonaws.com/bucket.name/`).
   See recommendation on [Amazon S3 URL](common-dialogs.md#amazon-s3-specific-url).
-  > [!NOTE]
-  > s3:// URL protocol is available since **CloverETL 4.1**. More information about the deprecated http:// S3 protocol can be found in **CloverDX 4.0 User Guide**.
 - `az-blob://account:account_key@account.blob.core.windows.net/containername/path/filename*.txt`
   Reads all objects matching the specified mask from the specified container in Microsoft Azure Blob Strage service.
   Connects using the specified Account Key. See [Azure Blob Storage](common-dialogs.md#azure-blob-storage) for other authentication options.

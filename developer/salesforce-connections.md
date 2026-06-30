@@ -8,10 +8,10 @@
 
 To create a Salesforce connection, right click **Connections** in **Outline** and choose **Connections** ****Create Salesforce Connection**.
 
-In **Salesforce Connection Dialog**, fill in **Username**, **Password**, and **Security token**.
+In **Salesforce Connection Dialog**, fill in **Username**, **Password**, and **Security token** or select **Use OAuth2**.
 
 ![salesforce connection 0020](../figures/salesforce-connection-0020.png)
-*Figure 270. Salesforce connection dialog*
+*Figure 287. Salesforce connection dialog Ia*
 
 **Username** is your Salesforce username.
 
@@ -21,10 +21,17 @@ In **Salesforce Connection Dialog**, fill in **Username**, **Password**, and **S
 
 To specify password and security token, use [Secure Graph Parameters](parameters.md#secure-graph-parameters).
 
-![salesforce connection 0030](../figures/salesforce-connection-0030.png)
-*Figure 271. Salesforce connection dialog II*
+![salesforce connection 0021](../figures/salesforce-connection-0021.png)
+*Figure 288. Salesforce connection dialog Ib*
 
-**Login hostname** is a URL of Salesforce service. The default value is `login.salesforce.com`.
+**OAuth2 connection** to your Salesforce client application.
+
+If your graph doesn’t have any **OAuth2** of the **Salesforce** type you may use **Create** or **Link External** buttons to add it.
+
+![salesforce connection 0030](../figures/salesforce-connection-0030.png)
+*Figure 289. Salesforce connection dialog II*
+
+**Login hostname** is a URL of Salesforce service. The default value is `login.salesforce.com`. If the connection uses OAuth2 the hostname is the **OAuth2 connection** domain and can’t be changed by user.
 
 **Connect timeout (seconds)** is timeout for creating the Salesforce connection. The default value is 30.
 
@@ -35,7 +42,7 @@ To specify password and security token, use [Secure Graph Parameters](parameters
 If you need to use a proxy, it can be configured on **Proxy** tab. In Salesforce connection, only an anonymous proxy is supported.
 
 ![salesforce connection 0040](../figures/salesforce-connection-0040.png)
-*Figure 272. Salesforce connection dialog III*
+*Figure 290. Salesforce connection dialog III*
 
 Use **Validate connection** to validate the connection.
 

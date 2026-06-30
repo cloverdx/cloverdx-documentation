@@ -68,7 +68,7 @@ The **XSLTransformer** component does XSL transformation of an input and writes 
 **Mapping** can be defined using the following wizard.
 
 ![300370](../figures/300370.png)
-*Figure 413. XSLT Mapping*
+*Figure 431. XSLT Mapping*
 
 Assign the input fields from the **Input fields** pane on the left to the output fields by dragging and dropping them in the **Input field** column of the right pane. Select which of them should be transformed by setting the **Transform data** option to true. By default, fields are not transformed.
 

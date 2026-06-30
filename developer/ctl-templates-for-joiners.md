@@ -7,7 +7,7 @@ This transformation template is used in every **Joiner** and also in [Map](refor
 Here is an example of how the **Source** tab for defining the transformation in CTL looks.
 
 ![300220](../figures/300220.png)
-*Figure 414. Source tab of the Transform editor in Joiners*
+*Figure 432. Source tab of the Transform editor in Joiners*
 
 | CTL Template Functions |  |
 | --- | --- |

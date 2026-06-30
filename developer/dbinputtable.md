@@ -104,14 +104,14 @@ Adjacent columns can also be selected by clicking Shift+Click on the first and t
 Then you need to click **Generate** after which a query will appear in the **Query** pane.
 
 ![SQLQueryEditor](../figures/SQLQueryEditor.png)
-*Figure 323. Generated query with question marks*
+*Figure 341. Generated query with question marks*
 
 A query may contain question marks if any DB columns differ from output metadata fields. Output metadata are visible in the **Output metadata** pane on the right side.
 
 Drag and drop the fields from the **Output metadata** pane to the corresponding places in the **Query** pane and then manually remove the "$?:=" characters. See the following figure:
 
 ![SQLQueryEditor2](../figures/SQLQueryEditor2.png)
-*Figure 324. Generated query with output fields*
+*Figure 342. Generated query with output fields*
 
 You can also type a `where` statement to the query.
 
@@ -137,7 +137,7 @@ Use the **DB connection** and **SQL query** attributes.
 | SQL query | Use the **Generate query** button in the SQL query editor. |
 
 ![dbinputtable writing](../figures/dbinputtable_writing.png)
-*Figure 325. Reading records from database*
+*Figure 343. Reading records from database*
 
 In the **output metadata**, create the name, location and heightft fields. Set their data types to string, string and integer respectively.
 
@@ -167,7 +167,7 @@ Use the **DB connection** and **Query URL** attributes.
 | Query URL | port:$0.field1:discrete |
 
 ![dbinputtable input port reading](../figures/dbinputtable_input_port_reading.png)
-*Figure 326. Reading query from input port*
+*Figure 344. Reading query from input port*
 
 Set the **File URL** path of the **FlatFileReader** to the external file containing the query.
 
@@ -209,7 +209,7 @@ Use the **Incremental key** and **Incremental file** attributes, and modify the 
 After the first read, the output file contains 0 records.
 
 ![dbinputtable incremental read1](../figures/dbinputtable_incremental_read1.png)
-*Figure 327. Incremental reading - first read*
+*Figure 345. Incremental reading - first read*
 
 Now, add a new record to the database, for example:
 6|2018-03-01 00:51:31|Nathalie|Mangram
@@ -218,7 +218,7 @@ and run the graph again.
 This time, one new record is written to the output file, ignoring the previously processed records.
 
 ![dbinputtable incremental read2](../figures/dbinputtable_incremental_read2.png)
-*Figure 328. Incremental reading - second read*
+*Figure 346. Incremental reading - second read*
 
 #### Best practices
 

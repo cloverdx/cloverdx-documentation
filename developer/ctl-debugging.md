@@ -1,6 +1,6 @@
 <!-- Development > CTL2 - CloverDX Transformation Language > CTL debugging -->
 
-## 33. CTL debugging
+## 34. CTL debugging
 
 **CloverDX** lets you debug CTL code in the same way as development tools do it for other programming languages.
 
@@ -101,14 +101,14 @@ When debugging CTL code, it is often useful to see the values of variables or ex
 The **Inspect Action** can be used to evaluate expressions in your CTL code. Select an expression and choose **Inspect** from the context menu or press **Ctrl+Shift+I**. A pop-up dialog will open containing the result. Once the pop-up is opened, the expression can be moved to the [Expressions View](ctl-debugging.md#expressions-view-and-watch-action) by pressing **Ctrl+Shift+I**.
 
 ![ctl debug inspect popup](../figures/ctl-debug-inspect-popup.png)
-*Figure 319. Inspect action pop-up dialog*
+*Figure 337. Inspect action pop-up dialog*
 
 #### Expressions view and watch action
 
 The **Expressions View** can be used to evaluate arbitrary CTL expressions, that is, not just those present in your code. To add an expression, either click **Add new expression** or right click the view and select **Add Watch Expression…​**. A third way to add an expression is to use the **Watch Action** - select an expression in your code and choose **Watch** from the context menu. Expressions are reevaluated after each stepping action or manually by choosing **Reevaluate Watch Expression** from the context menu. Expressions added using the **Inspect Action** cannot be reevaluated, but they can be converted to watch expressions. It is also possible to edit and disable or enable an expression.
 
 ![ctl debug expressions view](../figures/ctl-debug-expressions-view.png)
-*Figure 320. Expressions view*
+*Figure 338. Expressions view*
 
 ### Examples
 

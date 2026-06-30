@@ -50,7 +50,7 @@ The variant version fails if the first argument is not a list.
 The `append(E[],E)` function is available since **CloverETL 3.0.0**.
 
 The `append(variant,variant)` function is available since **CloverDX 5.6.0**.
-Example 249. Usage of append
+Example 252. Usage of append
 
 ```ctl
 append(["a", "b", "d"], "c"); // returns list ["a", "b", "d", "c"]
@@ -83,7 +83,7 @@ The `appendAll(list[],list[])` function is available since **CloverDX 6.4.0**.
 The `appendAll(map[],map[])` function is available since **CloverDX 6.4.0**.
 
 The `appendAll(variant,variant)` function is available since **CloverDX 6.4.0**.
-Example 250. Usage of appendAll
+Example 253. Usage of appendAll
 
 ```ctl
 appendAll(["a", "b", "d"], ["c", "e"]);
@@ -117,7 +117,7 @@ The function fails if either of the arguments is `null` or if <element type> is 
 **Compatibility**
 
 The `isEmpty()` function is available since **CloverETL 4.1.0-M1**.
-Example 251. Usage of binarySearch
+Example 254. Usage of binarySearch
 `binarySearch(["a", "b", "d"], "b")` returns `1`, because the index of `"b"` is 1.
 
 `binarySearch(["a", "b", "d"], "c")` returns `-3`, because `"c"` would be inserted at position 2.
@@ -141,7 +141,7 @@ If the given argument is `null`, the function fails with an error.
 The `clear(list[E])` and `clear(map[K,V])` functions are available since **CloverETL 3.0.0**.
 
 The `clear(variant)` function is available since **CloverDX 5.7.0**.
-Example 252. Usage of clear
+Example 255. Usage of clear
 
 ```ctl
 list[string] listOfStrings = ["a", "b"];
@@ -172,7 +172,7 @@ If one of the given list has a `null` reference, the function fails with an erro
 **Compatibility**
 
 The `containsAll(E[],E[])` function is available since **CloverETL 3.3.x**.
-Example 253. Usage of containsAll
+Example 256. Usage of containsAll
 The function `containsAll([1, 3, 5], [3, 5])` returns `true`.
 
 The function `containsAll([1, 3, 5], [2, 3, 5])` returns `false`.
@@ -195,7 +195,7 @@ If the given map is `null`, the function fails with an error.
 The `containsKey(map[K,V],K)` function is available since **CloverETL 3.3.x**.
 
 The `containsKey(variant,variant)` function is available since **CloverDX 5.6.0**.
-Example 254. Usage of containsKey
+Example 257. Usage of containsKey
 
 ```ctl
 containsKey({ 1 -> 17, 5 -> 10 }, 1); // returns true
@@ -227,7 +227,7 @@ The `containsValue(map[K,V],V)` function is available since **CloverETL 3.3.x**.
 The function `containsValue(list[E],E)` is available since **CloverETL 4.0.0**.
 
 The function `containsValue(variant, variant)` is available since **CloverDX 5.7.0**.
-Example 255. Usage of containsValue
+Example 258. Usage of containsValue
 
 ```ctl
 map[integer, integer] mapOfIntegers = { 1 -> 17, 5 -> 19 };
@@ -271,7 +271,7 @@ If one of the given lists has a `null` reference, the function fails with an err
 **Compatibility**
 
 The `copy(E[],E[])` function is available since **CloverETL 3.0.0**.
-Example 256. Usage of copy There are two lists. The list `s1 = ["a", "b"]` and the list `s2 = ["c", "d"]`. The function `copy(s1, s2)` returns `["a", "b", "c", "d"]`. The list `s1` has been modified and contains values `["a", "b", "c", "d"]`.
+Example 259. Usage of copy There are two lists. The list `s1 = ["a", "b"]` and the list `s2 = ["c", "d"]`. The function `copy(s1, s2)` returns `["a", "b", "c", "d"]`. The list `s1` has been modified and contains values `["a", "b", "c", "d"]`.
 
 ```ctl
 map[<type of key>, <type of value>] copy(map[<type of key>, <type of value>] to, map[<type of key>, <type of value>] from);
@@ -282,7 +282,7 @@ The `copy()` function accepts two map arguments of the same data type. The funct
 If one of the given maps has a `null` reference, the function fails with an error.
 
 If some key exists in both maps, the result will contain value from the second one.
-Example 257. Usage of copy
+Example 260. Usage of copy
 Let us have following lines of code.
 
 ```ctl
@@ -321,7 +321,7 @@ If the key is a record or a byte array, the function fails with an error.
 **Compatibility**
 
 The `findAllValues(variant, variant)` function is available since **CloverDX 5.7.0**.
-Example 258. Usage of findAllValues
+Example 261. Usage of findAllValues
 
 ```ctl
 variant json = { // usually obtained by parseJson('...');
@@ -384,7 +384,7 @@ The variant version fails if the argument is not a map.
 The `getKeys(map[K,V])` function is available since **CloverETL 3.3.x**.
 
 The `getKeys(variant)` function is available since **CloverDX 5.6.0**.
-Example 259. Usage of getKeys
+Example 262. Usage of getKeys
 
 ```ctl
 map[string, integer] myMap = { "first" -> 1, "second" -> 2 };
@@ -417,7 +417,7 @@ If the argument is `null`, the function fails.
 The `getValues(map[K, V])` function is available since **CloverETL 4.0.0**.
 
 The `getValues(variant)` function is available since **CloverDX 5.7.0**.
-Example 260. Usage of getValues
+Example 263. Usage of getValues
 
 ```ctl
 map[string, string] greek = { "a" -> "alpha", "b" -> "beta" };
@@ -452,7 +452,7 @@ The `in(map[K,V], V)` function is available since **CloverETL 3.3.x**.
 The function `in(list[E], E)` is available since **CloverETL 3.3.x**.
 
 The function `in(any type, variant)` is available since **CloverDX 5.7.0**.
-Example 261. Usage of in
+Example 264. Usage of in
 
 ```ctl
 "abc".in(["abc", "b"]); // returns true
@@ -505,7 +505,7 @@ If the list given as the first argument is `null`, the function fails with an er
 The `insert(list[E], integer, E…)` and `insert(list[E], integer, list[E])` functions are available since **CloverETL 3.0.0**.
 
 The `insert(variant, integer, variant…)` function is available since **CloverDX 5.7.0**.
-Example 262. Usage of insert
+Example 265. Usage of insert
 
 ```ctl
 list[string] originalList = ["a", "d", "b"];
@@ -547,7 +547,7 @@ If the argument is `null`, the function fails with an error.
 The `isEmpty(list[E])` and `isEmpty(map[K,V])` functions are available since **CloverETL 3.0.0**.
 
 The `isEmpty(variant)` function is available since **CloverDX 5.7.0**.
-Example 263. Usage of isEmpty
+Example 266. Usage of isEmpty
 
 ```ctl
 // list:
@@ -588,7 +588,7 @@ If the argument is `null`, the function returns `0`.
 The `length(E[])` and `length(map[K,V])` functions are available since **CloverETL 3.0.0**.
 
 The `length(variant)` function is available since **CloverDX 5.6.0**.
-Example 264. Usage of length:
+Example 267. Usage of length:
 
 ```ctl
 length(["a", "d", "c"]); // returns 3
@@ -616,7 +616,7 @@ If a given list has a `null` reference, the function fails with an error.
 **Compatibility**
 
 The `poll(E[])` function is available since **CloverETL 3.0.0**.
-Example 265. Usage of poll The function `poll(["a", "d", "c"])` returns `a`. The list given as argument contains `["d", "c"]` after the function call.
+Example 268. Usage of poll The function `poll(["a", "d", "c"])` returns `a`. The list given as argument contains `["d", "c"]` after the function call.
 **See also:**[append](container-functions-ctl2.md#append), [insert](container-functions-ctl2.md#insert), [pop](container-functions-ctl2.md#pop), [remove](container-functions-ctl2.md#remove)
 
 #### pop
@@ -634,7 +634,7 @@ If a given list has a `null` reference, the function fails with an error.
 **Compatibility**
 
 The `pop(E[])` function is available since **CloverETL 3.0.0**.
-Example 266. Usage of pop
+Example 269. Usage of pop
 - The function `pop(["a", "b", "c"])` returns `c`.
 - The function `pop` modifies list `s1`:
   ```ctl
@@ -669,7 +669,7 @@ The variant version fails if the first argument is not a list.
 The `push(list[E], E)` function is available since **CloverETL 3.0.0**.
 
 The `push(variant, variant)` function is available since **CloverDX 5.7.0**.
-Example 267. Usage of push
+Example 270. Usage of push
 
 ```ctl
 // list:
@@ -712,7 +712,7 @@ The `remove(E[], integer)` function is available since **CloverETL 3.0.0**.
 The `remove(map[K,V], K)` function is available since **CloverDX 5.0.0**.
 
 The `remove(variant, variant)` function is available since **CloverDX 5.6.0**.
-Example 268. Usage of remove - list
+Example 271. Usage of remove - list
 
 ```ctl
 remove(["a", "b", "c"], 1); // returns "b"
@@ -729,7 +729,7 @@ list[string] modified = s; // assigns a copy of modified 's' to 'modified'
 // modified == ["a", "c"]
 ```
 
-Example 269. Usage of remove - map
+Example 272. Usage of remove - map
 
 ```ctl
 map[string, integer] aMap = { "a" -> 1, "b" -> 2, "c" -> 3 };
@@ -761,7 +761,7 @@ The variant version fails if the argument is not a list.
 The `reverse(list[E])` function is available since **CloverETL 3.1.2**.
 
 The `reverse(variant)` function is available since **CloverDX 5.7.0**.
-Example 270. Usage of reverse
+Example 273. Usage of reverse
 
 ```ctl
 // list:
@@ -792,7 +792,7 @@ If a given list has a `null` reference, the function fails with an error.
 **Compatibility**
 
 The `sort()` function is available since **CloverETL 3.0.0**.
-Example 271. Usage of sort The function `sort(["a", "e", "c"])` returns `["a", "c", "e"]`.
+Example 274. Usage of sort The function `sort(["a", "e", "c"])` returns `["a", "c", "e"]`.
 **See also:**[reverse(list)](container-functions-ctl2.md#reverse)
 
 #### toMap
@@ -821,7 +821,7 @@ If the parameter `value` is null, the function `toMap(<type of key>[],<type of v
 **Compatibility**
 
 The `toMap()` function is available since **CloverETL 4.0.0**.
-Example 272. Usage of toMap
+Example 275. Usage of toMap
 
 ```ctl
 string[] alphaValues = ["alpha", "bravo", "charlie", "delta"];

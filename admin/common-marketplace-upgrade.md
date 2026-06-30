@@ -10,7 +10,7 @@ There are 2 ways to upgrade **CloverDX** to a new version:
 The recommended upgrade process of the whole cloud architecture follows the same basic principles for all cloud offerings. The main idea is that we create the new version instance and its cloud architecture using a copy of the previous versions database, data, configuration, sandboxes etc. The previous version instance is kept running with minimal impact. This way the new version can be run and tested alongside the previous version, while the previous version keeps running and providing its services. The new version does not modify anything of the previous version.
 
 ![marketplace upgrade](../figures/marketplace-upgrade.png)
-*Figure 43. Upgrade overview*
+*Figure 45. Upgrade overview*
 
 The data disk and system database of the new version are based on snapshots of the data disk and database of the previous version. Everything else is created as new - OS disk, VM, networking resources and other cloud resources. This way the **CloverDX** configuration, data, sandboxes used in the previous version are easily used in the new version, while the whole architecture of the offering is upgraded.
 

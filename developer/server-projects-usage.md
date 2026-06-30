@@ -1,6 +1,6 @@
 <!-- Development > Projects > Working with CloverDX Server projects -->
 
-## 12. Working with CloverDX Server projects
+## 13. Working with CloverDX Server projects
 
 | [CloverDX Server project basic principles](server-projects-usage.md#cloverdx-server-project-basic-principles) |
 | --- |
@@ -63,7 +63,7 @@ You can make use of your proxy server to connect to **CloverDX Server**, too.
 To manage the connection, navigate to **Window** ****Preferences** ****General** ****Network Connections**
 
 ![proxySettings](../figures/proxySettings.png)
-*Figure 113. Network connections window*
+*Figure 129. Network connections window*
 
 For more information on handling proxy settings, go to the [Eclipse website](http://help.eclipse.org/kepler/index.jsp?topic=/org.eclipse.platform.doc.user/reference/ref-net-preferences.htm).
 
@@ -76,15 +76,15 @@ When you are working offline, you cannot run graphs, view new debug data in **Da
 When connection fails, the **Server** notifies you with a message. The message appears in the right bottom corner. Furthermore, the project name color changes to red.
 
 ![working offline 010](../figures/working-offline-010.png)
-*Figure 114. Connection failed*
+*Figure 130. Connection failed*
 
 ![working offline 018](../figures/working-offline-018.png)
-*Figure 115. Connection failed*
+*Figure 131. Connection failed*
 
 When **Designer** reconnects to the **server**, you are informed with a message again. The project name color changes back to black.
 
 ![working offline 020](../figures/working-offline-020.png)
-*Figure 116. Connection reestablished*
+*Figure 132. Connection reestablished*
 
 ### Handling conflicts
 
@@ -105,7 +105,7 @@ You should resolve conflict yourself. You are asked to choose one of the options
 As you copy, move, rename, or delete the *placeholder file*, the corresponding file on **CloverDX Server** is copied, moved, renamed, or deleted.
 
 ![project 0010](../figures/project-0010.png)
-*Figure 117. Placeholder file*
+*Figure 133. Placeholder file*
 > [!NOTE]
 > Placeholder vs. placeholder file
 > We use two similar terms in our documentation: *placeholders* and *placeholder files*.
@@ -127,7 +127,7 @@ This window displays the configuration of connection of the current **CloverDX**
 This window serves to inform you about the project configuration.
 
 ![project 0100](../figures/project-0100.png)
-*Figure 118. CloverDX connection*
+*Figure 134. CloverDX connection*
 
 ### Ignored files
 
@@ -136,4 +136,4 @@ This window serves to inform you about the project configuration.
 This is a per-project configuration of *ignored files*. See [Ignored files](../admin/designer-configuration.md#ignored-files) in workspace configuration.
 
 ![project 0110](../figures/project-0110.png)
-*Figure 119. CloverDX Connection*
+*Figure 135. CloverDX Connection*

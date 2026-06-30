@@ -38,7 +38,9 @@ Permissions provide two options:
 - **Viewer**: users listed in the viewer group can see all resources in the shared workspace. They can run jobs from the shared workspace but cannot change settings of the job. Viewers also cannot make any changes in jobs themselves - they can look at how the job works (i.e., see the steps), but cannot modify anything within the job. Note that viewers can copy jobs out of the shared workspace - i.e., they can create their own copy of a job and modify it to suit their needs once it has been copied to their private space. However, they will not be able to sync the changes back to the shared workspace.
 - **Editor**: editors can make changes to resources in the shared workspace. They can edit steps in each job and can run jobs while also changing source or target settings. Editors can also copy jobs or other resources to the shared workspace. This allows them to easily share their work with others by either creating their jobs in the shared workspace or copying them to this workspace.
 
-Users who are not listed as viewers or editors have no access to the shared workspace - they cannot even see that this workspace exists.
+Users who are not listed as viewers or editors, either directly or through a user group, have no access to the shared workspace - they cannot even see that this workspace exists.
+
+Users and groups can be selected from a searchable dropdown in the shared workspace settings. Groups and users are shown separately, with groups displayed first. Groups are shown by their display names, and users are shown by their full names.
 
 #### Collaborating with other users
 

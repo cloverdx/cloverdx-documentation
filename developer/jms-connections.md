@@ -138,7 +138,7 @@ The **Edit JMS connection** wizard contains eight text areas that must be filled
 - **Validate connection** Validates the connection. The connection is validated locally even if the project is remote.
 
 ![00 00360](../figures/00_00360.png)
-*Figure 256. Edit JMS connection wizard*
+*Figure 273. Edit JMS connection wizard*
 
 If you are creating the external (shared) JMS connection, you must select a filename for this external (shared) JMS connection and its location.
 

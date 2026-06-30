@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Parameters -->
 
-## 25. Parameters
+## 26. Parameters
 
 Parameters are a set of key-value pairs that are often used for job configuration. The are defined once - in Parameters section of the Outline - and can be reused as many times as needed in the whole graph. This provides nice benefit of centralization (later change the values only in one place) and configuration.
 
@@ -50,7 +50,7 @@ The value of parameters can be:
 
 The list of parameters related to the project structure can be found in [Standard structure of all CloverDX projects](structure-of-projects.md#standard-structure-of-all-cloverdx-projects).
 
-There are also [some parameters](../developer/graph-parameters.md) that can be used in graphs or jobflows.
+Jobs also have additional parameters injected into them when running. These parameters are either always injected (such as `RUN_ID` to provide unique identifier of a job) or may be injected when job execution was triggered by automation (such as Scheduler). More details about these runtime parameters can be found in [Built-in execution parameters](parameters.md#built-in-execution-parameters).
 > [!NOTE]
 > Compatibility notice
 > **CloverETL 3.5.x** and later uses a new format of parameters different from **CloverETL 3.4.x** (and earlier).
@@ -77,7 +77,7 @@ You can externalize chosen internal parameter items into external (shared) file 
 4. After that, the internal parameter items disappears from the **Outline** pane **Parameters** group, but at the same location, there appears the newly created external (shared) parameter file which are already linked. The same parameter file appears in the selected project and it can be seen in the **Project Explorer** pane.
 
 ![200670](../figures/200670.png)
-*Figure 273. Externalizing Internal parameters*
+*Figure 291. Externalizing Internal parameters*
 
 ### External (shared) parameters
 
@@ -117,7 +117,7 @@ You can internalize any linked external (shared) parameter files into internal p
 The original external (shared) parameter files still remain in the project and can be seen in the **Project Explorer** pane (parameter files have the `.prm` extension).
 
 ![200660](../figures/200660.png)
-*Figure 274. Internalizing external (shared) parameter*
+*Figure 292. Internalizing external (shared) parameter*
 
 #### XML schema of external parameters
 
@@ -216,7 +216,7 @@ Graph parameters are managed by **Graph Parameters Editor**. Main purpose of thi
 **Graph Parameters Editor** is available via **Outline view**. Just double-click on the **Graph parameters** section.
 
 ![parameters dialog](../figures/parameters_dialog.png)
-*Figure 275. Graph Parameters Editor*
+*Figure 293. Graph Parameters Editor*
 
 Both internal and external graph parameters are managed by this editor at once. Internal parameters are on top-level of tree and external parameter files are represented by sub-trees (for example workspace.prm in the figure above).
 
@@ -280,7 +280,7 @@ Dialog supports commonly used operations known from graph editor:
 **Graph parameter type editor** serves to set up correct editor to particular graph parameters. You can choose between **Simple Type** or **Component binding**. The dialog is opened from the parameter property **Editor type** in **Graph Parameters Editor**.
 
 ![GraphParameterTypeEditor](../figures/GraphParameterTypeEditor.png)
-*Figure 276. Graph parameters type editor*
+*Figure 294. Graph parameters type editor*
 
 ##### Simple type
 
@@ -312,7 +312,7 @@ Dialog supports commonly used operations known from graph editor:
 > To store the password, use secure graph parameters. See [Secure graph parameters](parameters.md#secure-graph-parameters)
 
 ![parameters 22](../figures/parameters-22.png)
-*Figure 277. Select Editor Type Dialog*
+*Figure 295. Select Editor Type Dialog*
 
 ##### Component Binding
 
@@ -325,7 +325,7 @@ Content of lists of components available in **Component binding** depends on com
 **Edit parameter Value** serves to set up a parameter value. The value of the parameter can be converted to the CTL2 code using the **Convert to dynamic** button.
 
 ![parameters 04](../figures/parameters-04.png)
-*Figure 278. Edit parameter Value*
+*Figure 296. Edit parameter Value*
 
 If the **Convert to dynamic** button is used, the editor is changed.
 
@@ -336,7 +336,7 @@ If the **Convert to dynamic** button is used, the editor is changed.
 The **Edit parameter CTL2 Value** dialog serves to place a CTL2 code as a parameter value.
 
 ![parameters 05](../figures/parameters-05.png)
-*Figure 279. Edit parameter Value*
+*Figure 297. Edit parameter Value*
 
 The value can be converted to string using the **Convert to static** button. If the button is used, the editor changes.
 
@@ -349,7 +349,7 @@ The value can be converted to string using the **Convert to static** button. If 
 Use **Validation** configuration property to switch on XML or JSON syntax validation.
 
 ![parameters 25](../figures/parameters-25.png)
-*Figure 280. Multiline string parameter - configuration*
+*Figure 298. Multiline string parameter - configuration*
 > [!NOTE]
 > To enable the support for JSON highlighting, please install the **JavaScript Development Tools** plugin. Go to **Help** ****Install New Software…​** and choose the site from the drop-down list that matches the Designer’s Eclipse Platform version, and search for **JavaScript Development Tools**.
 
@@ -364,14 +364,14 @@ File URL parameter type lets you configure File URL Dialog.
 The **Allow Multiple Selection** checkbox lets you deny multiple file selection. If you uncheck the checkbox, you cannot select multiple files.
 
 ![parameters 23](../figures/parameters-23.png)
-*Figure 281. File URL Dialog - configuration*
+*Figure 299. File URL Dialog - configuration*
 
 In the **Select Types** dialog, tick the file extensions to be available in **File URL Dialog**.
 
 If a suffix is not available in the list, use the **Other extensions** field below. The suffix you define should start with an asterisk. If more extensions are defined, separate them with a comma.
 
 ![parameters 24](../figures/parameters-24.png)
-*Figure 282. Select Types dialog - choosing file extension(s)*
+*Figure 300. Select Types dialog - choosing file extension(s)*
 
 See also [URL File Dialog](common-dialogs.md#url-file-dialog).
 
@@ -382,7 +382,7 @@ See also [URL File Dialog](common-dialogs.md#url-file-dialog).
 **Properties** can be parsed with the function [parseProperties](miscellaneous-functions-ctl2.md#parseproperties).
 
 ![parameters 16](../figures/parameters-16.png)
-*Figure 283. Properties - usage*
+*Figure 301. Properties - usage*
 
 ##### Single field
 
@@ -391,12 +391,12 @@ The **Single Field** type allows to choose one metadata field from the list.
 Configuration of **Single Field** specifies subset of fields of one existing metadata; the user chooses one field of the set. The metadata can be either static or referenced from a particular edge of subgraph. Available metadata fields can be filtered depending on metadata field type or container type.
 
 ![parameters 08](../figures/parameters-08.png)
-*Figure 284. Single field - configuration*
+*Figure 302. Single field - configuration*
 
 If you use the parameter, you can choose one field using the following dialog.
 
 ![parameters 07](../figures/parameters-07.png)
-*Figure 285. Single field - choosing the field*
+*Figure 303. Single field - choosing the field*
 
 ##### Multiple fields
 
@@ -405,24 +405,24 @@ The **Multiple Fields** parameter type serves to choose one or more metadata fie
 Available fields are a subset of fields of existing metadata. The fields can be of static metadata or metadata of an edge. Available metadata fields can be filtered depending on metadata field type or container type.
 
 ![parameters 09](../figures/parameters-09.png)
-*Figure 286. Multiple fields - configuration*
+*Figure 304. Multiple fields - configuration*
 
 Use **arrows** to add fields to the list or add field(s) using drag and drop.
 
 ![parameters 10](../figures/parameters-10.png)
-*Figure 287. Multiple fields - choosing the field*
+*Figure 305. Multiple fields - choosing the field*
 
 ##### Field mapping
 
 The **Field mapping** type requires metadata of both sides of mapping. You specify fields of which metadata could be mapped using the parameter.
 
 ![parameters 11](../figures/parameters-11.png)
-*Figure 288. Field mapping - configuration*
+*Figure 306. Field mapping - configuration*
 
 In the **Field mapping** dialog, you can define mapping for transformation.
 
 ![parameters 12](../figures/parameters-12.png)
-*Figure 289. Field mapping - choosing the field*
+*Figure 307. Field mapping - choosing the field*
 
 See also [Mapping functions](mapping-functions-ctl2.md).
 
@@ -431,12 +431,12 @@ See also [Mapping functions](mapping-functions-ctl2.md).
 When you define the **Join key** parameter type, choose which metadata take part in joining:
 
 ![parameters 14](../figures/parameters-14.png)
-*Figure 290. Join key - configuration*
+*Figure 308. Join key - configuration*
 
 The **Join key** parameter value specifies joining fields.
 
 ![parameters 15](../figures/parameters-15.png)
-*Figure 291. Join key - configuration*
+*Figure 309. Join key - configuration*
 
 See also [Mapping functions](mapping-functions-ctl2.md).
 
@@ -449,38 +449,38 @@ User-defined values are allowed using the **Allow Custom Value** checkbox.
 You can choose the value using inline editor. If there are more than 10 (ten) values defined, choose the value using external dialog.
 
 ![parameters 13](../figures/parameters-13.png)
-*Figure 292. Enumeration - configuration*
+*Figure 310. Enumeration - configuration*
 
 ##### Character set
 
 The **Character set** parameter type lets you choose one of the available character sets.
 
 ![parameters 17](../figures/parameters-17.png)
-*Figure 293. Character set*
+*Figure 311. Character set*
 
 ##### Time zone
 
 **Time zone** lets you choose time zone from a list. You can use either Java time zones or Joda time zones.
 
 ![parameters 18](../figures/parameters-18.png)
-*Figure 294. Time zone - configuration*
+*Figure 312. Time zone - configuration*
 
 ![parameters 19](../figures/parameters-19.png)
-*Figure 295. Time zone - usage*
+*Figure 313. Time zone - usage*
 
 ##### Field type
 
 **Field Type** lets you choose field type from a list.
 
 ![parameters 20](../figures/parameters-20.png)
-*Figure 296. Field type*
+*Figure 314. Field type*
 
 ##### Locale
 
 **Locale** lets you set locale.
 
 ![parameters 21](../figures/parameters-21.png)
-*Figure 297. Locale*
+*Figure 315. Locale*
 
 ### Secure graph parameters
 
@@ -601,7 +601,7 @@ Example 15. Canonicalizing file paths
 When you have defined, for example, a `FILTER_EXPRESSION` (parameter) which means a filter expression, you can use `${FILTER_EXPRESSION}` instead of defining the filter expression in each **Filter**.
 
 ![parameters 06](../figures/parameters-06.png)
-*Figure 298. Filter component configured by graph parameter*
+*Figure 316. Filter component configured by graph parameter*
 
 CTL2 expressions can be used as a parameter value, see [Dynamic parameters (parameters with CTL2 expressions)](parameters.md#dynamic-parameters-parameters-with-ctl2-expressions).
 

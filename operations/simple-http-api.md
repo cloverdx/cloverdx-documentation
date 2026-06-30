@@ -1,6 +1,6 @@
-<!-- Automation and operations > Server management APIs > Simple HTTP API (deprecated) -->
+<!-- Automation and operations > Server APIs > Simple HTTP API (deprecated) -->
 
-## 13. Simple HTTP API (deprecated)
+## 15. Simple HTTP API (deprecated)
 
 The Simple HTTP API is a basic Server automation tool that lets you control the Server from external applications using simple HTTP calls.
 > [!NOTE]

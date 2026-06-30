@@ -86,14 +86,14 @@ Record pattern is a string containing all constant fields (all except random and
 Sequence fields can be defined in the dialog that opens after clicking the **Sequence fields** attribute. The **Sequences** dialog looks like this:
 
 ![DataGenerator 010](../figures/DataGenerator-010.png)
-*Figure 329. Sequences dialog*
+*Figure 347. Sequences dialog*
 
 This dialog consists of two panes with all graph sequences on the left and all Clover fields (names of the fields in metadata) on the right. Choose the desired sequence on the left and drag and drop it to the right pane to the desired field.
 
 The dialog contains two buttons on its right side. For canceling the selected assigned mapping or all assigned mappings.
 
 ![DataGenerator 020](../figures/DataGenerator-020.png)
-*Figure 330. A sequence assigned*
+*Figure 348. A sequence assigned*
 > [!NOTE]
 > Remember that it is not necessary (although possible) to assign the same sequence to different Clover fields.
 
@@ -102,7 +102,7 @@ The dialog contains two buttons on its right side. For canceling the selected as
 This attribute defines the values of all fields whose values are generated at random. For each of the fields you can define its range (i.e. minimum and maximum values). These values are of the corresponding data types according to metadata. You can assign random fields in the **Edit key** dialog that opens after clicking the **Random fields** attribute.
 
 ![DataGenerator 030](../figures/DataGenerator-030.png)
-*Figure 331. Edit key dialog*
+*Figure 349. Edit key dialog*
 
 There are the **Fields** pane on the left, the **Random fields** on the right and the **Random ranges** pane at the bottom. In the last pane, you can specify the ranges of the selected random field. There you can type specific values. You can move fields between the **Fields** and **Random fields** panes as was described above - by clicking the **Left arrow** and **Right arrow** buttons.
 
@@ -196,7 +196,7 @@ Following are the methods of `RecordGenerate` interface:
 Sometimes the number of records to be generated is not known at design time. In such a case, set the value of the **Number of records to generate** attribute to a negative number. The component will then generate records until the `generate()` function returns `STOP` (in this case, it is not considered an error). This works for transformations defined both in Java and CTL.
 > [!WARNING]
 > Note that in the last iteration when `STOP` is returned, no records will be sent to any of the output ports.
-Example 363. Generating variable number of records in CTL
+Example 368. Generating variable number of records in CTL
 
 ```ctl
 integer total = randomInteger(1, 100);
@@ -227,7 +227,7 @@ function integer generate() {
 Sometimes you need to generate random values in a graph and it should be possible to rerun it again returning the same values. This might be useful, for example, for tests.
 
 The solution is to set the random seed for random number generator to some fixed value.
-Example 364. Generating random values with fixed random seed
+Example 369. Generating random values with fixed random seed
 
 ```ctl
 function boolean init() {

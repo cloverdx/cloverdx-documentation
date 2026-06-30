@@ -1,6 +1,6 @@
 <!-- Development > Job types > Subgraphs -->
 
-## 17. Subgraphs
+## 18. Subgraphs
 
 ### Subgraphs overview
 
@@ -46,7 +46,7 @@ Similarly for databases with complex relational structure, the DBAs can develop 
 Graph defining a subgraph contains the following sections:
 
 ![subgraph 04](../figures/subgraph_04.png)
-*Figure 143. Subgraph layout*
+*Figure 159. Subgraph layout*
 
 - ###### SubgraphInput
   - Represents inputs of **Subgraph**.
@@ -93,7 +93,7 @@ You need to place and configure a **Subgraph** component in order to use a subgr
 - Drag and drop the **Subgraph** component from the **Palette** ****Job Control** section to the graph editor and configure the **Subgraph URL** attribute to point to subgraph definition.
 
 ![subgraphs 06](../figures/subgraphs_06.png)
-*Figure 144. Subgraph component*
+*Figure 160. Subgraph component*
 
 #### Configuring subgraphs
 
@@ -102,7 +102,7 @@ You need to place and configure a **Subgraph** component in order to use a subgr
 Graph parameters and dictionary passed into the graph can be changed or set up in the **Input mapping** attribute of the **Subgraph** Component.
 
 ![subgraphs 20](../figures/subgraphs_20.png)
-*Figure 145. Example of user-defined component*
+*Figure 161. Example of user-defined component*
 
 The subgraph on figure above has three user-defined attributes: **Level of inspection,****Accepted file**, and **Rejected file**.
 
@@ -128,17 +128,17 @@ There are two ways how to create a subgraph.
 1. Select components you would like to move into a new subgraph, right-click on one of the selected components and choose **Wrap As Subgraph**.
 
 ![subgraph 03](../figures/subgraph_03.png)
-*Figure 146. Wrapping components into a subgraph*
+*Figure 162. Wrapping components into a subgraph*
 
 1. Enter the name of the subgraph file (`*.sgrf`) and order of its input and output ports.
 
 ![subgraphs 07](../figures/subgraphs_07.png)
-*Figure 147. Wrapping subgraph wizard*
+*Figure 163. Wrapping subgraph wizard*
 
 1. A new **Subgraph** component replaced the wrapped components in the parent graph.
 
 ![subgraph 02](../figures/subgraph_02.png)
-*Figure 148. CloverDX Graph with the Subgraph Component*
+*Figure 164. CloverDX Graph with the Subgraph Component*
 
 Continue with [Making Subgraph Configurable](subgraphs.md#making-subgraph-configurable).
 
@@ -149,7 +149,7 @@ A new subgraph can be created from scratch. It has an initial structure - it con
 1. Choose in the main menu **File** ****New** ****Subgraph**.
 
 ![subgraph 05](../figures/subgraph_05.png)
-*Figure 149. A new subgraph*
+*Figure 165. A new subgraph*
 
 1. Design the subgraph body - implement the subgraph’s logic in the central body section of the subgraph, using components, other subgraphs, etc.
 2. Connect the subgraph body with the **SubgraphInput** and **SubgraphOutput** components.
@@ -170,12 +170,12 @@ Example 2. Using public parameter You have a subgraph filtering and aggregating 
 To export an attribute of a component as a parameter of subgraph, choose the attribute of a component of subgraph and use the **Export as subgraph parameter** button.
 
 ![subgraphs 18](../figures/subgraphs_18.png)
-*Figure 150. Export as subgraph parameter button*
+*Figure 166. Export as subgraph parameter button*
 
 The following window opens, where you can set the parameter properties.
 
 ![subgraphs 19](../figures/subgraphs_19.png)
-*Figure 151. Public parameter appeared as a subgraph component attribute*
+*Figure 167. Public parameter appeared as a subgraph component attribute*
 
 The **public parameter** then appears as a subgraph component attribute under its respective group of properties.
 
@@ -188,7 +188,7 @@ Any existing public graph parameter can be used as an attribute value of compone
 To use an existing public parameter as a value of an attribute of a component choose the attribute and use the **Use parameter as value** button.
 
 ![subgraphs 25](../figures/subgraphs_25.png)
-*Figure 152. Use parameter as value button*
+*Figure 168. Use parameter as value button*
 
 ##### Optional ports
 
@@ -197,14 +197,14 @@ Input and output ports of a subgraph can be marked as optional. It lets you crea
 It can be set up in **Outline** within a subgraph. Right click the port in **Outline** and choose the corresponding option.
 
 ![subgraphs 28](../figures/subgraphs_28.png)
-*Figure 153. Setting up an optional port*
+*Figure 169. Setting up an optional port*
 
 You can set up optional ports from **Context menu** in the subgraph editor too. Move the mouse cursor on the optional port and right click to open the **Context menu**.
 
 This way is available only if there is an edge connected to the port.
 
 ![subgraphs 30](../figures/subgraphs_30.png)
-*Figure 154. Setting up an optional port in Graph editor*
+*Figure 170. Setting up an optional port in Graph editor*
 
 There are three options:
 
@@ -289,7 +289,7 @@ If a subgraph contains required parameters, you are asked to fill them in using 
 - Values of parameters are shown in the dialog. If no value is defined for the parameter, it is prefilled with a value that was used last time the graph was run.
 
 ![subgraphs 29](../figures/subgraphs_29.png)
-*Figure 155. Dialog for filling required parameters*
+*Figure 171. Dialog for filling required parameters*
 
 #### Metadata propagation
 
@@ -302,10 +302,10 @@ A subgraph can define explicit metadata in its definition and propagate them to 
 Typical use-case is a reader subgraph that not only reads a data source, but also provides metadata of the data source (e.g. orders). In the example below, we define explicit metadata on the output of **SpreadsheetDataReader** component for records containing `orders`. Metadata on the output of the **Filter** component are set to be auto-propagated, which propagates the `orders` metadata to the output of the subgraph (as defined by **SubgraphOutput**). When using such a subgraph in a parent graph, the `orders` metadata are auto-propagated on the output of the subgraph.
 
 ![subgraphs 12](../figures/subgraphs_12.png)
-*Figure 156. Subgraph providing metadata*
+*Figure 172. Subgraph providing metadata*
 
 ![subgraphs 08](../figures/subgraphs_08.png)
-*Figure 157. Metadata propagated from Subgraph component*
+*Figure 173. Metadata propagated from Subgraph component*
 
 ##### Subgraph requiring metadata
 
@@ -314,10 +314,10 @@ Subgraph can require specific metadata when used in a parent graph by defining e
 Typical use-case is a writer subgraph that requires some specific metadata (e.g. customers) to store records in a service. In the example below, we explicitly define `customers` metadata on the output of the **SubgraphInput**. When the subgraph is used, its input metadata in the parent graph must match the customers metadata.
 
 ![subgraphs 15](../figures/subgraphs_15.png)
-*Figure 158. Subgraph explicitly defines input metadata for customers*
+*Figure 174. Subgraph explicitly defines input metadata for customers*
 
 ![subgraphs 16](../figures/subgraphs_16.png)
-*Figure 159. Using subgraph with matching metadata*
+*Figure 175. Using subgraph with matching metadata*
 
 ##### Metadata acquired from parent
 
@@ -328,10 +328,10 @@ To develop and test such a subgraph, we recommend that you define explicit metad
 Typical use-case is a generic filter graph that performs filtering on specific (or user defined) fields, and copies all other fields. In the example below, all edges of the subgraph body are set to be auto-propagated. When the subgraph is used in a parent graph, the customers metadata are propagated through the subgraph.
 
 ![subgraphs 10](../figures/subgraphs_10.png)
-*Figure 160. Generic subgraph not defining explicit metadata in its body*
+*Figure 176. Generic subgraph not defining explicit metadata in its body*
 
 ![subgraphs 17](../figures/subgraphs_17.png)
-*Figure 161. Metadata propagate through the Subgraph component*
+*Figure 177. Metadata propagate through the Subgraph component*
 
 For details on metadata propagation, see also [Auto-propagated metadata](auto-detected-metadata.md).
 
@@ -342,25 +342,25 @@ For details on metadata propagation, see also [Auto-propagated metadata](auto-de
 Subgraphs with no edge connected to the *SubgraphInput* component do not declare any input ports, therefore cannot receive input data so will likely be used as *Readers*.
 
 ![subgraphs 21](../figures/subgraphs_21.png)
-*Figure 162. Subgraph - Reader*
+*Figure 178. Subgraph - Reader*
 
 #### Writers
 
 Subgraphs with no edge connected to the *SubgraphOutput* component provide no output ports, therefore cannot produce any data so will likely be used as *Writers*.
 
 ![subgraphs 22](../figures/subgraphs_22.png)
-*Figure 163. Subgraph - Writer*
+*Figure 179. Subgraph - Writer*
 
 #### Transformers
 
 Subgraph having connected both components (**SubgraphInput** and **SubgraphOutput**) is essentially a *Transformer*.
 
 ![subgraphs 23](../figures/subgraphs_23.png)
-*Figure 164. Subgraph - Transformer*
+*Figure 180. Subgraph - Transformer*
 
 #### Executors
 
 Subgraphs with no edge connected to the **SubgraphInput** or **SubgraphOutput** components can be used as utility *Executors*. As they cannot be connected to other components in a parent graph, the execution of subgraphs without ports is controlled via [Phases](components.md#phases).
 
 ![subgraphs 24](../figures/subgraphs_24.png)
-*Figure 165. Subgraph - Executor*
+*Figure 181. Subgraph - Executor*

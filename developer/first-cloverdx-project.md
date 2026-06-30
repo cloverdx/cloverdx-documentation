@@ -1,6 +1,6 @@
 <!-- Development > Projects > Creating CloverDX projects -->
 
-## 10. Creating CloverDX projects
+## 11. Creating CloverDX projects
 
 This chapter describes how to create **CloverDX** projects.
 
@@ -21,12 +21,12 @@ From the **CloverDX** perspective, select **File** ****New** ****CloverDX proj
 The following wizard will open and you will be asked to name your project:
 
 ![project new 010](../figures/project_new_010.png)
-*Figure 105. Naming a CloverDX project*
+*Figure 121. Naming a CloverDX project*
 
 In the next step, you can set up names of particular project subdirectories. We suggest to use the default values.
 
 ![project new 020](../figures/project_new_020.png)
-*Figure 106. CloverDX project subdirectories*
+*Figure 122. CloverDX project subdirectories*
 
 Click **Finish** to create the selected local **CloverDX** project with the specified name.
 
@@ -41,7 +41,7 @@ From the **CloverDX** perspective, select **File** ****New** ****CloverDX Serv
 The first step is to create a working connection to the **CloverDX Server**. Fill in **CloverDX Server URL**, **User** and **Password**.
 
 ![server connection](../figures/server-connection.png)
-*Figure 107. CloverDX Server project Wizard - Server Connection*
+*Figure 123. CloverDX Server project Wizard - Server Connection*
 > [!NOTE]
 > Single Sign-on login
 > Since 5.2.0, **CloverDX** supports single sign-on (SSO) by the Security Assertion Markup Language (SAML) 2.0 protocol. To use SSO, check the **Use CloverDX Server single sign-on** option. Once selected, a new option appears which allows you to log in as different user if checked; if unchecked, **CloverDX Designer** attempts to log in using credentials of the last signed-in user.
@@ -59,7 +59,7 @@ Once a connection to the **CloverDX Server** is established, continue with the n
 The second step of the wizard is to select an existing or create a new **CloverDX Server** sandbox. The sandbox will correspond to the project.
 
 ![create sandbox](../figures/create-sandbox.png)
-*Figure 108. CloverDX Server project Wizard - Sandbox selection*
+*Figure 124. CloverDX Server project Wizard - Sandbox selection*
 
 Use an existing sandbox or create a new one. In case you decide to create a new sandbox, the form is similar to the one present in the **CloverDX Server** web interface, however only a **Shared** sandbox can be used in Designer. For further description of sandbox properties, see [Sandboxes](../operations/sandboxes.md).
 
@@ -72,7 +72,7 @@ Press the **Next** button to create a new sandbox.
 The last step is to specify the name of the new **CloverDX Server** project. Keep the other values (**Location** and **File system**) unchanged.
 
 ![create server project](../figures/create-server-project.png)
-*Figure 109. Naming a new CloverDX server project*
+*Figure 125. Naming a new CloverDX server project*
 
 Click the **Finish** button to create a **CloverDX Server** project.
 
@@ -83,7 +83,7 @@ If you want to create some of the prepared example projects, select **File** **
 You will be presented with the following wizard:
 
 ![project examples 01](../figures/project_examples_01.png)
-*Figure 110. CloverDX Examples project wizard*
+*Figure 126. CloverDX Examples project wizard*
 
 You can select any of the **CloverDX** example projects by checking its checkbox.
 

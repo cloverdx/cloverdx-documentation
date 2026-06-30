@@ -82,21 +82,21 @@ The **RESTConnector** can be used without an OpenAPI specification, but this the
 Request parameters can be mapped using a parameter reference or a constant value.
 
 ![RESTConnector request param mapping](../figures/RESTConnector-request-param-mapping.png)
-*Figure 443. Request parameters example*
+*Figure 461. Request parameters example*
 
 ##### JSON request body mapping
 
 JSON request body mapping is used to map incoming records into body parameters. It must be populated when using multiple input ports.
 
 ![RESTConnector json request mapping](../figures/RESTConnector-json-request-mapping.png)
-*Figure 444. JSON request body mapping example*
+*Figure 462. JSON request body mapping example*
 
 ##### Static request body
 
 Example of a static request body - you can use parameter references instead of static values. Note that Static request body cannot be combined with JSON request body mapping.
 
 ![RESTConnector static body](../figures/RESTConnector-static-body.png)
-*Figure 445. Static request body example*
+*Figure 463. Static request body example*
 
 ##### Input mapping
 
@@ -108,7 +108,7 @@ You can use Input mapping to map input records to request parameters or other at
 It’s also important to note that this mapping operates linearly, meaning it can only utilize fields from a single input port. This port is determined as follows: If a JSON request body mapping is defined at the highest level, the input port associated with that mapping will be used. Otherwise, the first mapped input port (port 0) will be utilized.
 
 ![RESTConnector input mapping](../figures/RESTConnector-input-mapping.png)
-*Figure 446. Example input mapping*
+*Figure 464. Example input mapping*
 
 ##### JSON response mapping
 
@@ -134,7 +134,7 @@ Each mapping can extract data from the response (both response body and headers,
 4. The 404 responses are mapped to port 3.
 
 ![RESTConnector json response mapping](../figures/RESTConnector-json-response-mapping.png)
-*Figure 447. Example JSON response mapping*
+*Figure 465. Example JSON response mapping*
 
 In this example, status codes different from 200, 201, or 404 will not be matched and therefore the [Default output and error mapping](restconnector.md#default-output-and-error-mapping) will be used instead.
 
@@ -149,7 +149,7 @@ The *Default output and error mapping* will also apply in cases where the API ca
 The following example sends all responses (not covered by the *JSON response mapping*, see its example) to port 4:
 
 ![RESTConnector default output mapping](../figures/RESTConnector-default-output-mapping.png)
-*Figure 448. Example default output and error mapping*
+*Figure 466. Example default output and error mapping*
 
 If the *Default output and error mapping* is not defined and a response has status code ≥ 300 or if an error is encountered when calling the API, the component will fail and the error message will be written to the graph log.
 

@@ -168,14 +168,14 @@ We recommend using the first and easiest option (for other options, see [CloverD
 If the **CloverDX Server** has been started without assigning any license, click the **Activate server** link on the welcome page. You will be redirected to the **Add New License** form where you can upload the license file using the **Browse** button, or simply copy the license from the file and paste it into the **License key text** field.
 
 ![cetl serv no license](../figures/cetl_serv_no_license.png)
-*Figure 32. Login page of CloverDX Server without license*
+*Figure 34. Login page of CloverDX Server without license*
 
 After clicking the **Update** button, the license is validated and saved to the database. If the license is valid, a table with license’s description appears. To proceed to **CloverDX Server** console click **Continue to server console**.
 
 You can skip adding a license by clicking the **Cancel** button.
 
 ![cetl serv add license](../figures/cetl_serv_add_license.png)
-*Figure 33. Add new license form*
+*Figure 35. Add new license form*
 
 ###### Add CloverDX Server License in the Configuration Section
 
@@ -189,7 +189,7 @@ You can paste a license text into a **License key** text area or use the **Brows
 After clicking the **Add license** button, the license is saved to the database and all licenses are reloaded.
 
 ![cetl serv update license](../figures/cetl_serv_update_license.png)
-*Figure 34. Update license form*
+*Figure 36. Update license form*
 
 ###### Remove CloverDX Server License in the Configuration Section
 
@@ -199,7 +199,7 @@ License can be removed from **CloverDX Server** if its stored in the server data
 - Remove unwanted license by clicking on trash tray icon under the detail of the license.
 
 ![cetl serv remove license](../figures/cetl_serv_remove_license.png)
-*Figure 35. Remove license*
+*Figure 37. Remove license*
 > [!TIP]
 > The **CloverDX** license can be **changed** at any time by replacing `license.dat` file. Afterwards, you have to let **CloverDX Server** know the license has changed.
 >

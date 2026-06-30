@@ -75,15 +75,15 @@ The data attached to the first input port is called the **master**, the second d
 Slave data is pulled out from a lookup table, so depending on the lookup table the data can be stored in the memory. This also depends on the lookup table type, e.g. **Database lookup** stores only the values which have already been queried. Master data is not stored in the memory.
 
 ![lookupjoin diagram](../figures/lookupjoin-diagram.png)
-*Figure 418. LookupJoin - how it works*
+*Figure 436. LookupJoin - how it works*
 
 ##### Lookup join key
 
 **Lookup join key** is a sequence of mapping expressions for all lookup key fields separated by a semicolon. Each of these mapping expressions contains lookup key field name and input record field name. You can define the key in the **Edit key** wizard.
 
 ![reflookup join key](../figures/reflookup_join_key.png)
-*Figure 419. Edit Key Wizard*
-Example 397. Join Key for LookupJoin
+*Figure 437. Edit Key Wizard*
+Example 402. Join Key for LookupJoin
 
 ```ctl
 $LookupKeyField1=$InputField1;$LookupKeyField2=$InputField2
@@ -181,7 +181,7 @@ Load the records containing account ranges with [LookupTableReaderWriter](lookup
 In the next phase, use **LookupJoin** to match the records from the second data stream.
 
 ![LookupJoin example 020](../figures/LookupJoin-example-020.png)
-*Figure 420. LookupJoin with Range Lookup Table*
+*Figure 438. LookupJoin with Range Lookup Table*
 
 In **LookupJoin** set **Join Key**, **Lookup Table**, and **Transform**.
 

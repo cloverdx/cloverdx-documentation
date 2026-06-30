@@ -34,7 +34,7 @@ Before using the Setup module, you must specify the path to the configuration fi
    If you start the Server without configuration, you will see decorators pointing to the Setup. The decorators mark problems that require your attention. The displayed number corresponds to the number of items.
    The [**Configuration File tab**](setup.md#configuration-file) provides step-by-step instructions for creating and configuring the file.
    ![setup empty](../figures/setup-empty.png)
-   *Figure 121. Setup GUI with decorators*
+   *Figure 122. Setup GUI with decorators*
 2. **Add libraries to the classpath**
    Next, place the libraries required for further configuration in the application server’s classpath. For Tomcat, place the files in the `<TOMCAT_INSTALL_DIR>/lib` directory. You will need:
    - A JDBC driver for the [system database connection](examples-db-connection-configuration.md).
@@ -80,7 +80,7 @@ If you want to add advanced configuration properties, see [List of configuration
 > Refer [here](example-configuration-file.md) for an example configuration file.
 
 ![setup configuration file](../figures/setup-configuration-file.png)
-*Figure 122. Example of the Server Configuration file*
+*Figure 123. Example of the Server Configuration file*
 
 #### License
 
@@ -98,7 +98,7 @@ The license overview also displays the location of your licenses in the **Locati
 > If you load your license into the system database, when the database changes (e.g., when switching from the default Derby database used for evaluation purposes to one of the [recommended databases](system-requirements-for-cloverdx-server.md#system-database) for commercial use), you will need to load the license again into the new database.
 
 ![setup licenses](../figures/setup-licenses.gif)
-*Figure 123. The License tab*
+*Figure 124. The License tab*
 
 #### System database
 
@@ -109,7 +109,7 @@ For manual deployments, you need to create a database for CloverDX Server and ad
 > CloverDX Server **requires a working database connection** to store license information. Therefore, it allows you to access the Setup and configure the connection **prior** to the Server **activation** - simply log into the Server Console and click the **Close** button. Otherwise, you would have to activate the server again after switching from the default Derby database to a new system database.
 
 ![setup server not activated](../figures/setup-server-not-activated.png)
-*Figure 124. Server console without an active license*
+*Figure 125. Server console without an active license*
 
 The **Database** tab lets you configure the connection to the database. You can connect via:
 
@@ -120,13 +120,13 @@ The **Database** tab lets you configure the connection to the database. You can 
   > An Apache Derby JDBC 4-compliant driver is bundled with CloverDX Server. The **Derby database** is intended for **for evaluation purposes only**. For commercial use, switch to one of the supported databases. When switching, add the appropriate JDBC-4 compliant driver to the classpath (i.e., for Tomcat, place the driver in the `<TOMCAT_INSTALL_DIR>/lib` directory) and restart the application server.
 
 ![setup database jdbc](../figures/setup-database-jdbc.png)
-*Figure 125. Database connection configuration for a JDBC connection*
+*Figure 126. Database connection configuration for a JDBC connection*
 
 - **JNDI**
   With JNDI, you can access the datasource configured at the application server level. Select your **Database** platform and choose the suitable item from the JNDI tree. For more information on how to enable JNDI connections at the application server level, see [JNDI DB Datasource](jndi-datasource-config.md#jndi-db-datasource).
 
 ![setup database jndi](../figures/setup-database-jndi.png)
-*Figure 126. Database connection configuration for a JNDI connection*
+*Figure 127. Database connection configuration for a JNDI connection*
 
 #### Data Manager
 
@@ -143,24 +143,24 @@ You can change the **Initial** and **Maximum heap size** for the Worker process,
 Changes in Worker configuration require a restart - click on **Finish jobs & restart** or **Restart now** to do so.
 
 ![setup worker](../figures/setup_worker.png)
-*Figure 127. The Worker tab*
+*Figure 128. The Worker tab*
 
 #### Sandboxes
 
 The **Sandboxes** tab lets you configure a path to a directory used to store sandbox data. In a cluster environment, you can configure paths to [shared](../admin/cluster-setup-index.md#shared-sandbox), [local](../admin/cluster-setup-index.md#local-sandbox), and [partitioned](../admin/cluster-setup-index.md#partitioned-sandbox) sandboxes.
 
 ![setup sandboxes standalone](../figures/setup-sandboxes-standalone.png)
-*Figure 128. Sandbox path configuration in a standalone environment*
+*Figure 129. Sandbox path configuration in a standalone environment*
 
 ![setup sandboxes cluster](../figures/setup-sandboxes-cluster.png)
-*Figure 129. Sandbox path configuration in a cluster environment*
+*Figure 130. Sandbox path configuration in a cluster environment*
 
 #### Encryption
 
 To secure sensitive information entered in other Setup tabs, you can use the **Encryption** feature. When enabled, passwords entered in sections like *System Database* or *Email* are automatically saved in an encrypted form in the configuration file.
 
 ![setup config file encrypted](../figures/setup-config-file-encrypted.png)
-*Figure 130. Configuration file with an encrypted value in jdbc.password.*
+*Figure 131. Configuration file with an encrypted value in jdbc.password.*
 
 To enable encryption, select the **Enable encryption** check box and choose the desired **Encryption provider** (*SunJCE* or *Custom*) and **Encryption algorithm**. Among the default algorithms provided by SunJCE, `PBEWithHmacSHA512AndAES_256` is the strongest one. To encrypt currently unencrypted passwords, use the **Save & Encrypt** button.
 
@@ -169,7 +169,7 @@ Since the default algorithms are generally weaker, we **recommend** using [Bounc
 > If you want to use a custom provider, the related library has to be added to the appserver classpath. For Tomcat, this means adding the file to the `<TOMCAT_INSTALL_DIR>/lib` directory.
 
 ![setup encryption](../figures/setup-encryption.png)
-*Figure 131. Encryption configuration*
+*Figure 132. Encryption configuration*
 
 #### E-Mail
 
@@ -182,19 +182,19 @@ If OAuth2 authentication is used in a cluster, all nodes must use an identical O
 > You can set the default sender address by populating the **Default sender** field.
 
 ![setup email](../figures/setup-email.png)
-*Figure 132. E-mail configuration*
+*Figure 133. E-mail configuration*
 
 To make sure the configuration of the **Outgoing SMTP Server** is correct, you can send a **test email** from the **Test email** section at the bottom.
 
 ![setup email test email](../figures/setup-email-test-email.png)
-*Figure 133. Test email section*
+*Figure 134. Test email section*
 
 #### LDAP
 
 The **LDAP** tab lets you use an existing LDAP database for user authentication. For detailed information on how to set up an LDAP connection, see [LDAP authentication](ldap-authentication.md).
 
 ![setup ldap](../figures/setup-ldap.png)
-*Figure 134. LDAP configuration*
+*Figure 135. LDAP configuration*
 
 #### Cluster
 
@@ -203,7 +203,7 @@ The **Cluster** tab lets you configure clustering features. For more information
 In case your license does not allow clustering, the `Enable clustering` checkbox is grayed out, and the note `The license does not allow clustering.` appears at the top.
 
 ![setup cluster](../figures/setup-cluster.png)
-*Figure 135. Cluster configuration*
+*Figure 136. Cluster configuration*
 
 #### OAuth2 authentication
 
@@ -214,4 +214,4 @@ For more information on how to configure an OAuth2 authentication see [User OAut
 If you allow OAuth2 authentication the **HTTP Basic** authentication for **REST API** and **Data services** will be disabled.
 
 ![setup oauth2](../figures/setup-oauth2.png)
-*Figure 136. OAuth2 authentication*
+*Figure 137. OAuth2 authentication*

@@ -25,7 +25,7 @@ To create a OAuth2 connection, right click **Connections** in **Outline** and ch
 OAuth2 connection is always an external connection, so as the first step you have to specify a file into which the configuration of a new connection will be saved.
 
 ![oauth2 connection file](../figures/oauth2-connection-file.png)
-*Figure 265. OAuth2 connection dialog - Save connection tab*
+*Figure 282. OAuth2 connection dialog - Save connection tab*
 
 In the **Create OAuth2 connection** dialog, fill in the **Connection name**, select the **Provider**, and authorize the connection. Only an authorized connection can provide OAuth2 access token.
 
@@ -36,7 +36,7 @@ Click on **Finish** to save the connection configuration.
 Connection properties on the **Basic** tab are mandatory. Some are **Provider** dependent and may not be displayed when you change the **Provider**.
 
 ![oauth2 connection basic](../figures/oauth2-connection-basic.png)
-*Figure 266. OAuth2 connection dialog - Basic tab*
+*Figure 283. OAuth2 connection dialog - Basic tab*
 **Connection name**
 A name for this connection.
 
@@ -51,13 +51,15 @@ Client secret defined in application registration. This secret protects access t
 Scopes are permissions of the connection. Their values depend on the application provider. If you have more than one scope, separate individual scopes by spaces.
 **Tenant ID**
 Only applies for Azure provider. Tenant ID is identifier of Azure Subscription.
+**Domain**
+Only applies for Salesforce provider. In Salesforce setup there is a field named **OAuth2 Start URL**. Your connection domain name should be the same as is specified in this field.
 
 #### Advanced
 
 Connection properties on the **Advanced** tab have default values generated based on selected **Provider** and **CloverDX** server/runtime to which the designer project is connected.
 
 ![oauth2 connection advanced](../figures/oauth2-connection-advanced.png)
-*Figure 267. OAuth2 connection dialog - Advanced tab*
+*Figure 284. OAuth2 connection dialog - Advanced tab*
 **Authorization endpoint**
 An URL used for sending authorization request.
 **Token endpoint**

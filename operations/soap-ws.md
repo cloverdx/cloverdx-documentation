@@ -1,6 +1,6 @@
-<!-- Automation and operations > Server management APIs > SOAP WebService API -->
+<!-- Automation and operations > Server APIs > SOAP WebService API -->
 
-## 12. SOAP WebService API
+## 13. SOAP WebService API
 
 The **CloverDX Server** SOAP Web Service is an advanced API that provides an automation alternative to the Simple HTTP API. While most of the HTTP API operations are available in the SOAP interface too, the SOAP API provides additional operations for manipulating sandboxes, monitoring, etc.
 

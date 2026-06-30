@@ -5,7 +5,7 @@
 In this part of the User’s guide, we’ll cover the Data Manager and its usage. Data Manager allows users to directly interact with data as part of the data process in CloverDX. This can be useful, for example, when managing **data quality** in a process or for **reference data management**.
 
 ![data editor with audit new](../figures/data-editor-with-audit-new.png)
-*Figure 128. Data Manager’s data editor showing transactional data set.*
+*Figure 129. Data Manager’s data editor showing transactional data set.*
 
 In this guide we’ll cover how you can use Data Manager to handle its most common use cases. Users working with transactional (moving) data will learn how to work with their data in the [Working with transactional data section](data-manager-working-with-transactional-data.md). Users looking for reference data manager or master data management can learn how to manage their data in [Working with reference data section](data-manager-working-with-reference-data.md).
 

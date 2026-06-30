@@ -50,7 +50,7 @@ The number of available Wrangler seats is specified in the **CloverDX Server** l
 If a new Wrangler user logs in for the first time and there are no available seats, the following warning will appear, and the user will not be able to create any Wrangler jobs.
 
 ![wrangler too many active users](../figures/wrangler-too-many-active-users.png)
-*Figure 141. Warning message for Wrangler users when too many seats are used.*
+*Figure 142. Warning message for Wrangler users when too many seats are used.*
 
 If you are interested in purchasing Wrangler seats reach out to your Account Manager or email *[sales@cloverdx.com](mailto:sales@cloverdx.com)*.
 

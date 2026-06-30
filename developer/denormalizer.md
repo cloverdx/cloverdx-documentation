@@ -77,7 +77,7 @@ To define transformation, use one of the three transformation attributes: **Deno
 Diagram below describes flow of function calls in **Denormalizer**.
 
 ![Denormalizer diagram](../figures/Denormalizer-diagram.png)
-*Figure 408. Denormalizer code workflow*
+*Figure 426. Denormalizer code workflow*
 
 The function `append()` is called once for each input record. The function `transform()` is called once for each group of input records.
 
@@ -90,7 +90,7 @@ The transformation uses a CTL template for **Denormalizer**, implements a `Recor
 ##### Key
 
 **Key** is expressed as a sequence of field names separated from each other by a semicolon, colon, or pipe.
-Example 392. Key for Denormalizer`first_name;last_name`
+Example 397. Key for Denormalizer`first_name;last_name`
 In this **Key**, `first_name` and `last_name` are fields of metadata on input port.
 
 ##### Sort order

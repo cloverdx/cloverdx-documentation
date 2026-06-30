@@ -48,7 +48,7 @@ The order of output records is unpredictable. Only the order of records coming f
 **SimpleGather** receives data records through one or more input ports. **SimpleGather** gathers (demultiplexes) all records as fast as possible and sends them all to all output ports.
 
 ![SimpleGather diagram](../figures/SimpleGather-diagram.png)
-*Figure 412. SimpleGather*
+*Figure 430. SimpleGather*
 
 If you need a component merging input records and preserving the order, use [Concatenate](concatenate.md) or [Merge](merge.md).
 

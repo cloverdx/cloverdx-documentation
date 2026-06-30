@@ -40,7 +40,7 @@ The XML file contains selected items of the **CloverDX Server** instance. The fi
 If you want to automate the process of configuration export, use the [REST HTTP API](../operations/rest-api.md)..
 
 ![server config export](../figures/server_config_export.png)
-*Figure 118. Server Configuration Export screen*
+*Figure 119. Server Configuration Export screen*
 
 #### Server configuration import
 
@@ -49,7 +49,7 @@ This function merges exported configuration into the Server. The configuration i
 If you want to automate the process of configuration import, use the [REST HTTP API](../operations/rest-api.md).
 
 ![server config import 460](../figures/server_config_import_460.png)
-*Figure 119. Server Configuration Import screen*
+*Figure 120. Server Configuration Import screen*
 
 The XML file defines configuration items to be imported. The items are matched against current configuration of the destination Server. Depending on result, the items are either added to the destination Server or existing item are updated. Matching of items is based on a key that depends on the item type:
 
@@ -101,7 +101,7 @@ The **Dry run log** displays changes in the configuration, warns the user about 
 Below is an example of a log entry indicating a change in the configuration where a user `smithj` is added to a previously empty group `configuration`. The diff view shows the change in two steps (two lines grouped together with no space between them) as 'replacing' the empty group (![removed](../figures/server_import_removed.png)) with the same group with the new user (![removed](../figures/server_import_added.png)).
 
 ![server import user groups](../figures/server_import_user_groups.png)
-*Figure 120. Updated User Groups - User added to a group*
+*Figure 121. Updated User Groups - User added to a group*
 
 ###### Committing import
 

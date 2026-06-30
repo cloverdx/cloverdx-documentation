@@ -7,7 +7,7 @@ MongoDB connection enables **CloverDX** to interact with the [MongoDB](http://ww
 Analogously to other connections in **CloverDX**, MongoDB connections can be created as both internal and external. See sections [Creating internal database connections](database-connections.md#creating-internal-database-connections) and [Creating external (shared) database connections](database-connections.md#creating-external-shared-database-connections) to learn how to create them. Definition process for MongoDB connections is very similar to other connections, just select **Create MongoDB connection** instead of **Create DB connection**.
 
 ![MongoDBConnDialog](../figures/MongoDBConnDialog.png)
-*Figure 268. MongoDB connection dialog*
+*Figure 285. MongoDB connection dialog*
 
 #### Basic
 
@@ -34,7 +34,7 @@ Disables the validations of certificates. Useful with self-signed certificates.
 #### Advanced
 
 ![MongoDBConnDialog advanced](../figures/MongoDBConnDialog_advanced.png)
-*Figure 269. MongoDB connection dialog - Advanced tab*
+*Figure 286. MongoDB connection dialog - Advanced tab*
 **MongoDB Options**
 This table allows you to fine-tune some MongoDB parameters. Usually, leaving it empty is just fine.
 

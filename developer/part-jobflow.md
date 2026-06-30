@@ -1,6 +1,6 @@
 <!-- Development > Job types > Jobflows -->
 
-## 18. Jobflows
+## 19. Jobflows
 
 ### Jobflow overview
 
@@ -16,7 +16,7 @@ A jobflow allows combining graphs and other components into complex processes - 
 - Operations with local and remote files
 
 ![jobflow example](../figures/jobflow-example.png)
-*Figure 166. An example of a jobflow*
+*Figure 182. An example of a jobflow*
 
 Besides the above mentioned actions available as dedicated jobflow components, the jobflow may also include components. This allows additional flexibility in composing the jobflow logic and presents additional options for passing configuration to the jobflow from outer environment.
 > [!TIP]

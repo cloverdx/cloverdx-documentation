@@ -47,7 +47,7 @@ Metadata cannot use [Autofilling functions](metadata-records-and-fields.md#autof
 | Options |  | Options used for data records that are read. For more information, see [Options](quickbasequeryreader.md#options). |  |
 
 ![tableID](../figures/tableID.png)
-*Figure 344. Obtaining Table ID*
+*Figure 362. Obtaining Table ID*
 
 #### Details
 

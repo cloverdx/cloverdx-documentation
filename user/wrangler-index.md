@@ -4,7 +4,7 @@
 
 The guide introduces users to **CloverDX Wrangler**, an AI-enabled versatile data transformation tool designed to streamline the process of extracting, transforming, and loading (ETL) data.
 
-CloverDX Wrangler allows users to connect to multiple data sources, clean and transform data, and configure outputs with minimal effort. Its user-friendly interface simplifies complex data tasks, making it accessible to both technical and non-technical users. Wrangler provides dynamic [step previews](wrangler-steps-list-basics.md#step-preview) allowing users to immediately see the results of their transformation steps as they work. This feedback helps users refine their logic before applying changes to their data improving accuracy and efficiency. Wrangler is ideal for automating repeatable processes and ensuring high data quality through validation and error-handling features.
+CloverDX Wrangler allows users to connect to multiple data sources, clean and transform data, and configure outputs with minimal effort. Its user-friendly interface simplifies complex data tasks, making it accessible to both technical and non-technical users. Wrangler provides dynamic [step previews](wrangler-steps-list-basics.md#step-editing-and-step-preview) allowing users to immediately see the results of their transformation steps as they work. This feedback helps users refine their logic before applying changes to their data improving accuracy and efficiency. Wrangler is ideal for automating repeatable processes and ensuring high data quality through validation and error-handling features.
 
 Wrangler allows you to use **Clover Assistant** - a built-in AI helper that supports you during wrangling by offering smart suggestions and guidance.
 

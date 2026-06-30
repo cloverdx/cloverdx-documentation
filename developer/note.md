@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Notes -->
 
-## 28. Notes
+## 29. Notes
 
 Notes let the user type necessary pieces of information directly into a graph. The notes can serve as a documentation to a particular graph.
 
@@ -43,7 +43,7 @@ You can format the text with tools from toolbar above the text. When you have cl
 To change format of the text, mark the text to be formatted, and click the tool from the toolbar.
 
 ![N030](../figures/N030.png)
-*Figure 314. Toolbar for format editing*
+*Figure 332. Toolbar for format editing*
 
 You can:
 
@@ -57,7 +57,7 @@ You can:
 The default font size configuration is taken from the operating system.
 
 ![N034](../figures/N034.png)
-*Figure 315. Note with formatted text and markup*
+*Figure 333. Note with formatted text and markup*
 
 #### Notes markup and escaping backslashes
 
@@ -164,7 +164,7 @@ Content of a note can be folded (hidden). You can fold any **Note** by selecting
 A folded **Note** has a visible label. Its text is hidden.
 
 ![N012s](../figures/N012s.png)
-*Figure 316. A Folded note*
+*Figure 334. A Folded note*
 
 ### Notes properties
 
@@ -179,7 +179,7 @@ The default font sizes are displayed in this tab and can be changed as well. If 
 Each **Note** has an **ID** like any other graph component.
 
 ![notedialog](../figures/notedialog.png)
-*Figure 317. Properties of a note*
+*Figure 335. Properties of a note*
 
 ### Compatibility
 

@@ -90,10 +90,10 @@ If you switch [log level](running-graphs.md#main-tab) to `DEBUG`, you can examin
 **Operation name** opens a dialog, depicted in the figure below, in which you can select a WS operation by double clicking on one of them. Operations not supporting the document style of the input message are displayed with a red error icon.
 
 ![WebService operation](../figures/WebService-operation.png)
-*Figure 449. Choosing WS operation name in WebServiceClient.*
+*Figure 467. Choosing WS operation name in WebServiceClient.*
 
 **Request Body structure** and **Request Header structure** - open a dialog showing the request structure. The **Generate** button generates the request sample based on a schema defined for the chosen operation. The **Customized generation…​** option in the button’s drop-down menu opens a dialog which helps to customize the generated request sample by allowing to select only suitable elements or to choose a subtype for an element.
-Example 400. Use nested nodes example
+Example 405. Use nested nodes example
 Mapping
 
 ```xml
