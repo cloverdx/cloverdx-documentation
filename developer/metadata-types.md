@@ -109,7 +109,9 @@ If a direct reference to a field is made, the Transform editor shows this warnin
 
 SQL query metadata allows you to create reusable graphs thanks to parameterization of the connection and query used, allowing you to use the same graph with multiple database tables or databases.
 
-SQL query metadata is useful in cases where the exact fields of metadata are irrelevant, such as when dumping a DB table to a file. When columns are added to a table, it breaks metadata extracted from DB as the field counts no longer match. So if you use SQL query metadata, you no longer have to go back and manually add fields. If you want to enforce exact metadata structure, you should use metadata link:extracted from a database.
+SQL query metadata is useful in cases where the exact fields of metadata are irrelevant, such as when dumping a DB table to a file. When columns are added to a table, it breaks metadata extracted from DB as the field counts no longer match. So if you use SQL query metadata, you no longer have to go back and manually add fields.
+
+If you want to enforce exact metadata structure, you should use [metadata extracted from a database](creating-metadata.md#extracting-metadata-from-a-database).
 
 ##### Limitations
 

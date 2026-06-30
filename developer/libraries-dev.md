@@ -1,6 +1,6 @@
 <!-- Development > Advanced > Library development best practices -->
 
-## 46. Library development best practices
+## 47. Library development best practices
 > [!TIP]
 > If you’re interested in learning more about this subject, we offer the [Libraries, Reusable Functionality & Packaging](https://academy.cloverdx.com/courses/subgraph-libraries) and [Publishing Data to Data Catalog and Underlying Theory](https://academy.cloverdx.com/courses/publishing-data) courses in our CloverDX Academy.
 
@@ -30,7 +30,7 @@ Other elements in the exported project will be internal and will be used as sub-
 Public subgraphs from installed libraries are displayed in the [*Component Palette*](../developer/designer-layout.md#graph-editor-with-palette-of-components) in [server projects](../developer/cloverdx-projects-type.md#cloverdx-server-project) in **CloverDX Designer**, allowing you to easily use public subgraphs during the development process.
 
 ![libraries dev palette](../figures/libraries-dev-palette.png)
-*Figure 455. Libraries in Component Palette*
+*Figure 473. Libraries in Component Palette*
 
 ##### Data Source and Data Target Connectors
 
@@ -49,7 +49,7 @@ For more information on Data Source and Data Target Connectors from the Wrangler
 When developing new graphs in **CloverDX Designer**, public metadata from installed libraries can be [linked](../developer/metadata-types.md#linking-external-shared-metadata-from-library) as shared metadata by opening the context menu of the Metadata group in the [Outline](../developer/designer-layout.md#outline-pane) pane and selecting **New metadata > Link shared definition from library**.
 
 ![libraries dev metadata](../figures/libraries-dev-metadata.png)
-*Figure 456. Libraries metadata*
+*Figure 474. Libraries metadata*
 
 #### Graphs, Jobflows
 
@@ -113,12 +113,12 @@ Properties coming from **file names**:
   - The subgraph name of **Data Source** or **Data Target Connector** comes up in the [Libraries module](../operations/libraries.md) in **CloverDX Server** and in the [Data Catalog](../user/data-catalog.md) in **CloverDX Wrangler**.
 
 ![libraries dev subgraph name](../figures/libraries-dev-subgraph-name.png)
-*Figure 457. Subgraph name*
+*Figure 475. Subgraph name*
 
 Properties in the **Properties tab**:
 
 ![libraries dev properties](../figures/libraries-dev-properties.png)
-*Figure 458. Properties tab of a subgraph with Description, Author, Category, and Connector icons definitions.*
+*Figure 476. Properties tab of a subgraph with Description, Author, Category, and Connector icons definitions.*
 
 - **Description**
   - This description is visible under the **Data Source** or **Data Target connector** name in the **Data Catalog** and in the [Libraries module](../operations/libraries.md) in **CloverDX Server**.
@@ -134,7 +134,7 @@ Properties in the **Properties tab**:
   - Link each icon to its respective field.
 
 ![libraries dev component icon](../figures/libraries-dev-component-icon.png)
-*Figure 459. Component icon*
+*Figure 477. Component icon*
 
 - **Library icons**
   - The library icon is visible in the **Data Catalog** in **CloverDX Wrangler**.
@@ -142,7 +142,7 @@ Properties in the **Properties tab**:
   - Use a PNG file with a transparent background, the maximum recommended width is 150px.
 
 ![libraries dev icons example](../figures/libraries-dev-icons-example.png)
-*Figure 460. A Source Connector in the Data Catalog in CloverDX Wrangler*
+*Figure 478. A Source Connector in the Data Catalog in CloverDX Wrangler*
 
 ### Parameters
 
@@ -158,10 +158,10 @@ All parameters that are to be configurable in the **CloverDX Server UI**, need t
 - If you need to access these parameters, you can link the parameter file to your job file.
 
 ![libraries dev params description](../figures/libraries-dev-params-description.png)
-*Figure 461. Edit parameters dialog with Description and Label*
+*Figure 479. Edit parameters dialog with Description and Label*
 
 ![libraries dev params in server](../figures/libraries-dev-params-in-server.png)
-*Figure 462. Parameters in Server UI*
+*Figure 480. Parameters in Server UI*
 
 - If values are set in this parameter file, they will be used in the job execution. However, the parameters can be overridden when the graph is executed. In that case, values specified in `library.prm` are considered default values.
 - Some of the parameter values, such as connection details, might be necessary for the library initialization. See [Initialization jobs (pre-generating metadata)](libraries-dev.md#initialization-jobs-pre-generating-metadata).
@@ -171,14 +171,14 @@ All parameters that are to be configurable in the **CloverDX Server UI**, need t
 - If a **Data Source** or **Data Target Connector** includes public parameters, they will be visible and configurable in the connector Configuration in **CloverDX Wrangler**. To help Wrangler users understand how to configure the parameters, provide clear labels, and descriptions, and select the appropriate editor types. If possible, use enums to prevent incorrect user input.
 
 ![libraries dev source params](../figures/libraries-dev-source-params.png)
-*Figure 463. Parameters in a Data Source Connector*
+*Figure 481. Parameters in a Data Source Connector*
 
 ![libraries dev source params catalog](../figures/libraries-dev-source-params-catalog.png)
-*Figure 464. Parameters in Data Source Connector Configuration in CloverDX Wrangler*
+*Figure 482. Parameters in Data Source Connector Configuration in CloverDX Wrangler*
 
 ### Initialization jobs (pre-generating metadata)
 
-A library can contain a so-called **initialization job**, which can be used to perform an initial setup that cannot be done during library development. An **Initialization job** can be **any graph or jobflow** that has been designated as an **initialization job** during [library export](export-library.md). For example, in our CloverDX Marketplace [OneDriveLib](https://marketplace.cloverdx.com/OneDriveLib_1.0.html) library, an initialization graph is used to generate values for SharePoint *Site ID* and *Drive ID parameters*, which are dependent on the configured OAuth2 connection.
+A library can contain a so-called **initialization job**, which can be used to perform an initial setup that cannot be done during library development. An **Initialization job** can be **any graph or jobflow** that has been designated as an **initialization job** during [library export](export-library.md). For example, in our CloverDX Marketplace [OneDriveLib](https://marketplace.cloverdx.com/library/OneDriveLib/1.1.1) library, an initialization graph is used to generate values for SharePoint *Site ID* and *Drive ID parameters*, which are dependent on the configured OAuth2 connection.
 
 **Initialization jobs** are usually executed by a CloverDX Server administrator during Library installation & initialization as one of the last steps or on demand anytime later (when a refresh is needed due to configuration changes). For more information on how to execute an initialization job, see [Initialization Jobs](../operations/libraries.md#initialization-job).
 > [!NOTE]
@@ -186,8 +186,8 @@ A library can contain a so-called **initialization job**, which can be used to p
 
 Initialization job examples:
 
-- Our [HubSpotLib library](https://marketplace.cloverdx.com/HubSpotLib_1.1.html) uses initialization job to determine metadata for its connectors. Every HubSpot instance is different and can have different custom fields for various objects (like deals, contacts or companies). The library needs initialization to be able to query the structure of each such entity so that each connector can provide accurate metadata on its output. The job needs to be called once after the library has been installed and must be called when HubSpot entities have been updated (e.g., a custom field is added).
-- Our [OneDriveLib library](https://marketplace.cloverdx.com/OneDriveLib_1.0.html) uses initialization job to generate *SharePoint Site ID* and *Drive ID* parameters that can only be determined once the library OAuth2 connection is configured.
+- Our [HubSpotLib library](https://marketplace.cloverdx.com/library/HubSpotLib/1.2) uses initialization job to determine metadata for its connectors. Every HubSpot instance is different and can have different custom fields for various objects (like deals, contacts or companies). The library needs initialization to be able to query the structure of each such entity so that each connector can provide accurate metadata on its output. The job needs to be called once after the library has been installed and must be called when HubSpot entities have been updated (e.g., a custom field is added).
+- Our [OneDriveLib library](https://marketplace.cloverdx.com/library/OneDriveLib/1.1.1) uses initialization job to generate *SharePoint Site ID* and *Drive ID* parameters that can only be determined once the library OAuth2 connection is configured.
 
 ### User credentials and secrets
 
@@ -202,10 +202,10 @@ If your library requires user credentials or secrets, such as private tokens, it
 - Specify the connection parameters in the connection details. This will ensure that your library can connect to the database without errors.
 
 ![libraries dev db conn](../figures/libraries-dev-db-conn.png)
-*Figure 465. Edit DB Connection dialog - parameters used for connection details.*
+*Figure 483. Edit DB Connection dialog - parameters used for connection details.*
 
 ![libraries dev db conn server](../figures/libraries-dev-db-conn-server.png)
-*Figure 466. Connection parameters from Server UI, the values will be propagated into the connection.*
+*Figure 484. Connection parameters from Server UI, the values will be propagated into the connection.*
 
 - Store the connection parameters in a `library.prm` parameter file. This will allow you to set the database connection in the **CloverDX Server UI** and manage it centrally.
 - Use secure parameters for any sensitive information, such as passwords. This will protect your data from unauthorized access and comply with security best practices.
@@ -223,7 +223,7 @@ To expose an OAuth2 connection from a library:
 If the above is kept, the connection will be automatically displayed on the **Configuration** tab in **Libraries module** for your library.
 
 ![oauth2 connection library config](../figures/oauth2-connection-library-config.png)
-*Figure 467. OAuth2 connection configuration shown in Libraries module.*
+*Figure 485. OAuth2 connection configuration shown in Libraries module.*
 > [!NOTE]
 > OAuth2 connections are always exported as unauthorized, even when they were authorized during the development process. Server administrators will need to [authorize](../operations/libraries.md#oauth2-connections) them in the Server UI after library installation.
 
@@ -239,7 +239,7 @@ Sometimes projects require Java code to work. This code may include `JAR files` 
 - If you need your own custom Java code to be used in the CloverDX library, put it into a proper package. The naming pattern should look like this: `com.<your company name>.libraries.<libraryName>.<className>`. The source code of the Java class should be stored in `${PROJECT}/trans` directory. Java classes from this directory are compiled automatically using CloverDX Designer during development (for every Java class in each `.java` file, a `.class` file will be created).
 
 ![libraries dev java structure](../figures/libraries-dev-java-structure.png)
-*Figure 468. Example of a structure of Java libraries in a project.*
+*Figure 486. Example of a structure of Java libraries in a project.*
 
 - Make sure you include all the `.class` files (compiled Java classes) in your (when exporting the library in Designer). Otherwise, the library will not be able to use the Java classes. If you use a versioning system, you may want to store the compiled classes in the repository (for example, if you use Git, do not exclude `.class` files in your `.gitignore`).
 
@@ -279,7 +279,7 @@ If you want to add a documentation page, which will be visible when browsing thr
 > You can take advantage of our [Data Catalog Connectors template](https://marketplace.cloverdx.com/library/TemplateConnectorLib/1.1) library, which includes a template for Data Source Connectors with notes to help you with the development process.
 
 ![libraries dev example connector](../figures/libraries-dev-example-connector.png)
-*Figure 469. Template source connector*
+*Figure 487. Template source connector*
 
 #### Data Source Connector requirements
 
@@ -288,7 +288,7 @@ To [export](export-library.md) a subgraph as a **Data Source Connector**, the fo
 - Subgraph name must be unique within the library; i.e., its name in the subgraph Properties must not exist in a different subgraph.
 
 ![libraries dev name property source](../figures/libraries-dev-name-property-source.png)
-*Figure 470. Subgraph name property*
+*Figure 488. Subgraph name property*
 
 - Subgraph cannot have any input port.
 - Subgraph must have exactly 1 output port.
@@ -303,12 +303,12 @@ To [export](export-library.md) a subgraph as a **Data Source Connector**, the fo
 - Alternatively, you can call the `raiseError(string message)` function directly from the CTL2 code. Make sure to use a descriptive error message.
 
 ![libraries dev error handling](../figures/libraries-dev-error-handling.png)
-*Figure 471. Part of graph with error handling functionality*
+*Figure 489. Part of graph with error handling functionality*
 
 - Use *secure graph parameters* for sensitive input parameters such as passwords or tokens. Be aware that secure parameters are encrypted with your CloverDX Server master password and won’t work on another instance with a different master password.
 
 ![libraries dev secure params](../figures/libraries-dev-secure-params.png)
-*Figure 472. Parameters dialog - usage of secure property settings*
+*Figure 490. Parameters dialog - usage of secure property settings*
 
 - Keep subgraphs small and focused on accomplishing a single task. Use several layers of subgraphs if needed (e.g. lower level subgraphs for core API calls, higher level subgraphs already specialized with business logic to simplify usage and eliminate complex or excessive configuration options). Don’t try to create connectors that would be too universal - create several simple ones instead. The CloverDX Data Catalog helps end users navigate among options to find the one most suited to their needs.
 - Consult with business users about their requirements and offer custom solutions for their business cases.
@@ -326,7 +326,7 @@ To [export](export-library.md) a subgraph as a **Data Source Connector**, the fo
 > You can take advantage of our [Data Catalog Connectors template](https://marketplace.cloverdx.com/library/TemplateConnectorLib/1.1) library, which includes a template for Data Target Connectors with notes to help you with the development process.
 
 ![libraries dev example connector target](../figures/libraries-dev-example-connector-target.png)
-*Figure 473. Template target connector*
+*Figure 491. Template target connector*
 
 #### Data Target Connector requirements
 
@@ -335,13 +335,13 @@ To [export](export-library.md) a subgraph as a **Data Target Connector**, the fo
 - Subgraph name must be unique within the library; i.e., its name in the graph Properties must not exist in a different subgraph.
 
 ![libraries dev name property target](../figures/libraries-dev-name-property-target.png)
-*Figure 474. Subgraph name property*
+*Figure 492. Subgraph name property*
 
 - Subgraph must have exactly 1 input port.
 - Input port metadata is optional. Providing metadata on input port enables mapping in Wrangler. If metadata is specified on input port, it must contain a field called **wranglerId** of type `long`. This field is used to link your transformation data to errors reported by the target when generating the [reject file](../user/data-sources-data-targets.md#reject-file-format).
 
 ![library wranglerId](../figures/library-wranglerId.png)
-*Figure 475. WranglerId metadata field*
+*Figure 493. WranglerId metadata field*
 
 - Input metadata can only contain fields of types: `string, long, date, boolean,` and `decimal` (**length=32, scale=10** only).
 
@@ -351,10 +351,10 @@ To [export](export-library.md) a subgraph as a **Data Target Connector**, the fo
 - If a reject port is used, it must use metadata created from the edge template called *ConnectorTarget_Rejects* (right-click on your edge and navigate to *New Metadata From Template > ConnectorTarget_Rejects*). This metadata must not be modified.
 
 ![libraries dev metadata template](../figures/libraries-dev-metadata-template.png)
-*Figure 476. ConnectorTarget_Rejects metadata template*
+*Figure 494. ConnectorTarget_Rejects metadata template*
 
 ![libraries dev targets reject metadata](../figures/libraries-dev-targets-reject-metadata.png)
-*Figure 477. ConnectorTarget_Rejects metadata*
+*Figure 495. ConnectorTarget_Rejects metadata*
 
 #### Data Target Connector best practices
 

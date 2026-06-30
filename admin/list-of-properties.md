@@ -256,7 +256,7 @@ See table below for basic JNDI properties.
 You can monitor the state of the datasources via JMX. See [Additional diagnostic tools](../operations/diagnostics.md#additional-diagnostic-tools) for details on how to enable JMX on Worker. Then you can connect to the Worker’s JMX interface with tools like `jconsole` and monitor the JNDI datasources, e.g. for the number of currently open connections. The related MBeans are under the `Tomcat/DataSource/localhost///javax.sql.DataSource` path:
 
 ![jndi jmx](../figures/jndi_jmx.png)
-*Figure 86. MBean for a JNDI datasource in jconsole*
+*Figure 87. MBean for a JNDI datasource in jconsole*
 
 | Key | Description | Example |
 | --- | --- | --- |
@@ -458,9 +458,11 @@ These configuration properties control how the CloverDX Assistant connects to AI
 
 | Key | Description | Default Value |
 | --- | --- | --- |
-| clover.assistant.connection.apiKey | API key used to authenticate with the configured AI provider (OpenAI, Azure OpenAI, or another provider). This property is required when the selected provider requires API key authentication. | (no default – must be provided) |
-| clover.assistant.connection.azure.deploymentName | Name of the Azure OpenAI deployment used for model calls. Only applicable when clover.assistant.provider=azure. | (no default – used only when Azure provider is selected) |
-| clover.assistant.connection.azure.endpoint | Azure OpenAI endpoint (for example: [https://myazure-openai.openai.azure.com](https://myazure-openai.openai.azure.com)). All Assistant model calls are routed to this endpoint when the provider is Azure. | (no default – must be provided for Azure provider) |
+| clover.assistant.connection.apiKey | API key used to authenticate with the configured AI provider (OpenAI, Azure OpenAI, Azure AI Gateway, or another provider). This property is required when the selected provider requires API key authentication. | (no default – must be provided) |
+| clover.assistant.connection.azure.deploymentName | Name of the Azure deployment used for model calls. Only applicable when either Azure OpenAI or Azure AI Gateway provider is selected. | (no default – must be provided for Azure provider) |
+| clover.assistant.connection.azure.endpoint | The base URL (endpoint) of the Azure service or AI Gateway. All Assistant model calls are routed to this URL. Required for both Azure OpenAI (e.g. [https://myazure-openai.openai.azure.com](https://myazure-openai.openai.azure.com)) and Azure AI Gateway (e.g. [https://my-gateway.azure-api.net/assistant-path](https://my-gateway.azure-api.net/assistant-path)) providers. | (no default – must be provided for Azure provider) |
+| clover.assistant.connection.azure.apiKeyHeaderName | Name of the HTTP header used to pass your API / Subscription key to Azure AI Gateway, e.g. Ocp-Apim-Subscription-Key. | api-key |
+| clover.assistant.connection.azure.apiVersion | Azure REST API version to use in requests to the Azure AI Gateway. | 2025-03-01-preview |
 | clover.assistant.dataSample.enabled | Controls whether the Assistant generates data samples used for suggesting transformations. When set to true, the Assistant may load a subset of incoming records to understand their structure. | true |
 | clover.assistant.dataSample.dataset.size | Maximum number of records loaded from each dataset when building a data sample. This limits memory usage and processing overhead. | 50 |
 | clover.assistant.dataSample.lookups.size | Maximum number of records loaded from lookup datasets during sampling. | 50 |
@@ -479,14 +481,17 @@ These configuration properties control how the CloverDX Server integrates with t
 | clover.mcp.remote.user | Username used when authenticating to the remote MCP server. | (no default) |
 | clover.mcp.remote.password | Password for authenticating to the remote MCP server. | (no default) |
 | clover.mcp.customer.portal.rate.limit | Minimum delay (in milliseconds) between consecutive API requests to the CloverDX Support Portal. Prevents excessive request volume. | 60000 |
-| clover.mcp.retrieveSandboxFileTool.enabled | Activates the tool that allows retrieval of files from the sandbox. | false |
-| clover.mcp.retrieveSandboxFileTool.supportedExtensions | Defines the supported file extensions for the sandbox file retrieval tool. Extensions are specified as a comma-separated list and are case-insensitive. If left empty, all file extensions are supported. Example: grf,jbf,properties. | (no default) |
+| clover.mcp.read.only | When set to `true`, write MCP tools are blocked and only read-only tools are exposed to AI agents. Individual tool overrides (`clover.mcp.tools.individual.enabled`, `clover.mcp.tools.individual.disabled`) take priority over this setting. Changing this property requires a Server restart to take effect. | false |
+| clover.mcp.tools.individual.enabled | Comma-separated list of individual tool names to enable. A tool listed here is always enabled, even if read-only mode is on. | (no default) |
+| clover.mcp.tools.individual.disabled | Comma-separated list of individual tool names to disable. A tool listed here is always disabled, even if read-only mode is off. | (no default) |
 
 ##### List of all properties
 
 | [autoapply.sys.db.patches](list-of-properties.md#lop-autoapply-sys-db-patches) |
 | --- |
 | [clover.assistant.connection.apiKey](list-of-properties.md#lop-clover-assistant-connection-apikey) |
+| [clover.assistant.connection.azure.apiKeyHeaderName](list-of-properties.md#lop-clover-assistant-connection-azure-apikeyheadername) |
+| [clover.assistant.connection.azure.apiVersion](list-of-properties.md#lop-clover-assistant-connection-azure-apiversion) |
 | [clover.assistant.connection.azure.deploymentName](list-of-properties.md#lop-clover-assistant-connection-azure-deploymentname) |
 | [clover.assistant.connection.azure.endpoint](list-of-properties.md#lop-clover-assistant-connection-azure-endpoint) |
 | [clover.assistant.dataSample.enabled](list-of-properties.md#lop-clover-assistant-datasample-enabled) |
@@ -506,8 +511,9 @@ These configuration properties control how the CloverDX Server integrates with t
 | [clover.mcp.remote.user](list-of-properties.md#lop-clover-mcp-remote-user) |
 | [clover.mcp.remote.password](list-of-properties.md#lop-clover-mcp-remote-password) |
 | [clover.mcp.customer.portal.rate.limit](list-of-properties.md#lop-clover-mcp-customer-portal-rate-limit) |
-| [clover.mcp.retrieveSandboxFileTool.enabled](list-of-properties.md#lop-clover-mcp-retrievesandboxfiletool-enabled) |
-| [clover.mcp.retrieveSandboxFileTool.supportedExtensions](list-of-properties.md#lop-clover-mcp-retrievesandboxfiletool-supportedextensions) |
+| [clover.mcp.read.only](list-of-properties.md#lop-clover-mcp-read-only) |
+| [clover.mcp.tools.individual.disabled](list-of-properties.md#lop-clover-mcp-tools-individual-disabled) |
+| [clover.mcp.tools.individual.enabled](list-of-properties.md#lop-clover-mcp-tools-individual-enabled) |
 | [clover.smtp.additional.*](list-of-properties.md#lop-clover-smtp-additional) |
 | [clover.smtp.authentication.method](list-of-properties.md#lop-clover-smtp-authentication-method) |
 | [clover.smtp.host](list-of-properties.md#lop-clover-smtp-host) |

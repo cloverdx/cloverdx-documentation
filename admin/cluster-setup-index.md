@@ -159,7 +159,7 @@ This section contains examples of **CloverDX** cluster nodes configuration. We a
 This example describes a simple cluster: each node has a direct connection to a database.
 
 ![cluster 2 nodes basic 3d simp](../figures/cluster-2-nodes-basic-3d_simp.png)
-*Figure 36. Configuration of a 2-node cluster, each node has access to a database*
+*Figure 38. Configuration of a 2-node cluster, each node has access to a database*
 
 Configuration of Node 1 on 192.168.1.131
 
@@ -208,7 +208,7 @@ The configuration is done in a **properties file**. The file can be placed eithe
 If you use an external load balancer, the configuration of CloverDX cluster will be same as in the first example.
 
 ![cluster 2 nodes load balancer 3d simp](../figures/cluster-2-nodes-load-balancer-3d_simp.png)
-*Figure 37. Configuration of a 2-node cluster with load balancer*
+*Figure 39. Configuration of a 2-node cluster with load balancer*
 
 The `cluster.http.url` and `cluster.jgroups.bind_address` are URLs of particular cluster nodes even if you use a load balancer.
 
@@ -259,7 +259,7 @@ sandboxes.home=/home/clover/shared_sandboxes
 This example describes a cluster with three nodes where each node has a direct connection to a database.
 
 ![cluster 3 nodes simp](../figures/cluster-3-nodes_simp.png)
-*Figure 38. Configuration of a 3-node cluster, each node has access to a database*
+*Figure 40. Configuration of a 3-node cluster, each node has access to a database*
 
 Configuration of Node 1 on 192.168.1.131
 
@@ -608,7 +608,7 @@ There are three sandbox types in total - shared sandboxes, and partitioned and l
 This type of sandbox must be used for all data which is supposed to be accessible on all cluster nodes. This includes all graphs, jobflows, metadata, connections, classes and input/output data for graphs which should support high availability (HA). All shared sandboxes reside in the directory, which must be properly shared among all cluster nodes. You can use a suitable sharing/replicating tool according to the operating system and filesystem.
 
 ![cluster creating shared sandbox](../figures/cluster-creating-shared-sandbox.png)
-*Figure 39. Dialog form for creating a new shared sandbox*
+*Figure 41. Dialog form for creating a new shared sandbox*
 
 As you can see in the screenshot above, you can specify the root path on the filesystem and you can use placeholders or absolute path. Placeholders available are environment variables, system properties or **CloverDX Server** configuration property intended for this use: `sandboxes.home`. Default path is set as `[user.data.home]/CloverDX/sandboxes/[sandboxID]` where the `sandboxID` is an ID specified by the user. The `user.data.home` placeholder refers to the home directory of the user running the JVM process (`/home` subdirectory on Unix-like OS); it is determined as the first writable directory selected from the following values:
 
@@ -626,7 +626,7 @@ This sandbox type is intended for data, which is accessible only by certain clus
 Do not use a local sandbox for common project data (graphs, metadata, connections, lookups, properties files, etc.), as it can cause odd behavior. Use shared sandboxes instead.
 
 ![cluster creating local sandbox](../figures/cluster-creating-local-sandbox.png)
-*Figure 40. Dialog form for creating a new local sandbox*
+*Figure 42. Dialog form for creating a new local sandbox*
 
 The sandbox location path is pre-filled with the `sandboxes.home.local` placeholder which, by default, points to `[user.data.home]/CloverDX/sandboxes-local`. The placeholder can be configured as any other CloverDX configuration property.
 
@@ -640,7 +640,7 @@ This type of sandbox is an abstract wrapper for physical locations existing typi
    During parallel data processing, each physical location contains only part of the data. Typically, input data is split in more input files, so each file is put into a different location and each worker processes its own file.
 
 ![cluster creating partitioned sandbox](../figures/cluster-creating-partitioned-sandbox.png)
-*Figure 41. Dialog form for creating a new partitioned sandbox*
+*Figure 43. Dialog form for creating a new partitioned sandbox*
 
 As you can see on the screenshot above, for a partitioned sandbox, you can specify one or more physical locations on different cluster nodes.
 
@@ -652,11 +652,11 @@ Do not use a partitioned sandbox for common project data (graphs, metadata, conn
 
 Data transfer between graphs running on different nodes is performed by a special type of edge - remote edge. The edge utilizes buffers for sending data in fixed-sized chunks. Each chunk has a unique number; therefore, in the case of an I/O error, the last chunk sent can be re-requested.
 
-You can set up values for various remote edge parameters via configuration properties. For list of properties, their meaning and default values, see [Optional remote edge properties](../admin/cluster-setup-index.md#optional-remote-edge-properties).
+You can set up values for various remote edge parameters via configuration properties. For list of properties, their meaning and default values, see [Optional remote edge properties](cluster-setup-index.md#optional-remote-edge-properties).
 
 The following figure shows how nodes in a cluster communicate and transfer data - the client (a graph running on Node 2) issues an HTTP request to Node 1 where a servlet accepts the request and checks the status of the source buffer. The source buffer is the buffer filled by the component writing to the left side of the remote edge. If the buffer is full, its content is transmitted to the Node 2, otherwise the servlet waits for a configurable time interval for the buffer to become full. If the interval has elapsed without data being ready for download, the servlet finishes the request and Node 2 will re-issue the request at later time. Once the data chunk is downloaded, it is made available via the target buffer for the component reading from the right side of the remote edge. When the target buffer is emptied by the reading component, Node 2 issues new HTTP request to fetch the next data chunk.
 
-This communication protocol and its implementation have consequences for the memory consumption of remote edges. A single remote edge will consume 3 x chunk size (1.5MB by default) of memory on the node that is the source side of the edge and 1 x chunk size (512KB by default) on the node that is the target of the edge. A smaller chunk size will save memory; however, more HTTP requests will be needed to transfer the data and the network latency will lower the throughput. Large data chunks will improve the edge throughput at the cost of higher memory consumption.
+This communication protocol and its implementation have consequences for the memory consumption of remote edges. A single remote edge will consume 3 x chunk size (1.5 MB by default) of memory on the node that is the source side of the edge and 1 x chunk size (512KB by default) on the node that is the target of the edge. A smaller chunk size will save memory; however, more HTTP requests will be needed to transfer the data and the network latency will lower the throughput. Large data chunks will improve the edge throughput at the cost of higher memory consumption.
 
 ![cluster remote edge](../figures/cluster_remote_edge.png)
-*Figure 42. Remote edge implementation*
+*Figure 44. Remote edge implementation*

@@ -10,4 +10,4 @@ If you have installed **Designer** as a stand-alone application (not as a plug-i
 > [!IMPORTANT]
 > If you are installing **Designer** over an existing installation, the old version of program should not be running.
 
-The upgraded installation needs activating. See [Activating](part-installation-instructions.md#activating).
+The upgraded installation needs activating. See [Activating](part-installation-instructions.md#activating-designer).

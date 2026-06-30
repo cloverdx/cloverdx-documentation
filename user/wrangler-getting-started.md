@@ -42,7 +42,7 @@ In your formulas, you will need to specify the column(s) that you want to work w
 To find and easily copy the technical column name, hover over a column header.
 
 ![column technical name](../figures/column-technical-name.gif)
-*Figure 126. Technical column name shown in a tooltip of the column header.*
+*Figure 127. Technical column name shown in a tooltip of the column header.*
 
 Technical column names are case-sensitive and need to be entered in the exact form as displayed. If you mistype a technical column name, you will get an error like this:
 
@@ -113,7 +113,7 @@ The **+ operator** can be used as a **concatenation function** to join values fr
 For more complex cases, you can use one of our built-in **functions**. The autocomplete feature in **Formula Editor** suggests relevant functions as you type. Alternatively, you can use the **CTRL** + **Space shortcut** to display the list of available *column names* (marked in green, starting with the $ sign) and *functions* (marked in purple). When inserting a function, placeholders for its parameters are automatically included, providing guidance for formula construction. Substitute these placeholders with the appropriate data to build your formula.
 
 ![calculate formula example](../figures/calculate-formula-example.gif)
-*Figure 127. Autocomplete and column name hints in formula editor.*
+*Figure 128. Autocomplete and column name hints in formula editor.*
 
 | Function | Description | Example formula | Result |
 | --- | --- | --- | --- |

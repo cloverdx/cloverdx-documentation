@@ -52,7 +52,7 @@ The **Metadata Editor** consists of:
 Below you can see an example of delimited metadata and fixed length metadata. Mixed metadata would be a combination of both cases. For some field names, delimiter would be defined and no size would be specified; whereas for others, size would be defined and no delimiter would be specified, or both would be defined. To create such metadata, you must do it manually.
 
 ![200500](../figures/200500.png)
-*Figure 214. Metadata Editor for a Delimited File*
+*Figure 231. Metadata Editor for a Delimited File*
 > [!NOTE]
 > **Save As New** functionality is available only for an internal metadata.
 
@@ -61,7 +61,7 @@ Below you can see an example of delimited metadata and fixed length metadata. Mi
 In a [Jobflow](part-jobflow.md#jobflow-overview), the values of selected fields can be [tracked](part-jobflow.md#jobflow-trackable-fields). The fields can be selected using the ![Print field value into log with token status](../figures/printfield_jobflow.png)**Print field value into log with token status** button, as show below:
 
 ![MetadataEditor jobflow](../figures/MetadataEditor_jobflow.png)
-*Figure 215. Trackable fields selection in Metadata Editor*
+*Figure 232. Trackable fields selection in Metadata Editor*
 
 To deselect the fields, use the button ![Do not print field value into log with token status](../figures/dont_printfield_jobflow.png)**Do not print field value into log with token status**. The button appears only if the tracking of the field is enabled.
 

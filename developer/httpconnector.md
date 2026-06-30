@@ -178,9 +178,9 @@ See general details on [metadata templates](components.md#metadata-templates).
 Editing the **Input mapping** attribute opens the [Transform Editor](transformations.md#transform-editor) where you can decide which component attributes should be set using the input record.
 
 ![HTTPConnectorComponent inputMapping](../figures/HTTPConnectorComponent-inputMapping.png)
-*Figure 440. Transform Editor in HTTPConnector*
+*Figure 458. Transform Editor in HTTPConnector*
 
-The dialog provides you with all the power and features known from Transform Editor and [CTL](part6.md).
+The dialog provides you with all the power and features known from Transform Editor and [CTL](part5.md).
 > [!NOTE]
 > All kinds of CTL functions are available to modify the input field value to be used.
 
@@ -189,7 +189,7 @@ The dialog provides you with all the power and features known from Transform Edi
 Since **CloverDX 3.5.4**, you can set up multipart entities in the transform editor. Input mapping now offers new fields derived from the value of the **Multipart entities** attribute. For example, **field1;field2** as the value of multipart entities generates the following fields.
 
 ![HTTPConnector multipart entities 010](../figures/HTTPConnector-multipart-entities-010.png)
-*Figure 441. Multipart entities in input mapping*
+*Figure 459. Multipart entities in input mapping*
 
 The generated fields can be used to control multipart entities.
 
@@ -208,7 +208,7 @@ Map content of multipart entity
 Use input mapping to set a content of multipart. The multipart name will be same as the fieldname and the content will be specified by a mapping.
 Map content and filename
 The multipart content will be used by the mapping, but there will be an additional multipart header in the request using the filename as mapped.
-Example 399. CTL mapping and multipart entities
+Example 404. CTL mapping and multipart entities
 The CTL mapping
 
 ```ctl
@@ -258,9 +258,9 @@ The file can be specified by a URL similar to the fileURL attribute in readers. 
 Editing the attribute opens the [Transform Editor](transformations.md#transform-editor) where you can decide what should be sent to an output port.
 
 ![HTTPConnectorComponent outputMapping](../figures/HTTPConnectorComponent-outputMapping.png)
-*Figure 442. Transform Editor in HTTPConnector*
+*Figure 460. Transform Editor in HTTPConnector*
 
-The dialog provides you with all the power and features known from Transform Editor and [CTL](part6.md).
+The dialog provides you with all the power and features known from Transform Editor and [CTL](part5.md).
 
 To do the mapping in a few basic steps:
 

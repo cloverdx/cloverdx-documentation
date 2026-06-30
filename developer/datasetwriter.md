@@ -104,12 +104,12 @@ $out.0._messages = {
 
 #### Submitting error information with suggestions
 
-To help users when editing data in Data Manager, it is possible to submit **suggestions** together with the messages. Suggestions are only available for columns that are defined as *Restricted to lookup* – i.e., their values can only come from a lookup. See additional information about lookups and their configuration in [Data layout](../user/data-manager-managing-data-sets.md#data-manager-data-layout) documentation.
+To help users when editing data in Data Manager, it is possible to submit **suggestions** together with the messages. Suggestions are only available for columns that are defined as *Restricted to lookup* – i.e., their values can only come from a lookup. See additional information about lookups and their configuration in [Using reference data sets as lookups](../user/data-manager-working-with-reference-data.md#using-reference-data-sets-as-lookups).
 
 The suggestions are displayed when the user clicks into the cell when editing the value. Suggestions are shown as a dropdown or table depending on how the lookup is configured (dropdown is used for lookups with just two columns, table for lookups with more than two columns):
 
 ![data editor with lookup suggestions](../figures/data-editor-with-lookup-suggestions.png)
-*Figure 393. Suggestions shown when column with an error is clicked. Suggestions are the first three items in the dialog with the lookup values.*
+*Figure 411. Suggestions shown when column with an error is clicked. Suggestions are the first three items in the dialog with the lookup values.*
 
 The suggestions can be provided for each field and are stored as a list of items where each item has a `value` and a `label`. The `value` must correspond to the key field value in a lookup used for the given column while the `label` is any text you wish to associate with the given value. Note that the `label` does not have to match the `label` in the lookup - you can use it to provide additional information (e.g., confidence score or anything else that will help users pick the correct value).
 

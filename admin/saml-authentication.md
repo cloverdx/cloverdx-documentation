@@ -123,10 +123,7 @@ Configuring SAML authentication might be a quite challenging task. Sometimes it 
    <Logger name="com.cloveretl.server.auth.SamlServlet" level="debug" additivity="false">
           <AppenderRef ref="samlAppender" />
    </Logger>
-   <Logger name="com.onelogin.saml2" level="debug" additivity="false">
-          <AppenderRef ref="samlAppender" />
-   </Logger>
-   <Logger name="custom.com.onelogin.saml2" level="debug" additivity="false">
+   <Logger name="org.codelibs.saml2" level="debug" additivity="false">
           <AppenderRef ref="samlAppender" />
    </Logger>
    ```

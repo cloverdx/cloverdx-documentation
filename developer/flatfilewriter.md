@@ -54,7 +54,7 @@ The component has no metadata template.
 | Quote character |  | Specifies which kind of quotes will enclose output fields. Applies only if **Quoted strings** is `true`. By default, the value of this attribute is inherited from metadata on input port. See also [Record details](metadata-editor.md#record-details). | " \| ' |
 | Advanced |  |  |  |
 | Create directories |  | If set to `true`, non-existing directories in the **File URL** attribute path are created. | false (default) \| true |
-| Write field names |  | Field labels are not written to output file(s) by default. If set to `true`, labels of individual fields are printed to the output. Please note that field labels differ from field names: labels can be duplicate and you can use any character in them (e.g. accents, diacritics). See [Record pane](metadata-editor.md#record-pane). | false (default) \| true |
+| Write field names |  | Field labels are not written to output file(s) by default. If set to `true`, labels of individual fields are printed as the first row of each newly created output file. When **Append** is `true` and the output file already exists and is non-empty, the header row is **not** written again.  If set to `force`, field labels are always written — including when appending to an existing non-empty file. This is useful when combining multiple different record structures (e.g. HEADER, BODY, FOOTER) into one file across several graph phases using separate writer components.  Please note that field labels differ from field names: labels can be duplicate and you can use any character in them (e.g. accents, diacritics). See [Record pane](metadata-editor.md#record-pane). | false (default) \| true \| force |
 | Records per file |  | The maximum number of records to be written to each output file. If specified, the dollar sign(s) $ (number of digits placeholder) must be a part of the file name mask, see [Supported file URL formats for Writers](examples-of-file-url-in-writers.md) | 1 - N |
 | Bytes per file |  | The maximum size of each output file in bytes. If specified, the dollar sign(s) $ (number of digits placeholder) must be a part of the file name mask, see [Supported file URL formats for Writers](examples-of-file-url-in-writers.md) To avoid splitting a record into two files, the maximum size can be slightly overreached. | 1 - N |
 | Number of skipped records |  | How many records/rows to be skipped before writing the first record to the output file, see [Selecting output records](selecting-output-records.md). | 0 (default) - N |
@@ -209,6 +209,7 @@ The recommended encoding is UTF-8.
 | --- | --- |
 | 4.1.0-M1 | The last record delimiters in a file can now be skipped. |
 | 4.2.0-M1 | **FlatFileWriter** is available since **4.2.0-M1**. In **4.2.0-M1**, **UniversalDataWriter** was renamed to **FlatFileWriter**. |
+| 7.5.0 | The **Write field names** attribute now accepts a third value `force`. |
 
 #### See also
 

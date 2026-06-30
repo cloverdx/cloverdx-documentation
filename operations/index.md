@@ -17,12 +17,12 @@
   - [**Server logs & troubleshooting**](logs-troubleshooting.md): Learn how to analyze server logs and troubleshoot problems.
   - [**Execution History**](execution-history-main.md#execution-history-viewing-job-runs): Discover how to view and analyze the execution history of workflows.
 - [**Server management APIs**](part3.md): Understand how to use APIs ([REST API](rest-api.md) or [SOAP API](soap-ws.md)) to manage CloverDX servers programmatically.
-- [**Data Manager API**](part4.md): Learn how to access and modify reference and transactional data in Data Manager using the REST API.
-- [**Libraries & sandboxes**](part5.md): Learn about deploying and managing [libraries](libraries.md), as well as working with and managing [sandboxes](sandboxes.md).
+- [**Data Manager API**](api-dm.md): Learn how to access and modify reference and transactional data in Data Manager using the REST API.
+- [**Libraries & sandboxes**](part4.md): Learn about deploying and managing [libraries](libraries.md), as well as working with and managing [sandboxes](sandboxes.md).
 
 ---
 
-*This guide refers to CloverDX 7.4.2 release.*
+*This guide refers to CloverDX 7.5.0 release.*
 
 *Copyright © 2010-2026 CloverDX a.s. All rights reserved.*
 

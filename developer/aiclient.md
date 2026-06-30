@@ -60,22 +60,37 @@ You can define control logic which either refines your query based on assistant�
 
 **Connection** represents provider-specific configuration of connection to assistant:
 
-- **Anthropic** ([https://www.anthropic.com/](https://www.anthropic.com/)) offers Claude models, focusing on AI safety and alignment. It is configured via API key, model name, and temperature.
-- **Azure OpenAI** ([https://azure.microsoft.com/en-us/products/ai-foundry/models/openai](https://azure.microsoft.com/en-us/products/ai-foundry/models/openai)) provides OpenAI models via Microsoft Azure AI Foundry with enterprise security and compliance features. It is configured via API key, endpoint, deployment name, and temperature.
-- **Google Gemini** ([https://gemini.google.com/](https://gemini.google.com/)) supplies text generation and reasoning models integrated with Google Cloud services. It is configured via API key, model name, and temperature.
-- **OpenAI** ([https://openai.com/api/](https://openai.com/api/)) delivers GPT models for text generation, coding, and reasoning. It is configured via API key, model name, and temperature.
+- **Anthropic** ([https://www.anthropic.com/](https://www.anthropic.com/)) connects to Claude models such as Opus or Sonnet, focusing on AI safety and alignment.
+- **Google AI** ([https://gemini.google.com/](https://gemini.google.com/)) connects to Gemini models provided by Google AI.
+- **Microsoft Foundry (Azure OpenAI)** ([https://azure.microsoft.com/en-us/products/ai-foundry/models/openai](https://azure.microsoft.com/en-us/products/ai-foundry/models/openai)) provides OpenAI models via Microsoft Azure AI Foundry with enterprise security and compliance features.
+- **Microsoft Foundry via Azure AI Gateway** ([https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)) connects to Microsoft Foundry models via API endpoints provided by Azure API Management.
+- **OpenAI** ([https://openai.com/api/](https://openai.com/api/)) connects to GPT models provided by OpenAI or to any OpenAI-compatible tools such as Ollama, vLLM and others. The **base URL** attribute defines the base URL for API requests and defaults to `https://api.openai.com/v1`.
+- **OpenAI-compatible via Azure AI Gateway** ([https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)) uses Azure-hosted endpoints to connect to OpenAI-compatible APIs hosted by non-Microsoft providers.
 
-The **model name** is represented by a combo box listing models available when CloverDX was released; however, you can enter different models manually.
+The following attributes are shared across multiple providers:
+
+The **model name** is represented by a combo box. When you open the connection dialog, available models are fetched dynamically from the provider; you can also type any model name manually.
 
 The **temperature** controls the creativity or randomness of the model’s output. Lower values make the output more deterministic, higher values more random. The lowest possible value is 0.0; the upper bound is model-dependent, usually 1.0 or 2.0. Some models might not support temperature at all.
 
-The **baseUrl** is used only for OpenAI and defines the base URL for API requests. The default value is [https://api.openai.com/v1](https://api.openai.com/v1).
+The **API key header name** is the name of the HTTP header used to pass your API / Subscription key to Azure AI Gateway (e.g. `Ocp-Apim-Subscription-Key`). Defaults to `api-key` if not set.
+
+The **API version** is the Azure REST API version to use in requests to the Azure AI Gateway. Defaults to `2025-03-01-preview` if not set.
 
 #### CTL interface
 
 **AIClient** requires a CTL transformation (named *Query and response processor*).
 
 Its function `newChat()` is called once for each input record. Consequently, the functions `prepareQuery()` and `processResponse()` are called repeatedly for each input record until assistant response is either accepted or skipped, or the processing is stopped.
+
+Most of the functions use the `ChatMessage` data type which is **globally available**, so that the transformation can be externalized. Besides `role` and `content`, the type contains four additional fields that are only relevant for assistant messages:
+
+- `cachedInputTokenCount`: number of cached input tokens used
+- `totalInputTokenCount`: total number of input tokens, including the cached ones
+- `totalOutputTokenCount`: total number of output tokens
+- `totalTokenCount`: total number of tokens, both input and output
+
+If not available for particular provider or model, these statistics may be *null*. Namely, `cachedInputTokenCount` is only available for Anthropic and OpenAI. For Azure AI Gateway providers, it may also be available if the gateway exposes the information.
 
 ##### CTL template
 
@@ -148,6 +163,7 @@ Its function `newChat()` is called once for each input record. Consequently, the
 | --- | --- |
 | 7.1.0 | *AIClient* was introduced in CloverDX version 7.1 as *OpenAIClient* – it only supported OpenAI. |
 | 7.3.0 | The component was renamed to *AIClient* and gained support for additional providers: Anthropic (Claude models), Azure OpenAI, and Google Gemini. |
+| 7.5.0 | The component gained support for 2 additional providers: Microsoft Foundry via Azure AI Gateway and OpenAI-compatible via Azure AI Gateway. |
 
 #### See also
 

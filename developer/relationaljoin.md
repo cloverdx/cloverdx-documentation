@@ -74,22 +74,22 @@ You must define the key that should be used to join the records (**Join key**). 
 The **Join key** attribute is a sequence of individual key expressions for the master and all of the slaves separated from each other by a hash. Order of these expressions must correspond to the order of the input ports starting with a master and continuing with slaves. Driver (master) key is a sequence of driver (master) field names (each of them should be preceded by a dollar sign) separated by a colon, semicolon or pipe. Each slave key is a sequence of slave field names (each of them should be preceded by a dollar sign) separated by a colon, semicolon, or pipe.
 
 ![AAA](../figures/AAA.png)
-*Figure 421. An example of the Join Key attribute in the RelationalJoin component*
+*Figure 439. An example of the Join Key attribute in the RelationalJoin component*
 
 You can use this **Join key** wizard. When you click the **Join key** attribute row, a button appears there. By clicking this button you can open the mentioned wizard.
 
 In it, you can see the tab for the driver (**Master key** tab) and the tabs for all of the slave input ports (**Slave key** tabs).
 
 ![relationaljoin join key 020](../figures/relationaljoin-join-key-020.png)
-*Figure 422. Join Key Wizard (Master Key tab)*
+*Figure 440. Join Key Wizard (Master Key tab)*
 
 In the driver tab, there are two panes. The **Fields** pane on the left and the **Master key** pane on the right. You need to select the driver expression by selecting the fields in the **Fields** pane on the left and moving them to the **Master key** pane on the right with the help of the **Right arrow** button. To the selected **Master key** fields, the same number of fields should be mapped within each slave. Thus, the number of key fields is the same for all input ports (both the master and each slave). In addition, driver (Master) key must be common for all slaves.
 
 ![relationaljoin join key 030](../figures/relationaljoin-join-key-030.png)
-*Figure 423. Join key wizard (Slave Key tab)*
+*Figure 441. Join key wizard (Slave Key tab)*
 
 In each of the slave tab(s) there are two panes. The **Fields** pane on the left and the **Key mapping** pane on the right. In the left pane you can see the list of the slave field names. In the right pane you can see two columns: **Master key field** and **Slave key field**. The left column contains the selected field names of the driver input port. If you want to map a driver field to slave field, select the slave field in the left pane by clicking its item, push the left mouse button, drag to the **Slave key field** column in the right pane and release the button. The same must be done for each slave. Note that you can also use the **Auto mapping** button or other buttons in each tab.
-Example 398. Join key for RelationalJoin
+Example 403. Join key for RelationalJoin
 
 ```ctl
 $first_name;$last_name#$fname;$lname#$f_name;$l_name
@@ -115,7 +115,7 @@ Following is a part of **Join key** for the master data source (input port 0):
 
 When you define your join attributes, you must specify a transformation that maps fields from input data sources to the output. This can be done using the **Transformations** tab of the **Transform Editor**. However, you may find that you are unable to specify more advanced transformations using this easiest approach. In such a case, you need to use CTL scripting.
 
-For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part6.md). (CTL is a full-fledged, yet simple language that allows you to perform almost any imaginable transformation.)
+For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part5.md). (CTL is a full-fledged, yet simple language that allows you to perform almost any imaginable transformation.)
 
 CTL scripting allows you to specify a custom field mapping using the simple CTL scripting language.
 

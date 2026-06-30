@@ -55,7 +55,7 @@
 | Batch number output field |  | The name of the error metadata field for storing the index of the corrupted batch, see [Error fields for QuickBaseImportCSV](quickbaseimportcsv.md#quickbaseimportcsv-error-fields). |  |
 
 ![tableID](../figures/tableID.png)
-*Figure 381. Obtaining Table ID*
+*Figure 399. Obtaining Table ID*
 
 #### Details
 

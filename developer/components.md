@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Components -->
 
-## 21. Components
+## 22. Components
 
 Components (nodes) are the most important graph elements. They all serve to process data. Most of them have ports through which they can receive data and/or send the processed data out. Most components work only when edges are connected to these ports. Each edge in a graph connected to a port must have metadata assigned to it. Metadata describes the structure of data flowing through the edge from one component to another.
 
@@ -20,7 +20,7 @@ Example 4. Finding a Sort component
 You need to sort your data, but CloverDX offers various sort components. A quick solution: press Shift+Space and type 'sort'. You will see all available sorters (with a description).
 
 ![component add sorter](../figures/component-add-sorter.png)
-*Figure 191. Add Components dialog - finding a sorter*
+*Figure 208. Add Components dialog - finding a sorter*
 > [!NOTE]
 > For easier access, recently searched/added components appears at the top of the dialog.
 
@@ -98,7 +98,7 @@ Other properties are common to each of the groups:
 - [Common properties of Others](common-of-others.md)
 - [Common properties of Data Quality](common-of-data-quality.md)
 
-For information about individual components, see [Component reference](part7.md).
+For information about individual components, see [Component reference](part6.md).
 
 ### Edit component dialog
 
@@ -151,7 +151,7 @@ The other groups (**Basic**, **Advanced** and **Deprecated**) differ in differen
 However, some of them may be common for most of them or, at least, for some category of components (**Readers**, **Writers**, **Transformers**, **Joiners** or **Others**).
 
 ![editcomponentdialogpropertiestab](../figures/editcomponentdialogpropertiestab.png)
-*Figure 192. Edit component dialog (Properties tab)*
+*Figure 209. Edit component dialog (Properties tab)*
 
 ##### Basic
 
@@ -231,7 +231,7 @@ You can rename any component in one of the following four ways:
 - By highlighting and clicking it.
   If you highlight any component (by clicking the component itself or by clicking its item in the **Outline** pane), a hint appears showing the name of the component. After clicking the component, a rectangle appears below the component, showing the **Component name** on a blue background. You can change the name shown in this rectangle and press **Enter**.
   ![300290](../figures/300290.png)
-  *Figure 193. Simple renaming components*
+  *Figure 210. Simple renaming components*
 - You can right-click the component and select **Rename** from the context menu. After that, the same rectangle as mentioned above appears below the component. You can rename the component in the way described above.
 
 ##### Phases
@@ -249,7 +249,7 @@ You can select more components and set their phase number(s). Either you set the
 To do that, use the following **Phase setting** wizard:
 
 ![phases](../figures/phases.png)
-*Figure 194. Setting the phases for more components*
+*Figure 211. Setting the phases for more components*
 > [!TIP]
 > When assigning phases to individual graphs, you should consider an increment by a number higher than 1 (e.g. 5, 10, 15…​). This way, you can later add phased graphs in between two phases, without a need to adjust all consecutive phases.
 
@@ -270,7 +270,7 @@ Allocation can be specified in three different ways:
 Allocation is automatically inherited from neighboring components. Therefore, continuous graph may have only a single component with an allocation and this allocation is used by all other components as well. All components of clustered graphs are decorated by the number of instances (x3) in which the component will be finally executed - so called allocation cardinality. These annotations are updated on a graph save operation. Allocation cardinality derived from neighbors is indicated in gray italic font and the cardinality derived from an allocation defined right on the component is printed out with a solid font.
 
 ![component allocation decorator](../figures/component-allocation-decorator.png)
-*Figure 195. Allocation cardinality decorator*
+*Figure 212. Allocation cardinality decorator*
 
 Two interconnected components have to have compatible allocations - the number of specified workers has to be equal. The only exception from this rule are Cluster components, which are dedicated just to change the level of parallelism. **Parallel Partitioners** change a single-worker allocation to multi-worker allocation. On the other hand, **Parallel Gatherers** change a multi-worker allocation to single-worker allocation.
 
@@ -324,7 +324,7 @@ Sometimes you need to select fields that will create a grouping key. This can be
 Select the fields you want and drag and drop each of the selected key fields to the **Key parts** pane on the right. (You can also use the **Arrow** buttons.)
 
 ![define group key](../figures/define-group-key.png)
-*Figure 196. Defining group key*
+*Figure 213. Defining group key*
 
 After selecting the fields, you can click the **OK** button and the selected field names will turn to a sequence of the same field names separated by a semicolon. This sequence can be seen in the corresponding attribute row.
 
@@ -358,7 +358,7 @@ Group key is used in the following components:
 In some of the components you need to define a sort key. Like a group key, this sort key can also be defined by selecting key fields using the **Edit key** dialog. There you can also choose what sort order should be used for each of the selected fields.
 
 ![define sort key](../figures/define-sort-key.png)
-*Figure 197. Defining Sort key and Sort order*
+*Figure 214. Defining Sort key and Sort order*
 
 In the **Edit key** dialog, select the fields you want and drag and drop each of the selected key fields to the **Key** column of the **Key parts** pane on the right. (You can also use the **Arrow** buttons.)
 
@@ -407,7 +407,7 @@ Data parsed by a component must be sent to other components and if it is not pos
 Disabling can be done in the context menu or **Properties** tab. You can see the following example of a situation when parsing is possible even with a disabled component:
 
 ![200020D](../figures/200020D.png)
-*Figure 198. Graph with disabled component*
+*Figure 215. Graph with disabled component*
 
 You can see that data records from the disabled component are not necessary for the **Merge** component so parsing is possible. But if you disabled the **Merge** component, readers before this component would not have at their disposal any component to which they could send their data records and graph would terminate with an error.
 
@@ -474,12 +474,12 @@ In general, passthrough does not need to be configured—it works out of the box
 In the example below, the default pass-through setting (port 0) of the *SimpleCopy* component leaves the second *Trash* component with a missing input error.
 
 ![component pass through ex1](../figures/component-pass-through-ex1.png)
-*Figure 199. Default pass-through option*
+*Figure 216. Default pass-through option*
 
 Setting the pass-through to Port 1 avoids the error on the second *Trash* component by treating that connection as valid, making the first Trash component invalid in this case.
 
 ![component pass through ex2](../figures/component-pass-through-ex2.png)
-*Figure 200. Pass through port set to port 1*
+*Figure 217. Pass through port set to port 1*
 
 This mechanism allows you to suppress validation errors and control graph behavior during testing or development when some components are turned off.
 
@@ -490,14 +490,14 @@ Some components require metadata on their ports to have a specific structure. Fo
 In order to create a new metadata with the recommended structure, right-click an edge connected to a port which has a template defined, select **New metadata from template** from the context menu, and then pick a template from the submenu.
 
 ![metadata template](../figures/metadata-template.png)
-*Figure 201. Creating metadata from a template*
+*Figure 218. Creating metadata from a template*
 
 ### Finding components in jobs
 
 If you have a complex graph and cannot find components quickly and easily, press Ctrl+O to open the **Find component** dialog. The searched text is highlighted both in component names and description:
 
 ![component find](../figures/component-find.png)
-*Figure 202. Find components dialog*
+*Figure 219. Find components dialog*
 
 As you type, the components are searched by their:
 

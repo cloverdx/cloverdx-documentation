@@ -72,9 +72,9 @@ The remaining output ports contain results of profiling, i.e. metric values for 
 Editing the **Output mapping** attribute opens the [*Transform Editor*](transformations.md#transform-editor) where you can decide which metrics to send to output ports.
 
 ![ProfilerProbe transformEditor](../figures/ProfilerProbe-transformEditor.png)
-*Figure 429. Transform Editor in ProfilerProbe*
+*Figure 447. Transform Editor in ProfilerProbe*
 
-The dialog provides you with all the power and features known from Transform Editor and [*CTL*](part6.md). In addition, notice metadata on the left hand side has a special format. It is a tree of input fields AND metrics you assigned to them via the **Metrics** attribute. Fields and metrics are grouped under the `RunResults` record. Each field in `RunResults` record has a special name: `fieldNamemetric_name`*(note the underscore is doubled as a separator), e.g. `firstName`*`avg_length`.
+The dialog provides you with all the power and features known from Transform Editor and [*CTL*](part5.md). In addition, notice metadata on the left hand side has a special format. It is a tree of input fields AND metrics you assigned to them via the **Metrics** attribute. Fields and metrics are grouped under the `RunResults` record. Each field in `RunResults` record has a special name: `fieldNamemetric_name`*(note the underscore is doubled as a separator), e.g. `firstName`*`avg_length`.
 
 Additionally there is another special record containing three fields - `JobUid`, `inputRecordCount` and `profilerRunId`. After you run your graph, the field will store the total number of records which were profiled by the component. You can right-click a field/metric and **Expand All**, or **Collapse All** metrics.
 
@@ -112,7 +112,7 @@ In the **Metrics** dialog, you can import your settings of fields and their metr
 The purpose of the import is for easier transition from previous versions, it is no longer possible to externalize metrics to a *.cpj file.
 
 ![ProfilerProbe internalizeMetrics](../figures/ProfilerProbe-internalizeMetrics.png)
-*Figure 430. Import metrics button*
+*Figure 448. Import metrics button*
 
 ##### ProfilerProbe notes & limitations
 
@@ -149,7 +149,7 @@ The range of available metrics differs for each field and depends on **Field Typ
 In addition, you can work with more fields at a time by selecting them (Ctrl+click, Shift+click) and assigning metrics to the whole group.
 
 ![DataProfiler metricsSelection](../figures/DataProfiler-metricsSelection.png)
-*Figure 431. Selecting and configuring metrics*
+*Figure 449. Selecting and configuring metrics*
 
 Some metrics just need to be checked while some others require additional settings.
 
@@ -158,7 +158,7 @@ If a metric is checked and can actually be configured, you will notice the **Pro
 Some metrics return map or list data types. Such metrics have their return type marked with an icon, see **Most frequent patterns** and **Non printable ASCII** in the picture above.
 
 ![DataProfiler metricConfig](../figures/DataProfiler-metricConfig.png)
-*Figure 432. Metric configuration. Note the metric has to be checked.*
+*Figure 450. Metric configuration. Note the metric has to be checked.*
 
 #### List of Metrics
 

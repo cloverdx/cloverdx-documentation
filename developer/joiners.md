@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Joiners -->
 
-## 39. Joiners
+## 40. Joiners
 
 | [Common properties of Joiners](common-of-joiners.md) |
 | --- |

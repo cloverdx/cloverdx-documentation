@@ -188,7 +188,7 @@ The **Monitoring** page show the following job queue related information:
 
 Server logs provide the following job queue related information:
 
-- [Job queue log](..operations/logging.md#job-queue-log) - log that regularly prints information related to job queue, e.g. queue size, CPU load, emergency mode reason etc. It’s similar in structure to [Performance log](logging.md#performance-log).
+- [Job queue log](../operations/logging.md#job-queue-log) - log that regularly prints information related to job queue, e.g. queue size, CPU load, emergency mode reason etc. It’s similar in structure to [Performance log](logging.md#performance-log).
 - [Performance Log](logging.md#performance-log) - the performance log contains a “jobQueue” column that shows the size of the job queue. This is useful to correlate job queue size to system load, number of running jobs and other performance metrics.
 - `all.log` - if a job is enqueued and started later, then the `all.log` contains 2 entries - one for Submitting the job to the queue, and one for the actual start of the job (shows also duration waited in the queue).
   ![job queue alllog job enqueued](../figures/job-queue-alllog-job-enqueued.png)

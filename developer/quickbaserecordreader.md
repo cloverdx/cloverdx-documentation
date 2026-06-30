@@ -58,7 +58,7 @@ Metadata fields on error port have to have the following structure:
 | Records list |  | The list of record IDs (separated by a semicolon) to be read from the specified database table. These records are read first, before the records specified in the input data. |  |
 
 ![tableID](../figures/tableID.png)
-*Figure 343. Obtaining Table ID*
+*Figure 361. Obtaining Table ID*
 
 #### Details
 

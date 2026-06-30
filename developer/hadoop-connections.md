@@ -5,7 +5,7 @@
 Hadoop connection enables **CloverDX** to interact with the Hadoop distributed file system (HDFS), and to run MapReduce jobs on a Hadoop cluster. Hadoop connections can be created as both internal and external. See sections [Creating internal database connections](database-connections.md#creating-internal-database-connections) and [Creating external (shared) database connections](database-connections.md#creating-external-shared-database-connections) to learn how to create them. The definition process for Hadoop connections is very similar to other connections in **CloverDX**, just select **Create Hadoop connection** instead of **Create DB connection**.
 
 ![HadoopConnDialog](../figures/HadoopConnDialog.png)
-*Figure 259. Hadoop connection dialog*
+*Figure 276. Hadoop connection dialog*
 
 From the Hadoop connection properties, **Connection Name** and **HDFS NameNode Host** are mandatory. Also **Libraries** are almost always required.
 **Connection Name**

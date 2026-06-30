@@ -142,7 +142,7 @@ Spreadsheet mapping editor is the place where you define your mapping and its pr
 To start mapping, fill in the **File URL** and (optionally) **Sheet** attributes with the file (and sheet name) to write into, respectively. After that, edit **Mapping** to open the spreadsheet mapping editor. When you write into a new (empty) spreadsheet, the mapping editor will appear blank like this:
 
 ![SpreadsheetDataWriter mappingEditor](../figures/SpreadsheetDataWriter-mappingEditor.png)
-*Figure 383. Spreadsheet Mapping Editor*
+*Figure 401. Spreadsheet Mapping Editor*
 
 In the editor, you map the input fields on the left hand to the spreadsheet on the right hand. Either use mouse drag’n’drop or the **Map by name**, **Map by order** buttons to create leading cells in the spreadsheet.
 
@@ -181,7 +181,7 @@ A typical example of what you will want to do in **SpreadsheetDataWriter** is wr
    > [!NOTE]
    > Actually, you will achieve the same result if you leave the mapping blank (implicit mapping). In that case, the first row is mapped by order.
    ![SpreadsheetDataWriter basicMapping](../figures/SpreadsheetDataWriter-basicMapping.png)
-   *Figure 384. Explicit mapping of the whole record*
+   *Figure 402. Explicit mapping of the whole record*
 
 ##### Advanced mapping options
 
@@ -213,24 +213,24 @@ Additionally, you can use the spinner ![spinner](../figures/spinner.png) in menu
 > The **arrow** buttons in **Data offsets (global)** only *shift* the data offset property of each cell either up or down. So mixed offsets are retained, just shifted as desired. To *set* all data offsets to a single value, enter the value into the number field of Data offsets (global). Note that if there are some mixed offsets, the value is displayed in gray.
 
 ![SpreadsheetDataWriter offsetsComparison](../figures/SpreadsheetDataWriter-offsetsComparison.png)
-*Figure 385. The difference between global data offsets set to 1 (default) and 3.In the right hand figure, writing would start at row 4 with no data written to rows 2 and 3.*
+*Figure 403. The difference between global data offsets set to 1 (default) and 3.In the right hand figure, writing would start at row 4 with no data written to rows 2 and 3.*
 
 ![SpreadsheetDataReader dataOffset](../figures/SpreadsheetDataReader-dataOffset.png)
-*Figure 386. Global data offsets is set to 1.In the last column, it is locally changed to 4.In the output file, the initial rows of this column would be blank, data would start at D5.*
+*Figure 404. Global data offsets is set to 1.In the last column, it is locally changed to 4.In the output file, the initial rows of this column would be blank, data would start at D5.*
 
 ###### Rows per record
 
 **Rows per record** is a **Global** property specifying a gap between rows. The default value is 1 (i.e. there is no gap). Useful when mapping multiple cells above each other (for a single record) or when you need to print blank rows in between your data. Best imagined if you look at the figure below:
 
 ![SpreadsheetDataWriter rowsPerRecord](../figures/SpreadsheetDataWriter-rowsPerRecord.png)
-*Figure 387. With Rows per record set to 2 in leading cellsName and Address, the component always writes one data row, skips one and then writes again.This way, various data does not get mixed (overwritten by the other one).For a successful output, make sure Data offsets is set to 2.*
+*Figure 405. With Rows per record set to 2 in leading cellsName and Address, the component always writes one data row, skips one and then writes again.This way, various data does not get mixed (overwritten by the other one).For a successful output, make sure Data offsets is set to 2.*
 
 ###### Combination of data offsets and rows per record
 
 Combination of **Data offsets** (global and local) and **Rows per record** – you can put the settings described in preceding bullet points together. See example:
 
 ![SpreadsheetDataReader comboOffsetRowsPerRec](../figures/SpreadsheetDataReader-comboOffsetRowsPerRec.png)
-*Figure 388. Rows per record is set to 3.Data in the first and third column will start in their first row (because of their data offsets being 1).The second and fourth columns have data offsets 2 and 4, respectively.The output will, thus, be formed by 'zig-zagged' cells(the dashed ones – follow them to make sure you understand this concept clearly).*
+*Figure 406. Rows per record is set to 3.Data in the first and third column will start in their first row (because of their data offsets being 1).The second and fourth columns have data offsets 2 and 4, respectively.The output will, thus, be formed by 'zig-zagged' cells(the dashed ones – follow them to make sure you understand this concept clearly).*
 
 ###### Max number of records
 
@@ -256,7 +256,7 @@ Which format is used if both are set?
 - Is **Field with format** not specified or a value of that particular field is empty (null or empty string)? Yes – use **Format** from the metadata field (if set with the `excel:` prefix). See also [Field details](metadata-editor.md#field-details).
 
 You can use the `excel:General` format – either in **Field with format** or in metadata **Format** – the output will be set to general format (Excel terms).
-Example 379. Writing Excel format
+Example 384. Writing Excel format
 Let us have two fields: `fieldValue (integer)` and `fieldFormat (string)` mapped onto cell A1 (one as value, the other as **Field with format**). Imagine these incoming records:
 
 - (100, `"#00,0"`)
@@ -290,7 +290,7 @@ Links can be of several types: **Document**, **Email**, **File** or **URL**.
 Link is created in the **Properties** pane. Map the field with a link text to desired cell, change **Hyperlink type** (in **Properties**) to desired type and select field with target in **Field with hyperlink address**.
 
 Hyperlinks are persisted to a file along with font and style (blue and underline).
-Example 380. Writing hyperlinks
+Example 385. Writing hyperlinks
 Following are examples of proper addresses for all hyperlink types:
 
 - **Document**
@@ -326,7 +326,7 @@ This is where **SpreadsheetDataWriter** template feature comes in handy. The com
 A template can be any Excel file, usually containing three sections: the header, one template row for data and the rest as the footer.
 
 ![SpreadsheetDataWriter template](../figures/SpreadsheetDataWriter-template.png)
-*Figure 389. Writing into a template. Its original content will not be affected,your data will be written into Name, Surname and Age fields.*
+*Figure 407. Writing into a template. Its original content will not be affected,your data will be written into Name, Surname and Age fields.*
 
 Notice the template row. It is a row like any other but in the mapping editor, it is designated as the first row of mapped data. The component duplicates that row each time it writes a new data. This way you can assign arbitrary formatting, colors, etc. on this data row and it is applied to all written rows.
 
@@ -369,7 +369,7 @@ Typically, you will use the `Overwrite in sheet (in-memory)` write mode for all 
 A useful technique is partitioning into individual sheets according to values of a specified key field (or more fields). Thus you can write, for example, data for different countries into different sheets. Simply choose `Country` as the partitioning key. This is done by editing the **Sheet** attribute; switch to **Partition data into sheets by data fields** and select a field (or more fields using Ctrl+click or Shift+click).
 
 ![SpreadsheetDataWriter partition](../figures/SpreadsheetDataWriter-partition.png)
-*Figure 390. Partitioning by one data field*
+*Figure 408. Partitioning by one data field*
 
 You can partition according to more than one field. In that case, output sheet names will be a compound of field names you have selected. **Example:** You have customer orders stored in one CSV file. You would like to separate them into sheets, for example, according to a name of the shop and a city. Use **SpreadsheetDataWriter** in create new file mode while partitioning according to the two fields. It will produce sheets like:
 
@@ -411,7 +411,7 @@ Usually you would use the `Create new file (streaming – XLSX only)` and `Overw
 In complex mappings with many metadata fields, you might want to check if everything has been mapped properly. Whenever during your work in **Spreadsheet Mapping Editor**, switch to the **Summary** tab and observe an overview of leading cells and mappings like this one:
 
 ![SpreadsheetDataWriter summary](../figures/SpreadsheetDataWriter-summary.png)
-*Figure 391. Mapping summary*
+*Figure 409. Mapping summary*
 
 #### Notes and limitations
 

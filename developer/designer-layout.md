@@ -1,11 +1,11 @@
 <!-- Development > Designer user interface > Designer default layout -->
 
-## 2. Designer default layout
+## 3. Designer default layout
 
 The **CloverDX** perspective consists of 5 panes:
 
 ![designer ui 0 0 010](../figures/designer-ui-0-0-010.png)
-*Figure 47. CloverDX perspective*
+*Figure 63. CloverDX perspective*
 
 - **Graph Editor** with **Palette of Components** is in the upper right part of the window.
   In this pane, you can create your graphs. **Palette of Components** serves to select components, move them into the **Graph Editor**, connect them with edges. This pane has two tabs. (See [Graph editor with Palette of Components](designer-layout.md#graph-editor-with-palette-of-components).)
@@ -68,7 +68,7 @@ Expand the **CloverDX** item and choose **Components in Palette**.
 In the window, you will see the categories of components. Expand the category you want and uncheck the checkboxes of the components you want to remove from the palette.
 
 ![designer ui 1 1 030](../figures/designer-ui-1-1-030.png)
-*Figure 48. Removing components from the Palette*
+*Figure 64. Removing components from the Palette*
 
 Then you only need to close and open the graph and the components will be removed from the **Palette**.
 
@@ -115,7 +115,7 @@ When you push and hold down the left mouse button somewhere inside the **Graph E
 If at least two components are selected, six buttons (**Align Left**, **Align Center**, **Align Right**, **Align Top**, **Align Middle** and **Align Bottom**) appear highlighted in the tool bar above the **Graph Editor** or **Project Explorer** panes. (With their help, you can change the position of the selected components.) See below:
 
 ![designer ui 1 1 100](../figures/designer-ui-1-1-100.png)
-*Figure 49. Six new buttons in the Tool Bar appear highlighted (Align middle is shown)*
+*Figure 65. Six new buttons in the Tool Bar appear highlighted (Align middle is shown)*
 
 Alternatively, you can right-click inside the **Graph Editor** and select the **Alignments** item from the context menu. Then, a submenu appears with the same items as mentioned above.
 
@@ -138,7 +138,7 @@ In the **Project Explorer** pane, there is a list of your projects, their subfol
 All graphs of the project are situated in this pane. You can open any of them in the **Graph Editor** by double-clicking the graph item.
 
 ![designer ui 1 2 010](../figures/designer-ui-1-2-010.png)
-*Figure 50. Project Explorer pane*
+*Figure 66. Project Explorer pane*
 > [!NOTE]
 > Compatibility
 > In **5.10.0**, the deprecated **Navigator** pane was replaced with **Project Explorer** in the default **CloverDX** perspective.
@@ -163,10 +163,10 @@ The graph components, edges metadata, database connections or JMS connections, l
 > Activate the **Link with Editor** yellow icon in the top right corner and every time you select a component in the graph editor, **CloverDX** will select it in the **Outline** as well. Although this is convenient for smaller graphs, turning it off for complex graphs prevents the **Outline** from expanding the big list of components repeatedly when you are working in the graph.
 
 ![designer ui 1 3 010](../figures/designer-ui-1-3-010.png)
-*Figure 51. Outline pane*
+*Figure 67. Outline pane*
 
 ![ui dui 0010](../figures/ui_dui_0010.png)
-*Figure 52. Outline pane - Subgraphs*
+*Figure 68. Outline pane - Subgraphs*
 
 #### Outline pane buttons
 
@@ -183,7 +183,7 @@ The **Graph Minimap** is an **Outline** view not displaying the graph elements b
 To switch to the **Graph Minimap** use the second button from the left in the top of the **Outline**.
 
 ![designer ui 1 3 030](../figures/designer-ui-1-3-030.png)
-*Figure 53. Outline pane with minimap*
+*Figure 69. Outline pane with minimap*
 
 You can see a part of some of the example graphs in the **Graph Editor** and the same graph structure in the **Outline** pane. In addition to it, there is a light-blue rectangle in the **Outline** pane. You can see exactly the same part of the graph as you can see in the **Graph Editor** within the light-blue rectangle in the **Outline** pane. By moving this rectangle within the space of the **Outline** pane, you can see the corresponding part of the graph in the **Graph Editor** as it moves along with the rectangle. Both the light-blue rectangle and the graph in the **Graph Editor** move equally.
 
@@ -200,7 +200,7 @@ To switch to the tree representation of the **Outline** pane, you only need to c
 **Show Element IDs** shows or hides element IDs of graph elements (components, metadata, etc.) in **Outline**. Element ID is displayed behind the corresponding element name.
 
 ![outline 30](../figures/outline-30.png)
-*Figure 54. Show element ID enabled*
+*Figure 70. Show element ID enabled*
 
 #### Cleanup unused elements
 
@@ -213,7 +213,7 @@ If you open the dialog, the unused parameters will be preselected. You can desel
 The **Graph Cleanup** dialog contains buttons to **Select all** elements, to **Deselect all** elements and to **Reset to default** selection of elements.
 
 ![cleanup 02](../figures/cleanup_02.png)
-*Figure 55. Graph Cleanup*
+*Figure 71. Graph Cleanup*
 
 #### Locking elements
 
@@ -231,7 +231,7 @@ To lock any of these elements, right click it in **Outline** and click **Lock**.
 Provide a message to be displayed if a locked item is being edited. You can use the default one.
 
 ![locking an element dialog](../figures/locking_an_element_dialog.png)
-*Figure 56. Locking an element - Message dialog*
+*Figure 72. Locking an element - Message dialog*
 > [!NOTE]
 > Lock is not a security tool - anyone can perform unlock and locks are not owned by users.
 
@@ -240,7 +240,7 @@ Provide a message to be displayed if a locked item is being edited. You can use 
 In various places (such as the [Transform Editor](transformations.md#transform-editor)), you are warned if you are accessing a locked element, e.g. modifying locked metadata.
 
 ![metadata lock](../figures/metadata-lock.png)
-*Figure 57. Accessing a locked graph element - you can add any text you like to describe the lock.*
+*Figure 73. Accessing a locked graph element - you can add any text you like to describe the lock.*
 
 ### Tabs pane
 
@@ -260,12 +260,12 @@ In the **Properties** tab, you can view and/or edit the component properties.
 When you click a component, properties (attributes) of the selected component appear in this tab.
 
 ![designer ui 1 4 010](../figures/designer-ui-1-4-010.png)
-*Figure 58. Properties tab*
+*Figure 74. Properties tab*
 
 Note that the best way to edit properties of the component is to double-click the component. A more powerful Edit component dialog will be shown and will allow you to edit settings of your component in more comfortable interface.
 
 ![designer ui 1 4 011 edit component dialog](../figures/designer-ui-1-4-011-edit-component-dialog.png)
-*Figure 59. Edit component dialog.*
+*Figure 75. Edit component dialog.*
 
 #### Console tab
 
@@ -291,7 +291,7 @@ Note that you can also control the buffer of the characters stored in **Console*
 There is another checkbox (**Limit console output**) and two text fields for the buffer of stored characters and the tab width.
 
 ![designer ui 1 4 020](../figures/designer-ui-1-4-020.png)
-*Figure 60. Console Tab*
+*Figure 76. Console Tab*
 
 #### Problems tab
 
@@ -300,14 +300,14 @@ In this tab, you can view error messages, warnings, etc.
 When you expand any of the items, you will see their resources (name of the graph), paths (path to the graph) and location (name of the component).
 
 ![designer ui 1 4 030](../figures/designer-ui-1-4-030.png)
-*Figure 61. Problems tab*
+*Figure 77. Problems tab*
 
 #### Regex Tester tab
 
 In this tab, you can work with [*regular expressions*](language-reference-ctl2.md#regular-expressions).
 
 ![designer ui 1 4 040](../figures/designer-ui-1-4-040.png)
-*Figure 62. Regex Tester tab*
+*Figure 78. Regex Tester tab*
 
 You can paste or type any regular expression into the **Regular expression** text area. Content assistant can be called out by pressing Ctrl+Space in this area.
 
@@ -326,7 +326,7 @@ You have at your disposal a set of checkboxes. Some options are checked by defau
 From the **Regular expression** you can generate CTL code by clicking on the **Generate CTL code** button, the dialog with generated CTL will open and you can copy the CTL from there.
 
 ![designer ui 1 4 050](../figures/designer-ui-1-4-050.png)
-*Figure 63. Generated CTL code*
+*Figure 79. Generated CTL code*
 
 More information about regular expressions and provided options can be found at the following site: [http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html](http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 
@@ -335,7 +335,7 @@ More information about regular expressions and provided options can be found at 
 **Execution tab** displays details of execution of a graph and its subgraphs. You can connect to **CloverDX Server** and see details of the graph run. See [Connecting to a running job](running-graphs.md#connecting-to-a-running-job).
 
 ![execution tab 01](../figures/execution-tab-01.png)
-*Figure 64. Execution tab of a graph running on CloverDX Designer*
+*Figure 80. Execution tab of a graph running on CloverDX Designer*
 
 #### Execution label
 

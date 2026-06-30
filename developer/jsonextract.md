@@ -119,12 +119,12 @@ In this sample JSON file there are two elements called `id`: the first one is a 
 ```
 
 ![JSONExtract example nested elements json file](../figures/JSONExtract-example-nested-elements-json-file.png)
-*Figure 337. JSON structure and values*
+*Figure 355. JSON structure and values*
 
 **Example 1:** The mapping is at the level of the main `result` element, and the **Automap elements or attributes to fields with same name** option is turned on, or the `id` (resultID) is specifically mapped.
 
 ![JSONExtract example1 nested nodes mapping](../figures/JSONExtract-example1-nested-nodes-mapping.png)
-*Figure 338. Mapping 1*
+*Figure 356. Mapping 1*
 
 The value of the `id` element will differ based on if the *Use nested nodes* value is set to `True` or `False`:
 
@@ -134,7 +134,7 @@ The value of the `id` element will differ based on if the *Use nested nodes* val
 **Example 2:** The mapping is at the `id` element nested within the `result` element.
 
 ![JSONExtract example2 nested nodes mapping](../figures/JSONExtract-example2-nested-nodes-mapping.png)
-*Figure 339. Mapping 2*
+*Figure 357. Mapping 2*
 
 The returned values of the `id` element will again differ based on if the *Use nested nodes* value is set to `True` or `False`:
 
@@ -165,7 +165,7 @@ Read data for further processing.
 Use the **File URL** attribute to point to the source file and the **Mapping** attribute to define mapping.
 
 ![JSONExtract example 01](../figures/JSONExtract-example-01.png)
-*Figure 340. JSONExtract - mapping the list*
+*Figure 358. JSONExtract - mapping the list*
 
 ##### Reading variants
 
@@ -191,7 +191,7 @@ Read data for further processing.
 Use the **File URL** attribute to point to the source file and the **Mapping** attribute to define mapping.
 
 ![JSONExtract example 02](../figures/JSONExtract-example-02.png)
-*Figure 341. JSONExtract - mapping the variant*
+*Figure 359. JSONExtract - mapping the variant*
 
 Content of mapped output variant field depends on structure of input JSON.
 

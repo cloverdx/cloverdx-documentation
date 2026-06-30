@@ -1,6 +1,6 @@
 <!-- Development > Component reference > AI Components -->
 
-## 38. AI Components
+## 39. AI Components
 
 | [Common properties of AI components](common-of-ai-components.md) |
 | --- |

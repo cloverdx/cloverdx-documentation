@@ -160,14 +160,14 @@ Use the **Incremental key** and **Incremental file** attributes.
 After the first read, the output file contains five records.
 
 ![flatfilereader incremental read1](../figures/flatfilereader_incremental_read1.png)
-*Figure 335. Incremental reading - first read*
+*Figure 353. Incremental reading - first read*
 
 Now, add a new record to the file, for example:
 2018-03-01 00:51:31|Nathalie|Mangram and run the graph again.
 This time, only the new record is written to the output file, ignoring the previously processed records.
 
 ![flatfilereader incremental read2](../figures/flatfilereader_incremental_read2.png)
-*Figure 336. Incremental reading - second read*
+*Figure 354. Incremental reading - second read*
 
 #### Best practices
 

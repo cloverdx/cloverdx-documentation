@@ -1,6 +1,6 @@
 <!-- Development > Designer user interface > Keyboard shortcuts -->
 
-## 3. Keyboard shortcuts
+## 4. Keyboard shortcuts
 
 Access to the frequently used dialogs can be sped up using keyboard shortcuts - see the list below. The list does not contain well known shortcuts not related to **CloverDX Designer** (e.g. Ctrl+C, etc.).
 

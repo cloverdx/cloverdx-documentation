@@ -59,7 +59,7 @@ The basic pattern for reading data from Data Manager is to use **TransactionalDa
 As an example, a simple job pulling data from the Data Manager may look like this:
 
 ![datasetreader basic usage graph](../figures/datasetreader-basic-usage-graph.png)
-*Figure 354. A simple job that reads data from Data Manager, loads the records to the data warehouse and then informs the Data Manager that those records have been fully processed.*
+*Figure 372. A simple job that reads data from Data Manager, loads the records to the data warehouse and then informs the Data Manager that those records have been fully processed.*
 
 **TransactionalDataSetReader** must be used together with **TransactionalDataSetCommit** component to mark the records processed with the reader as Committed. If this is not done, the records will stay in *Approved* status and will never be purged from the Data Manager.
 

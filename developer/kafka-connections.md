@@ -27,7 +27,7 @@ Save the connection and it can be used in the graph components.
 Connection properties on the **Basic** tab are mandatory.
 
 ![kafka connection basic](../figures/kafka-connection-basic.png)
-*Figure 260. Kafka connection dialog - Basic tab*
+*Figure 277. Kafka connection dialog - Basic tab*
 **Connection name**
 A name for this connection.
 
@@ -46,7 +46,7 @@ The connection can be validated using the **Validate connection** button. When w
 Properties on the **SSL/TLS** tab allow you to use SSL for traffic enpcyption as well as for authentication.
 
 ![kafka connection ssl](../figures/kafka-connection-ssl.png)
-*Figure 261. Kafka connection dialog - SSL/TLS tab*
+*Figure 278. Kafka connection dialog - SSL/TLS tab*
 **Use SSL/TLS**
 Enables the use of SSL/TLS for encryption and optionally also for client authentication.
 
@@ -81,7 +81,7 @@ Corresponds to setting `ssl.endpoint.identification.algorithm` to an empty strin
 Properties on the **SASL** tab allow you to use SASL authentication mechanisms. Kafka uses the Java Authentication and Authorization Service (JAAS) for SASL configuration.
 
 ![kafka connection sasl](../figures/kafka-connection-sasl.png)
-*Figure 262. Kafka connection dialog - SASL tab*
+*Figure 279. Kafka connection dialog - SASL tab*
 **SASL mechanism**
 SASL mechanism used for the connection. Can be used by itself or in combination with SSL/TLS.
 
@@ -102,7 +102,7 @@ Any property set by configuration on previous tabs can be also overridden here.
 Consumer properties defined on **KafkaReader** components (attribute **Consumer configuration**) have a higher priority over properties defined in the connection.
 
 ![kafka connection consumer](../figures/kafka-connection-consumer.png)
-*Figure 263. Kafka connection dialog - Consumer tab*
+*Figure 280. Kafka connection dialog - Consumer tab*
 
 ##### Producer
 
@@ -113,7 +113,7 @@ Any property set by configuration on previous tabs can be also overridden here.
 Producer properties defined on **KafkaWriter** components (attribute **Producer configuration**) have a higher priority over properties defined in the connection.
 
 ![kafka connection producer](../figures/kafka-connection-producer.png)
-*Figure 264. Kafka connection dialog - Producer tab*
+*Figure 281. Kafka connection dialog - Producer tab*
 
 #### Details
 

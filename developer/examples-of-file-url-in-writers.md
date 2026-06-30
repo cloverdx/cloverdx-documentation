@@ -10,8 +10,8 @@ The URL shown below can also contain placeholders – a dollar sign or hash sign
 >
 > - **Dollar sign** should be used when each of multiple output files contains only a specified number of records based on the **Records per file** attribute.
 > - **Hash sign** should be used when each of multiple output files only contains records corresponding to the value of specified **Partition key**.
->   **Note:** hash signs in URL examples in this section serve to separate a compressed file (`zip`, `gz`) from its contents. These are **not** placeholders.
->   To ensure graph portability, forward slashes must be used when defining the path in URLs (even on Microsoft Windows).
+>
+> To ensure graph portability, forward slashes must be used when defining the path in URLs (even on Microsoft Windows).
 
 Below are examples of possible URLs for **Writers**:
 
@@ -63,8 +63,6 @@ Below are examples of possible URLs for **Writers**:
   See [Amazon S3 URL](common-dialogs.md#amazon-s3-specific-url).
   It is recommended to connect to S3 via a *region-specific* S3 URL: `s3://s3.eu-central-1.amazonaws.com/bucket.name/`. A region-specific URL have much better performance than a generic one (`s3://s3.amazonaws.com/bucket.name/`).
   See recommendation on [Amazon S3 URL](common-dialogs.md#amazon-s3-specific-url).
-  > [!NOTE]
-  > s3:// URL protocol is available since **CloverETL 4.1**. More information about the deprecated http:// S3 protocol can be found in CloverDX 4.0 User Guide.
 - `az-blob://account:account_key@account.blob.core.windows.net/containername/path/filename.txt`
   Writes to `path/filename.out` object located in the Azure Blob Storage service in the specified container.
   Connects using the specified Account Key. See [Azure Blob Storage](common-dialogs.md#azure-blob-storage) for other authentication options.

@@ -21,7 +21,7 @@ Each transformation can always be written in Java, majority of transformation ca
 
 For a table overview of components that allow or require a transformation, see [Transformations overview](transformations.md#transformations-overview).
 
-For details about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part6.md).
+For details about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part5.md).
 
 For more detailed information about transformations, see [Defining transformations](transformations.md#defining-transformations).
 
@@ -199,7 +199,7 @@ Any of these values means that a fatal error occurred and the user decides if th
 To define what should be done with the record, click the **Error actions** attribute row, click the button that appears and specify the actions in the following dialog. By clicking the **Plus sign** button, you add rows to this dialog pane. Select STOP or CONTINUE in the **Error action** column. Type an integer number to the **Error code** column. Leaving `MIN_INT` value in the left column means that the action will be applied to all other integer values that have not been specified explicitly in this dialog.
 
 ![transformation 01](../figures/transformation_01.png)
-*Figure 129. Define Error actions dialog*
+*Figure 145. Define Error actions dialog*
 
 The **Error actions** attribute has a form of a sequence of assignments (`errorCode=someAction`) each separated by a semicolon.
 
@@ -225,7 +225,7 @@ In this attribute, you can specify whether the error messages should be written 
 When you open the **Transform editor**, you can see the following tabs: **Transformations**, **Source** and **Regex tester**.
 
 ![transformation 02](../figures/transformation_02.png)
-*Figure 130. Transformations tab of the transform editor*
+*Figure 146. Transformations tab of the transform editor*
 
 To use the transform editor you should have both input and output metadata defined and assigned. Only with metadata you define the desired mapping in comfortable way.
 
@@ -285,7 +285,7 @@ If you defined the output metadata using this **Transform editor**, you would be
 If you select any item in the left, middle or right pane, corresponding items will be connected by lines. See example below:
 
 ![transformation 05](../figures/transformation_05.png)
-*Figure 131. Mapping of inputs to outputs (connecting lines)*
+*Figure 147. Mapping of inputs to outputs (connecting lines)*
 
 ###### Expression editor
 
@@ -295,14 +295,14 @@ You can write the desired transformation:
 - By clicking the '…​' button which appears after selecting a row inside the **Transformations** pane. This opens an editor for defining the transformation. It contains a list of fields, functions and operators and also provides hints. See below:
 
 ![transformation 06](../figures/transformation_06.png)
-*Figure 132. Editor with fields and functions*
+*Figure 148. Editor with fields and functions*
 
 ###### Wildcard mapping
 
 Transform editor supports wildcards in mapping. If you right click a record or one of its fields, click **Map record to** and select a record, you will produce a transformation like this (as observed in the **Source** tab): `$out.0.* = $in.1.*;`, meaning "all output fields of record number 0 are mapped to all input fields of record number 1". In **Transformations**, wildcard mapping looks like this:
 
 ![transformeditor wildcard](../figures/transformeditor-wildcard.png)
-*Figure 133. Input record mapped to output record using wildcards*
+*Figure 149. Input record mapped to output record using wildcards*
 
 ##### Source tab
 
@@ -312,12 +312,12 @@ Transform editor supports wildcards in mapping. If you right click a record or o
 | [Content assist](transformations.md#content-assist) |
 | [Convert to Java](transformations.md#convert-to-java) |
 
-Some of your transformations may be too complex to be defined in the **Transformations** tab. You can use the **Source** tab instead. The transformation is written in **CloverDX** Transformation Language ([*CTL2*](part6.md)).
+Some of your transformations may be too complex to be defined in the **Transformations** tab. You can use the **Source** tab instead. The transformation is written in **CloverDX** Transformation Language ([*CTL2*](part5.md)).
 
 Next figure displays **Source** tab with the transformation defined in text above.
 
 ![transformation 04](../figures/transformation_04.png)
-*Figure 134. Transformation definition in CTL (Source tab)*
+*Figure 150. Transformation definition in CTL (Source tab)*
 
 There are some useful keyboard shortcuts available while editing transformation in **Source** tab:
 
@@ -333,12 +333,12 @@ In the upper right corner of either tab, there are three buttons: for launching 
 If you want to create a new Java transform class, press the **Java Transform Wizard** button. The following dialog will open:
 
 ![JavaTransformWizard](../figures/JavaTransformWizard.png)
-*Figure 135. Java Transform Wizard dialog*
+*Figure 151. Java Transform Wizard dialog*
 
 After you click the **Finish** button, information about the transform result appears.
 
 ![transformation 07](../figures/transformation_07.png)
-*Figure 136. Info after Java Transform Wizard dialog*
+*Figure 152. Info after Java Transform Wizard dialog*
 
 The **Source folder** field will be mapped to the project `${TRANS_DIR}`, for example `SimpleExamples/trans`. A new transform class can be created by entering the **Name** of the class and, optionally, the containing **Package** and pressing the **Finish** button. The newly created class will be located in the **Source folder**.
 
@@ -347,12 +347,12 @@ The **Source folder** field will be mapped to the project `${TRANS_DIR}`, for ex
 If you click the **Open tab**, the second button in the upper right corner of the **Transform editor**, a new tab with the CTL source code of the transformation will be opened in the **Graph Editor** with a notification as shown below:
 
 ![transformation 08](../figures/transformation_08.png)
-*Figure 137. Confirmation message*
+*Figure 153. Confirmation message*
 
 The new tab is opened at the same level as Graph and Source.
 
 ![transformation 09](../figures/transformation_09.png)
-*Figure 138. Transformation definition in CTL (Transform tab of the Graph editor)*
+*Figure 154. Transformation definition in CTL (Transform tab of the Graph editor)*
 
 If you switch to this tab, you can view the declared variables and functions in the **Outline** pane.
 
@@ -369,12 +369,12 @@ Content assist is made active by pressing Ctrl+Space.
 If you press these two keys inside any of the expressions, the help advises what should be written to define the transformation.
 
 ![transformation 12](../figures/transformation_12.png)
-*Figure 139. Content assist (Record and field names)*
+*Figure 155. Content assist (Record and field names)*
 
 If you press these two keys outside any of the expressions, the help offers a list of functions that can be used to define the transformation.
 
 ![transformation 13](../figures/transformation_13.png)
-*Figure 140. Content assist (List of CTL functions)*
+*Figure 156. Content assist (List of CTL functions)*
 
 If you have an error in your definition, a red circle with a white cross appears on the corresponding line followed by a more detailed information at the lower left corner.
 
@@ -383,7 +383,7 @@ If you have an error in your definition, a red circle with a white cross appears
 If you want to convert the transformation code into the Java language, click the **Convert to Java** button.
 
 ![transformation 10](../figures/transformation_10.png)
-*Figure 141. Transformation definition in Java*
+*Figure 157. Transformation definition in Java*
 
 Remember also that you can define your own error messages by defining the last function: `getMessage()`. It returns strings that are written to console. More details about transformations in each component can be found in the sections in which these components are described.
 > [!IMPORTANT]
@@ -431,7 +431,7 @@ Open **Window** > **Preferences**.
 In **CloverDX** > **CloverDX Runtime**, tick **Enable Java debug on port**
 
 ![java debugging 010 010](../figures/java-debugging-010-010.png)
-*Figure 142. Enabling Java transformation debugging*
+*Figure 158. Enabling Java transformation debugging*
 
 Click **OK**. You will be asked to restart CloverDX Runtime. Select **Yes** to restart it.
 

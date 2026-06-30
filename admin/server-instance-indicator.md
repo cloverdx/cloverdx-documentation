@@ -7,4 +7,4 @@ Instance Indicator is a small area located in the upper left corner of the GUI t
 Instance Indicator is shown only when either [webGui.instance.color](list-of-properties.md#webgui-instance-color) or [webGui.instance.label](list-of-properties.md#webgui-instance-label) is set.
 
 ![instance indicator](../figures/instance-indicator.png)
-*Figure 140. Instance Indicator*
+*Figure 141. Instance Indicator*

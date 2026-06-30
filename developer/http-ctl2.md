@@ -4,10 +4,12 @@
 
 #### List of functions
 
-| [addResponseHeader](http-ctl2.html#id_ctl2_addresponseheader) |
+| [addDataSetReloadNotification](http-ctl2.html#id_ctl2_adddatasetreloadnotification) |
 | --- |
+| [addResponseHeader](http-ctl2.html#id_ctl2_addresponseheader) |
 | [containsResponseHeader](http-ctl2.html#id_ctl2_containsresponseheader) |
 | [getRequestBody](http-ctl2.html#id_ctl2_getrequestbody) |
+| [getRequestCertificateProperties](http-ctl2.html#id_ctl2_getrequestcertificateproperties) |
 | [getRequestClientIPAddress](http-ctl2.html#id_ctl2_getrequestclientipaddress) |
 | [getRequestContentType](http-ctl2.html#id_ctl2_getrequestcontenttype) |
 | [getRequestEncoding](http-ctl2.html#id_ctl2_getrequestencoding) |
@@ -30,6 +32,39 @@
 
 Functions from Data Service HTTP Library are available in context of [Data API](data-service.md) jobs.
 
+#### addDataSetReloadNotification
+
+```ctl
+void addDataSetReloadNotification(string dataSetCode);
+void addDataSetReloadNotification(string[] dataSetCodes);
+```
+
+The `addDataSetReloadNotification` function adds data set codes to the `X-Clover-Refresh-Data-Set-Code` response header. When a Data App modifies a data set and returns this header, the Data Manager notifies the user to reload the affected data sets.
+
+The `dataSetCode` parameter is the code of a single data set to add to the reload notification. Null or empty values will result in an error. Adding the same data set code more than once has no effect; the order of codes does not matter.
+
+The `dataSetCodes` parameter is a list of data set codes to add to the reload notification. If `dataSetCodes` is null, an error is raised. An empty list is valid — it adds nothing to the header. Adding the same data set code more than once (whether within a single call or across multiple calls) has no effect.
+
+**Compatibility**
+
+The `addDataSetReloadNotification(string)` and `addDataSetReloadNotification(string[])` functions are available since **CloverDX 7.5.0**.
+Example 342. Usage of addDataSetReloadNotification
+After updating data in the `myDataSet` data set, call:
+
+```ctl
+addDataSetReloadNotification("myDataSet");
+```
+
+to notify the Data Manager to suggest a data reload to the user.
+
+To notify about multiple data sets at once:
+
+```ctl
+addDataSetReloadNotification(["salesData", "inventoryData"]);
+```
+
+**See also:**[setResponseHeader](http-ctl2.html#id_ctl2_setresponseheader), [addResponseHeader](http-ctl2.html#id_ctl2_addresponseheader)
+
 #### addResponseHeader
 
 ```ctl
@@ -47,7 +82,7 @@ The `value` parameter is a value of the header field. If `value` is empty string
 **Compatibility**
 
 The `addResponseHeader(string,string)` function is available since **CloverETL 4.7.0-M1**.
-Example 339. Usage of addResponseHeader
+Example 343. Usage of addResponseHeader
 The `addResponseHeader("Content-Language", "fr")` adds an HTTP header field `Content-Language` with value `fr`
 
 ```ctl
@@ -77,7 +112,7 @@ The `headerField` parameter is a name of HTTP header field.
 **Compatibility**
 
 The `containsResponseHeader(string)` function is available since **CloverETL 4.7.0-M1**.
-Example 340. Usage of containsResponseHeader
+Example 344. Usage of containsResponseHeader
 There is no `Content-Language` header. The `containsResponseHeader("Content-Language")` returns `false`.
 
  
@@ -106,7 +141,7 @@ The `getRequestBody()` function returns the request body.
 **Compatibility**
 
 The `getRequestBody()` function is available since **CloverETL 4.7.0-M1**.
-Example 341. Usage of getRequestBody
+Example 345. Usage of getRequestBody
 If you query the data service with
 
 ```ctl
@@ -122,6 +157,33 @@ the `getRequestBody()` returns *Once upon a time*.
 
 **See also:**[getRequestEncoding](http-ctl2.html#id_ctl2_getrequestencoding)
 
+#### getRequestCertificateProperties
+
+```ctl
+map[string,string] getRequestCertificateProperties();
+```
+
+The `getRequestCertificateProperties()` function returns information about client certificate.
+Compatibility
+The `getRequestCertificateProperties()` function is available since **CloverETL 7.5-M1**.
+
+**See also:**[getRequestClientIPAddress](http-ctl2.html#id_ctl2_getrequestclientipaddress)
+Example 346. Usage of getRequestCertificateProperties If a CloverDX Server is configured to require client certificate the `getRequestCertificateProperties()` returns map containing certificate properties.
+
+```
+{
+  "commonName" : "MyUser",
+  "organization" : "MyOrganization",
+  "organizationalUnit" : "MyTeam",
+  "issuer" : "CN=MyUser,OU=MyTeam,O=MyOrganization,L=MyCity,ST=MyCountry,C=US",
+  "serialNumber" : "9**************c",
+  "validFrom" : "2026-05-14 15:12:44",
+  "validTo" : "2026-08-12 15:12:44",
+  "sha1" : "F2:BA:F9:46:6C:F1:BB:...",
+  "sha256" : "D9:A4:B9:4B:1D:71:2E..."
+}
+```
+
 #### getRequestClientIPAddress
 
 ```ctl
@@ -131,7 +193,7 @@ string getRequestClientIPAddress();
 The `getRequestClientIPAddress()` function returns the IP address of client performing the request.
 Compatibility
 The `getRequestClientIPAddress()` function is available since **CloverETL 4.7.0-M1**.
-Example 342. Usage of getRequestClientIPAddress If you run the CloverDX Server locally, the `getRequestClientIPAddress()` returns IP address corresponding to localhost: `"127.0.0.1"` or `"0:0:0:0:0:0:0:1"`.
+Example 347. Usage of getRequestClientIPAddress If you run the CloverDX Server locally, the `getRequestClientIPAddress()` returns IP address corresponding to localhost: `"127.0.0.1"` or `"0:0:0:0:0:0:0:1"`.
 **See also:**[getRequestBody](http-ctl2.html#id_ctl2_getrequestbody)
 
 #### getRequestContentType
@@ -145,7 +207,7 @@ The `getRequestContentType()` function returns the content type.
 **Compatibility**
 
 The `getRequestContentType()` function is available since **CloverETL 4.7.0-M1**.
-Example 343. Usage of getRequestContentType
+Example 348. Usage of getRequestContentType
 If you query the data service API with
 
 ```ctl
@@ -174,7 +236,7 @@ If the header does not exist, the function returns `null`.
 **Compatibility**
 
 The `getRequestEncoding()` function is available since **CloverETL 4.7.0-M1**.
-Example 344. Usage of getRequestEncoding
+Example 349. Usage of getRequestEncoding
 If you query the data with
 
 ```ctl
@@ -204,7 +266,7 @@ If the header field does not exist, the function returns `null`.
 **Compatibility**
 
 The function `getRequestHeader(string)` is available since **CloverETL 4.7.0-M1**.
-Example 345. Usage of getRequestHeader
+Example 350. Usage of getRequestHeader
 If you query the service with
 
 ```ctl
@@ -230,7 +292,7 @@ The `getRequestHeaderNames()` function returns names of request header fields.
 **Compatibility**
 
 The function `getRequestHeaderNames()` was introduced in **CloverETL 4.7.0-M1**.
-Example 346. Usage of getRequestHeaderNames
+Example 351. Usage of getRequestHeaderNames
 If the data service receives
 
 ```
@@ -263,7 +325,7 @@ The `param` parameter is *header field name*.
 **Compatibility**
 
 The function `getRequestHeaders()` is available since **CloverETL 4.7.0-M1**.
-Example 347. Usage of getRequestHeaders
+Example 352. Usage of getRequestHeaders
 If you query the data service with>
 
 ```ctl
@@ -294,7 +356,7 @@ The `getRequestMethod()` function returns the HTTP method: GET, POST, PUT, PATCH
 **Compatibility**
 
 The function `getRequestMethod()` was introduced in **CloverETL 4.7.0-M1**.
-Example 348. Usage of getRequestMethod
+Example 353. Usage of getRequestMethod
 If you query the data service with:
 
 ```ctl
@@ -320,7 +382,7 @@ The `param` parameter is the parameter name.
 **Compatibility**
 
 The function `getRequestParameters()` was introduced in **CloverETL 4.7.0-M1**.
-Example 349. Usage of getRequestParameter
+Example 354. Usage of getRequestParameter
 If you query the data service with:
 
 ```ctl
@@ -368,7 +430,7 @@ The `getRequestParameterNames()` function returns names of GET or POST parameter
 **Compatibility**
 
 The function `getRequestParameternames()` was introduced in **CloverETL 4.7.0-M1**.
-Example 350. Usage of getRequestParameterNames
+Example 355. Usage of getRequestParameterNames
 If you query the data service with:
 
 ```ctl
@@ -419,7 +481,7 @@ The `name` parameter is name of the parameter.
 **Compatibility**
 
 The function `getRequestParameters()` was introduced in **CloverETL 4.7.0-M1**.
-Example 351. Usage of getRequestParameters
+Example 356. Usage of getRequestParameters
 If you query data service with:
 
 ```ctl
@@ -448,7 +510,7 @@ The `paramName` parameter is name of HTML input field containing the file.
 **Compatibility**
 
 The function `getRequestPartFileName(string)` is available since **CloverETL 4.7.0-M1**.
-Example 352. Usage of getRequestPartFilename
+Example 357. Usage of getRequestPartFilename
 If you query the web service with:
 
 ```ctl
@@ -470,7 +532,7 @@ The `getResponseContentType()` function retuns response content type - the value
 **Compatibility**
 
 The function `getResponseContentType()` is available since **CloverETL 4.7.0-M1**.
-Example 353. Usage of getResponseContentType The `getResponseContentType()` returns for example `application/json`.
+Example 358. Usage of getResponseContentType The `getResponseContentType()` returns for example `application/json`.
 [getRequestContentType](http-ctl2.html#id_ctl2_getrequestcontenttype), [setResponseContentType](http-ctl2.html#id_ctl2_setresponsecontenttype)
 
 #### getResponseEncoding
@@ -484,7 +546,7 @@ The `getResponseEncoding()` function returns the response encoding.
 **Compatibility**
 
 The function `getResponseEncoding()` is available since **CloverETL 4.7.0-M1**.
-Example 354. Usage of getResponseEncoding E.g. the `getResponseEncoding()` returns `iso-8859-1`.
+Example 359. Usage of getResponseEncoding E.g. the `getResponseEncoding()` returns `iso-8859-1`.
 **See also:**[getRequestEncoding](http-ctl2.html#id_ctl2_getrequestencoding), [setResponseEncoding](http-ctl2.html#id_ctl2_setresponseencoding)
 
 #### setRequestEncoding
@@ -500,7 +562,7 @@ The `encoding` parameter is encoding.
 **Compatibility**
 
 The function `setRequestEncoding(string)` is available since **CloverETL 4.7.0-M1**.
-Example 355. Usage of setRequestEncoding
+Example 360. Usage of setRequestEncoding
 The `setRequestEncoding("utf-8")` sets request encoding to UTF-8.
 
 The `setRequestEncoding("iso-8859-2")` sets request encoding to latin2.
@@ -524,7 +586,7 @@ If you try to create response body with `setResponsebody()` function and with wr
 **Compatibility**
 
 The function `setResponseBody(string)` is available since **CloverETL 4.7.0-M1**.
-Example 356. Usage of getResponseBody The `setResponseBody("The response")` sets the response body.
+Example 361. Usage of getResponseBody The `setResponseBody("The response")` sets the response body.
 **See also:**[setResponseEncoding](http-ctl2.html#id_ctl2_setresponseencoding)
 
 #### setResponseContentType
@@ -540,7 +602,7 @@ The `contentType` parameter is the value of `Content-Type` response header field
 **Compatibility**
 
 The function `setResponseContentType(string)` is available since **CloverETL 4.7.0-M1**.
-Example 357. Usage of setResponseContentType`setResponseContentType("text/plain");`
+Example 362. Usage of setResponseContentType`setResponseContentType("text/plain");`
 [setResponseBody](http-ctl2.html#id_ctl2_setresponsebody), [getResponseContentType](http-ctl2.html#id_ctl2_getresponsecontenttype)
 
 #### setResponseEncoding
@@ -556,7 +618,7 @@ The `encoding` parameter is the response body encoding.
 **Compatibility**
 
 The function `setResponseEncoding(string)` is available since **CloverETL 4.7.0-M1**.
-Example 358. Usage of setResponseEncoding The `setResponseEncoding("UTF-8");` sets response body encoding to *UTF-8*.
+Example 363. Usage of setResponseEncoding The `setResponseEncoding("UTF-8");` sets response body encoding to *UTF-8*.
 **See also:**[getResponseEncoding](http-ctl2.html#id_ctl2_getresponseencoding), [setResponseBody](http-ctl2.html#id_ctl2_setresponsebody)
 
 #### setResponseHeader
@@ -574,7 +636,7 @@ The `value` parameter is HTTP header field value.
 **Compatibility**
 
 The function `setResponseHeader(string,string)` is available since **CloverETL 4.7.0-M1**.
-Example 359. Usage of setResponseHeader`setResponseHeader("Server", "BOA")`
+Example 364. Usage of setResponseHeader`setResponseHeader("Server", "BOA")`
 **See also:**[addResponseHeader](http-ctl2.html#id_ctl2_addresponseheader)
 
 #### setResponseStatus
@@ -593,7 +655,7 @@ The `message` parameter is a message.
 **Compatibility**
 
 The `setResponseStatus(string,string)` is availables since **CloverETL 4.7.0-M1**.
-Example 360. Usage of setResponseStatus
+Example 365. Usage of setResponseStatus
 The `setResponseStatus(403)` sets the response status to 403.
 
  

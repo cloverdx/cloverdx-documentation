@@ -2,7 +2,7 @@
 
 ##### Validate with formula
 
-The **Validate with formula** step allows you to validate values in a column based on result of validation formula. If the validation formula returns true, the value is considered valid. Otherwise, the value is considered invalid, and the step allows you to configure a custom error message that will be reported in the data preview.
+The **Validate with formula** step allows you to validate values in a column based on result of validation formula. If the validation formula returns `true`, the value is considered valid. Otherwise, the value is considered invalid, and the step allows you to configure a custom error message that will be reported in the data preview.
 
 Rows with these errors are automatically rejected and included in the reject file when running the job. See [Job Run Details](transforming-data.md#job-run-details) for more information on reject files, and refer to [fixing errors](transforming-data.md#fixing-errors) for our recommendations on how to deal with data errors.
 
@@ -18,7 +18,7 @@ The *Validate with formula* step works by evaluating the validation formula for 
 The values are considered invalid if the formula returned `false`. In such case, values from all columns that are referenced in the formula will be marked as invalid.
 
 ![step validate with formula](../figures/step-validate-with-formula.png)
-*Figure 106. Simple configuration to validate that last name is at least 1 character long.*
+*Figure 107. Simple configuration to validate that last name is at least 1 character long.*
 
 See below for additional examples of how to use the step to validate your data in common situations.
 

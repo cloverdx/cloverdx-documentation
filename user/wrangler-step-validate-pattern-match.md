@@ -2,7 +2,7 @@
 
 ##### Validate pattern match
 
-The **Validate pattern match** allows you to validate values in a string column using a pattern defined by a regular expression. You can read more about regular expressions in CloverDX [here](../developer/regular-expressions.md#regular-expressions).
+The **Validate pattern match** allows you to validate values in a string column using a pattern defined by a regular expression. You can read more about regular expressions in CloverDX [here](../developer/language-reference-ctl2.md#regular-expressions).
 
 All values that fail the validation are marked as errors in the data set to easily identify them in the data preview. Rows with these errors are automatically rejected and included in the reject file when running the job. See [Job Run Details](transforming-data.md#job-run-details) for more information on reject files, and refer to [fixing errors](transforming-data.md#fixing-errors) for our recommendations on how to deal with data errors.
 
@@ -43,5 +43,5 @@ Note that when using regular expressions, you might be tempted to write regular 
 ###### See also
 
 - [Validation steps](wrangler-validation-steps.md)
-- [Regular expressions in CloverDX](../developer/id_regular_expressions.md)
+- [Regular expressions in CloverDX](../developer/language-reference-ctl2.md#regular-expressions)
 - [Validator component in CloverDX Designer](../developer/validator.md)

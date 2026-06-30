@@ -311,7 +311,7 @@ will be performed automatically (i.e. you do not write the mapping code above).
   ```
   Notice the usage of [dot in mapping](xmlextract.md#usage-of-dot-in-mapping). This is the only mapping which produces results you expect, i.e. on port 1:
   ![JSONReader nestedArrayOut](../figures/JSONReader-nestedArrayOut.png)
-  *Figure 342. Example mapping of nested arrays - the result.*
+  *Figure 360. Example mapping of nested arrays - the result.*
 - Null and empty elements in arrays - in [Example mapping of nested arrays - the result.](jsonreader.md#fig-jsonreader-arrays), you could notice that an empty string inside an array (i.e. `[""]`) populates a field with an empty string (record 4 in the figure).
   Null values (i.e. `[]`), on the other hand, are completely skipped. **JSONReader** treats them as if they were not in the source.
 

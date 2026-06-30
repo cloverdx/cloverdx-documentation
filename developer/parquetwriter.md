@@ -86,7 +86,7 @@ The component attribute **Parquet schema** can be used for customization of Clov
 In this dialog, you can see all the metadata fields, their types and a target **Parquet type**. This is an abstraction above Parquet primitive and logical types (as described in [Apache Parquet documentation](https://parquet.apache.org/docs/)). The mapping of Parquet types to primitive and logical types is described in table [Parquet Types](parquetwriter.md#parquet-types-table). The **Parquet type** selection offers only those types compatible with the specific CloverDX field data type.
 
 ![parquetwriter schema](../figures/parquetwriter-schema.png)
-*Figure 380. Parquet file schema dialog*
+*Figure 398. Parquet file schema dialog*
 
 The implicit auto-mapped types are shown in grey italic font, in contrast to manually mapped types, shown in black. If the metadata contains a field with an unsupported data type (e.g. a map), it is shown as *Unsupported* also in the mapping dialog and the Parquet type selection is disabled. For Integer Parquet type, the dialog shows the bit width also in the main table for quick overview.
 

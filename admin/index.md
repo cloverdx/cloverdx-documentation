@@ -13,7 +13,7 @@ This section is intended for administrators and technical staff who are responsi
 
 ---
 
-*This guide refers to CloverDX 7.4.2 release.*
+*This guide refers to CloverDX 7.5.0 release.*
 
 *Copyright © 2010-2026 CloverDX a.s. All rights reserved.*
 

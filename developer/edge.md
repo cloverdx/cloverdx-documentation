@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Edges -->
 
-## 22. Edges
+## 23. Edges
 
 This chapter presents an overview of edges. It describes their purpose, how they can be connected to components of a graph, how metadata can be assigned to them and propagated through them, how edges can be debugged and how data flowing through edges can be analyzed.
 
@@ -102,7 +102,7 @@ You can also select metadata to be automatically assigned to edges as you create
 - When you click any metadata item in the **Outline** pane, all edges with the selected metadata become blue.
 - If you click an edge in the **Graph Editor**, the selected edge becomes black and all of the other edges with the same metadata become blue. (In this case, metadata are shown in the edge tooltip as well.)
   ![300360B](../figures/300360B.png)
-  *Figure 203. Metadata in the Tooltip*
+  *Figure 220. Metadata in the Tooltip*
 
 ### Edge memory allocation
 
@@ -163,7 +163,7 @@ By default, debugging is **enabled** on all edges.
 There are several debugging options for each edge. Right-click on the edge and select the **Debug** option from the context menu:
 
 ![DebugOption070417](../figures/DebugOption070417.png)
-*Figure 204. Debugging options*
+*Figure 221. Debugging options*
 
 **Debugging options**
 All records
@@ -207,7 +207,7 @@ The filter expression is defined with the help of **Filter Editor**.
 ###### Filter Editor
 
 ![FilterEditor040417](../figures/FilterEditor040417.png)
-*Figure 205. Filter Editor*
+*Figure 222. Filter Editor*
 
 The **Filter Editor** consists of three panes.
 
@@ -251,7 +251,7 @@ If you do not set any value of **Debug sample data**, or if you set it to `false
 The same properties can also be defined using the context menu by selecting the **Debug properties** option. After that, the following dialog will open:
 
 ![debugproperties](../figures/debugproperties.png)
-*Figure 206. Debug properties dialog*
+*Figure 223. Debug properties dialog*
 
 ##### Viewing debug data
 
@@ -264,7 +264,7 @@ Click an edge and **Data Inspector** tab in the bottom will display the debugged
 If you intend to see the data of more edges at once, use a new **Data Inspector** tab: open the context menu with right-click and select the **Inspect data**.
 
 ![InspectData](../figures/InspectData.png)
-*Figure 207. Choosing Inspect data from context menu*
+*Figure 224. Choosing Inspect data from context menu*
 
 #### Data Inspector
 
@@ -273,7 +273,7 @@ If you intend to see the data of more edges at once, use a new **Data Inspector*
 If **Data Inspector** opens, you can see data on edges without using context menu: just click an edge, and **Data Inspector** displays data of the edge. The displayed **Data Inspector** view is refreshed after a graph run.
 
 ![DataInspector](../figures/DataInspector.png)
-*Figure 208. Data Inspector*
+*Figure 225. Data Inspector*
 
 - Data Inspector loads only first 100 records by default. To load more records, scroll down the view and new records will load automatically. Alternatively, you can click on the **Load More** button ![get next](../figures/get_next.png) at the bottom of the view. There is also the **Load All** button ![get all](../figures/get_all.png) which loads all available records. Use this button only when the number of available records is small.
 - You can sort the records according to any column: click the column’s header. Records can be sorted in ascending or descending order.
@@ -406,7 +406,7 @@ The **Search Data** allows you to look up a text in the records.
 You can open the **Search Data** panel using the Ctrl+F shortcut, or by choosing **Search Data…​** from the Data Inspector’s menu.
 
 ![data inspector search](../figures/data-inspector-search.png)
-*Figure 209. Search Data*
+*Figure 226. Search Data*
 
 The search panel contains a text area where you can type an expression.
 
@@ -417,7 +417,7 @@ The **Options…​** button gives you access to **Search Options**.
 ##### Search Options
 
 ![SearchOptions](../figures/SearchOptions.png)
-*Figure 210. Search Options*
+*Figure 227. Search Options*
 
 If **Entire cells** option is checked, the searched text must match the cell entirely.
 
@@ -440,7 +440,7 @@ You can export the debug data to CSV without a clipboard.
 To export records to CSV click the arrow in the upper right corner and choose **Export to CSV**. You can use Ctrl+E as well. The CSV files can be subsequently loaded into a spreadsheet editor or processed by another graph.
 
 ![ExportDebugData040417](../figures/ExportDebugData040417.png)
-*Figure 211. Export debug data to CSV*
+*Figure 228. Export debug data to CSV*
 
 When the directory specified by **File URL** does not exist, it is created before export of the file itself.
 
@@ -459,7 +459,7 @@ When **checked**, the number of characters shown is limited to 254 (including th
 Changing the setting requires restart of the **CloverDX Designer**.
 
 ![DataInspectorPreferences](../figures/DataInspectorPreferences.png)
-*Figure 212. Data Inspector Preferences*
+*Figure 229. Data Inspector Preferences*
 
 ##### Turning Off Debug
 
@@ -476,6 +476,6 @@ If you want to turn off debugging, you can click the **Graph editor** in any pla
 Bug icons do not disappear, but edge debugging is not performed. If you disable debugging this way, it can be enabled back keeping the original configuration.
 
 ![properties debug](../figures/properties-debug.png)
-*Figure 213. Debug mode in the Properties tab*
+*Figure 230. Debug mode in the Properties tab*
 
 Alternatively, you can select **Run** ****Debug Configurations…​** on the menu bar and check the **Disable edge debugging** option.

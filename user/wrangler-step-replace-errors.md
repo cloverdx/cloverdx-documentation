@@ -20,7 +20,7 @@ When replacing with a formula, the formula will be calculated only for rows wher
 In our example invoices data set we could get data that looks like this:
 
 ![error handling generic](../figures/error-handling-generic.png)
-*Figure 107. Original data set with errors.*
+*Figure 108. Original data set with errors.*
 
 Notice the `Date paid` column - it contains a variety of errors that we can fix with the [Replace errors step](wrangler-step-replace-errors.md). We’ll be able to recover data from the cells that contain incorrectly formatted dates and we’ll be able to remove `n/a` values from cells that contain it.
 Fixing wrong formatting
@@ -31,7 +31,7 @@ To fix the cells with the wrong format, we can use a formula that attempts to pa
 Once we apply this step, we will see our data quality improve:
 
 ![replace errors fix format example after step1](../figures/replace-errors-fix-format-example-after-step1.png)
-*Figure 108. Data set after the first fix is applied.*
+*Figure 109. Data set after the first fix is applied.*
 
 We can fix the `Invoice amount` column in a similar way - some of the values in that column look like `(9426.13)`. This is a number format sometimes used in accounting to represent negative values. To parse this format, we can use the same approach as for fixing the date, but with a slightly different step formula in the step:
 

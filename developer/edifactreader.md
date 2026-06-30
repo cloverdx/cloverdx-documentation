@@ -91,10 +91,10 @@ In **EDIFACTReader**, you can map input fields to the output in the same way as 
 Mapping parts of EDIFACT message onto output metadata. It is possible to map a whole message or its part onto **variant** field or to map individual values to fields of other data types.
 
 ![EDIFACTReader example 01](../figures/EDIFACTReader-example-01.png)
-*Figure 332. EDIFACTReader - mapping part of a message*
+*Figure 350. EDIFACTReader - mapping part of a message*
 
 ![EDIFACTReader example 02](../figures/EDIFACTReader-example-02.png)
-*Figure 333. EDIFACTReader - mapping fields of a message*
+*Figure 351. EDIFACTReader - mapping fields of a message*
 
 #### Compatibility
 

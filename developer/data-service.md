@@ -1,6 +1,6 @@
 <!-- Development > Job types > Data Services -->
 
-## 19. Data Services
+## 20. Data Services
 
 ### Data Services introduction
 
@@ -51,7 +51,7 @@ Data Service jobs can be published directly from Designer if connected to a Serv
 Due to potential failures, the automatic redeployment of the service is useful mostly during development, when changes to the jobs are frequent and you want to quickly test the service behavior. In production environment, it is recommended to upload the service `.rjob` files to the Server sandbox and deploy the service using **CloverDX Server** management console instead. This way, you can make sure it has been deployed correctly.
 
 ![data service 3210](../figures/data-service-3210.png)
-*Figure 167. Main .rjob editor*
+*Figure 183. Main .rjob editor*
 
 | Endpoint configuration |  |
 | --- | --- |
@@ -78,7 +78,7 @@ Due to potential failures, the automatic redeployment of the service is useful m
 | Value Hint | Placeholder text used in the Data App form. |
 | Default Value | Default value of the parameter. It is not used if parameter is marked as required. |
 | Values | The specific property for the enumeration parameter.  Defines static values of the parameter. |
-| Dynamic Values | The specific property for the enumeration parameter.  The endpoint of a Data Service from which the values will be obtained in [Data App form](../operations/data-apps.md#data-appsdata-apps-usage). The obtained values will overwrite the ones from the Values property. The endpoint must support the GET method and it must be hosted on the same server as the Data App. If the sandbox is connected to the server, a list of published Data Services is offered. The response of the endpoint must be a JSON.  The example of two possible JSON formats:   ```json [     {         "value": "v1",         "label": "Label 1"     },     {         "value": "v2",         "hint": ""     } ] ```   or   ```json {     "customMetadataName": [         {             "value": "v1",             "label": "Label 1"         },         {             "value": "v2",             "hint": ""         },         {             "value": "v3",             "label": "Label 3",             "hint": ""         }     ] } ```   The `value` field is required, `label` is optional, other fields are skipped.  The endpoints with SSL configuration should be defined this way: `{HTTPS_connector_name}:/{endpoint}`.  An example of endpoint with SSL configuration: `httpsConnector:/data_service_endpoint`.  An example of endpoint without SSL configuration: `/data_service_endpoint`. |
+| Dynamic Values | The specific property for the enumeration parameter.  The endpoint of a Data Service from which the values will be obtained when the Data App form renders during the app load. The obtained values will overwrite the ones from the Values property. The endpoint must support the GET method and it must be hosted on the same server as the Data App. If the sandbox is connected to the server, a list of published Data Services is offered. The response of the endpoint must be a JSON.  The example of two possible JSON formats:   ```json [     {         "value": "v1",         "label": "Label 1"     },     {         "value": "v2",         "hint": ""     } ] ```   or   ```json {     "customMetadataName": [         {             "value": "v1",             "label": "Label 1"         },         {             "value": "v2",             "hint": ""         },         {             "value": "v3",             "label": "Label 3",             "hint": ""         }     ] } ```   The `value` field is required, `label` is optional, other fields are skipped.  The endpoints with SSL configuration should be defined this way: `{HTTPS_connector_name}:/{endpoint}`.  An example of endpoint with SSL configuration: `httpsConnector:/data_service_endpoint`.  An example of endpoint without SSL configuration: `/data_service_endpoint`. |
 
  
 
@@ -264,12 +264,12 @@ Under **Run** ****Run Configurations…​** ****CloverDX Data Service REST Jo
 After executing the service, the HTTP response including the serialized payload will be shown in the job execution log, so you can inspect it in the Console window.
 
 ![data service 3720](../figures/data-service-3720.png)
-*Figure 168. Run configuration of Data Services*
+*Figure 184. Run configuration of Data Services*
 
 The result of the test run can be seen in console in **Designer**.
 
 ![data service 3730](../figures/data-service-3730.png)
-*Figure 169. Data Service test result in console*
+*Figure 185. Data Service test result in console*
 
 ##### Testing services deployed on Server
 
@@ -306,7 +306,7 @@ Deploying from Server UI is described in the [Using Data Services](../operations
 You can deploy multiple Data Services at once. Select the `.rjob` files or directories in **Project Explorer**. Right click to open the context menu and select **Data Services** ****Publish Data Services**.
 
 ![data service 3810](../figures/data-service-3810.png)
-*Figure 170. Publishing multiple Data Services at once*
+*Figure 186. Publishing multiple Data Services at once*
 
 This option is available only in Server projects. It is not available in local projects.
 
@@ -323,7 +323,7 @@ To undeploy Data Service, open the Data Service file in **Designer**, switch to 
 You can undeploy multiple Data Services at once. Select the `.rjob` files or directories in **Project Explorer**. Right click to open the context menu and select **Data Services** ****Unpublish Data Services**.
 
 ![data service 3820](../figures/data-service-3820.png)
-*Figure 171. Unpublishing multiple Data Services at once*
+*Figure 187. Unpublishing multiple Data Services at once*
 
 This option is available only in Server projects. It is not available in local projects.
 
@@ -340,7 +340,7 @@ The documentation is automatically published together with the HTTP endpoint of 
 We also generate a Swagger definition file for the service, that can be used by endpoint consumers to generate client code for consuming your API.
 
 ![ds doc swag](../figures/ds-doc-swag.png)
-*Figure 172. Endpoint documentation catalog*
+*Figure 188. Endpoint documentation catalog*
 
 ### Use cases
 
@@ -365,7 +365,7 @@ If you need to start streaming output before all components finish, use custom s
 Setting **Format** of the Output to *custom*:
 
 ![data service output custom](../figures/data-service-output-custom.png)
-*Figure 173. Data Service output format set to custom*
+*Figure 189. Data Service output format set to custom*
 
 Here you can select the **Content Type** and **Charset** of the file. If you want to label the file as 'available for download', check the **Set Content-Disposition as attachment** option. Alternatively, you can set these options using CTL functions [setResponseContentType](http-ctl2.html#id_ctl2_setresponsecontenttype), [setResponseEncoding](http-ctl2.html#id_ctl2_setresponseencoding) and [addResponseHeader](http-ctl2.html#id_ctl2_addresponseheader) or [setResponseHeader](http-ctl2.html#id_ctl2_setresponseheader) for setting **Content-Disposition** header in the HTTP response. If the metadata is available for the file and the file is of type CSV select it in **Metadata** field. It will be used in the result preview.
 
@@ -382,7 +382,7 @@ In the cases above, the content of the file can then be used as a response body 
 In such a case, set the **Format** of the Output to *file*:
 
 ![data service output file](../figures/data-service-output-file.png)
-*Figure 174. Data Service output format set to file*
+*Figure 190. Data Service output format set to file*
 
 Then specify the file you want to stream by setting **File URL**. **CloverDX Designer** attempts to automatically select the **Content Type** based on the file extension. If the type is not recognized, select it manually. Next, choose the **Charset** of the file. Then, check the **Set Content-Disposition as attachment** option if you want to label the file as 'available for download'. If the metadata is available for the file and the file is of type CSV select it in **Metadata** field. It will be used in the result preview.
 
@@ -413,7 +413,7 @@ Data Services allows the user to receive a file or a text in body part of an HTT
 To read the body from request, drag an edge out of the **body** port of the **Input** component. A dialog to select a component will open. Select a reader from the list. The reader will appear in the graph pane and its **File URL** will be set to read data from the input port.
 
 ![data service 4550](../figures/data-service-4550.png)
-*Figure 175. Reading body content from the port of Input component*
+*Figure 191. Reading body content from the port of Input component*
 
 The input edge of the reader has metadata that is propagated out of the **Input** component. By default, the metadata is fixed and it has one **byte** metadata field. The size of the field is 1,024B. If the file is bigger, the data is split into several records.
 
@@ -442,7 +442,7 @@ You can convert a graph to Data Service rest job. This option is available only 
 To convert a graph to Data Service, right click the `.grf` file in **Project Explorer** and select the **Convert Graph to Data Service** option.
 
 ![data service 4410](../figures/data-service-4410.png)
-*Figure 176. Convert graph to Data Service*
+*Figure 192. Convert graph to Data Service*
 
 A new `.rjob` file will be created in the `data-service` directory. The selected `.grf` file is left untouched.
 
@@ -453,31 +453,31 @@ You can convert a graph to Data Service even if you are not in a server project.
 In main menu, select **File** ****Export**. Expand the **CloverDX** category and select **Convert graph to Data Service REST job**.
 
 ![data service 4510](../figures/data-service-4510.png)
-*Figure 177. Export to Data Service REST job - I.*
+*Figure 193. Export to Data Service REST job - I.*
 
 Select the graph to be converted.
 
 ![data service 4520](../figures/data-service-4520.png)
-*Figure 178. Export to Data Service REST job - II.*
+*Figure 194. Export to Data Service REST job - II.*
 
 And set the name and location of the new Data Service.
 
 ![data service 4530](../figures/data-service-4530.png)
-*Figure 179. Export to Data Service REST job - III.*
+*Figure 195. Export to Data Service REST job - III.*
 
-### Troubleshooting
+#### Troubleshooting
 
-#### Server returns error code 404
+##### Server returns error code 404
 
 Check that the Data Service has been published: In **Designer**, open the Data Service job and switch to the **Endpoint Configuration** tab.
 
-#### Server returns error code 500
+##### Server returns error code 500
 
 In **CloverDX Server Console**, check **Executions history**. Find the job and see the log in **Log file** tab.
 
 Have all required parameters been sent to the server? If there is a required parameter that has not been received, the server returns 500.
 
-#### Server Returns Error Code 503
+##### Server Returns Error Code 503
 
 Check that the Data Service job is enabled. You can do it in **Server** on Data Services tab.
 
@@ -546,7 +546,7 @@ The configuration of the Data Service also affects the Data App. Input elements 
 | Parameter type | Widget in Data App | Example screenshot |
 | --- | --- | --- |
 | String | A simple text box for a string value. | ![data apps widget string](../figures/data-apps-widget-string.png) |
-| Date | Text box with a calendar widget. Accepts values in YYYY-MM-DD HH:mm:ss format.  The time portion is optional. For more information see the Date Input section.  Date input widget accepts the following formats:  - YYYY-MM-DD - YYYY-MM-DD HH:mm - YYYY-MM-DD HH:mm:ss - YYYY-MM-DD HH:mm:ss.SSS  The date input converts the inserted values to ISO 8601 format in the Time zone of the CloverDX Server. Example: if the server timezone is +03:00 and the user selects the value '2019-05-05 05:05' then the value '2019-05-05T05:05:00.000+03:00' is sent to the Data Service. | ![data apps widget date](../figures/data-apps-widget-date.png) |
+| Date | Text box with a calendar widget. Accepts values in YYYY-MM-DD HH:mm:ss format.  The time portion is optional. For more information see the Date Input section.  Date input widget accepts the following formats:  - YYYY-MM-DD - YYYY-MM-DD HH:mm - YYYY-MM-DD HH:mm:ss - YYYY-MM-DD HH:mm:ss.SSS  The date input converts the inserted values to ISO 8601 format in the Time zone of the CloverDX Server. Example: if the server time zone is +03:00 and the user selects the value '2019-05-05 05:05' then the value '2019-05-05T05:05:00.000+03:00' is sent to the Data Service. | ![data apps widget date](../figures/data-apps-widget-date.png) |
 | Binary or Text File | File widget with browse and drag-and-drop functionality.  Note: CloverDX version 5.5 does not distinguish Binary or Text files. Both types should be processed using request:part:[name] URL. Different type name is reserved for upcoming versions. | ![data apps widget file](../figures/data-apps-widget-file.png) |
 | Enumeration | Selection widget with predefined values.  Can be configured to accept custom values. In that case, the value can be entered into the text box. | ![data apps widget enum](../figures/data-apps-widget-enum.png) |
 | Boolean | Simple checkbox.  The checkbox is not marked as required, but its value is always sent. | ![data apps widget boolean](../figures/data-apps-widget-boolean.png) |
@@ -587,16 +587,16 @@ String parameters have four types of validations available, that can be applied 
 
 #### Customizing Data Apps
 
-You can inject JavaScript code to every Data App to change the behavior or style of the frontend. An example of this can be found in Data Service Examples. See [Data Services examples](../operations/data-services.md#built-in-data-service-examples). To inject JavaScript code to a Data App form, create a JavaScript file in the sandbox, then set the Path to injected JavaScript file Rest Job property. The property should contain a path to the JavaScript file relative to the sandbox root folder.
+You can inject JavaScript code to every Data App to change the behavior or style of the frontend. An example of this can be found in Data Service Examples. See [Data Services examples](../operations/data-services.md#built-in-data-service-examples). To inject JavaScript code into a Data App form, create a JavaScript file in the sandbox, then set the **Path to injected JS file** property in the Rest Job’s properties. The property should contain a path to the JavaScript file relative to the sandbox root folder.
 
 ![data apps path to js](../figures/data-apps-path-to-js.png)
-*Figure 180. Path to injected JavaScript file property*
+*Figure 196. Path to injected JavaScript file property*
 
-Functions defined in the JavaScript file are added to the global scope of the browser, meaning they are added to the window object and can leak into other Data Apps. Event listeners registered may also cause memory leak issues, it’s always a good practice to remove these event listeners. To avoid leaking functions or memory, clean up the global scope using the *cleanupHook* function. This is a function that if exists in the global scope its executed by the Data App before leaving the Data App form, this function itself is then cleaned up automatically. In order to execute some action before the Data App form is submitted, you can define a function with the name *beforeSubmitHook*, if this function exists in the global scope when running the Data App it is executed and its return value is checked. If the function returns a truthy value the Data App form is submitted, otherwise, the submission is interrupted. The usage of both of these functions is demonstrated in the [Data Services examples](../operations/data-services.md#built-in-data-service-examples).
+Functions defined in the JavaScript file are added to the global scope of the browser, meaning they are added to the window object and can leak into other Data Apps. Event listeners registered may also cause memory leak issues, it’s always a good practice to remove these event listeners. To avoid leaking functions or memory, clean up the global scope using the `cleanupHook` function. If this function exists in the global scope, it will be called by the Data App before leaving the Data App form. This function itself is then cleaned up automatically. To execute some action before the Data App form is submitted, you can define a function with the name `beforeSubmitHook`. If this function exists in the global scope when running the Data App it is executed and its return value is checked. If the function returns a truthy value the Data App form is submitted, otherwise, the submission is interrupted. The usage of both these functions is demonstrated in the [Data Services examples](../operations/data-services.md#built-in-data-service-examples).
 
 ##### Setting input values from JavaScript
 
-The values of the form can be set programmatically using JavaScript, with one caveat, that after setting the value to the input field an input event needs to be dispatched so that the Data App can detect the value change. For boolean types, a checkbox is rendered in that case the change event has to be fired.
+The values of the form can be set programmatically using JavaScript, with one caveat, that after setting the value to the input field an input event needs to be dispatched so that the Data App can detect the value change. For boolean types, a checkbox is rendered in that case the change event must be fired.
 
 ```javascript
 // Select the input element, the id is calculated as name of parameter + '_input'
@@ -615,7 +615,7 @@ checkbox.dispatchEvent(new Event("change"));
 
 ##### Setting Enum selection options from JavaScript
 
-For enumeration typed Rest Job parameters a select widget is rendered. It is possible to add selection options to this widget. For each widget there is a hidden input field where the values can be set, same as for other input fields an input event has to be dispatched.
+For enumeration typed Rest Job parameters a select widget is rendered. It is possible to add selection options to this widget. For each widget there is a hidden input field where the values can be set, same as for other input fields an input event must be dispatched.
 
 ```javascript
 // Hidden component where values for the enum can be set.
@@ -649,9 +649,9 @@ When you are creating your Data App in the **CloverDX Designer**, you can set an
 
 Data App allows using files as an input of data processing.
 
-In such a case, create an input parameter with the type "Binary file" or "Text file". (Both file parameters work similarly, different types are reserved for later use). Once you create such a parameter, Data Service jobs expect a multipart request.
+In such a case, create an input parameter with the type "Binary file" or "Text file". (Both file parameters work similarly; different types are reserved for later use). Once you create such a parameter, Data Service jobs expect a multipart request.
 
-File sent as a multipart is available for reader components using **request:part:[name]** notation. For example, the parameter named reportFile is available via the URL **request:part:reportFile**.
+File sent as a multipart is available for reader components using **request:part:[name]** notation. For example, the parameter named `reportFile` is available via the URL **request:part:reportFile**.
 
 The Data App form will then contain a file input widget to upload file for each such parameter.
 
@@ -668,9 +668,11 @@ Since calling the REST API from other sources doesn’t set the header you also 
 setResponseContentType("text/plain");
 string header = getRequestHeader("X-CLOVER-DATA-APP");
 boolean isDataApp = false;
+
 if (header != null) {
     isDataApp = str2bool(header);
 }
+
 if (isDataApp) {
     setResponseBody("Service was called from Data App");
 } else {
@@ -685,13 +687,35 @@ In order to create a file download as a response, edit the configuration of the 
 With this configuration, a successful execution of the Data App will offer a file download on the response page.
 
 ![data apps rjob file response](../figures/data-apps-rjob-file-response.png)
-*Figure 181. Data App file result*
+*Figure 197. Data App file result*
 
 ##### How to get additional information for apps called from Data Manager
 
-Starting with CloverDX 7.4, it is possible to connect Data Apps to data sets in Data Manager (see [Connected Data Apps](../user/data-manager-introduction.md#connected-data-apps) for more details). In those cases it may be useful to know that the Data App was called from the Data Manager rather than from App Catalog.
+Starting with CloverDX 7.4, it is possible to connect Data Apps to data sets in Data Manager (see [Connected Data Apps](../user/data-manager-introduction.md#connected-data-apps) for more details). In those cases, it may be useful to know that the Data App was called from the Data Manager rather than from App Catalog.
 
 To help with this, the App will receive two extra HTTP headers that can help you understand how it was called:
 
 - `X-Clover-Data-Set-Code`: this header provides a code of the data set from which the app was called. If not present, the app was not called from Data Manager.
 - `X-Clover-Data-Set-Batch-Key`: this header provides batch key in case batching is enabled for given data set and the app was called from a specific batch. This header will not be present when batching is not enabled on given data set.
+
+##### Automatically refreshing Data Manager’s data set
+
+Running Data Apps can make changes to multiple data sets. When the Data App is called from a toolbar (i.e., when it is configured as [Connected Data Apps](../user/data-manager-introduction.md#connected-data-apps) in given data set) you may want to notify Data Manager that a data set has been changed so that it can offer refresh to the user.
+
+To send such notification to the Data Manager, you can use [`addDataSetReloadNotification`](http-ctl2.html#id_ctl2_adddatasetreloadnotification) CTL function. This function can be called at any time during the app execution (even multiple times). You can also call this function with multiple data set names to send notification about multiple data sets – the user will be able to refresh any of them if they have it open.
+
+![data manager refresh notification](../figures/data-manager-refresh-notification.png)
+*Figure 198. Comparison showing a notification about Data App success without the refresh notification (left) and with the refresh notification (right).*
+
+The above refresh notification was created simply by calling the `addDataSetReloadNotification` at the end of the job in a success component:
+
+```ctl
+//#CTL2
+
+function integer transform() {
+    // Notify DM that the data set changed so that it can offer refresh notification.
+    addDataSetReloadNotification("Customers");
+
+    return ALL;
+}
+```

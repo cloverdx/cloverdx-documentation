@@ -11,11 +11,11 @@ The Server environment can integrate with an [SMTP server](setup.md#e-mail) to s
 Architecturally, the server consists of two standalone JVMs (Java Virtual Machine): the ***Core***, which orchestrates overall operations, and the ***Worker***, responsible for executing jobs.
 
 ![server worker architecture](../figures/server-worker-architecture.png)
-*Figure 11. System architecture*
+*Figure 13. System architecture*
 
 #### CloverDX Core
 
-**CloverDX *Core*** is the central component of **CloverDX Server**, accessible through a web-based user interface (Server Console). **CloverDX *Core*** provides a comprehensive [management and monitoring interface](../operations/monitoring-intro.md), along with [user management and access control](users-groups-index.md). It also offers robust [scheduling capabilities](../operations/scheduling.md) and facilitates communication between **CloverDX Designer** and the *Worker* process. To integrate with other applications, the *Core* exposes [Data Service](../operations/data-services.md), [REST](../operations/id_rest_api.md), and [Web Service APIs](../operations/id_soap_ws.md).
+**CloverDX *Core*** is the central component of **CloverDX Server**, accessible through a web-based user interface (Server Console). **CloverDX *Core*** provides a comprehensive [management and monitoring interface](../operations/monitoring-intro.md), along with [user management and access control](users-groups-index.md). It also offers robust [scheduling capabilities](../operations/scheduling.md) and facilitates communication between **CloverDX Designer** and the *Worker* process. To integrate with other applications, the *Core* exposes multiple APIs such as [Data Service](../operations/data-services.md), [REST API](../operations/rest-api.md), and [Web Service APIs](../operations/soap-ws.md).
 
 The *Core* functionality relies on a [system database](examples-db-connection-configuration.md) to store configuration and service information. For enhanced capabilities, the *Core* can integrate with an [SMTP server](setup.md#e-mail) for [email notifications](../operations/tasks.md#send-an-email) and an [LDAP server](setup.md#ldap) for user authentication.
 

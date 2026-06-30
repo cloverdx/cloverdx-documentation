@@ -12,6 +12,7 @@
 | [Details](dbexecute.md#details) |
 | [Examples](dbexecute.md#examples) |
 | [Best practices](dbexecute.md#best-practices) |
+| [Compatibility](dbexecute.md#compatibility) |
 | [See also](dbexecute.md#see-also) |
 > [!TIP]
 > If you’re interested in learning more about this subject, we offer the [Databases course](https://academy.cloverdx.com/courses/database) in our CloverDX Academy.
@@ -33,7 +34,7 @@ Input parameters can be received through the single input port and output parame
 | Port type | Number | Required | Description | Metadata |
 | --- | --- | --- | --- | --- |
 | Input | 0 | [[1]](dbexecute.md#dbexe-inport) | Input records for stored procedure or the whole SQL commands. | any |
-| Output | 0 | [[2]](dbexecute.md#dbexe-outport) | Update count and the executed statement.  Output parameters and result set of [stored procedures](dbexecute.md#dbexecute-attr-stored-procedure). | any |
+| Output | 0 | [[2]](dbexecute.md#dbexe-outport) | Update count, the executed statement, and text output (if **Text output field** is specified).  Output parameters and result set of [stored procedures](dbexecute.md#dbexecute-attr-stored-procedure). | any |
 | 1 | **⨯** | for error information | based on input metadata |  |
 
 | 1 |   Input port must be connected if the **Query input parameters** attribute is specified or if the whole SQL query is received through the input port. |
@@ -44,7 +45,7 @@ Input parameters can be received through the single input port and output parame
 
 #### Metadata
 
-**DBExecute** propagates input metadata to the first output port if not calling a [stored procedure](dbexecute.md#dbexecute-attr-stored-procedure). It adds two output fields: `updateCount` and `statement`.
+**DBExecute** propagates input metadata to the first output port if not calling a [stored procedure](dbexecute.md#dbexecute-attr-stored-procedure). It always adds two output fields: `updateCount` and `statement`. If **Text output field** attribute is specified, a field of this name is also added.
 
 **DBExecute** has no metadata template.
 
@@ -71,6 +72,9 @@ The error output metadata may also contain the `statement` field and two additio
 | Query input parameters |  | Used when a stored procedure/function with input parameters is called. It is a sequence of the following type: `1:=$inputField1;…;n:=$inputFieldN`. The value of each specified input field is mapped to the corresponding parameter (whose position in **SQL query** equals to the specified number). This attribute cannot be specified if SQL commands should be received through the input port. |  |
 | Query output parameters |  | Used when a stored procedure or function with output parameters or return value is called. It is a sequence of the following type: `1:=$outputField1;…;n:=$outputFieldN`. Value of each output parameter (specified by its position in the **SQL query**) will be written to the specified field. If the function returns a value, this value is represented by the first parameter. Use "result_set" to denote output parameters that return data sets, typically by returning a cursor, for example "2:=result_set". See [Calling stored procedures and functions](dbexecute.md#calling-stored-procedures-and-functions). |  |
 | Result set output fields |  | If a stored procedure or function returns a set of data, its output will be mapped to given output fields. The attribute is expressed as a sequence of output field names separated from each other by a semicolon. See [Calling stored procedures and functions](dbexecute.md#calling-stored-procedures-and-functions). |  |
+| Text output field |  | When *not* calling as stored procedure, each statement may store its output in plain text form in specified field.  For statements returning data (typically `SELECT`), the output is formatted in CSV style, quoting the values if necessary as per RFC 4180. The first row contains column names, the first column contains row numbers:   ``` #\|name\|age 1\|Alice Armstrong\|50 2\|Brian Brown\|55 3\|"xX\|Charlie\|Xx"\|13 4\|"David ""Dave"" Douglas\|30 ```   When there is no data available, the text output only informs about number of affected rows (equal to `updateCount`):   ``` OK (80 rows affected) ```   If even the number of affected rows is not available, the result is simply `OK`. |  |
+| Text output column delimiter |  | Allows to overwrite the default column delimiter (vertical bar, `\|`) used in text output. | any string not containing double quotes or new line characters, typically a single character |
+| Text output row limit |  | Maximum number of data rows included in text output – the default is 1,000. If exceeded, a notice is added to the text output:   ``` #\|name\|age 1\|Alice Armstrong\|50 2\|Brian Brown\|55 ... (output truncated, more rows available) ... ``` | positive integer |
 | Deprecated |  |  |  |
 | Error actions |  | The definition of an action that should be performed when the specified query throws an SQL Exception. See [Return values of transformations](transformations.md#return-values-of-transformations). |  |
 | Error log |  | The URL of the file to which error messages for specified **Error actions** should be written. If not set, they are written to **Console**. |  |
@@ -243,6 +247,15 @@ If the query is specified in an external file (with **Query URL**), we recommend
 Calling arguments or return values of the PL/SQL RECORD, BOOLEAN, or table with non-scalar elements are not supported by Oracle JDBC Drivers. See [Oracle JDBC reference](http://docs.oracle.com/cd/E11882_01/java.112/e16548/apxref.htm#JJDBC28928)
 
 As a workaround, you can create a wrapper procedure. See [Wrapper procedures](http://docs.oracle.com/cd/E11882_01/java.112/e16548/apxtblsh.htm#JJDBC28981)
+
+#### Compatibility
+
+| Version | Compatibility notice |
+| --- | --- |
+| 4.8.0-M1 | Added support for `SELECT` statements. |
+| 5.7.0 | Input metadata is propagated to the standard output port, unless called as stored procedure. **DBExecute** stores *statement* and *update count*. |
+| 6.5.0 | SQL statement is propagated to error port. |
+| 7.5.0 | Added text output (attributes **Text output field**, **Text output column delimiter** and **Text output row limit**). |
 
 #### See also
 

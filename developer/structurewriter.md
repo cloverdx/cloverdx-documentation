@@ -93,7 +93,7 @@ You can define the mask either without field values or with field values.
 Field values are referred using field names preceded by a dollar sign.
 
 ![00 00140](../figures/00_00140.png)
-*Figure 392. Create mask dialog*
+*Figure 410. Create mask dialog*
 
 You do not have to map all input metadata fields.
 

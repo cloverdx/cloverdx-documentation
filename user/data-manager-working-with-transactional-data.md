@@ -27,12 +27,12 @@ For approval processes, a common approach is to load all data into Data Manager 
 Transactional data sets are shown on a **Transactional Data Sets** screen which provides basic data set management functionality.
 
 ![data manager data sets screen user](../figures/data-manager-data-sets-screen-user.png)
-*Figure 136. Transactional Data Sets screen showing two data sets with basic information shown about each.*
+*Figure 143. Transactional Data Sets screen showing two data sets with basic information shown about each.*
 
 The screen shows you basic information about each data set you have permissions for. If you are an Admin, you will be able to also see disabled data sets or create a new data set.
 
 ![data manager data sets screen admin](../figures/data-manager-data-sets-screen-admin.png)
-*Figure 137. Data Sets screen view for Admin user. Admin can see disabled data sets and has the ability to create new data sets.*
+*Figure 144. Data Sets screen view for Admin user. Admin can see disabled data sets and has the ability to create new data sets.*
 
 The screen shows the following information for each data set:
 
@@ -49,12 +49,12 @@ Rows can be loaded into the data set in two ways: programmatically with CloverDX
 
 Each transactional data set contains any number of rows. The structure of each row is described by its **data layout**. The data layout defines **columns** (fields) and their **data types** as well as additional column properties (for example, whether the column is editable, etc.).
 
-The columns can be **strings** (representing text), **numbers** (integers as well as decimal numbers), **dates**, or **boolean** (representing true/false). For more information about data layout and column data types, please see the [Data layout](data-manager-working-with-transactional-data.md#data-layout) section.
+The columns can be **strings** (representing text), **numbers** (integers as well as decimal numbers), **dates**, or **boolean** (representing `true`/`false`). For more information about data layout and column data types, please see the [Data layout](data-manager-working-with-transactional-data.md#data-layout) section.
 
 Since each row in the data set has the same layout, the rows can be nicely displayed as a table with pre-defined structure. This is available on the **Data editor** screen which allows you to see and edit the data in the data set. The data in the data editor is shown in the **data grid** (or just grid).
 
 ![data editor transactional data set](../figures/data-editor-transactional-data-set.png)
-*Figure 138. Data Editor screen showing content of the data set with customer information. The editor shows changes made as well as issues in the data that have been highlighted by the validation process during the data load.*
+*Figure 145. Data Editor screen showing content of the data set with customer information. The editor shows changes made as well as issues in the data that have been highlighted by the validation process during the data load.*
 
 To learn more about how to work with data in the data set – how to view or approve changes, edit the data and more – see the [Editing data in Data Manager](data-manager-editing-data.md) section.
 
@@ -77,12 +77,12 @@ Four different basic statuses and one supplementary status are defined in the Da
 You can click a status in the progress bar to quickly filter rows by that status.
 
 ![tds progress bar filter](../figures/tds-progress-bar-filter.gif)
-*Figure 139. Progress bar filters*
+*Figure 146. Progress bar filters*
 
 The Status can be changed with various row actions on the Data Editor screen as well as with CloverDX jobs (e.g., graphs). The row actions are available as buttons on the right side of each row in the data grid or via context-sensitive actions in the toolbar.
 
 ![data editor ui elements with labels](../figures/data-editor-ui-elements-with-labels.png)
-*Figure 140. Where to find row actions on the Data editor screen.*
+*Figure 147. Where to find row actions on the Data editor screen.*
 
 Row actions on the toolbar allow you to work with multiple rows at once – all selected rows will be affected. The row actions in the data grid always only apply to a single row regardless of the row selection.
 
@@ -104,7 +104,7 @@ Note that there are no row actions to switch the row to the *Committed* status. 
 The statuses can only be modified in certain ways. Use the following diagram as a guide for the allowed transitions between different statuses:
 
 ![data manager transactional row lifecycle](../figures/data-manager-transactional-row-lifecycle.png)
-*Figure 141. Row lifecycle diagram showing different statuses and possible transitions between them for rows in transactional data sets.*
+*Figure 148. Row lifecycle diagram showing different statuses and possible transitions between them for rows in transactional data sets.*
 
 All transitions between states are accessible as actions in Data Manager’s editor except for the transition to *Committed* status which can only be done by the [DataSetCommit component](../developer/datasetcommit.md).
 
@@ -115,6 +115,24 @@ The rows are not stored in the Data Manager’s database forever. Instead, once 
 The retention period can be configured in the data set’s Configuration screen and is measured in days. See [Basic data set properties section](data-manager-working-with-transactional-data.md#basic-data-set-properties) for additional details.
 
 To ensure that your *Deleted* rows get deleted once their retention period expired, they have to be *Committed* as well. This can be done with the [DataSetCommit component](../developer/datasetcommit.md). If this is not done, the *Deleted* rows will be kept in the Data Manager forever.
+
+##### Bulk actions on rows
+
+When applying an action to multiple selected rows, the selected rows do not all need to have the same status. If some rows are already in the status that the action would set, those rows are left unchanged.
+
+For example, when you approve selected rows:
+
+- rows that are already approved stay approved
+- rows that can still be approved are changed to *Approved*
+
+This allows you to select a larger group of rows and apply the action without checking each row individually.
+
+Rows that cannot be changed by the selected action are still not affected. For example, an action that moves rows forward in the workflow cannot be used to move rows back to an earlier status.
+
+The toolbar actions are enabled or disabled based on whether the selected action can be applied to the current selection.
+
+![data manager bulk actions on rows](../figures/data-manager-bulk-actions-on-rows.gif)
+*Figure 149. Bulk actions applied to selected rows with different statuses.*
 
 #### Data batching
 
@@ -127,14 +145,14 @@ Batches are created on the fly in real-time and depend solely on the unique valu
 When the data set is batched, you will see this directly on the Data Sets screen:
 
 ![data manager data set with batching](../figures/data-manager-data-set-with-batching.png)
-*Figure 142. Data set with batching enabled.*
+*Figure 150. Data set with batching enabled.*
 
 The **Batching** column provides information about how many batches there are in the data set. The **In process** column still counts rows and works in the same way as for data sets without batching.
 
 To see the batches, click on the data set and you’ll be brought to the Batches screen instead of the data editor:
 
 ![data manager data set batches](../figures/data-manager-data-set-batches.png)
-*Figure 143. Batches screen showing batches and their statuses in the Customers data set.*
+*Figure 151. Batches screen showing batches and their statuses in the Customers data set.*
 
 Each batch can have its own status that depends on the status of the rows within the batch. The following are the batch statuses:
 
@@ -152,7 +170,7 @@ You can create any number of data sets in Data Manager as long as you have *Crea
 Transactional data sets can be created from **Transactional data sets** screen using the **New** button in the top right corner of the screen. Once you click the **New** button, a **New Transactional Data Set** wizard will be shown and will guide you through the rest of the process.
 
 ![data manager create transactional data set](../figures/data-manager-create-transactional-data-set.png)
-*Figure 144. Transactional Data Sets page offers a New button in the top-right corner when logged in as a user with Admin privileges.*
+*Figure 152. Transactional Data Sets page offers a New button in the top-right corner when logged in as a user with Admin privileges.*
 
 When creating a data set, you will have to configure its basic properties, data layout, permissions, and more. These are all configured on separate pages in the wizard.
 
@@ -161,20 +179,24 @@ When creating a data set, you will have to configure its basic properties, data 
 The first screen of the wizard allows you to configure basic settings for the data set like its name, description, and more.
 
 ![data manager create transactional data set basic settings](../figures/data-manager-create-transactional-data-set-basic-settings.png)
-*Figure 145. Basic settings page of the New Transactional Data Set wizard.*
+*Figure 153. Basic settings page of the New Transactional Data Set wizard.*
 
-Following settings can be configured on the Basic settings page:
+The following settings can be configured on the Basic settings page:
 
-- **Data set name**: unique name of the data set. The name *can* contain special characters (like spaces) and should be descriptive enough to allow you to find your data set when working in Data Manager or in Designer. Internally, the Data Manager will create a **data set code** that will be used to identify the data set. Data set code does not change even if you rename the data set which allows you to continue using the data set in your CloverDX jobs even if the name has changed.
+- **Data set name**: unique name of the data set. The name *can* contain special characters (like spaces) and should be descriptive enough to allow you to find your data set when working in Data Manager or in Designer.
+- **Data set code**: unique technical identifier of the data set. Unlike the data set name, the code cannot contain spaces or special characters. The data set code does not change even if you rename the data set, which allows you to continue using the data set in CloverDX jobs, Data Apps, and other references even if the name has changed.
+- **Category**: an optional category used to organize data sets in Data Manager and Server UI. You can select an existing category or create a new one. See [Data set categories](data-manager-introduction.md#data-set-categories) for more details.
 - **Description**: an optional more detailed description of the data set’s purpose.
 - **Data retention**: specifies the number of days how long are the rows retained in the Data Manager’s storage after they have been committed. Rows that have been committed for longer than the number of days specified in this property will be automatically deleted from the data set. When rows are deleted, their audit records are deleted as well. This means that there is no way to recover rows that have been deleted after their retention period expired.
+- **Allow adding new rows**: allows users to add new rows to the reference data set. If disabled, users cannot add new rows (*New row* and *Duplicate row* actions are disabled).
+- **Allow removing rows**: allows users to delete rows from the reference data set. If disabled, users cannot remove rows (*Delete row* action is disabled).
 
 ##### Data layout
 
 **Data layout** specifies the structure of each row in the data set – the column names, types, and other properties.
 
 ![data manager create transactional data set data layout](../figures/data-manager-create-transactional-data-set-data-layout.png)
-*Figure 146. Data layout page of the wizard with the column editor shown in the side bar. The first two columns have been added by the user (First name and Last name) while all the others are the system columns which are shown in the table before any user-defined columns are added.*
+*Figure 154. Data layout page of the wizard with the column editor shown in the side bar. The first two columns have been added by the user (First name and Last name) while all the others are the system columns which are shown in the table before any user-defined columns are added.*
 
 All rows in the data set have the same layout. The layout can contain any number of user-defined columns and will also contain a set of system-defined columns that are always present and cannot be removed (but can be moved around to a different place within the row).
 
@@ -194,7 +216,7 @@ Columns in the data set can have one of the following data types:
 When you create a new column, the following column settings are shown in a **Create a new column** side bar:
 
 ![data manager create data set new column](../figures/data-manager-create-data-set-new-column.png)
-*Figure 147. Column setting shown in a Create a new column side bar.*
+*Figure 155. Column setting shown in a Create a new column side bar.*
 
 The following settings can be configured for the new column:
 
@@ -226,14 +248,14 @@ Few examples:
 - You can select to batch data based on run IDs of jobs that load the data and the [remote data manager](../admin/data-manager-administration.md#data-manager-configuration) client names (*Loaded by job run id and client name* option). This will create a new batch for each job run that writes data into the data set.
 
 ![data manager batching job runs](../figures/data-manager-batching-job-runs.png)
-*Figure 148. Example of job run batches, coming both from local and remote environments.*
+*Figure 156. Example of job run batches, coming both from local and remote environments.*
 
 Any number of batches can be created. The membership of the row in a batch is evaluated in real-time as needed. I.e., it is possible to change the batch for a row simply by changing the value of the row’s batch key column.
 
 The following settings are available on the Batching page:
 
 ![data manager create transactional data set batching](../figures/data-manager-create-transactional-data-set-batching.png)
-*Figure 149. Data set batching configuration page.*
+*Figure 157. Data set batching configuration page.*
 
 - **Enable batching**: enables of disables batching on the data set. By default, this is turned off (i.e., the data set is not batched). If this is enabled, you will have to select the batch key column.
 - **Batch key column**: allows you to select which column from the data set is the batch key. Only one column can be selected. The column must be either integer or string.
@@ -247,7 +269,7 @@ Each data set has its own set of **permissions** – list of users and their rol
 Roles are configured on a **User roles** page when creating a new data set:
 
 ![data manager create transactional data set user roles](../figures/data-manager-create-transactional-data-set-user-roles.png)
-*Figure 150. User roles page in the new data set configuration. The screenshot shows different users assigned to different roles - two admin users, one approver and one data editor.*
+*Figure 158. User roles page in the new data set configuration. The screenshot shows different users assigned to different roles - two admin users, one approver and one data editor.*
 
 Clicking on a dropdown for each role will give you a list of all users on the Server and you can select any number of users in each role.
 
@@ -260,7 +282,7 @@ Data set configuration can be edited even after the data set has been created an
 When editing data set’s configuration, additional options are available on the **Basic settings** page:
 
 ![data manager edit transactional data set basic settings](../figures/data-manager-edit-transactional-data-set-basic-settings.png)
-*Figure 151. Additional settings are available in the existing data set when its configuration is edited.*
+*Figure 159. Additional settings are available in the existing data set when its configuration is edited.*
 
 You can **Disable data set** to prevent anyone from using it without deleting any data. Disabled data set cannot be used in CloverDX jobs and data in disabled data set cannot be edited in the Data Manager’s editor.
 

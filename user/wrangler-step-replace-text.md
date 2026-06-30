@@ -30,6 +30,6 @@
 ###### See also
 
 - [`replace`](../developer/string-functions-ctl2.md#replace) function in CTL.
-- [Regular expressions in CTL (CloverDX documentation)](../developer/regular-expressions.md)
+- [Regular expressions in CTL (CloverDX documentation)](../developer/language-reference-ctl2.md#regular-expressions)
 - [Regular expressions (on Wikipedia)](https://en.wikipedia.org/wiki/Regular_expression)
 - [Regular Expression Language - Quick Reference (on microsoft.com)](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)

@@ -90,7 +90,7 @@ Each metadata can use [Autofilling functions](metadata-records-and-fields.md#aut
 | [Usage of useParentRecord attribute](xmlextract.md#usage-of-useparentrecord-attribute) |
 
 In **XMLExtract**, you can map tags, attributes and input fields to the output. It can read multiple elements of the same name as a list. The mapping is specified in **XMLExtract Mapping Editor**.
-Example 367. Mapping in XMLExtract
+Example 372. Mapping in XMLExtract
 
 ```xml
 <Mappings>
@@ -128,7 +128,7 @@ When using an XSD, the mapping can be performed visually in the **Mapping** dial
 ###### Mapping tab
 
 ![XMLExtract mapping dialog overview](../figures/XMLExtract_mapping_dialog_overview.png)
-*Figure 357. The Mapping dialog for XMLExtract*
+*Figure 375. The Mapping dialog for XMLExtract*
 
 In the pane on the left hand side of the **Mapping** tab, you can see a tree structure of the XML. Every element shows how many occurrences it has in the source file (e.g. [0:n]). In this pane, you need to check the elements that should be mapped to the output ports.
 
@@ -157,7 +157,7 @@ Once you define all elements, specify output ports, mapping and other properties
 If you want to map an element to XML fields of its parents, use the "../" string (like in the file system) before the field name. Every "../" stands for "this element’s parent", so "../../" would mean the element’s parent’s parent and so on. Examine the example below. The "../../empID" is a field of "employee" as made available to the currently selected element "customer".
 
 ![XMLExtract mapping dialog parent](../figures/XMLExtract_mapping_dialog_parent.png)
-*Figure 358. Parent elements*
+*Figure 376. Parent elements*
 
 ```xml
 <Mapping element="employee">
@@ -248,7 +248,7 @@ Example:
   `outputField="fieldName"`
 
 The nested structure of `<Mapping>` tags copies the nested structure of XML elements in input XML files. See example below.
-Example 368. From XML structure to mapping structure
+Example 373. From XML structure to mapping structure
 - **If XML structure looks like this:**
   ```xml
   <[prefix:]nameOfElement>
@@ -302,12 +302,12 @@ In this sample xml file there are two elements called `id`: the first one is a n
 ```
 
 ![XMLExtract example nested elements xml file](../figures/XMLExtract-example-nested-elements-xml-file.png)
-*Figure 359. XML structure and values*
+*Figure 377. XML structure and values*
 
 **Example 1:** The mapping is at the level of the main `result` element, and the **Automap elements or attributes to fields with same name** option is turned on, or the `id` (resultID) is specifically mapped.
 
 ![XMLExtract example1 nested nodes mapping](../figures/XMLExtract-example1-nested-nodes-mapping.png)
-*Figure 360. Mapping 1*
+*Figure 378. Mapping 1*
 
 The value of the `id` element will differ based on if the *Use nested nodes* value is set to `True` or `False`:
 
@@ -317,7 +317,7 @@ The value of the `id` element will differ based on if the *Use nested nodes* val
 **Example 2:** The mapping is at the `id` element nested within the `result` element.
 
 ![XMLExtract example2 nested nodes mapping](../figures/XMLExtract-example2-nested-nodes-mapping.png)
-*Figure 361. Mapping 2*
+*Figure 379. Mapping 2*
 
 The returned values of the `id` element will again differ based on if the *Use nested nodes* value is set to `True` or `False`:
 
@@ -596,7 +596,7 @@ In summary, working with `nestedDepth` instead of nested template references alw
 If you supply an **XML Schema** which has a namespace, the namespace is automatically extracted to **Namespace Bindings** and given a **Name**. The **Name** does not have to *exactly* match the namespace prefix in the input schema, though, as it is only a denotation. You can edit it anytime in the **Namespace Bindings** attribute as shown below:
 
 ![XMLExtract namespace](../figures/XMLExtract-namespace.png)
-*Figure 362. Editing namespace bindings in XMLExtract*
+*Figure 380. Editing namespace bindings in XMLExtract*
 
 After you open **Mapping**, namespace prefixes will appear before element and attribute names. If **Name** was left blank, you would see the namespace URI instead.
 > [!NOTE]
@@ -619,7 +619,7 @@ After you open **Mapping**, namespace prefixes will appear before element and at
 Sometimes the schema defines an element to be of some generic type, even though the actual specific type of the element will be in the processed XML. If the subtypes of the generic type are also defined in the schema, you may use the **Select subtype** action. This will open a dialog as shown below. When you choose a subtype, the element in the schema tree will be treated as if it was of the selected type. This way, you will be able to define the mapping of this element by using the Mapping editor. The information will also be stored in the Mapping source - see [Type Override tags](xmlextract.md#xmlextract-type-override-tags).
 
 ![XMLExtract cast to dialog](../figures/XMLExtract_cast_to_dialog.png)
-*Figure 363. Selecting subtype in XMLExtract*
+*Figure 381. Selecting subtype in XMLExtract*
 
 ##### Notes
 

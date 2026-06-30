@@ -1,10 +1,10 @@
 <!-- Automation and operations > Libraries, Sandboxes, and AI / ML Models modules > Libraries -->
 
-## 14. Libraries
+## 16. Libraries
 
 ### Introduction
 
-A **CloverDX** library is a redistributable package, which can contain reusable [graphs](../developer/part-graph-elements-structures-tools.md), [subgraphs](../developer/subgraphs.md), [jobflows](../developer/part-jobflow.md), [data services](../developer/data-services.md), or [metadata](../developer/metadata.md). Libraries offer significant improvements to code reusability and sharing in **CloverDX**. Because libraries can be installed [multiple times](libraries.md#multiple-library-instances), they provide an easy option to quickly clone your solutions and set them up with different parameters and permissions to control users' visibility and allowed operations for individual libraries.
+A **CloverDX** library is a redistributable package, which can contain reusable [graphs](../developer/part-graph-elements-structures-tools.md), [subgraphs](../developer/subgraphs.md), [jobflows](../developer/part-jobflow.md), [data services](../developer/data-service.md), or [metadata](../developer/metadata.md). Libraries offer significant improvements to code reusability and sharing in **CloverDX**. Because libraries can be installed [multiple times](libraries.md#multiple-library-instances), they provide an easy option to quickly clone your solutions and set them up with different parameters and permissions to control users' visibility and allowed operations for individual libraries.
 
 ### Development
 
@@ -26,7 +26,7 @@ If you want to develop your custom libraries, refer to our libraries documentati
 
 #### Subgraphs
 
-Public subgraphs become available for use in **CloverDX Designer**, where they can be added as components in server projects. For more information on the usage from the Designer perspecitve, refer [here](..designer/libraries.md#usage).
+Public subgraphs become available for use in **CloverDX Designer**, where they can be added as components in server projects. For more information on the usage from the Designer perspecitve see [here](../developer/libraries-dev.md#usage).
 
 Subgraphs exported as **Data Source** or **Data Target Connectors** become available in the [Data Catalog](../user/data-catalog.md) in **CloverDX Wrangler**. For more information on how to configure access to individual connectors for specific user groups, see [Permissions Tab.](libraries.md#permissions-tab)
 
@@ -41,11 +41,11 @@ When creating a new [schedule](scheduling.md) or [event listener](listeners.md) 
 
 ##### Initialization job
 
-A graph or jobflow selected as a library **initialization job** during library export can be used to set up a configuration that cannot be set ahead of time during the development process. For example, in our CloverDX Marketplace [OneDrive](https://marketplace.cloverdx.com/OneDriveLib_1.0.html) library, an initialization graph is used to generate values for SharePoint *Site ID* and *Drive ID parameters*, which are dependent on the configured OAuth2 connection.
+A graph or jobflow selected as a library **initialization job** during library export can be used to set up a configuration that cannot be set ahead of time during the development process. For example, in our CloverDX Marketplace [OneDriveLib](https://marketplace.cloverdx.com/library/OneDriveLib/1.1.1) library, an initialization graph is used to generate values for SharePoint *Site ID* and *Drive ID parameters*, which are dependent on the configured OAuth2 connection.
 
 For more information on how to tell if a library has an initilation job and how to run it, see [Initialization job](libraries.md#initialization-job).
 
-For recommendations on initialization job development, refer to our documenation for developers [here](..designer/libraries.md#).
+For recommendations on initialization job development, refer to our documenation for developers [here](../developer/libraries-dev.md).
 
 ##### Health Check job
 
@@ -144,7 +144,7 @@ This provides administrators with flexibility when managing libraries: libraries
 
 Installing multiple instances of the same library can save you time if there is a need to handle the same data from multiple sources (e.g., when pulling the same data from different databases or different connection profiles), or when using the same data source but needing a way to limit the output based on user’s level of access (e.g., limit one group of users to see only a specific set of customer information).
 
-To provide an example of how to use multiple library instances, let’s take our [Xero library](https://marketplace.cloverdx.com/XeroLib_1.0.html), which can pull information from the Xero accounting system. Let’s assume your company has two branches, one in the United Kingdom and one in the United States. You want to make the data source connectors from the Xero library available for use in the [Data Catalog](../user/data-catalog.md) in **CloverDX Wrangler** and want users to access data from their branch only.
+To provide an example of how to use multiple library instances, let’s take our [Xero library](https://marketplace.cloverdx.com/library/XeroLib/1.1), which can pull information from the Xero accounting system. Let’s assume your company has two branches, one in the United Kingdom and one in the United States. You want to make the data source connectors from the Xero library available for use in the [Data Catalog](../user/data-catalog.md) in **CloverDX Wrangler** and want users to access data from their branch only.
 
 ##### Installation and configuration steps
 
@@ -153,7 +153,7 @@ To provide an example of how to use multiple library instances, let’s take our
 ![libraries multiple install xero](../figures/libraries-multiple-install-xero.png)
 *Figure 151. Multiple instances of Xero library*
 
-- On the [Configuration tab](libraries.md#configuration-tab), configure each library instance with its OAuth2 connection, and tenant ID (consult the [library documentation](https://marketplace.cloverdx.com/XeroLib_1.0.html) for the configuration steps). You can also set the date format based on the country (*dd/MM/yyyy* or *MM/dd/yyyy*).
+- On the [Configuration tab](libraries.md#configuration-tab), configure each library instance with its OAuth2 connection, and tenant ID (consult the [library documentation](https://marketplace.cloverdx.com/library/XeroLib/1.1) for the configuration steps). You can also set the date format based on the country (*dd/MM/yyyy* or *MM/dd/yyyy*).
 
 ![libraries xero uk config](../figures/libraries-xero-uk-config.png)
 *Figure 152. Configuration for UK branch*

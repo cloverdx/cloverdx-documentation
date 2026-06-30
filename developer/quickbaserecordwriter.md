@@ -51,7 +51,7 @@
 | Error message output field |  | The name of the field the error message will be stored in, see [Error fields for QuickBaseRecordWriter](quickbaserecordwriter.md#quickbaserecordwriter-error-fields). |  |
 
 ![tableID](../figures/tableID.png)
-*Figure 382. Obtaining Table ID*
+*Figure 400. Obtaining Table ID*
 
 #### Details
 

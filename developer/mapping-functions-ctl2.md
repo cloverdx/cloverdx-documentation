@@ -33,7 +33,7 @@ The function throws an exception, if the `mapping` is invalid or `null`. Also, i
 **Compatibility**
 
 The `getMappedSourceFields()` function is available since **CloverETL 4.1.0**.
-Example 245. Usage of getMappedSourceFields()
+Example 248. Usage of getMappedSourceFields()
 `getMappedSourceFields("$target1=$srcA1;$target3=$srcA1;#$target1=$srcB4;$target2=$srcB2;", "target1", 1)` returns `["srcB4"]`
 
 `getMappedSourceFields("$target1=$source1;$target1=$source3;$target3=$source4;", "target1")` returns `["source1", "source3"]`
@@ -61,7 +61,7 @@ The function throws an exception, if the `mapping` is invalid or `null`. Also, i
 **Compatibility**
 
 The `getMappedTargetFields()` function is available since **CloverETL 4.1.0**.
-Example 246. Usage of getMappedTargetFields()
+Example 249. Usage of getMappedTargetFields()
 `getMappedTargetFields("$target1=$src1;$target3=$src1;#$target1=$src4;$target2=$src1;", "src1", 1)` returns `["target2"]`
 
 `getMappedTargetFields("$target1=$src1;$target3=$src1;#$target1=$src4;$target2=$src1;", "src1")` returns `["target1", "target3", "target2"]`
@@ -86,7 +86,7 @@ The function throws an exception, if the `mapping` is invalid or `null`. Also, i
 **Compatibility**
 
 The `isSourceFieldMapped()` function is available since **CloverETL 4.1.0**.
-Example 247. Usage of isSourceFieldMapped()
+Example 250. Usage of isSourceFieldMapped()
 `isSourceFieldMapped("$target1=$srcA1;$target3=$srcA1;#$target1=$srcB4;$target2=$srcB2;", "srcB2", 1)` returns `true`
 
 `isSourceFieldMapped("$target1=$srcA1;$target3=$srcA1;#$target1=$srcB4;$target2=$srcB2;", "srcB2", 0)` returns `false`
@@ -110,7 +110,7 @@ The function throws an exception if the `mapping` is invalid or `null`.
 **Compatibility**
 
 The `isTargetFieldMapped()` function is available since **CloverETL 4.1.0**.
-Example 248. Usage of isTargetFieldMapped()
+Example 251. Usage of isTargetFieldMapped()
 `isTargetFieldMapped("$target1=$srcA1;$target3=$srcA1;#$target1=$srcB4;$target2=$srcB2;", "target2")` returns `true`
 
 `isTargetFieldMapped("$target1=$source1;$target1=$source3;$target3=$source4;", "target2")` returns `false`

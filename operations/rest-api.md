@@ -1,4 +1,4 @@
-<!-- Automation and operations > Server management APIs > REST API -->
+<!-- Automation and operations > Server APIs > REST API -->
 
 ## 11. REST API
 
@@ -19,6 +19,9 @@ http://example.com:8080/clover/api/rest/v1/docs.html
 ```
 
 You can access this page through the **Server API** link on the Server Console login page. It serves as the primary resource for using the API, providing comprehensive details on all available resources, their operations (including URI paths and HTTP methods), parameters, and examples of both requests and responses. This interactive page also allows you to test API requests and view the corresponding responses directly.
+
+![server api rest](../figures/server-api-rest.gif)
+*Figure 143. Server REST API documentation and*
 > [!NOTE]
 > Most of the examples use the sandbox `DWHExample` and resources from it. It can be deployed while completing the Server Console tutorial. Examples for libraries use some libraries from our [CloverDX Marketplace](https://marketplace.cloverdx.com/). Also note that most of the resources are identified by numerical IDs, which may be different in your use case.
 

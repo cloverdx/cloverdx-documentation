@@ -7,7 +7,7 @@ By configuring the **OAuth2 Authentication** section in **CloverDX Server**, ser
 You have to register your **client application** with your **Identity provider** first and then copy its properties here. Each HTTP request on server **REST API** or **Data services** has to contain **OAuth2 access token** so server can verify this token with the **Identity Provider**. As a result server obtains external user account identity ID and can determine which **CloverDX Server** user record is linked to this external ID.
 
 ![setup oauth2](../figures/setup-oauth2.png)
-*Figure 93. OAuth2 authentication*
+*Figure 94. OAuth2 authentication*
 
 ##### OAuth2 setup
 
@@ -54,4 +54,4 @@ By clicking on **Generate request** server with create standard authorization UR
 If your administrator already has a valid **access token** it can be paste directly to server UI. This token is validated by server which allows server to obtain user provider’s account ID.
 
 ![user oauth2](../figures/user-oauth2.png)
-*Figure 94. Linking user account*
+*Figure 95. Linking user account*

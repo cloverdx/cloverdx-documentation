@@ -2,16 +2,22 @@
 
 ## 8. Designer configuration
 
-![configuration cloverdx 0010](../figures/configuration-cloverdx-0010.png)
-*Figure 60. CloverDX Server Integration*
+CloverDX Designer offers many configuration options that allow you to configure wide range of settings – fonts, window layouts, colors, editor preferences and much more. In this chapter, we will focus only on settings that are specific to CloverDX platform. For information about other settings offered by CloverDX Designer, please consult Eclipse documentation that is available directly in the Designer via the question mark button in the bottom left corner of the dialog.
 
-| Option | Description | Default Value |
+### General configuration
+
+All CloverDX settings are grouped together in one node of the settings tree accessible via menu **Window** ****Preferences**:
+
+![configuration cloverdx 0010](../figures/configuration-cloverdx-0010.png)
+*Figure 62. CloverDX-specific configuration in CloverDX Designer.*
+
+| Option | Description | Default value |
 | --- | --- | --- |
 | **Edge debug temp directory** |  |  |
-| Use alternate debug folder | Allows the user to specify the path to an alternate folder containing edge debug files (`.dbg`). | disabled |
+| Use alternate debug folder | Allows you to specify the path to an alternate folder containing edge debug files (`.dbg`). | disabled |
 | **OpenSSH configuration file** |  |  |
 | Use OpenSSH configuration file | Specifies the location of the OpenSSH configuration file which allows you to define SSH access outside of **CloverDX Designer**. The path to the file is `~/path/to/.ssh/ssh_config` There is no default file; therefore, without proper specification, no configuration file is loaded. Enabling/disabling this option requires restart of the **CloverDX Designer** runtime to take effect. | disabled |
-| SSH key passphrases | Specifies list of passphrases for SSH keys used in Designer dialogs and jobs executed in Runtime environment. Each line represents one passphrase used by a specific SSH key. The line content should be `[key identity]=[passphrase]`. The key identity can be `[username]@[hostname]` or just `[hostname]`. For example `john@my-sftp-server.com=changeit`. If the key is stored in project’s `ssh-keys` directory the identity has to match the name of the file without the `.key` suffix. If OpenSSH configuration file is used the identity has to match the information stored in the configuration. Also in this case the `[username]` is optional. |  |
+| SSH key passphrases | Specifies list of passphrases for SSH keys used in Designer dialogs and jobs executed in Runtime environment. Each line represents one passphrase used by a specific SSH key. The line content should be `[key identity]=[passphrase]`. The key identity can be `[username]@[hostname]` or just `[hostname]`. For example `john@my-sftp-server.com=changeit`. If the key is stored in project’s `ssh-keys` directory the identity must match the name of the file without the `.key` suffix. If OpenSSH configuration file is used the identity must match the information stored in the configuration. In this case, the `[username]` is optional. |  |
 | **Appearance** |  |  |
 | Show component icon | Switches component icons on or off. | enabled |
 | Show component background | Enables or disables the background color of components. | enabled |
@@ -20,157 +26,163 @@
 | Display default component description | When **Show component description** is enabled, it shows the components' default description (e.g. path to the file in **Readers** or **Writers**). | enabled |
 | Route edges to avoid overlap | Enables or disables different edge-routing algorithm. | enabled |
 | Show rich tooltips | Enables or disables detailed tooltips on edges. | enabled |
-| Check graph configuration | Enables or disables graph configuration check. Without checking, errors on components are not displayed. | enabled |
+| **Other** |  |  |
+| Check graph configuration | Enables or disables graph configuration validation. When this validation is disabled, error icons on components are not shown. | enabled |
+| After every change | Configure when the graph validation is performed. If this is disabled, validation is only done after save. When enabled, validation is done when changes are made. | enabled |
 | Show graph configuration errors/warnings in Project Explorer | Allows to suppress detected configuration errors and warnings in **Project Explorer** and **Problems** views. | enabled |
 | Detect unused graph elements | Enables or disables updates and reporting of used/unused graph elements. Disabling can solve some specific performance issues. | enabled |
 | Validate classpath | Checks whether the content of the classpath file is valid for both **Designer** and **Server**. Can be disabled in case it significantly slows down the working process (opening new projects, etc.) or indicates false positives. | enabled |
-| Generate component ID from its name | Generates component identifier based on its name. | enabled |
+| Generate component ID from its name | Generates component identifier based on its name by converting to uppercase and replacing special characters with underscores. | enabled |
 | Open context menu for newly created edge | Opens the context menu after creating an edge between two components. In the menu, you can select metadata for the edge. | disabled |
+| **Switch to preferred perspective on graph editor activation** |  |  |
+| Three options | Configure whether to automatically change perspective on graph editor activation. Three options are available:  - Always: always switch automatically - Never: never switch automatically - Prompt: ask and allow user to decide (and save the decision for later) | Prompt |
+
+### CloverDX AI Assistant configuration
+
+The **AI Assistant** pages allow you configure **Clover Assistant**. The most important part is the API key for 3rd party LLM (Large Language Model) such as GPT or Claude which power Clover Assistant. Additional options allow you to configure agent behavior, logging and more.
+> [!NOTE]
+> CloverDX AI Assistant is released as a **technology preview** in CloverDX 7.5.0. It is present in Designer but remains inert until you apply an Assistant license key and configure an AI provider in Designer preferences (it will not do anything on its own).
+>
+> As a technology preview, it is under active development. Its behavior, interfaces, and defaults may change in future releases, sometimes in incompatible ways. **Use it in dev/test environments only, not in production.** Treat it as a tool for evaluation and non-critical work, and review everything it produces before relying on it. Use it with caution: the Assistant can read and modify files and run jobs in the CloverDX Server project you connect it to.
+>
+> Gathering feedback on how teams want to govern the Assistant is one of the goals of this technology preview. Contact your Account representative if you wish to provide feedback that could help us improve future versions of the Assistant.
+
+#### General options
+
+On this page, you can configure which models are used for different agents. See [Agent types](../developer/designer-ai-assistant.md#agent-types) for more details about different kinds of agents, their requirements and usage patterns.
+
+![designer config ai assistant general](../figures/designer-config-ai-assistant-general.png)
+*Figure 63. General settings for Clover Assistant.*
+
+Following options are available:
+**Provider**
+Allows you to select which provider to use. **This is required and must be configured before the Assistant can be used.** Multiple providers are allowed each with their own settings.
+
+In general, you will need an **API key** for the selected provider, and you may also need additional information such as endpoint URLs etc. Follow the tooltips for each provider configuration option once you’ve selected you provider to get more information about what each option means.
+**Models**
+Allows you to select models you wish to use for each agent. Pressing the **Reload** button will connect to the provider you selected above and will download the list of models you have currently available. You can then select different models for each agent type. See [Agent types](../developer/designer-ai-assistant.md#agent-types) for more details about agents.
+
+The configuration allows you to configure one **Master model** which will serve as default for all sub-agents unless you override them for each specific agent.
+
+In general, we recommend largest ("frontier") models for Architect, and medium-size models or models from previous generation for other sub-agents.
+
+#### Advanced configuration
+
+Advanced configuration allows you to configure additional settings that tune the behavior of Assistant, its token consumption, logging details or even zoom level for Assistant view.
+
+![designer config ai assistant advanced](../figures/designer-config-ai-assistant-advanced.png)
+*Figure 64. Advanced configuration of Clover Assistant.*
+
+The configuration uses few basic terms:
+**Turn**
+One user message and the Assistant’s complete response to it. A turn may involve many model calls and tool calls.
+**Iteration**
+A single round-trip to the model. One iteration may carry several tool calls which are executed before the next iteration.
+**Master**
+The main assistant agent that talks to you. It may delegate work to sub-agents (specialists such as the *Architect*, *Developer*, *Data inspector*, etc.).
+
+##### Limits
+
+The **Limits** section allows you to influence token consumption and iteration counts for your agents. These guard against runaway tool call loops and oversized model responses. The default suit regular usage, change these values only if you are hitting the limits or if you need tighter control over your Assistant costs.
+**Max tokens / turn**
+Configure the maximum number of tokens the model may generate in a single reply. This limits the length of each model response within a turn, not the turn’s total token count. Raise this limit if answers are being cut off in the middle of the output; lower this value to reduce per-reply cost. The value range is from 256 to 64000.
+**Master max iterations / turn**
+Configure the maximum number of model round trips the Master may make while answering one message. If the Master reaches this ceiling without producing a final answer, the turn stops with an iteration limit error – usually a sign of a confused tool call loop. Raise this only for genuinely long, multi-step tasks. You can use values from 5 to 200.
+**Sub-agent max iterations**
+Configure the number of model round trips sub-agentsmay makewhileanswering the queries they are given. If a sub-agent reaches this limit without finishing, it will return an error to Master. Master can then decide whether to call the task with narrower scope or to try another approach. Value range is 5 to 200.
+**MCP tool timeout (s)**
+Configure how long to wait for MCP Server’s response in seconds. If MCP does not respond before the timeout expires, the call is considered a failure, and the agent will then decide how to continue (whether to end the turn, call the tool again, or switch to a different tool). Increase this value if legitimate calls to long-running tools time out (e.g., on overloaded Server). Decrease the value to fail faster if the Server is stuck. Values can range from 10 seconds to 600 seconds.
+
+##### Logging
+
+The **Logging** section allows you to configure the amount and location of logs produced by agents when they run.
+**Log level**
+Configure which log messages are written to the log. Note that on *DEBUG* and *TRACE* levels, full requests and responses may be written to logs which can significantly increase the log size. Default level is *INFO* and should be suitable for most common situations.
+**Log LLM requests and responses**
+Allows you to force agents to always write full requests and responses to log files. By default, this is disabled.
+**Log file**
+Configure the location of the Assistant log file. By default, this will be a file within `.metadata` folder of your current workspace.
+
+##### Appearance
+
+The **Appearance** section allows you to configure the appearance of the Clover Assistant panel.
+**Chat zoom**
+Configure the zoom level of the chat panel. This is useful especially if you are using high-DPI screen and wish to present your work to others to allow them to read even on regular screen sizes. Default value is 100%, larger values make the text bigger, smaller values make the text smaller.
 
 ### Runtime Configuration
 
-CloverDX Runtime is one of architectural layers of **CloverDX Designer**. It takes care of running graphs and subgraphs.
+CloverDX Runtime is the execution core which runs jobs (graphs, jobflows, …​) which are part of local projects in CloverDX Designer (as opposed to jobs that are part of Server projects and which run on the Server even when started from the Designer).
 
-Current state of CloverDX Runtime can be seen in the right bottom corner of the perspective.
+Current status of the Runtime can be seen in the bottom right corner of the Designer.
 
-CloverDX Runtime is configured in the **Preferences** dialog: open **Window** ****Preferences** and choose **CloverDX** ****CloverDX Runtime**.
+![designer runtime status](../figures/designer-runtime-status.png)
 
-The CloverDX Runtime Configuration serves to set up:
+Clicking on the little arrow next to the Runtime icon will bring up a context menu which will allow you to control the Runtime (start, restart, …​) or view its logs.
 
-#### Temporary Disk Space Settings
+![designer runtime status menu](../figures/designer-runtime-status-menu.png)
 
-The temporary disk space is necessary for debug files. You can store temporary files either into a temporary directory within the workspace directory or into a user-defined directory.
+Runtime settings can be found in **Window** ****Preferences** menu under **CloverDX** ****CloverDX Runtime** node in the configuration tree.
 
-#### Engine configuration
+When changing Runtime settings, Runtime will need to be restarted for the settings to take effect. This will be done automatically for you once you save the configuration and confirm the restart.
 
-Change max record size, etc. See [Engine configuration](designer-configuration.md#engine-configuration).
+#### Basic settings
 
-#### Java Runtime Environment to be Used
+![configuration runtime general](../figures/configuration-runtime-general.png)
+*Figure 65. Basic settings for CloverDX Runtime.*
 
-See [Java Configuration](designer-configuration.md#java-configuration) for more information.
-
-#### Amount of Memory for Java Heap Size
-
-It is important to define some memory size, because Java Virtual Machine requires memory to run graphs.
-
-#### Additional Virtual Machine Parameters
-
-Additional libraries can be added to the classpath.
-
-![cloverdx runtime](../figures/cloverdx-runtime.png)
-*Figure 61. CloverDX Runtime*
-
-To take effect of the changes in runtime configuration, restart of CloverDX Runtime is needed. The runtime menu is accessible in the right bottom corner of CloverDX window.
-
-![cloverdx runtime placement](../figures/cloverdx-runtime-placement.png)
-*Figure 62. Accessing CloverDX Runtime menu*
-
-![cloveretl runtime restart](../figures/cloveretl-runtime-restart.png)
-*Figure 63. Restarting CloverDX Runtime*
-Example 3. Adding an External Library to Classpath
-To add an external library to the **CloverDX runtime**'s classpath, the `-Djava.library.path=path/to/library` option should be used.
-
-To add libraries `located in C:/path/to/lib`, type `-Djava.library.path=C:\path\to\lib` into the **VM parameters** field.
-
-![cloverdx runtime vm parameters](../figures/cloverdx-runtime-vm-parameters.png)
-*Figure 64. Adding library to classpath using VM parameters*
-
-#### Additional VM Parameter
-
-##### Server mode (-server)
-
-There are two flavors of JVM: client and server. The client system (default) is optimal for applications which need fast start-up times or small footprints. Switching to server mode is advantageous to long-running applications for which reaching the maximum program execution speed is generally more important than having the fastest possible start-up time. To run the server system, Java Development Kit (JDK) needs to be downloaded.
+- **Start Runtime on Designer startup**: when checked, Runtime will automatically start when you run CloverDX Designer. This is recommended to ensure that you can use all features of the Designer since some of the functionality depends on the Runtime being available (running any job, metadata propagation, and more).
+- **Working directory** allows you to change where temporary files are stored when jobs run in the Runtime. By default, this is set to a directory within the workspace and this is the recommended setting. You can also select your own directory if needed via **Use specified directory** option.
+  - You can also encrypt your temporary files if needed via **Encrypt temporary files** option. This is disabled by default since file encryption can lower performance of your jobs.
+- **CloverDX Engine Properties (defaultProperties)** allows you to configure additional properties that the Engine (a library within Runtime responsible for actually running jobs) will use. These settings are quite low-level and very seldom need to be changed. To learn more about which settings are available here, see [Engine configuration](designer-configuration.md#engine-configuration).
+- **Java Runtime Environment (JRE)** allows you to select which Java Runtime Envinronment to use when running CloverDX jobs. Default is to use value as configured in the workspace (which in turn defaults to JDK bundled with the Designer). This should not be changed unless you rely on specific version of Java for various reasons. In general, jobs may not run correctly on JDK other than the one supported by CloverDX Server (see compatibility matrix). See [Java Configuration](designer-configuration.md#java-configuration) for more information about Java in Designer.
+- **Memory settings**: allows you to configure how much memory the Runtime can use. In general, more memory means faster job processing and more stable environment. More complex jobs and large data sets require more memory to run with reasonable performance and may not run at all if there is not enough memory.
+  - If you are working with Server projects, Runtime will not require too much memory since all data processing happens on the Server. In that case, default values should be enough even if you are working with complex data flows or large volumes of data. In those cases, you will have to make sure that your Server has enough memory provisioned for its Worker process.
+  - **Initial heap size** and **Max. heap size** allow you to configure how much memory the Runtime will use. The default settings should be sufficient in most cases. To allow the Runtime to use more memory, simply increase the **Max. heap size**.
+  - The **Initial meta space size** and **Max. meta space size** allow you to configure the size of Java Meta Space – a native memory space Java uses to keep metadata about classes that are loaded. You should not modify this setting – the default values should be good.
+- **VM parameters** allows you to send additional command-line arguments to Java VM which runs the runtime. Each parameter goes on new line.
+  - Most commonly this is used to add additional libraries to Java classpath. A library can be added by specifying full path to where it is located via `-D` parameter by adding a line like `-Djava.library.path=path/to/library` to VM arguments. The path can be a path to jar file or to a folder with jar files.
+  - Note that if you just need to use Java library within a project, simply place it into the `lib` directory within that project instead of Runtime classpath.
+- **Enable Java debug on port** allows you to enable or disable Java debugging for jobs running in Runtime and to configure on which port the debugger will be available.
+- **Use specific port for Runtime** allows you select which port to use for CloverDX Runtime when it communicates with the Designer. By default, a random port will be selected. This may cause issues with strict security in some environments. In such cases, you can manually configure which port the Runtime will use. This should not be changed unless you have issues with the Designer not being able to connect to the Runtime.
 
 #### Logging
 
-CloverDX Runtime writes its logs into **Console** tab.
+CloverDX Runtime writes its logs into **Console** tab. This screen allows you to configure the severity of the log messages that will be shown.
 
-Here you can set up messages of which severity are written down. If you set up a particular level, you can see messages of the specified level and more severe ones. For example, if you set up level to INFO, messages of INFO and WARN levels are logged.
-
-Do not forget to restart the **CloverDX Engine** to take effect of the change.
-
-![runtime configuration 01](../figures/runtime-configuration-01.png)
-*Figure 65. CloverDX Runtime - Logging*
+![configuration runtime logging](../figures/configuration-runtime-logging.png)
+*Figure 66. CloverDX Runtime – Logging settings.*
 
 #### Master Password
 
 **Master Password** serves for encryption and decryption of [Secure graph parameters](../developer/parameters.md#secure-graph-parameters).
 
-You need to set up the **Master Password** to be able to use the **Secure parameters** on **CloverDX Designer**.
+You need to set up the **Master Password** to be able to use the **Secure parameters** in **CloverDX Designer**.
 
-The maximum length of the master password is 255 characters; there are no other restrictions or complexity requirements.
+![configuration runtime master password](../figures/configuration-runtime-master-password.png)
+*Figure 67. Setting the Master password.*
 
-![master password 01](../figures/master-password-01.png)
-*Figure 66. Setting the Master password*
-
-If you use the **Clear Master Password** button, restart of **CloverDX Runtime** is required.
+Note that jobs running in Server project will use Master password configured on the Server and not the one configured in the Designer’s Runtime.
 
 #### User Classpath
 
-You can add your own libraries to the CloverDX Runtime classpath.
+You can add your own libraries to the CloverDX Runtime classpath. Usually, you do not need to add any libraries here.
 
-##### User Entries
-
-Add your libraries under **User Entries**.
-
-![runtime configuration 02](../figures/runtime-configuration-02.png)
-*Figure 67. CloverDX Runtime - User Classpath*
-
-##### Add Projects
-
-**Add Project** adds the source code of a project and all libraries of the project which are marked as exported to the classpath.
-
-Note: Libraries can be marked as exported using **Properties** ****Java Build path** in context menu of corresponding project.
-
-##### Add JARs
-
-Adds `.jar` file(s). The files have to be within the workspace.
-
-##### Add External JARs
-
-Adds `.jar` file(s). The files do not have to be within the workspace, they may be placed within an arbitrary directory on the file system.
-
-##### Advanced
-
-The **Advanced** button opens an additional dialog to choose not frequently used options.
-
-![runtime configuration 03](../figures/runtime-configuration-03.png)
-*Figure 68. User Classpath - Advanced Options*
-
-##### Add Folder
-
-Adds a folder with `.class` files within the workspace.
-
-##### Add External Folder
-
-Adds a folder with `.class` files. The folder can be on arbitrary place within the system, it does not have to be in the workspace.
-
-##### Add Classpath Variables
-
-Adds a variable name pointing to a `.jar` file, folder with `.class` files. It may be within the workspace or out of the workspace.
-
-##### Add Library
-
-Adds a library (`.jar` file or set of `.class` files with a predefined name).
-
-Opens a wizard for adding a library. You can use it, for example, to add CloverDX Engine libraries.
-
-##### Add Variable String
-
-Adds an environment variable. The value of the variable will be added to the classpath.
+![configuration runtime user classpath](../figures/configuration-runtime-user-classpath.png)
+*Figure 68. CloverDX Runtime - User Classpath*
 
 ### CloverDX Server integration
 
 **Preferences of CloverDX Server Integration** allow you to tweak communication between **Designer** and **Server**.
 
-![server integration 010](../figures/server-integration-010.png)
+![configuration server integration](../figures/configuration-server-integration.png)
 *Figure 69. CloverDX Server Integration*
 
 | Option | Description | Default Value |
 | --- | --- | --- |
-| Enable File Placeholders | Enables usage of *placeholder files*. The *placeholder file* serves to save your disk space and to speed up synchronization in server projects. The files with a size above the specified limit are replaced with *placeholder files* (in **Designer**).  Usually, you do not need to see the content of these files and you do not commit them into repository. See [CloverDX Server project](../developer/cloverdx-projects-type.md#cloverdx-server-project). | enabled |
+| Enable File Placeholders | Enables usage of *placeholder files*. A *placeholder file* serves to save your disk space and to speed up synchronization in server projects. Files in sandbox with a size above the specified limit are replaced with *placeholder files* (in **Designer**) – one placeholder for each large file in the sandbox.  Usually, you do not need to see the content of these files and you do not commit them into repository. See [CloverDX Server project](../developer/cloverdx-projects-type.md#cloverdx-server-project). | enabled |
 | Placeholder Size Threshold | Files above this threshold are replaced with *placeholder files*. The size is in MB. | 10 |
-| Synchronization Threads Limit | The maximum number of threads used for synchronization between **CloverDX Designer** and **CloverDX Server**. Using more threads can speed up synchronization in networks with high latency but can also decrease **CloverDX Server** performance. | 10 |
+| Download threads limit | The maximum number of threads used for downloading files from **CloverDX Server**. Using more threads can speed up synchronization in networks with high latency but can also decrease **CloverDX Server** performance. | 10 |
+| Upload threads limit | The maximum number of threads used for uploading files to **CloverDX Designer** and **CloverDX Server**. | 1 |
 | Synchronization Cache Size | While downloading files from **CloverDX Server** during synchronization, the content of files is cached in memory to improve the performance. This parameter sets the cache size. | 30 |
 | Request Timeout | A request timeout of connection to **CloverDX Server**. The request timeout is in seconds. | 30 |
 | Connect Timeout | Timeout of the connection to **CloverDX Server**. The timeout is in seconds. | 30 |
@@ -180,9 +192,7 @@ Restart **CloverDX Designer** to use new timeout values.
 
 #### Ignored files
 
-The *Ignored files* setting allows you to avoid synchronization of particular files.
-
-You should not synchronize metadata of version control systems. By default, we exclude metadata files and directories of the most common ones: Bazaar, CVS, Git, Mercurial, Subversion. If you use any other version control system, add its metadata files to the list.
+The *Ignored files* setting allows you to avoid synchronization of particular files. This is often used to prevent synchronization of various temporary files, version control files, system metadata and so on. By default, we exclude metadata files and directories of the most common ones: Bazaar, CVS, Git, Mercurial, Subversion. If you use any other version control system, add its metadata files to the list.
 
 The configuration has the same syntax as the `.gitignore` file.
 
@@ -190,17 +200,36 @@ This is a global (workspace-scope) configuration template. When a new project is
 
 See also [Ignored files](designer-configuration.md#ignored-files) in project configuration.
 
-![server integration 110](../figures/server-integration-110.png)
+![configuration server integration ignored files](../figures/configuration-server-integration-ignored-files.png)
 *Figure 70. CloverDX Server Integration*
 
 ### Execution monitoring
 
-**Execution Monitoring** lets you set up status and log update intervals.
+**Execution Monitoring** lets you set up status and log update intervals. Monitoring intervals do not affect runtime of jobs, just the frequency at which logs and status information are refreshed in the Designer.
 
-![execution monitoring 010](../figures/execution-monitoring-010.png)
+![configuration execution monitoring](../figures/configuration-execution-monitoring.png)
 *Figure 71. Execution Monitoring*
 
 Refreshing the `data-out` folder is described in [Refresh operation](designer-configuration.md#refresh-operation).
+
+### Refresh operation
+
+**Refresh Operation** lets you configure which resources should be refreshed after graph run on a per project basis.
+
+The refresh operation configuration is accessible from the main menu under **Window** ****Preferences**. Choose **CloverDX** ****Refresh Operation** in **Preferences** window.
+
+![configuration refresh operation](../figures/configuration-refresh-operation.png)
+*Figure 72. Refresh Operation*
+
+Choose the project in the middle part of the dialog and specify which resources should be updated.
+
+The **Refresh resources upon job completion** checkbox enables or disables refreshing of resources.
+
+Radio buttons on the right hand side let you choose between refreshing **the entire workspace**, **the project containing the selected resource** or **specific resource**.
+
+The refreshing can be performed in the selected directories or recursively using the **Recursively include sub-folders** option.
+
+Refreshing after graph run can be configured per particular graph, too. See [Run configuration](../developer/running-graphs.md#run-configuration).
 
 ### Java configuration
 
@@ -212,128 +241,18 @@ When running your jobs in a **CloverDX Server** environment, the jobs are run wi
 
 If you want to switch to a different JDK, perform the steps below:
 
-- Go to **Window** > **Preferences**.
-- Navigate to **Java** > **Installed JREs**. By default, you will see the Java version selected during the Designer installation.
-
-![InstalledJDK18](../figures/InstalledJDK18.png)
-*Figure 72. Installed JREs Wizard*
-
-- To add a new Java installation click on **Add**, select **Standard VM**, and hit **Next**.
-
-![designer add jdk](../figures/designer-add-jdk.png)
-*Figure 73. Adding new JRE*
-
-- Select the directory of the desired JDK and click on **Finish**.
-
-![designer select jdk](../figures/designer-select-jdk.png)
-
-- To start using the JDK, select the checkbox next to it. After saving this change, the JDK is automatically added to the build path of your projects.
-
-![designer change default jdk](../figures/designer-change-default-jdk.png)
-*Figure 74. New default JDK and compliance warning*
-
-### Engine configuration
-
-**CloverDX** internal settings (defaults) are stored in the `defaultProperties` file located in the **CloverDX** engine. This source file contains various parameters that are loaded at run-time and used during transformation execution. We **do not** recommend changing values in this file.
-
-In Designer, the path to the file is `plugins/com.cloveretl.gui/lib/lib/cloveretl.engine.jar`. In Server Core, the path to the file is `WEB-INF/lib/cloveretl.engine.jar`.
-
-If you need to change the default setting, create a local file with only those properties you need to override and place the file in the project directory. To instruct **CloverDX** to retrieve the properties from this local file, go to **Window** ****Preferences** ****CloverDX** ****CloverDX Runtime** and either define the path to the file in the **CloverDX Engine Properties** field or put the following parameter in the **VM parameters** field:
-
-`-Dclover.engine.config.file=/full/path/to/file.properties`
-
-**Note:** engine properties have to be set for each workspace individually.
-
-#### Content of defaultProperties file
-
-Here we present some of the properties and their values as they are presented in the `defaultProperties` file:
-
-- `Record.RECORD_LIMIT_SIZE = 268435456`
-  Limits the maximum size of a record. Theoretically, the limit can be set very high, but you should keep it as low as possible for an easier error detection. For more details on memory demands, see [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
-- `Record.RECORD_INITIAL_SIZE = 65536`
-  Sets the initial amount of memory allocated to each record. The memory can grow dynamically up to `Record.RECORD_LIMIT_SIZE`, depending on how memory-greedy an edge is. See [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
-- `Record.FIELD_LIMIT_SIZE = 268435456`
-  Limits the maximum size of one field within a record. For more details on memory demands, see [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
-- `Record.FIELD_INITIAL_SIZE = 65536`
-  Sets the initial amount of memory allocated to each field within a record. The memory can grow dynamically up to `Record.FIELD_LIMIT_SIZE`, depending on how memory-greedy an edge is. See [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
-- `Record.DEFAULT_COMPRESSION_LEVEL = 5`
-  This sets the compression level for compressed data fields (`cbyte`).
-- `DEFAULT_INTERNAL_IO_BUFFER_SIZE = 32768`
-  Determines the internal buffer size the components allocate for I/O operations. Increasing this value affects performance negligibly.
-- `USE_DIRECT_MEMORY = false`
-  The **CloverDX** engine can use direct memory for data records manipulation. For example, underlying memory of CloverBuffer (container for serialized data records) uses direct memory (if the usage is enabled). This attribute is by default `false`.
-  Using direct memory can slightly improve performance in some cases. However, direct memory is out of control of a Java Virtual Machine, as the direct memory is allocated outside of the Java heap space in direct memory. If `OutOfMemory` exception occurs and usage of direct memory is enabled, try to turn it off.
-  In **CloverDX 4.9.0-M2**, the default value was changed from `true` to `false`.
-- `DEFAULT_DATE_FORMAT = yyyy-MM-dd`
-- `DEFAULT_TIME_FORMAT = HH:mm:ss`
-- `DEFAULT_DATETIME_FORMAT = yyyy-MM-dd HH:mm:ss`
-- `DEFAULT_REGEXP_TRUE_STRING = true|T|TRUE|YES|Y|t|1|yes|y`
-- `DEFAULT_REGEXP_FALSE_STRING = false|F|FALSE|NO|N|f|0|no|n`
-- `DataParser.DEFAULT_CHARSET_DECODER = UTF-8`
-- `DataFormatter.DEFAULT_CHARSET_ENCODER = UTF-8`
-- `Lookup.LOOKUP_INITIAL_CAPACITY = 512`
-  The initial capacity of a lookup table when created without specifying the size.
-- `DataFieldMetadata.DECIMAL_LENGTH = 12`
-  Determines the default maximum precision of decimal data field metadata. Precision is the number of digits in a number, e.g. the number 123.45 has a precision of 5.
-- `DataFieldMetadata.DECIMAL_SCALE = 2`
-  Determines the default scale of decimal data field metadata. Scale is the number of digits to the right of the decimal point in a number, e.g. the number 123.45 has a scale of 2.
-- `Record.MAX_RECORD_SIZE = 33554432`
-  > [!NOTE]
-  > This is a deprecated property. Nowadays, you should use `Record.RECORD_LIMIT_SIZE`.
-  Limits the maximum size of a record. Theoretically, the limit is tens of MBs, but you should keep it as low as possible for easier error detection.
-> [!IMPORTANT]
-> You can define locale that should be used as the default one.
->
-> The setting is the following:
->
-> `# DEFAULT_LOCALE = en.US`
->
-> By default, system locale is used by **CloverDX**. If you uncomment this row you can set the `DEFAULT_LOCALE` property to any locale supported by **CloverDX**, see the [List of all locale](../developer/metadata-records-and-fields.md#locale-list-all).
->
-> Similarly, the default time zone can be overridden by uncommenting the following entry:
->
-> `# DEFAULT_TIME_ZONE = 'java:America/Chicago';'joda:America/Chicago'`
->
-> For more information about time zones, see the [Time zone](../developer/metadata-records-and-fields.md#timezone) section.
-
-#### Properties specific for Wrangler
-
-- `CSVAnalyzer.LINES_TO_ANALYZE = 1000`
-  Maximum number of lines read during metadata analysis of a CSV data file. This sets the data sample size Wrangler uses to detect columns and their data types for CSV sources.
-- `CSVAnalyzer.BYTES_TO_ANALYZE = 524288`
-  Maximum number of bytes read during metadata analysis of a CSV data file. This sets the data sample size Wrangler uses to detect columns and their data types for CSV sources.
-- `CSVAnalyzer.MAJORITY_TYPE_GUESS_THRESHOLD = 90`
-  The confidence needed for CSV data type detection of a column, in percent. With default setting, 90% or more values in a column must contain integer number for Wrangler to detect the column as integer. If only 89% of values are integers Wrangler will attempt to generalize the data type to a larger data type such as decimal or string.
-- `XLSAnalyzer.LINES_TO_ANALYZE = 1000`
-  Maximum number of lines read during metadata analysis of an Excel file. This sets the data sample size Wrangler uses to detect columns and their data types for Excel sources.
-- `Wrangler.MAX_NUMBER_OF_COLUMNS = 1000`
-  Maximum number of columns allowed in Wrangler data set. Data sets with more columns are rejected and cannot be worked with.
-- `Wrangler.DEFAULT_SORT_LOCALE = en.US`
-  Locale used for sorting wrangler data sets. If not specified DEFAULT_LOCALE is used.
-> [!NOTE]
-> Compatibility
-> In **4.4.0-M2**, the default encoding was changed from ISO-8859-1 to UTF-8. Therefore, `DataParser.DEFAULT_CHARSET_DECODER` and `DataFormatter.DEFAULT_CHARSET_ENCODER` were set to UTF-8.
->
-> Since **6.0.0**, added Wrangler properties.
-
-### Refresh operation
-
-**Refresh Operation** lets you configure which resources should be refreshed after graph run on a per project basis.
-
-The refresh operation configuration is accessible from the main menu under **Window** ****Preferences**. Choose **CloverDX** ****Refresh Operation** in **Preferences** window.
-
-![configuration 010](../figures/configuration-010.png)
-*Figure 75. Refresh Operation*
-
-Choose the project in the middle part of the dialog and specify which resources should be updated.
-
-The **Refresh resources upon job completion** checkbox enables or disables refreshing of resources.
-
-Radio buttons on the right hand side let you choose between refreshing **the entire workspace**, **the project containing the selected resource** or **specific resource**.
-
-The refreshing can be performed in the selected directories or recursively using the **Recursively include sub-folders** option.
-
-Refreshing after graph run can be configured per particular graph, too. See [Run configuration](../developer/running-graphs.md#run-configuration).
+1. Open preference via **Windows** ****Preferences** menu and then navigate to **Java** ****Installed JREs**. By default, you will see the Java version selected during the Designer installation.
+   ![configuration java installed jres](../figures/configuration-java-installed-jres.png)
+   *Figure 73. List of Java environments showing two Java versions – JDK 17 and JDK 21. The JDK 21 is the default one bundled with CloverDX Designer 7.5.*
+2. To add a new Java installation click on **Add**, select **Standard VM**, and hit **Next**.
+   ![configuration java add jre](../figures/configuration-java-add-jre.png)
+   *Figure 74. Adding new JRE via Add JRE wizard.*
+3. Select the directory of the desired JDK and click on **Finish**.
+   ![configuration java add jre definition](../figures/configuration-java-add-jre-definition.png)
+   *Figure 75. Configuring the new JDK – select JDK via the Directory button. All the other settings should be auto-detected for you.*
+4. To start using the JDK, select the checkbox next to it. After saving this change, the JDK is automatically added to the build path of your projects.
+   ![configuration java jre added](../figures/configuration-java-jre-added.png)
+   *Figure 76. New JDK added to the list (the JDK 21 – second item from the top).*
 
 ### Configuring two-way authentication
 
@@ -394,17 +313,17 @@ keytool -exportcert -alias cloverdxdesigner -file cloverdxdesigner.crt -keystore
 Open your keystore, right-click your key pair, and navigate to **Export > Export Certificate Chain.**
 
 ![keystore 17 cert export](../figures/keystore-17-cert-export.png)
-*Figure 76. Export certificate chain*
+*Figure 77. Export certificate chain*
 
 Switch to the **Entire Chain** option and select an export path.
 
 ![keystore 18 cert export](../figures/keystore-18-cert-export.png)
-*Figure 77. Export certificate chain*
+*Figure 78. Export certificate chain*
 
 The certificate is exported to the specified path.
 
 ![keystore 19 export success](../figures/keystore-19-export-success.png)
-*Figure 78. Successful export*
+*Figure 79. Successful export*
 
 #### Create server truststore and import client certificate
 
@@ -434,30 +353,30 @@ keytool -importcert -alias cloverdxdesigner -file cloverdxdesigner.crt -keystore
 Open the KeyStore Explorer and click on the **New** button or use the Ctrl+N shortcut. You will be prompted to select the keystore type. Select the `JKS` (Java Key Store) type.
 
 ![truststore 01 create](../figures/truststore-01-create.png)
-*Figure 79. Create new truststore*
+*Figure 80. Create new truststore*
 
 Use the **Import Trusted Certificate** button (or press Ctrl+T) and select the `.crt` file to import.
 
 ![truststore 02 import trusted](../figures/truststore-02-import-trusted.png)
-*Figure 80. Select the certificate to import*
+*Figure 81. Select the certificate to import*
 
 Leave the pre-filled alias or modify it as needed. The alias can always be changed by right-clicking on the key pair and selecting the *Rename* option.
 
 ![truststore 03 alias](../figures/truststore-03-alias.png)
-*Figure 81. Enter an alias name for the certificate*
+*Figure 82. Enter an alias name for the certificate*
 
 ![truststore 04 import success](../figures/truststore-04-import-success.png)
-*Figure 82. Successful import*
+*Figure 83. Successful import*
 
 Now save the truststore (click on Save or press Ctrl+S). You will be prompted to enter and confirm a password.
 
 ![truststore 05 set password](../figures/truststore-05-set-password.png)
-*Figure 83. Creating truststore password*
+*Figure 84. Creating truststore password*
 
 Save the truststore as a keystore file.
 
 ![truststore 06 save](../figures/truststore-06-save.png)
-*Figure 84. Saving the .jks file*
+*Figure 85. Saving the .jks file*
 
 #### Server configuration
 
@@ -512,3 +431,85 @@ Move the keystore `.jks` file to a directory accessible by CloverDX Designer. Lo
 - *keyStorePassword*: Replace `p4ssw0rd` with your actual keystore password.
 
 After making these changes, restart your CloverDX Designer.
+
+### Engine configuration
+
+**CloverDX** internal settings (defaults) are stored in the `defaultProperties` file located in the **CloverDX** engine. This source file contains various parameters that are loaded at run-time and used during transformation execution. We **do not** recommend changing values in this file.
+
+In Designer, the path to the file is `plugins/com.cloveretl.gui/lib/lib/cloveretl.engine.jar`. In Server Core, the path to the file is `WEB-INF/lib/cloveretl.engine.jar`.
+
+If you need to change the default setting, create a local file with only those properties you need to override and place the file in the project directory. To instruct **CloverDX** to retrieve the properties from this local file, go to **Window** ****Preferences** ****CloverDX** ****CloverDX Runtime** and either define the path to the file in the **CloverDX Engine Properties** field or put the following parameter in the **VM parameters** field:
+
+`-Dclover.engine.config.file=/full/path/to/file.properties`
+
+**Note:** engine properties must be set for each workspace individually.
+
+#### Content of defaultProperties file
+
+Here we present some of the properties and their values as they are presented in the `defaultProperties` file:
+
+- `Record.RECORD_LIMIT_SIZE = 268435456`
+  Limits the maximum size of a record. Theoretically, the limit can be set very high, but you should keep it as low as possible for an easier error detection. For more details on memory demands, see [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
+- `Record.RECORD_INITIAL_SIZE = 65536`
+  Sets the initial amount of memory allocated to each record. The memory can grow dynamically up to `Record.RECORD_LIMIT_SIZE`, depending on how memory-greedy an edge is. See [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
+- `Record.FIELD_LIMIT_SIZE = 268435456`
+  Limits the maximum size of one field within a record. For more details on memory demands, see [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
+- `Record.FIELD_INITIAL_SIZE = 65536`
+  Sets the initial amount of memory allocated to each field within a record. The memory can grow dynamically up to `Record.FIELD_LIMIT_SIZE`, depending on how memory-greedy an edge is. See [Edge memory allocation](../developer/edge.md#edge-memory-allocation).
+- `Record.DEFAULT_COMPRESSION_LEVEL = 5`
+  This sets the compression level for compressed data fields (`cbyte`).
+- `DEFAULT_INTERNAL_IO_BUFFER_SIZE = 32768`
+  Determines the internal buffer size the components allocate for I/O operations. Increasing this value affects performance negligibly.
+- `USE_DIRECT_MEMORY = false`
+  The **CloverDX** engine can use direct memory for data records manipulation. For example, underlying memory of CloverBuffer (container for serialized data records) uses direct memory (if the usage is enabled). This attribute is by default `false`.
+  Using direct memory can slightly improve performance in some cases. However, direct memory is out of control of a Java Virtual Machine, as the direct memory is allocated outside of the Java heap space in direct memory. If `OutOfMemory` exception occurs and usage of direct memory is enabled, try to turn it off.
+  In **CloverDX 4.9.0-M2**, the default value was changed from `true` to `false`.
+- `DEFAULT_DATE_FORMAT = yyyy-MM-dd`
+- `DEFAULT_TIME_FORMAT = HH:mm:ss`
+- `DEFAULT_DATETIME_FORMAT = yyyy-MM-dd HH:mm:ss`
+- `DEFAULT_REGEXP_TRUE_STRING = true|T|TRUE|YES|Y|t|1|yes|y`
+- `DEFAULT_REGEXP_FALSE_STRING = false|F|FALSE|NO|N|f|0|no|n`
+- `DataParser.DEFAULT_CHARSET_DECODER = UTF-8`
+- `DataFormatter.DEFAULT_CHARSET_ENCODER = UTF-8`
+- `Lookup.LOOKUP_INITIAL_CAPACITY = 512`
+  The initial capacity of a lookup table when created without specifying the size.
+- `DataFieldMetadata.DECIMAL_LENGTH = 12`
+  Determines the default maximum precision of decimal data field metadata. Precision is the number of digits in a number, e.g. the number 123.45 has a precision of 5.
+- `DataFieldMetadata.DECIMAL_SCALE = 2`
+  Determines the default scale of decimal data field metadata. Scale is the number of digits to the right of the decimal point in a number, e.g. the number 123.45 has a scale of 2.
+- `Record.MAX_RECORD_SIZE = 33554432`
+  > [!NOTE]
+  > This is a deprecated property. Nowadays, you should use `Record.RECORD_LIMIT_SIZE`.
+  Limits the maximum size of a record. Theoretically, the limit is tens of MBs, but you should keep it as low as possible for easier error detection.
+> [!IMPORTANT]
+> You can define locale that should be used as the default one.
+>
+> The setting is the following:
+>
+> `# DEFAULT_LOCALE = en.US`
+>
+> By default, system locale is used by **CloverDX**. If you uncomment this row you can set the `DEFAULT_LOCALE` property to any locale supported by **CloverDX**, see the [List of all locale](../developer/metadata-records-and-fields.md#locale-list-all).
+>
+> Similarly, the default time zone can be overridden by uncommenting the following entry:
+>
+> `# DEFAULT_TIME_ZONE = 'java:America/Chicago';'joda:America/Chicago'`
+>
+> For more information about time zones, see the [Time zone](../developer/metadata-records-and-fields.md#timezone) section.
+
+#### Properties specific to Wrangler
+
+- `CSVAnalyzer.LINES_TO_ANALYZE = 1000`
+  Maximum number of lines read during metadata analysis of a CSV data file. This sets the data sample size Wrangler uses to detect columns and their data types for CSV sources.
+- `CSVAnalyzer.BYTES_TO_ANALYZE = 524288`
+  Maximum number of bytes read during metadata analysis of a CSV data file. This sets the data sample size Wrangler uses to detect columns and their data types for CSV sources.
+- `CSVAnalyzer.MAJORITY_TYPE_GUESS_THRESHOLD = 90`
+  The confidence needed for CSV data type detection of a column, in percent. With default setting, 90% or more values in a column must contain integer number for Wrangler to detect the column as integer. If only 89% of values are integers Wrangler will attempt to generalize the data type to a larger data type such as decimal or string.
+- `XLSAnalyzer.LINES_TO_ANALYZE = 1000`
+  Maximum number of lines read during metadata analysis of an Excel file. This sets the data sample size Wrangler uses to detect columns and their data types for Excel sources.
+- `Wrangler.MAX_NUMBER_OF_COLUMNS = 1000`
+  Maximum number of columns allowed in Wrangler data set. Data sets with more columns are rejected and cannot be worked with.
+- `Wrangler.DEFAULT_SORT_LOCALE = en.US`
+  Locale used for sorting wrangler data sets. If not specified DEFAULT_LOCALE is used.
+> [!NOTE]
+> Compatibility
+> In **4.4.0-M2**, the default encoding was changed from ISO-8859-1 to UTF-8. Therefore, `DataParser.DEFAULT_CHARSET_DECODER` and `DataFormatter.DEFAULT_CHARSET_ENCODER` were set to UTF-8.

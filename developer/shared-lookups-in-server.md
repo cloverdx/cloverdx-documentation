@@ -1,6 +1,6 @@
 <!-- Development > Advanced > Shared lookup tables in CloverDX Server -->
 
-## 48. Shared lookup tables in CloverDX Server
+## 49. Shared lookup tables in CloverDX Server
 
 Since CloverDX 6.5 it is possible to define **shared lookup tables** that are managed by the Server and are accessible to the Data Manager. These lookups work like [Simple lookup](lookup-tables.md#simple-lookup-table) or [Database lookup](lookup-tables.md#database-lookup-table), but their data is stored and cached by the Server rather than by each job that works with the lookup.
 
@@ -23,7 +23,7 @@ Each shared lookup requires the following:
 The best way to organize the **DataManagerReferenceData** sandbox is to use the following structure:
 
 ![shared lookup sandbox layout](../figures/shared-lookup-sandbox-layout.png)
-*Figure 486. Recommended layout of the DataManagerReferenceData sandbox.*
+*Figure 504. Recommended layout of the DataManagerReferenceData sandbox.*
 
 The important folders in the sandbox are laid out like this:
 
@@ -37,7 +37,7 @@ A good way to manage, create and test the lookups is to connect this sandbox in 
 Additionally, a good practice is to also include a **test job** (or jobs) that try to read data from these lookups. This is especially important if you use database lookups as it will allow you to test whether the query and database connections work as expected. A simple job that tests the lookups in this way may look like this:
 
 ![shared lookup test graph](../figures/shared-lookup-test-graph.png)
-*Figure 487. A simple job that tests several lookups by reading all data from them.*
+*Figure 505. A simple job that tests several lookups by reading all data from them.*
 
 The example graph shows a simple approach to how to test lookups. Each lookup is included in the job and is read using **LookupTableReaderWriter** component. If there are any issues with the lookup definition, the job will fail, and the error message will allow you to discover and fix the issue.
 
@@ -54,7 +54,7 @@ When you change your lookup data, you may want to refresh the cache since the Se
 To refresh the cache, you just need to purge it. Lookups will be automatically reloaded when needed. To purge the cache, use CloverDX REST API endpoint `/server/caches/lookup/reset`:
 
 ![server api lookup cache reset](../figures/server-api-lookup-cache-reset.png)
-*Figure 488. CloverDX Server REST API to reset lookup caches.*
+*Figure 506. CloverDX Server REST API to reset lookup caches.*
 
 The endpoint will purge all lookup tables from the cache and subsequently when Data Manager requests the lookup data, all lookups will be reloaded.
 
@@ -71,7 +71,7 @@ The `label` field provides a name (or description) for the lookup entry. The `la
 Additional fields can be added to the lookup to provide more information to the Data Manager user. All columns will be shown as a searchable table in the Data Manager’s editor.
 
 ![data manager lookup multiple columns](../figures/data-manager-lookup-multiple-columns.png)
-*Figure 489. A lookup shown in the Data Manager.*
+*Figure 507. A lookup shown in the Data Manager.*
 
 #### Shared lookups with file storage
 
@@ -87,12 +87,12 @@ When creating such lookups, you can use the following approach:
 As an example, following it the metadata definition of a lookup with multiple columns:
 
 ![shared lookup vegetable lookup metadata example](../figures/shared-lookup-vegetable-lookup-metadata-example.png)
-*Figure 490. Metadata configuration for a lookup with five columns.*
+*Figure 508. Metadata configuration for a lookup with five columns.*
 
 The lookup configuration should then look like this:
 
 ![shared lookup vegetable lookup configuration](../figures/shared-lookup-vegetable-lookup-configuration.png)
-*Figure 491. Lookup configuration to create a Simple shared lookup with file-based data storage.*
+*Figure 509. Lookup configuration to create a Simple shared lookup with file-based data storage.*
 
 And finally, the file with lookup data looks like this (this is just first few rows):
 
@@ -123,6 +123,6 @@ The steps to create the database lookup are very similar to file-based lookup:
 6. (Optional) Create a job that tests the lookup. The simplest way to test the lookup is to link it to a job and read data from it via **LookupTableReaderWriter** component. For example, to configure the same vegetable lookup like in the previous example, you can use the following configuration:
 
 ![shared lookup vegetable lookup db configuration](../figures/shared-lookup-vegetable-lookup-db-configuration.png)
-*Figure 492. Configuration of a Database lookup that can be used as a shared lookup.*
+*Figure 510. Configuration of a Database lookup that can be used as a shared lookup.*
 
 The lookup will work in the same way in the Data Manager as it does when it is based on file.

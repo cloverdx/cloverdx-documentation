@@ -64,17 +64,17 @@ The **Foreign key** is a sequence of individual assignments separated from each 
 To define **Foreign key**, you must select the desired fields in the **Foreign key** tab of the **Foreign key definition** wizard. Select the fields from the **Fields** pane on the left and move them to the **Foreign key** pane on the right.
 
 ![CheckForeignKey 010](../figures/CheckForeignKey_010.png)
-*Figure 437. Foreign key definition wizard (Foreign key tab)*
+*Figure 455. Foreign key definition wizard (Foreign key tab)*
 
 When you switch to the **Primary key** tab, you will see that the selected foreign fields appeared in the **Foreign key** column of the **Foreign key definition** pane.
 
 ![CheckForeignKey 020](../figures/CheckForeignKey_020.png)
-*Figure 438. Foreign key definition wizard (Primary key tab)*
+*Figure 456. Foreign key definition wizard (Primary key tab)*
 
 You only need to select some primary fields from the left pane and move them to the **Primary key** column of the **Foreign key definition** pane on the right.
 
 ![CheckForeignKey 030](../figures/CheckForeignKey_030.png)
-*Figure 439. Foreign key definition wizard (Foreign and primary keys assigned)*
+*Figure 457. Foreign key definition wizard (Foreign and primary keys assigned)*
 
 You must also define the default foreign key values (**Default foreign key**). This key is also a sequence of values of corresponding data types separated from each other by a semicolon. The number and data types must correspond to metadata of the foreign key.
 

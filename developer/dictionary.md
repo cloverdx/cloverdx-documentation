@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Dictionary -->
 
-## 29. Dictionary
+## 30. Dictionary
 
 Dictionary is a data storage object associated with each run of a graph in **CloverDX**. Its purpose is to provide a simple and type-safe storage of various parameters required by a graph.
 
@@ -23,7 +23,7 @@ In this chapter, we will describe how a dictionary should be created and how it 
 To create a dictionary, right-click the **Dictionary** item in the **Outline** pane and choose **Edit** from the context menu. The **Dictionary** editor will open.
 
 ![dictionary dialog](../figures/dictionary_dialog.png)
-*Figure 318. Dictionary dialog with defined entries*
+*Figure 336. Dictionary dialog with defined entries*
 
 Click the **Plus sign** button on the left to create a new dictionary entry.
 

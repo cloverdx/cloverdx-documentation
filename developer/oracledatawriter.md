@@ -89,7 +89,7 @@ Control script for the sqlldr utility.
 
 - If specified, both the **Oracle table** and the **Append** attributes are ignored. Must be specified if input port is not connected. In such a case, **Loader input file** must also be defined.
 - If **Control script** is not set, default control script is used.
-Example 378. Example of a Control script
+Example 383. Example of a Control script
 
 ```sql
 LOAD DATA

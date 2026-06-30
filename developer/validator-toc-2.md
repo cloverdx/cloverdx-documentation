@@ -328,7 +328,7 @@ The rule can be found in [Assignment rules](validator-toc-2.md#assignment-rules)
 
 | Parameter name | Parameter description | Value example |
 | --- | --- | --- |
-| Transform | A transformation in CTL. For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part6.md). Return values `SKIP` and `STOP` apply. `SKIP` causes no output to be produced, `STOP` aborts the validation. See [Return values of transformations](transformations.md#return-values-of-transformations). |  |
+| Transform | A transformation in CTL. For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part5.md). Return values `SKIP` and `STOP` apply. `SKIP` causes no output to be produced, `STOP` aborts the validation. See [Return values of transformations](transformations.md#return-values-of-transformations). |  |
 > [!NOTE]
 > Rule usage example
 > Copy a group of input fields to a different group of output fields based on which branch of validation tree (group of rules) was successful.

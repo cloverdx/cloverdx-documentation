@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Data Quality -->
 
-## 43. Data Quality
+## 44. Data Quality
 
 | [Common properties of Data Quality](common-of-data-quality.md) |
 | --- |

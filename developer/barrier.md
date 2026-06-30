@@ -83,7 +83,7 @@ Successful groups send their results to the first output port and the unsuccessf
 Let’s look at simple example of usage.
 
 ![Barrier Basic Concept](../figures/Barrier-Basic-Concept.png)
-*Figure 424. Example of typical usage of Barrier component*
+*Figure 442. Example of typical usage of Barrier component*
 
 In this example, three different graphs are synchronously executed by three **ExecuteGraph** components. All three graphs are running in parallel. **Barrier** is a collection point for graph execution outcomes; it waits for all graphs to finish prior to moving on to the next step. If all graphs finished successfully, an output token is sent to the first output port. On the other hand, if one or more graphs failed, an output token is sent to the second output port. This component allows simple evaluation for status of the whole job group.
 

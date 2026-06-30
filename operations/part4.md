@@ -1,28 +1,15 @@
-<!-- Automation and operations > Data Manager API -->
+<!-- Automation and operations > Libraries, Sandboxes, and AI / ML Models modules -->
 
-# Data Manager API
+# Libraries, Sandboxes, and AI / ML Models modules
 
-The **CloverDX Data Manager API** allows you to interact with [reference and transactional data sets](../user/data-manager-introduction.md#basic-concepts) in CloverDX Data Manager programmatically, enabling you to read these data sets as well as update them based on information from third-party systems or external data sources.
-> [!NOTE]
-> The Data Manager API can be used only in CloverDX Server environments with a [local Data Manager](../admin/data-manager-administration.md#local-data-manager-configuration). It is not supported when using a [remote Data Manager connection](../admin/data-manager-administration.md#remote-data-manager-configuration).
+**Libraries** and **sandboxes** are fundamental components of CloverDX, enabling enhanced functionality and secure content management. This section provides a comprehensive overview of both concepts, including their creation, usage, installation, configuration, and management.
 
-A generated REST API documentation is available at:
+[**Libraries**](libraries.md) serve as extensions to CloverDX, offering additional capabilities and features. We begin by exploring the [usage of libraries](libraries.md#usage). The installation process is explained in detail, covering both [single uploads](libraries.md#single-library-upload) and [repository-based installations](libraries.md#library-repository), along with [installation settings](libraries.md#installation-settings) and [installation logic](libraries.md#installation-logic).
 
-```
-http://[domain]:[port]/clover/api/rest/data-manager/[api-version]/docs.html
-```
+The Libraries section also includes detailed explanations of several important tabs that users interact with while managing libraries: the [Overview](libraries.md#overview-tab), [Documentation](libraries.md#documentation-tab), and [Configuration tabs](libraries.md#configuration-tab). Each of these tabs serves a distinct purpose, allowing users to efficiently control the library’s status and functionality.
 
-For example:
+[Permissions](libraries.md#permissions-tab) play a crucial role in securing libraries and their associated data connectors. We discuss how permissions are structured at different levels and how to effectively manage access control. Additionally, practical guidance is provided on [editing](libraries.md#library-editing), [deleting](libraries.md#library-deleting), [exporting](libraries.md#library-and-library-repository-configuration-exports), and [importing](libraries.md#library-and-library-repository-configuration-import) library configuration, as well as leveraging [REST APIs](libraries.md#library-management-through-rest-api) for automation and large-scale management.
 
-```
-http://example.com:8080/clover/api/rest/data-manager/v1/docs.html
-```
+The [**AI / ML Models** module](ai-ml-module.md) lists machine learning modules installed through the **Libraries module**. It provides a quick overview of each module, including related library details and additional technical specifications.
 
-You can access this page through the **Data Manager API** link on the Server Console login page. It serves as the primary resource for using the API, providing comprehensive details on all available resources, their operations (including URI paths and HTTP methods), parameters, and examples of both requests and responses. This interactive page also allows you to test API requests and view the corresponding responses directly.
-
-![rest api dm](../figures/rest-api-dm.gif)
-*Figure 144. Data Manager API*
-
-Requests to the API must be authenticated, the **API uses basic HTTP authentication.** Regarding authorization, the user used to authenticate the request needs to have the [required permissions](../admin/data-manager-administration.md#data-manager-permissions-in-cloverdx-server) to read or modify the data sets.
-
-The REST API provides **protection against Cross-Site Request Forgery (CSRF) attacks.** The mechanism basically requires the presence of a `X-Requested-By` header in every request to the API, and is also controlled globally by the same configuration property [`security.csrf.protection.enabled`](../admin/list-of-properties.md#lop-security-csrf-protection-enabled).
+[**Sandboxes**](sandboxes.md) are secure environments designed to isolate and manage content. We explore [sandbox content security](sandboxes.md#sandbox-content-security-and-permissions), including how permissions are managed to protect the content. Practical operations, such as [downloading](sandboxes.md#download-sandbox-as-zip), [uploading](sandboxes.md#upload-zip-to-sandbox), and [creating files](sandboxes.md#create-file) and [directories](sandboxes.md#create-directory) are also covered. [Execution properties](sandboxes.md#execution-properties), [OAuth2 connections](sandboxes.md#oauth2-connections), [and WebDAV access](sandboxes.md#webdav-access-to-sandboxes) to sandboxes are discussed, providing users with tools to efficiently manage and integrate sandboxes into their workflows.

@@ -63,7 +63,7 @@ To add ("join") additional lookup sources to your job, follow these steps:
 If you need to add multiple lookups each with a different lookup data source, repeat the above process as many times as necessary.
 
 ![lookup logic](../figures/lookup-logic.png)
-*Figure 121. Lookup step principle.*
+*Figure 122. Lookup step principle.*
 
 ##### Lookup configuration
 
@@ -104,7 +104,7 @@ A target can be:
 To change your data target settings, click on the **Target** button in the overview diagram of your job at the top of the [transformation editor screen](transforming-data.md#working-with-transformations) or click on the ![cogwheel icon](../figures/cogwheel-icon.png) icon which appears when you hover over the **Target step**.
 
 ![job diagram](../figures/job-diagram.png)
-*Figure 122. Job diagram showing main parts of your Wrangler job*
+*Figure 123. Job diagram showing main parts of your Wrangler job*
 
 Your currently used target will be automatically selected and its details displayed on the right side. To change the configuration of your target, click on the **Edit** button next to Configuration.
 
@@ -235,7 +235,7 @@ In your formulas, you will need to specify the column(s) that you want to work w
 To find and easily copy the technical column name, hover over a column header.
 
 ![column technical name](../figures/column-technical-name.gif)
-*Figure 123. Technical column name shown in a tooltip of the column header.*
+*Figure 124. Technical column name shown in a tooltip of the column header.*
 
 Technical column names are case-sensitive and need to be entered in the exact form as displayed. If you mistype a technical column name, you will get an error like this:
 
@@ -306,7 +306,7 @@ The **+ operator** can be used as a **concatenation function** to join values fr
 For more complex cases, you can use one of our built-in **functions**. The autocomplete feature in **Formula Editor** suggests relevant functions as you type. Alternatively, you can use the **CTRL** + **Space shortcut** to display the list of available *column names* (marked in green, starting with the $ sign) and *functions* (marked in purple). When inserting a function, placeholders for its parameters are automatically included, providing guidance for formula construction. Substitute these placeholders with the appropriate data to build your formula.
 
 ![calculate formula example](../figures/calculate-formula-example.gif)
-*Figure 124. Autocomplete and column name hints in formula editor.*
+*Figure 125. Autocomplete and column name hints in formula editor.*
 
 | Function | Description | Example formula | Result |
 | --- | --- | --- | --- |
@@ -333,7 +333,7 @@ In many transformations you’ll need to test your data and use different values
 
 ##### if function
 
-`if` function allows you to test a condition and return a value depending on whether the condition evaluated to true or false. Two variants are provided:
+`if` function allows you to test a condition and return a value depending on whether the condition evaluated to `true` or `false`. Two variants are provided:
 
 - `if(condition, value_if_true)`
 - `if(condition, value_if_true, value_id_false)`
@@ -343,7 +343,7 @@ The parameters in the function:
 - `condition` is a boolean expression - the test you want to run
 - `value_if_true` and `value_if_false` are expressions that are calculated depending on the result of the test. Both must return the same data type.
 
-The first form of the function is useful when you only need to react when the condition is true. That way if condition is met, the function returns `value_if_true`.
+The first form of the function is useful when you only need to react when the condition is `true`. That way if condition is met, the function returns `value_if_true`.
 
 ![if usage explained](../figures/if-usage-explained.png)
 
@@ -430,13 +430,13 @@ If you wish to dynamically compute the new value, you will have to use [Calculat
 if(condition, value_if_true)
 ```
 
-The function returns `value_if_true` if the `condition` is satisfied (i.e., if the condition evaluates to true for given row). This is what you can effectively use to replace empty values. For example, to use USD as a default currency, you can do this:
+The function returns `value_if_true` if the `condition` is satisfied (i.e., if the condition evaluates to `true` for given row). This is what you can effectively use to replace empty values. For example, to use USD as a default currency, you can do this:
 
 ```
 if(isBlank($currencyCode), "USD")
 ```
 
-[`isBlank`](../developer/string-functions-ctl2.md#isblank) function is a CTL function that returns true if a string value is `null`, empty string or contains just spaces. If the condition is not met, original value remains in the column.
+[`isBlank`](../developer/string-functions-ctl2.md#isblank) function is a CTL function that returns `true` if a string value is `null`, empty string or contains just spaces. If the condition is not met, original value remains in the column.
 
 `if` function also has a second variant with one extra parameter:
 
@@ -459,6 +459,6 @@ Targets created from the **Data Catalog** may require specific data formats. The
 This mapping step can be configured in a special Mapping view. This view offers functionalities to map either constant values or columns from your data preview to the target system. By creating a "link" between these elements, you essentially define how your data will be written into the corresponding target columns.
 
 ![target mapping mode](../figures/target-mapping-mode.png)
-*Figure 125. Target mapping mode showing data preview and finished mapping.*
+*Figure 126. Target mapping mode showing data preview and finished mapping.*
 
 To learn more about how to work with your data in the Mapping mode, refer to [Target mapping section](data-sources-data-targets.md#target-mapping).

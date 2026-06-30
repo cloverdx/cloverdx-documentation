@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Sequences -->
 
-## 26. Sequences
+## 27. Sequences
 
 **Sequence** is an object designed to create a sequence of numbers.
 
@@ -64,7 +64,7 @@ If you want to create an internal sequence, right-click the **Sequence** item in
 Continue with [Editing a sequence](sequences.md#editing-a-sequence).
 
 ![200680](../figures/200680.png)
-*Figure 299. Creating a sequence*
+*Figure 317. Creating a sequence*
 
 #### Externalizing internal sequences
 
@@ -171,12 +171,12 @@ To edit some of the existing sequences, double-click the sequence in the **Outli
 The **Edit sequence** dialog of persistent sequence displays the current value of the sequence number. The value has been taken from a file. You can reset the current value to its original value by clicking the button.
 
 ![sequence 0510](../figures/sequence-0510.png)
-*Figure 300. Editing a sequence*
+*Figure 318. Editing a sequence*
 
 And when the graph has been run once again, the same sequence started from 1001:
 
 ![sequence 0520](../figures/sequence-0520.png)
-*Figure 301. A New run of the graph with the previous start value of the sequence*
+*Figure 319. A New run of the graph with the previous start value of the sequence*
 
 You can also see how the sequence numbers fill one of the record fields.
 

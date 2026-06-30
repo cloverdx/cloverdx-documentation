@@ -19,7 +19,7 @@ The **Merge metadata** dialog lets you choose which metadata and which fields wi
 2. Click **Merge metadata…​** (**Merge existing**).
 3. You will continue in a two-step wizard. In its first step, you manage all fields of the metadata you have selected. Select only those you want to include in the final merger (they are highlighted in bold):
    ![metadata merge](../figures/metadata-merge.png)
-   *Figure 244. Merging two metadata - conflicts can be resolvedin one of the three ways (notice the radio buttons at the bottom).*
+   *Figure 261. Merging two metadata - conflicts can be resolvedin one of the three ways (notice the radio buttons at the bottom).*
 4. Click **Next** to review merged metadata or **Finish** to create it instantly.
 > [!NOTE]
 > Merging SQL query metada
@@ -32,7 +32,7 @@ As the last option, you can also create a database table on the basis of metadat
 When you select the **Create database table** item from each of the two context menus (called out from the **Outline** pane and/or **Graph Editor**), a wizard opens with an SQL query that can create database table.
 
 ![01680](../figures/01680.png)
-*Figure 245. Creating database table from metadata and database connection*
+*Figure 262. Creating database table from metadata and database connection*
 
 You can edit the contents of this window if you want.
 

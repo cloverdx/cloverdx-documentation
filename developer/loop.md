@@ -65,7 +65,7 @@ All edges in loop are automatically converted to fast-propagate version. See [Ty
 ##### Repeating Actions in Jobflow - Login
 
 ![LoopExample](../figures/LoopExample.png)
-*Figure 426. Example of Loop component usage*
+*Figure 444. Example of Loop component usage*
 
 This jobflow simply generates an initial token by the **DataGenerator** component. The **Loop** component applies **While condition** on this initial token. If the condition is not satisfied, the token is sent out of the loop. On the other hand, if the condition is satisfied, the token is sent to the loop body, where the token is processed by other components. The token must be routed back to the **Loop** component, where **While condition** is evaluated again. The token looping is performed until the condition is not satisfied. Once the token is sent out of loop, another initial token is read from the first input port.
 

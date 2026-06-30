@@ -192,7 +192,7 @@ After selecting a driver, the driver defaults are populated:
 - **URL**: the default basic connection URL is pre-populated.
 
 ![db connection defaults](../figures/db-connection-defaults.gif)
-*Figure 246. Database connection properties dialog*
+*Figure 263. Database connection properties dialog*
 
 After selecting a driver and modifying the URL, type your **user** name, and **password** (the password can be encrypted using [Secure graph parameters](parameters.md#secure-graph-parameters)).
 
@@ -214,7 +214,7 @@ If the desired JDBC driver is not listed, or you want to add a newer or older dr
 6. Click on the desired record and choose an appropriate [JDBC specific](database-connections.md#db-connection-jdbc-specific) type and populate the connection URL and credentials.
 
 ![db connection adding jar](../figures/db-connection-adding-jar.gif)
-*Figure 247. Adding custom driver*
+*Figure 264. Adding custom driver*
 
 If necessary, you can also add another JAR file to the driver classpath by selecting the driver record and using the **Add JAR to driver classpath**![db connection add jar classpath](../figures/db-connection-add-jar-classpath.png) button. For example, some databases may need their license to be added as well as the driver.
 
@@ -230,7 +230,7 @@ You can remove a driver from the list by selecting the driver record and clickin
 In addition to the **Basic** tab described above, the **Database connection** dialog also offers the **Advanced** tab.
 
 ![db connection advanced tab](../figures/db_connection_advanced_tab.png)
-*Figure 248. Advanced tab of the Database connection dialog*
+*Figure 265. Advanced tab of the Database connection dialog*
 
 If you switch to this tab, you can specify additional properties for the selected connection:
 
@@ -273,7 +273,7 @@ Allows to specify holdability of `ResultSet` objects created using the `Connecti
 If you want to add any custom properties, add the property names and their values in the grid below.
 
 ![db connection custom jdbc properties](../figures/db-connection-custom-jdbc-properties.png)
-*Figure 249. Custom JDBC properties*
+*Figure 266. Custom JDBC properties*
 
 ##### JNDI resource
 
@@ -296,14 +296,14 @@ To create a database connection, specify the **Connection name** and choose the 
 **Root context** allows you to choose the root context of a JNDI resource. You can choose one of the pre-filled values: **java:comp**, **java:comp/env** and **<empty>**, or you can add your own value: click the combo, type the value, and press Enter.
 
 ![db connection 0360](../figures/db-connection-0360.png)
-*Figure 250. JNDI resource - Basic tab*
+*Figure 267. JNDI resource - Basic tab*
 
 ###### Advanced properties
 
 The advanced tab of JNDI resource has the same configurable items as the Advanced tab of JDBC driver. See [Advanced properties of JDBC driver](database-connections.md#advanced-properties-of-jdbc-driver).
 
 ![db connection 0370](../figures/db-connection-0370.png)
-*Figure 251. JNDI resource - Basic tab*
+*Figure 268. JNDI resource - Basic tab*
 
 #### Encryption of access password
 
@@ -322,7 +322,7 @@ In case you give someone any of your graphs, you do not have to give them the ac
 To encrypt a database password use **Secure parameters**. (See [Secure Graph Parameters](parameters.md#secure-graph-parameters)). Store the password in the parameter and use the parameter in the connection dialog instead of the password.
 
 ![db connection 0410](../figures/db-connection-0410.png)
-*Figure 252. Using password from secure graph parameter*
+*Figure 269. Using password from secure graph parameter*
 
 If you would like to return to your access password, you can do it by typing the password into the **Database connection** dialog and clicking **OK**.
 
@@ -390,13 +390,15 @@ This is the client time zone. It is used for reading and writing DATE and TIME c
    - `private_key_file_pwd` - key file password
 
 ![snowflake advanced](../figures/snowflake-advanced.png)
-*Figure 253. Properties on Advanced tab*
+*Figure 270. Properties on Advanced tab*
 
-1. Add the `-Dnet.snowflake.jdbc.enableBouncyCastle` JVM argument to enable BouncyCastle cryptographic support, which is required for handling encrypted keys:
-   - For **server projects**: Add `-Dnet.snowflake.jdbc.enableBouncyCastle=true` in the **JVM arguments section** under **Configuration > Setup > Worker** in the Server Console. Restart the Worker process for the change to take effect.
-   - For **local projects**: Add `-Dnet.snowflake.jdbc.enableBouncyCastle=true` in the **VM parameters section** under **Window > Preferences > CloverDX > CloverDX Runtime**. Restart the Runtime process for the change to take effect.
+1. Add the `-Dnet.snowflake.jdbc.useBundledBouncyCastleForPrivateKeyDecryption` JVM argument to enable BouncyCastle cryptographic support, which is required for handling encrypted keys:
+   - For **server projects**: Add `-Dnet.snowflake.jdbc.useBundledBouncyCastleForPrivateKeyDecryption=true` in the **JVM arguments section** under **Configuration > Setup > Worker** in the Server Console. Restart the Worker process for the change to take effect.
+   - For **local projects**: Add `-Dnet.snowflake.jdbc.useBundledBouncyCastleForPrivateKeyDecryption=true` in the **VM parameters section** under **Window > Preferences > CloverDX > CloverDX Runtime**. Restart the Runtime process for the change to take effect.
 > [!NOTE]
 > Connection validation will not work with key-pair authentication; connection validation is performed only at runtime. For detailed guidance or troubleshooting, refer to [Snowflake’s official documentation](https://docs.snowflake.com/en/developer-guide/jdbc/jdbc-configure).
+> [!NOTE]
+> If you are upgrading CloverDX from version before 7.4.2, change property `-Dnet.snowflake.jdbc.enableBouncyCastle` to `-Dnet.snowflake.jdbc.useBundledBouncyCastleForPrivateKeyDecryption`.
 
 ##### Using Snowflake in Server core
 
@@ -454,7 +456,7 @@ This driver internally uses the **UCanAccess** driver. **CloverDX** uses version
 Windows authentication means creating a database connection to Microsoft SQL Server using your Windows account, instead of **User** and **Password** fields (see figure below). The **Microsoft SQL Server JDBC driver** depends on native libraries you have to install. To enable this all, follow the steps described in this section.
 
 ![AuthenticMSSQL settingDB](../figures/AuthenticMSSQL-settingDB.png)
-*Figure 254. Connecting to MS SQL with Windows authentication.*
+*Figure 271. Connecting to MS SQL with Windows authentication.*
 
 **CloverDX** comes with a bundled Microsoft SQL Server JDBC driver. However, it does not contain native libraries required for Windows authentication on Microsoft SQL Server. Thus, it is necessary to download the native `dll` (`mssql-jdbc_auth-13.4.0.x64.dll`) and perform some additional settings.
 
@@ -478,7 +480,7 @@ Now there are two ways how to make the `dll` work. The first one involves changi
      > [!NOTE]
      > The runtime configuration is valid for all graph within the same workspace.
      ![AuthenticMSSQL javaPath](../figures/AuthenticMSSQL-javaPath.png)
-     *Figure 255. Adding path to the native dll to VM parameters.*
+     *Figure 272. Adding path to the native dll to VM parameters.*
    - **CloverDX Server**
      In the script that starts Tomcat, add the `-Djava.library.path=C:\mssql_dll` option to `JAVA_OPTS`. For example, add the following line at the beginning of `catalina.bat`:
      `set JAVA_OPTS=%JAVA_OPTS% -Djava.library.path=C:\mssql_dll`

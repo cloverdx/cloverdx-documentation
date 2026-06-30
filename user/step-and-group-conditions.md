@@ -13,7 +13,7 @@ You can combine both methods for more complex workflows.
 
 In both cases, you will need to set your condition by specifying a formula:
 
-- The formula needs to be written to return a boolean value (**TRUE** or **FALSE**).
+- The formula needs to be written to return a boolean value (`true` or `false`).
 - The formula syntax follows the same logic as in other places in Wrangler and it supports common operators, functions, and column references. For more information refer to the [Using formulas](transforming-data.md#using-formulas) section.
 
 ##### Step conditions
@@ -30,28 +30,28 @@ To enable a step condition, perform the following:
 - Enter your formula (See [Conditional formulas logic](step-and-group-conditions.md#conditional-formulas-logic) above).
 
 ![step conditions edit mode](../figures/step-conditions-edit-mode.png)
-*Figure 113. Specifying step condition*
+*Figure 114. Specifying step condition*
 
 Once you save your changes, the step will indicate that a condition is applied. You’ll see an "IF" statement and the condition in the step description.
 
 ![step conditions step list](../figures/step-conditions-step-list.png)
-*Figure 114. Step with condition in Step list*
+*Figure 115. Step with condition in Step list*
 
-During execution, Wrangler evaluates the specified formula for each row of data. If the formula evaluates to *TRUE* for a particular row, the step is applied to that row. Conversely, if the formula evaluates to *FALSE*, the step execution is skipped for that row.
+During execution, Wrangler evaluates the specified formula for each row of data. If the formula evaluates to `true` for a particular row, the step is applied to that row. Conversely, if the formula evaluates to `false`, the step execution is skipped for that row.
 
-In the example below, the *State/territory* values are populated only for contacts located in the United States. We want to use the *Validate if empty* step to ensure that the *State/territory* is populated for all *US* contacts. If we apply the *Validate if empty* step without a condition, the validation is run universally for all values in the *State/territory* column, disregarding the *Country*, marking all empty values for CZ contacts as an error.
+In the example below, the *State/territory* values are populated only for contacts located in the United States. We want to use the *Validate if empty* step to ensure that the *State/territory* is populated for all *US* contacts. If we apply the *Validate if empty* step without a condition, the validation is run universally for all values in the *State/territory* column, disregarding the *Country*, marking all empty values for *CZ* contacts as an error.
 
 ![step conditions ex without condition](../figures/step-conditions-ex-without-condition.png)
-*Figure 115. Example of step execution without condition*
+*Figure 116. Example of step execution without condition*
 
-By setting a condition to apply just to "*US*" records, the validation step is applied only to the *US* states.
+By setting a condition to apply just to *US* records, the validation step is applied only to the *US* states.
 
 ![step conditions ex with condition](../figures/step-conditions-ex-with-condition.png)
-*Figure 116. Example of step with condition*
+*Figure 117. Example of step with condition*
 
 ##### Group conditions
 
-If a condition is set at the step group level, all steps within the group will only be applied to rows where the condition is met. Only if the condition evaluates to TRUE will any of the steps in the group be applied to a particular row of data. If the condition evaluates to FALSE for a row, all steps within the group will be skipped for that row.
+If a condition is set at the step group level, all steps within the group will only be applied to rows where the condition is met. Only if the condition evaluates to `true` will any of the steps in the group be applied to a particular row of data. If the condition evaluates to `false` for a row, all steps within the group will be skipped for that row.
 
 The steps within a group are executed sequentially.
 
@@ -67,12 +67,12 @@ To set a condition at the group level, perform the following:
 In the example below, when there is no condition set to specify that the steps should be applied only to *US* customers, the steps are applied to all rows.
 
 ![step groups no conditions example](../figures/step-groups-no-conditions-example.png)
-*Figure 117. Steps in group without a condition*
+*Figure 118. Steps in group without a condition*
 
 When there is a condition set at the group level, all steps within the group are applied only to rows with "*US*" in the *Country* column.
 
 ![step groups conditions example](../figures/step-groups-conditions-example.png)
-*Figure 118. Steps in group with a condition*
+*Figure 119. Steps in group with a condition*
 
 ###### Important considerations for group conditions
 
@@ -81,12 +81,12 @@ When adding steps to a group with a condition, bear in mind the following:
 - Steps that do not support conditions will generate an error when added to a group with conditions. If an incompatible step is added, the job is considered invalid and its execution will fail. Such steps need to be deleted or removed from the group.
 
 ![step groups incompatible step](../figures/step-groups-incompatible-step.png)
-*Figure 119. Incompatible step*
+*Figure 120. Incompatible step*
 
 - All steps within the group need to be configured to be compatible with the group condition. In the example below step 5 is incompatible because the group condition is set to work with *US* records, while the result of the formula in step 5 works with CZ customers. If such a situation arises, the data transformation is considered invalid and the job will fail. To remedy the situation, revise the step or group condition, or remove the step from the group.
 
 ![step groups incompatible condition](../figures/step-groups-incompatible-condition.png)
-*Figure 120. Incompatible condition*
+*Figure 121. Incompatible condition*
 
 - It is possible to add conditions to individual steps within a group, however, bear in mind that the group condition is processed first. In the example below, step 5 will be applied to all rows, where *Country* is "US" and *State/territory* is "NY".
 

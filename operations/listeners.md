@@ -473,7 +473,7 @@ Universal Event Listeners allow you to write a piece of Groovy code that control
 
 A piece of Groovy is repeatedly executed and evaluated; based on the result, the event is either triggered and the task executed or no action is taken.
 
-For example, you can continually check for essential data sources before starting a graph. Or, you can do complex checks of a running graph and, for example, decide to kill it if necessary. You can even call the **CloverDX Server** Core functions using the ServerFacade interface, see Javadoc: [http://host:port/clover/javadoc/index.html](http://host:port/clover/javadoc/index.html)
+For example, you can continually check for essential data sources before starting a graph. Or, you can do complex checks of a running graph and, for example, decide to kill it if necessary. You can even call the **CloverDX Server** Core functions using the ServerFacade interface, see Javadoc accessible from CloverDX Server via http(s)://host:port/clover/javadoc/index.html.
 
 #### Evaluation criteria
 

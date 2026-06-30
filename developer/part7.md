@@ -1,17 +1,11 @@
-<!-- Development > Component reference -->
+<!-- Development > Advanced -->
 
-# Component reference
+# Advanced
 
-This chapter provides a comprehensive guide to the various components available within CloverDX for building and executing data transformation jobs. It provides information essential for understanding how to effectively use each component to build robust and scalable data workflows. Each component plays a crucial role in facilitating data integration, manipulation, and processing tasks, allowing users to design complex workflows with flexibility and efficiency.
+This section provides an in-depth guide for developers and advanced users who are looking to optimize and extend the capabilities of CloverDX. This section covers a range of topics that are essential for building robust, efficient, and scalable data transformations and integrations.
 
-- [Readers](readers.md) focus on extracting data from various sources.
-- [Writers](writers.md) are used for outputting transformed data to different destinations, including databases, files, and external systems.
-- [Transformers](transformers.md) handle data manipulation tasks, applying transformations to datasets to cleanse, aggregate, or enrich data.
-- [AI / ML](ai-components.md) components allow to transform data using pre-trained machine learning models.
-- [Joiners](joiners.md) enable merging of datasets from multiple sources, facilitating relational operations across different data inputs.
-- [Job Control](job-control.md) components allow for the orchestration of complex workflows, providing tools to manage dependencies, triggers, and job execution.
-- [File Operations](file-operations.md) components offer functionalities for interacting with file systems, handling file management tasks like moving, copying, or deleting files.
-- [Data Partitioning](cluster-components.md) components optimize performance by splitting large datasets into manageable parts for parallel processing.
-- [Data Quality](data-quality.md) components are designed to ensure that data meets predefined quality standards, helping identify and correct anomalies or errors.
-- [Others](others.md) cover additional utility components that enhance the functionality of CloverDX.
-- [Deprecated](deprecated.md) lists components that are still available but no longer recommended for use, usually because they have been replaced by more advanced alternatives.
+In [**Library development best practices**](libraries-dev.md), we offer comprehensive guidelines on creating and managing CloverDX libraries. A CloverDX library is a redistributable package, which can contain reusable [graphs](part-graph-elements-structures-tools.md), [subgraphs](subgraphs.md#subgraphs-introduction), [jobflows](part-jobflow.md#jobflow-overview), [data services](data-service.md), or [metadata](metadata.md). This chapter covers the fundamentals, such as [library file structure](libraries-dev.md#library-file-structure) and [usage](libraries-dev.md#usage), and progresses to more complex topics like enhancing [library aesthetics](libraries-dev.md#enhancing-library-look-and-feel), [managing parameters](libraries-dev.md#parameters), and handling user [credentials and secrets](libraries-dev.md#user-credentials-and-secrets). It also provides instructions for establishing [database/JDBC](libraries-dev.md#databasejdbc-connections) and [OAuth2 connections](libraries-dev.md#oauth2-connections), managing [library dependencies](libraries-dev.md#library-dependencies), and integrating [Java code](libraries-dev.md#using-java-code). Additionally, this chapter includes best practices for [live debugging and testing](libraries-dev.md#live-debugging-and-testing), [job documentation](libraries-dev.md#job-documentation-tips), and the development of both [Data Source](libraries-dev.md#data-source-connector-development) and [Data Target Connectors](libraries-dev.md#data-target-connector-development), ensuring that developers can create reusable, maintainable, and secure libraries.
+
+The [**Data partitioning (parallel running)**](parallel-running.md) section, focuses on techniques for optimizing data processing performance through different kinds of parallelism. This chapter explains the concept of data partitioning and introduces the use of [parallel components](parallel-running.md#1-parallel-components) to enhance data throughput. It delves into the specifics of parallel processing on both [standalone Server environments](parallel-running.md#2-parallel-processing-in-server) and [Server clusters](parallel-running.md#3-parallel-processing-in-server-cluster). Practical examples are provided to illustrate distributed execution and demonstrate the scalability of partitioned transformations. The chapter also discusses the use of partitioned sandboxes in a Server cluster environment to further optimize performance.
+
+The [Shared lookup tables in CloverDX Server](shared-lookups-in-server.md) section provides information about how you can create shared lookups that are available in the Data Manager.

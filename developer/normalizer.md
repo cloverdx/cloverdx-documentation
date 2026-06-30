@@ -64,7 +64,7 @@
 The transformation is defined using several functions. Each of them has its own purpose. The order of function calls is depicted in diagram below.
 
 ![Normalizer diagram](../figures/Normalizer-diagram.png)
-*Figure 410. Normalizer code workflow*
+*Figure 428. Normalizer code workflow*
 
 The number of calls of `transform()` function depends on the result of the `count()` (or `countOnError()`) function.
 

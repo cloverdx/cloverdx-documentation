@@ -70,7 +70,7 @@ A transformation must be defined. The transformation uses a CTL template for **M
 
 When you define any of the three transformation attributes, specify a transformation that assigns a number of output port to each input record.
 
-For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part6.md). (CTL is a full-fledged, yet simple language that allows you to perform almost any imaginable transformation.)
+For detailed information about **CloverDX** Transformation Language, see [CTL2 - CloverDX Transformation Language](part5.md). (CTL is a full-fledged, yet simple language that allows you to perform almost any imaginable transformation.)
 
 CTL scripting allows you to specify a custom transformation using the simple CTL scripting language.
 

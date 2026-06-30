@@ -1,12 +1,12 @@
 <!-- Development > First steps with CloverDX Designer > CloverDX Designer tutorial -->
 
-## 1. CloverDX Designer tutorial
+### CloverDX Designer tutorial
 
 This chapter explains the basics of CloverDX projects and shows you way to create a simple graph that reads records from a CSV file and writes them to a .xlsx file.
 
 Instead of reading this chapter, you can try the **Tutorial** that is available in the product after the first start in a new workspace or [watch a video tutorial](https://academy.cloverdx.com/courses/quick-start-guide/).
 
-### Terminology
+#### Terminology
 
 Before creating a transformation graph we will explain some terms we use in this tutorial.
 
@@ -14,7 +14,7 @@ Before creating a transformation graph we will explain some terms we use in this
 - A **project** is a directory in **workspace**. It is the location where you place data transformations and data.
 - A **graph** , or a transformation graph, is *a recipe* to data transformation. The graph consists of **components** which are connected by **edges**.
 
-### Creating a project
+#### Creating a project
 
 We assume that you have downloaded and installed **CloverDX Designer**.
 
@@ -28,7 +28,7 @@ Type the name of the project, e.g. `Project_01`.
 ![ctg 0120](../figures/ctg-0120.png)
 *Figure 3. Selecting a name of a new project*
 
-### Creating a new data file
+#### Creating a new data file
 
 Now you need a data file. You probably have some. If not, you can create an example file as shown below.
 
@@ -70,7 +70,7 @@ Albert;Brown;30000
 > - You can create directly a new **CloverDX** project from the main menu by selecting **File** ****New** ****CloverDX Project** or select **File** ****New** ****Project…​** and do what has been described above.
 > - You can also right-click inside the **Project Explorer** pane and select either directly **New** ****CloverDX Project** or **New** ****Project…​** from the context menu and do what has been described above.
 
-### Creating a graph
+#### Creating a graph
 
 After creating a new project, create a new graph: select **File** ****New** ****Graph** from the main menu. The graph is a recipe of your data transformation.
 
@@ -84,7 +84,7 @@ Give a name to the graph and choose a directory for it. We choose `graph` as the
 ![ctg 0320](../figures/ctg-0320.png)
 *Figure 9. Selecting a folder for the graph and a name of a new graph. By default, graphs go into the graph folder in the project.*
 
-### Placing components in the Graph Editor canvas
+#### Placing components in the Graph Editor canvas
 
 To place components into a graph, you can select them from the **Component Palette** on the right of the side of the Designer and then place them on the **Graph Editor** canvas.
 
@@ -114,7 +114,7 @@ Place the SpreadsheetDataWriter into the graph like this:
 ![creating graph 030](../figures/creating_graph_030.png)
 *Figure 13. Placing the writer component to the right of the reader.*
 
-### Connecting components by an edge
+#### Connecting components by an edge
 
 Data flow in the graph is shown as edges with arrows going from one component to the next. Edges connect to **component ports** which provide interface for data to get into and out of the component. Different components have different numbers of ports depending on what functionality they implement.
 
@@ -134,7 +134,7 @@ If done correctly, you will see something like on the above screenshot. The edge
 
 In the next step we will assign metadata to the edge.
 
-### Extracting metadata from the input file
+#### Extracting metadata from the input file
 
 **Metadata** in CloverDX describes the data structure of the data flowing on edges.
 
@@ -183,7 +183,7 @@ Now click **Finish**. You’ve now created your metadata and assigned it to the 
 > [!NOTE]
 > You can extract metadata on edges and on input components.
 
-### Assigning metadata to the edges
+#### Assigning metadata to the edges
 
 If you have metadata assigned to the edge from the previous step, you do not have to assign it again.
 
@@ -196,7 +196,7 @@ Select the desired metadata by clicking its item. The edge with assigned metadat
 
 Alternatively, you can use the **Outline view** in the lower-left corner of the Designer window to select your metadata and drag & drop it onto the edge.
 
-### Setting up Readers (FlatFileReader)
+#### Setting up Readers (FlatFileReader)
 
 To set up the **FlatFileReader** component, double-click the component in the **Graph Editor** pane. The component editor opens.
 
@@ -213,7 +213,7 @@ Once you select the file, the component will not longer report any errors.
 ![ctg reader 0030 configured](../figures/ctg-reader-0030-configured.png)
 *Figure 26. FlatFileWriter configured to read the data-in/input.csv.*
 
-### Setting up Writers (SpreadsheetDataWriter)
+#### Setting up Writers (SpreadsheetDataWriter)
 
 Writer set-up is very similar to the set-up of the reader component. You will have to configure the output file where to write your Excel spreadsheet. This is done again in the Edit component dialog which is shown by double-clicking on the SpreadsheetDataWriter component.
 
@@ -224,7 +224,7 @@ Configure the **File URL** to `${DATAOUT_DIR}/Salaries.xlsx` via the **File URL 
 
 The [SpreadsheetDataWriter](spreadsheetwriter.md) has many more parameters that can help you configure how the file is written, which sheet is used, which columns and mapped and more.
 
-### Running the graph
+#### Running the graph
 
 To run the graph, right-click anywhere inside the **Graph Editor** pane and select **Run CloverDX Graph** from the context menu. The graph will run.
 
@@ -240,7 +240,7 @@ After you run the graph we just created, you should see output similar to the be
 
 If you would like to see more detailed information about graph run, double-click the **Console** tab. The tab will maximize to cover the whole window. You can restore the original size of this tab when you double-click it again.
 
-### Opening the output file
+#### Opening the output file
 
 After running a graph, the file structure of the **Project Explorer** pane refreshes automatically. If not, you can press F5 in the **Project Explorer** view to refresh.
 
@@ -251,7 +251,7 @@ Expand the `data-out` directory to see the files inside it. You should also see 
 
 Double click the file to open it with an appropriate spreadsheet editor.
 
-#### Summary
+##### Summary
 
 In this tutorial we have learned to
 
@@ -262,19 +262,19 @@ In this tutorial we have learned to
 - read data from a CSV file
 - write data to Excel spreadsheet
 
-#### What to do next
+##### What to do next
 
 You can continue with [Filtering the records](designer-tutorial.md#filtering-the-records) or [Sorting the records](designer-tutorial.md#sorting-the-records).
 
 You can also play with built-in pre-prepared examples: **Help** ****CloverDX Examples**
 
-### Filtering the records
+#### Filtering the records
 
 In this chapter we will learn how to filter records with the [**Filter**](extfilter.md) component.
 
 This chapter builds on the graph from [Creating a graph](designer-tutorial.md#creating-a-graph).
 
-### Inserting the filter
+#### Inserting the filter
 
 The component for data filtering is called **Filter** and can be found in the **Transformers** category in the **Palette**.
 
@@ -292,7 +292,7 @@ Once you add the component, your other components may be too close to each other
 
 The filtering condition is not specified yet, therefore can you see an error on the component.
 
-### Setting up the filter component
+#### Setting up the filter component
 
 Double-click the **Filter** component to open the component editor.
 
@@ -304,7 +304,7 @@ The only attribute we will need to configure now is the **Filter expression**. T
 ![filtering 0220](../figures/filtering-0220.png)
 *Figure 34. Filter editor dialog.*
 
-This dialog allows you to configure any filtering condition. Filtering conditions are specified as boolean expressions in language called CTL2. To learn more about how CTL2 works, please see [CTL2 - CloverDX Transformation Language](part6.md) chapter in the documentation. At this point we will not need to configure anything complicated - we will configure the component to filter records so that records where `Salary` is at least 24000 will be kept and everything else will be removed.
+This dialog allows you to configure any filtering condition. Filtering conditions are specified as boolean expressions in language called CTL2. To learn more about how CTL2 works, please see [CTL2 - CloverDX Transformation Language](part5.md) chapter in the documentation. At this point we will not need to configure anything complicated - we will configure the component to filter records so that records where `Salary` is at least 24000 will be kept and everything else will be removed.
 
 To build the filtering expression, you can use the top-right part of the dialog to see which fields are available in the data flowing to the component. Double-clicking on a field here will add the field name to the expression below. Double-click on the `Salary` field.
 
@@ -334,12 +334,12 @@ When you save the graph, you can see that the warning icon has disappeared from 
 >
 > If you need to split data into multiple (more than two) streams, use [**Partition**](partition.md) component.
 
-#### See also
+##### See also
 
 - [**Filter** component](extfilter.md)
 - [**Partition** component](partition.md)
 
-### Two data streams
+#### Two data streams
 
 You can use **Filter** component to split data stream into two data streams - one stream of record that satisfy the filtering condition like we’ve done in the previous example and the second stream for rejected records that do not satisfy the condition. This is very easy to set-up - simply connect additional component to the second port of the **Filter** component.
 
@@ -350,18 +350,18 @@ In the following example we’ll connect another **SpreadsheetDataWriter** compo
 
 You can use the same condition as in the previous example. The records matching the data filter condition will be passed to the first output port, the later ones will go to the second output port.
 
-### Sorting the records
+#### Sorting the records
 
 In this chapter we will learn how to sort records with the [**ExtSort** component](extsort.md).
 
 This chapter builds on the graph from [Creating a graph](designer-tutorial.md#creating-a-graph). You can create a copy of this graph in the **Project Explorer** and rename it to a new name (e.g., `read-input-with-sort.grf`). This can all be done using context menu in the **Project Explorer** when you right-click your graph file.
 
-### Adding ExtSort
+#### Adding ExtSort
 
 ![sorting 0110](../figures/sorting-0110.png)
 *Figure 39. Adding ExtSort component*
 
-### Setting up the ExtSort component
+#### Setting up the ExtSort component
 
 Double-click the **ExtSort** component to open the **Edit component** dialog.
 

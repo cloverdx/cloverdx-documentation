@@ -65,7 +65,7 @@ Define **Aggregate key**. The key field is necessary for grouping. When left emp
 Click the **…​** button at the end of the **Aggregation mapping** row to open the **Aggregation mapping** dialog. In it, you can define both the mapping and aggregation.
 
 ![aggregation mapping](../figures/aggregation-mapping.png)
-*Figure 407. Aggregation mapping editor*
+*Figure 425. Aggregation mapping editor*
 
 The dialog consists of two panes. You can see the **Input fields** pane on the left and the **Ouput fields** pane on the right.
 

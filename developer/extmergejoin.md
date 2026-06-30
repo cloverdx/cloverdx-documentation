@@ -101,7 +101,7 @@ In it, you can see the tab for the driver (the **Master key** tab) and the tabs 
 ###### Master Key Tab
 
 ![ExtMergeJoin join key 020](../figures/ExtMergeJoin-join-key-020.png)
-*Figure 416. Join Key Wizard (Master Key Tab)*
+*Figure 434. Join Key Wizard (Master Key Tab)*
 
 In the driver tab, there are two panes. The **Fields** pane on the left and the **Master key** pane on the right.
 
@@ -112,12 +112,12 @@ To the selected **Master key** fields, the same number of fields should be mappe
 ###### Slave Key Tab
 
 ![ExtMergeJoin join key 030](../figures/ExtMergeJoin-join-key-030.png)
-*Figure 417. Join Key Wizard (Slave Key Tab)*
+*Figure 435. Join Key Wizard (Slave Key Tab)*
 
 In each of the slave tab(s), there are two panes: **Fields** and **Key mapping**. The **Fields** pane is on the left. There you can see the list of the slave field names and their data types. The **Key mapping** pane is on the right. In the right pane you can see two columns: **Master key field** and **Slave key field**. The left column contains the selected field names of the driver input port.
 
 If you want to map some driver field to some slave field, select the slave field in the left pane by clicking its item. Then push the left mouse button, drag the field to the **Slave key field** column in the right pane and release the button. The same must be done for each slave. Note that you can also use the **Auto mapping** button or other buttons in each tab.
-Example 396. Join Key for ExtMergeJoin
+Example 401. Join Key for ExtMergeJoin
 
 ```ctl
 $first_name;$last_name#$fname;$lname#$f_name;$l_name
@@ -158,7 +158,7 @@ A transformation in **ExtMergeJoin** lets you define the transformation that sen
 
 All **Joiners** share the same transformation template which can be found in [CTL templates for Joiners](ctl-templates-for-joiners.md).
 
-For detailed information about **CloverDX** Transformation Language see [CTL2 - CloverDX Transformation Language](part6.md).
+For detailed information about **CloverDX** Transformation Language see [CTL2 - CloverDX Transformation Language](part5.md).
 
 #### Java interfaces
 

@@ -72,7 +72,7 @@ You may need a metadata for the accumulator record in rollup transformation.
 The flow of function calls in a rollup transformation is depicted below. If any optional function (except functions for error handling) is not used, the position of unimplemented function from diagram is skipped.
 
 ![Rollup diagram](../figures/Rollup-diagram.png)
-*Figure 411. Rollup code workflow*
+*Figure 429. Rollup code workflow*
 
 If you do not define **Group accumulator** metadata, **VoidMetadata** is used in transformation functions.
 

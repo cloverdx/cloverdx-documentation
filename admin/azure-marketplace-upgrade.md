@@ -21,10 +21,10 @@ The steps below focus on the actions specific to the upgrade process and assume 
 1. Pause processing of jobs in the previous version - disable listeners and schedules. This starts the downtime of the current version.
 2. Create a snapshot of the data disk of the previous version. Navigate to the virtual machine resources of your current version in the Azure Portal. Select **Disks** in the left menu.
    ![marketplace azure upgrade data disk select](../figures/marketplace-azure-upgrade-data-disk-select.png)
-   *Figure 52. Selecting the data disk of the virtual machine*
+   *Figure 54. Selecting the data disk of the virtual machine*
    Click on the data disk to open its details, then use the **Create snapshot** button. When creating the disk snapshot, selecting `Standard HDD` as the storage type is sufficient.
    ![marketplace azure upgrade data disk snapshot](../figures/marketplace-azure-upgrade-data-disk-snapshot.png)
-   *Figure 53. Creating a snapshot of the data disk*
+   *Figure 55. Creating a snapshot of the data disk*
 3. Resume processing of jobs in the previous version - this ends the downtime.
 4. Now, you can start deploying the new version. Open the **CloverDX offer** in the Azure marketplace and select the **CloverDX Server <version> BYOL - Upgrade** software plan.
 5. On the **Network Settings** page, you may reuse the virtual network of the previous version. This has the advantage of having network access already configured, e.g., any IPs that are allowed to have access to the previous server will also have access to the new version. See [Deployment Into existing infrastructure in Azure](azure-marketplace.md#deployment-into-existing-infrastructure).
@@ -49,9 +49,9 @@ Follow-up steps:
 - After finishing testing of the new version, it is possible to switch the public IP address of the previous version to be used by the new version instance. This allows you to continue using the same hostname with the new version, e.g., for Server projects in **CloverDX Designer**.
   1. If you want to perform the IP switch, first disassociate the IP address from the previous version. Navigate to the *Network Interface* of the previous version, select **IP Configurations** in the left menu and then select **ipconfig1**.
      ![marketplace azure upgrade ip configuration select](../figures/marketplace-azure-upgrade-ip-configuration-select.png)
-     *Figure 54. Selecting IP configuration*
+     *Figure 56. Selecting IP configuration*
      In the configuration details, uncheck the **Associate public IP address** check box and then **Save**. This will make the previous version inaccessible from outside. If you still want the previous version to be accessible, you can associate a different public IP instead.
      ![marketplace azure upgrade ip disassociate](../figures/marketplace-azure-upgrade-ip-disassociate.png)
-     *Figure 55. Disassociating the previous IP address*
+     *Figure 57. Disassociating the previous IP address*
   2. Now that the old IP is free, you can associate it with the new version. Navigate to the *Network Interface* of the new version, open its *IP configuration*, and replace its associated Public IP by the IP of the old version that you previously disassociated.
   3. For SSL connectivity to the new version to work correctly, we need to use the correct certificate - it must correspond to the new public hostname. If you’re using the default Let’s Encrypt certificate, you need to renew it - follow the renewal steps in [Let’s Encrypt certificate](azure-marketplace.md#azure-marketplace-lets-encrypt).

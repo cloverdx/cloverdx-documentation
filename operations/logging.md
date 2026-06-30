@@ -101,7 +101,7 @@ These system properties allow for logging of HTTP requests/responses to stdout:
 
 Client side:
 
-`com.sun.xml.ws.transport.http.client.HttpTransportPipe.dump=true` (For more information, see the [Working with CloverDX Server](../developer/server-projects-usage.md#designer-server-integration).)
+`com.sun.xml.ws.transport.http.client.HttpTransportPipe.dump=true` (For more information, see the [Working with CloverDX Server projects](../developer/server-projects-usage.md).)
 
 Server side:
 

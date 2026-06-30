@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Lookup tables -->
 
-## 27. Lookup tables
+## 28. Lookup tables
 
 Lookup tables are data structures that allow fast access to data stored using a known key or SQL query. This way you can reduce the need to browse a database or data files.
 > [!WARNING]
@@ -53,14 +53,14 @@ Optionally, you can select a **Charset** and the **Initial size** of the lookup 
 You can also enable the **Ignore case** checkbox (applies to string key fields only) to make key comparisons case-insensitive (i.e. "Smith" = "smith").
 
 ![300060](../figures/300060.png)
-*Figure 302. Simple lookup table wizard*
+*Figure 320. Simple lookup table wizard*
 
 ##### Key
 
 After clicking the button on the right side from the **Key** area, you will be presented with the **Edit key** dialog which helps you select the **Key**. The list on the left side contains metadata fields and their data types. The list on the right side contains metadata fields that form the key.
 
 ![01790](../figures/01790.png)
-*Figure 303. Edit key wizard*
+*Figure 321. Edit key wizard*
 
 To add a metadata field to the key, drag the field from the list on the left and drop it to the list on the right. Any highlighted metadata field can be added to the list with an arrow too.
 
@@ -75,15 +75,15 @@ You can also remove any key part by highlighting it and clicking the **Left arro
 In the **Data source** tab, you can either locate the file **URL** or fill in the grid after clicking the **Edit data** button. After clicking **OK**, the data will appear in the **Data** text area. If you use [LookupTableReaderWriter](lookuptablereaderwriter.md) to fill in the table, you do not need to specify data on the **Data source** tab.
 
 ![300070](../figures/300070.png)
-*Figure 304. Simple lookup table wizard with file URL*
+*Figure 322. Simple lookup table wizard with file URL*
 
 ![300080](../figures/300080.png)
-*Figure 305. Simple lookup table Wizard with data*
+*Figure 323. Simple lookup table Wizard with data*
 
 You can set or edit the data after clicking the **Edit data** button.
 
 ![300090](../figures/300090.png)
-*Figure 306. Changing data*
+*Figure 324. Changing data*
 
 After that, click **OK** and then **Finish**.
 
@@ -110,7 +110,7 @@ You can cache only the record found in the database, or you can cache both recor
 In the first step of the wizard, choose the **Database lookup** radio button and click **Next**.
 
 ![200730](../figures/200730.png)
-*Figure 307. Database lookup table wizard*
+*Figure 325. Database lookup table wizard*
 
 Then, in the **Database lookup table** wizard, give a **Name** to the selected lookup table, and specify **Metadata** and **DB connection**.
 > [!NOTE]
@@ -127,7 +127,7 @@ Then, you can click **OK** and **Finish**. See [Extracting metadata from a datab
 You can create a **Range lookup table** only if some fields of the records create ranges. That means the fields are of the same data type and they can be assigned both start and end. You can see this in the following example:
 
 ![01990](../figures/01990.png)
-*Figure 308. Appropriate data for range lookup table*
+*Figure 326. Appropriate data for range lookup table*
 
 **Range lookup table** does not allow multiple records with the same interval. The intervals may overlap, therefore one value can match more values from the lookup table.
 
@@ -138,7 +138,7 @@ When you create a **Range lookup table**, you check the **Range lookup** radio b
 Then, in the **Range lookup table** wizard, give a **Name** to the selected lookup table, and specify **Metadata**.
 
 ![200740](../figures/200740.png)
-*Figure 309. Range lookup table wizard*
+*Figure 327. Range lookup table wizard*
 
 You can select **Charset** and decide whether **Internationalization** and what **Locale** should be used.
 
@@ -199,7 +199,7 @@ By specifying **Page size**, you are defining the number of entries (records) pe
 Then click **OK** and **Finish**.
 
 ![lookup table 0450](../figures/lookup_table_0450.png)
-*Figure 310. Persistent lookup table wizard*
+*Figure 328. Persistent lookup table wizard*
 
 ###### Using persistent lookup table
 
@@ -257,7 +257,7 @@ If you want best guesses to be included in the results, set **Include best guess
 Then click **OK** and **Finish**.
 
 ![999](../figures/999.png)
-*Figure 311. Aspell lookup table wizard*
+*Figure 329. Aspell lookup table wizard*
 > [!IMPORTANT]
 > If you want to know the distance between the lookup table and edge values, you must add another field of numeric type to lookup table metadata. Set this field to **Autofilling** (`default_value`).
 >
@@ -289,7 +289,7 @@ In the **Outline** pane select **Lookup Tables** ****Add reference data lookup 
 You can also enable the **Ignore case** checkbox (applies to string key fields only) to make key comparisons case-insensitive (i.e. "Smith" = "smith").
 
 ![reflookup add](../figures/reflookup_add.png)
-*Figure 312. Reference lookup table wizard*
+*Figure 330. Reference lookup table wizard*
 
 ### Internal lookup tables
 
@@ -375,7 +375,7 @@ To internalize any linked external (shared) lookup table file into internal look
 After that, the following wizard opens which allows you to internalize metadata assigned to the lookup table and/or its DB connection (in the case of **Database lookup table**). The internalization of metadata or datatabase connection is optional, the internal lookup table can work with external metadata or database connection.
 
 ![lookup table 0360](../figures/lookup_table_0360.png)
-*Figure 313. Lookup table internalization wizard*
+*Figure 331. Lookup table internalization wizard*
 
 Click **OK**.
 

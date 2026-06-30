@@ -1,6 +1,6 @@
 <!-- Development > Projects > Import Wrangler mapping -->
 
-## 15. Import Wrangler mapping
+## 16. Import Wrangler mapping
 
 In some cases it is very useful to allow Wrangler users to define data transformations that are then used in more complex projects created in the Designer. A common use case for this is data ingestion where you need to read many different data types (often provided by customers in inconsistent formats) and transform incoming data to a common format (e.g., a data warehouse table). In such cases, it is advantageous for the business analysts to be able to easily create their transformations without having to understand CloverDX Designer and the complexities of building a subgraph that reads and transforms data into the specific format.
 
@@ -26,7 +26,7 @@ The subgraphs imported in this way will always define one input port and two out
 - **The second output port** is "rejected records output". It auto-propagates metadata corresponding to the reject file structure in the original Wrangler job. This port is optional and it will discard records if not connected. The metadata on this port will always contain 4 fields that provide information about the rejected record followed by the "data" fields that correspond to the first output port.
 
 ![import wrangler mapping usage example](../figures/import-wrangler-mapping-usage-example.png)
-*Figure 127. Example usage of a subgraph imported from a Wrangle job export.*
+*Figure 143. Example usage of a subgraph imported from a Wrangle job export.*
 
 ### Reject metadata
 
@@ -38,4 +38,4 @@ The metadata on the reject port will always contain the following four fields:
 - `long sourceRowNumber` is the row number of the rejected row as read from the source. Row numbers do not have to be sorted but will be unique - each row number can only appear once since each rejected record carries all errors for the given row.
 
 ![import wrangler mapping reject metadata](../figures/import-wrangler-mapping-reject-metadata.png)
-*Figure 128. An example of reject port metadata. Notice the four pre-defined fields followed by several "data" fields.*
+*Figure 144. An example of reject port metadata. Notice the four pre-defined fields followed by several "data" fields.*
