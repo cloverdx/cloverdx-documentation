@@ -93,7 +93,7 @@ The data attached to the first input port is called **master**, the second data 
 The order of these field names must correspond to the order of the key fields from the database table (and their data types). The slave part of **Join key** must be defined in the **SQL query** attribute.
 
 One of the query attributes must contain the expression of the following form: `... where field_K=? and field_L=?`.
-Example 398. Join key for DBJoin
+Example 397. Join key for DBJoin
 
 ```ctl
 $first_name;$last_name

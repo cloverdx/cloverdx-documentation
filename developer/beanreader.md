@@ -58,7 +58,7 @@ The mapping process is similar to the one in [XMLReader](xmlreader.md).
 1. Every **Mapping** definition consists of `<Context>` tags which also contain some attributes and allow mapping of element names to Clover fields. Nested structure of `<Context>` tags is similar to the nested structure of elements in input JavaBeans.
 2. Each `<Context>` tag can surround a serie of nested `<Mapping>` tags. These allow to rename JavaBeans elements to Clover fields. However, **Mapping** does not need to copy the whole input structure, it can start at an arbitrary depth in the tree.
 3. Each of these `<Context>` and `<Mapping>` tags contains some [JavaBeanReader context tag attributes](beanreader.md#javabeanreader-context-tag-attributes) and [JavaBeanReader mapping tag attributes](beanreader.md#javabeanreader-mapping-tag-attributes), respectively.
-   Example 370. Example Mapping in JavaBeanReader
+   Example 369. Example Mapping in JavaBeanReader
    ```xml
    <Context xpath="/employees" outPort="0" sequenceId="empSeq" sequenceField="id">
            <Mapping xpath="firstName" cloverField="firstName"/>
@@ -154,7 +154,7 @@ The mapping process is similar to the one in [XMLReader](xmlreader.md).
 As of **CloverDX 3.3**, reading multivalue fields is supported - you can read only lists, however (see [Multivalue fields](multivalue-fields.md)).
 > [!NOTE]
 > Reading maps is handled as reading pure `string` (for all data types as map’s values).
-Example 371. Reading lists with JavaBeanReader
+Example 370. Reading lists with JavaBeanReader
 An example input file containing a list of three elements: `John, Vicky, Brian`
 
 can be read back by the component with this mapping:

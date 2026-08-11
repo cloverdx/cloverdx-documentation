@@ -179,7 +179,7 @@ To use CloverDX MCP Server with Claude, you will need:
 - Claude desktop app installed - [https://www.claude.com/download](https://www.claude.com/download).
 - CloverDX MCP Extension file (`CloverDX-MCP.mcpb`) you can download from [Customer Portal → Downloads page](https://support.cloverdx.com/downloads).
 
-To correctly the Claude client to use CloverDX Server MCP, follow these steps:
+To correctly configure Claude client to use CloverDX Server MCP, follow these steps:
 
 1. Open the Claude desktop app
 2. Navigate to **Settings → Extensions**

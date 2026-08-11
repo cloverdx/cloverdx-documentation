@@ -64,7 +64,8 @@ You can define control logic which either refines your query based on assistantâ
 - **Google AI** ([https://gemini.google.com/](https://gemini.google.com/)) connects to Gemini models provided by Google AI.
 - **Microsoft Foundry (Azure OpenAI)** ([https://azure.microsoft.com/en-us/products/ai-foundry/models/openai](https://azure.microsoft.com/en-us/products/ai-foundry/models/openai)) provides OpenAI models via Microsoft Azure AI Foundry with enterprise security and compliance features.
 - **Microsoft Foundry via Azure AI Gateway** ([https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)) connects to Microsoft Foundry models via API endpoints provided by Azure API Management.
-- **OpenAI** ([https://openai.com/api/](https://openai.com/api/)) connects to GPT models provided by OpenAI or to any OpenAI-compatible tools such as Ollama, vLLM and others. The **base URL** attribute defines the base URL for API requests and defaults to `https://api.openai.com/v1`.
+- **OpenAI** ([https://openai.com/api/](https://openai.com/api/)) connects to GPT models provided by OpenAI.
+- **OpenAI compatible** connects to a tool exposing an OpenAI-compatible API, such as Ollama, vLLM or a custom proxy. The **base URL** attribute is the address of that API, e.g. `http://localhost:11434/v1`; available models are loaded from `<base URL>/models`. The **API key** is optional here, so an endpoint that requires no credentials can be used as well.
 - **OpenAI-compatible via Azure AI Gateway** ([https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)) uses Azure-hosted endpoints to connect to OpenAI-compatible APIs hosted by non-Microsoft providers.
 
 The following attributes are shared across multiple providers:
@@ -90,7 +91,7 @@ Most of the functions use the `ChatMessage` data type which is **globally availa
 - `totalOutputTokenCount`: total number of output tokens
 - `totalTokenCount`: total number of tokens, both input and output
 
-If not available for particular provider or model, these statistics may be *null*. Namely, `cachedInputTokenCount` is only available for Anthropic and OpenAI. For Azure AI Gateway providers, it may also be available if the gateway exposes the information.
+If not available for particular provider or model, these statistics may be *null*. Namely, `cachedInputTokenCount` is only available for Anthropic, OpenAI and OpenAI compatible. For Azure AI Gateway providers, it may also be available if the gateway exposes the information.
 
 ##### CTL template
 
@@ -164,6 +165,7 @@ If not available for particular provider or model, these statistics may be *null
 | 7.1.0 | *AIClient* was introduced in CloverDX version 7.1 as *OpenAIClient* â€“ it only supported OpenAI. |
 | 7.3.0 | The component was renamed to *AIClient* and gained support for additional providers: Anthropic (Claude models), Azure OpenAI, and Google Gemini. |
 | 7.5.0 | The component gained support for 2 additional providers: Microsoft Foundry via Azure AI Gateway and OpenAI-compatible via Azure AI Gateway. |
+| 7.5.1 | Connecting to an OpenAI-compatible tool became a provider of its own, *OpenAI compatible*. Existing connections that set the base URL under the *OpenAI* provider keep working and are shown as *OpenAI compatible*. |
 
 #### See also
 

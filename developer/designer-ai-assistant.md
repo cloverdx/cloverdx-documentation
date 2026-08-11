@@ -10,7 +10,7 @@
 - **Development companion**: the Assistant can help you while building your graphs – modify them based on a prompt, help you understand what the graphs are doing, improve CTL code, generate sample data and more. You can think of the Assistant as your everyday pair-programmer who is ready to help you turn natural language prompts into working graphs.
 - **Troubleshooter**: the Assistant can also help you understand job failures. Not just the ones that it has created, but any job. It has full access to your Server’s logs, tracking data and more. It can help you diagnose the problem, suggest a fix or even implement it for you.
 > [!NOTE]
-> CloverDX AI Assistant is released as a **technology preview** in CloverDX 7.5.0. It is present in Designer but remains inert until you apply an Assistant license key and configure an AI provider in Designer preferences (it will not do anything on its own).
+> CloverDX AI Assistant is released as a **technology preview** in CloverDX 7.5.0. It is present in Designer but remains inert until you apply an Assistant license key and configure an LLM connection in Designer preferences (it will not do anything on its own).
 >
 > As a technology preview, it is under active development. Its behavior, interfaces, and defaults may change in future releases, sometimes in incompatible ways. **Use it in dev/test environments only, not in production.** Treat it as a tool for evaluation and non-critical work, and review everything it produces before relying on it. Use it with caution: the Assistant can read and modify files and run jobs in the CloverDX Server project you connect it to.
 >
@@ -31,10 +31,11 @@ The Assistant requires CloverDX Designer where it runs as well as CloverDX Serve
 The diagram above shows basic building blocks required for the Assistant to work. The Assistant works with several distinct "components" that are shown on the diagram:
 
 - **CloverDX Designer** which is the central part of the Assistant. Designer provides the user interface for the Assistant and runs all the orchestration as needed. Technically, the Assistant runs fully within the Designer and only calls outside to access Large Language Models (LLM) or Model Context Protocol (MCP) Server.
-- **CloverDX Server** which provides Assistant’s agents with the tools to work with CloverDX jobs, investigate data, research knowledge base and more via its Model Context Protocol (MCP) Server. CloverDX Server provides [more than 50 tools](../operations/server-mcp-api.md#mcp-tools-reference) that can be used by agents.
+- **CloverDX Server** which provides Assistant’s agents with the tools to work with CloverDX jobs, investigate data, research knowledge base and more via its Model Context Protocol (MCP) Server. CloverDX Server provides [more than 60 tools](../operations/server-mcp-api.md#mcp-tools-reference) that can be used by agents.
   The **knowledge base** hosted by CloverDX Server provides the Assistant with information about components, usage patterns, design patterns or even skills (like data profiling) that the Assistant can use. See below for more details about how the library works and how to manage it.
   CloverDX Server also provides storage for CloverDX projects that the Assistant works with. Each CloverDX project corresponds to a sandbox on the **Server**. Read more about sandboxes and how they work in [Working with CloverDX Server projects](server-projects-usage.md).
 - **External Large Language Models (LLMs)** provide the AI backend for the Assistant. Multiple different models can be used by Assistant’s agents depending on [agent type](designer-ai-assistant.md#agent-types) and its [configuration](../admin/designer-configuration.md#cloverdx-ai-assistant-configuration).
+- **External AI IDEs** can be connected to CloverDX’s MCP Server and use the MCP to interact with CloverDX. You can use such IDEs to work with jobs (create new, modify existing ones, etc.) as well as investigate Server status via diagnostic tools.
 
 Each Assistant user has their own instance of Designer with their own LLM configuration. However, the tools are shared by all users using single CloverDX Server and the Server administrator can configure MCP to allow/disallow specific tools if needed via [MCP tool permissions](../admin/server-config-mcp.md#mcp-tools-permissions).
 > [!NOTE]
@@ -156,7 +157,7 @@ The Assistant uses multiple different agents with each focusing on different tas
 
 Each agent produces an output that can be reviewed by expanding the agent’s section in the Assistant view. Different types of agents are visualized with different colors in the Assistant view – this will allow you to quickly see what is going on and follow the work as it is being performed even without having to read everything that is shown in the view.
 
-Currently, the Assistant uses six different agent types:
+Currently, the Assistant uses seven different agent types:
 
 - **Master**: this is the main agent you interact with when you are using CloverDX Assistant. It handles conversation, project memory updates, quick explanations, etc. Master delegates most of work to other agents as needed and then provides the summary of sub-agent responses back to you.
 - **Architect** is for design, planning, and documentation. It turns requirements into a CloverDX architecture, opens or records design decisions, proposes sprint-sized work packages, reviews existing assets against the design, and can reverse-engineer and document an existing sandbox. It does not build graphs or jobflows; it defines what should be built and why.
@@ -169,16 +170,19 @@ Currently, the Assistant uses six different agent types:
 
 - **Troubleshooter** is for read-only diagnosis when something fails or behaves unexpectedly. It examines run history, logs, tracking, edge debug data, server logs, scheduler/listener context, and performance indicators to identify the likely root cause. It recommends a fix but does not edit or rerun assets itself; if an asset change is needed, Master hands that diagnosis to Developer.
 
-Different kind of Agents can run on top of different LLMs. Our basic recommendation is to use higher-end, frontier models for the Architect and previous generation/smaller models for other agents. The following table provide quick overview of our defaults (as of June 2026) – you are, of course, free to use other types of models if you’d like.
+- **Librarian** is for research. It answers a single question from the knowledge base, the component reference and the project’s own memory, and returns a short answer with its sources – so whoever asked never has to load whole documents into their conversation. It is also the only agent that writes to the project knowledge, recording what has been learned about a project so later sessions can look it up.
+
+Different kind of Agents can run on top of different LLMs. Our basic recommendation is to use higher-end, frontier models for the Master and the Architect, and previous generation/smaller models for other agents. The following table provide quick overview of our defaults (as of July 2026) – you are, of course, free to use other types of models if you’d like.
 
 | Agent | OpenAI LLM | Anthropic LLM | Google LLM |
 | --- | --- | --- | --- |
-| **Master** | gpt-5.5 | Opus 4.8 | Gemini 3.1 Pro |
-| **Architect** | gpt-5.5 | Opus 4.8 | Gemini 3.1 Pro |
+| **Master** | gpt-5.5 | Opus 4.8 | Gemini 3.5 |
+| **Architect** | gpt-5.5 | Opus 4.8 | Gemini 3.5 |
 | **Developer** | gpt-5.4 | Sonnet 4.6 | Gemini 3.5 Flash |
 | **Data Inspector** | gpt-5.4 | Sonnet 4.6 | Gemini 3.5 Flash |
 | **CTL Author** | gpt-5.4 | Sonnet 4.6 | Gemini 3.5 Flash |
 | **Troubleshooter** | gpt-5.4 | Sonnet 4.6 | Gemini 3.5 Flash |
+| **Librarian** | gpt-5.4 | Sonnet 4.6 | Gemini 3.5 Flash |
 
 ### Assistant projects and sessions
 
@@ -211,6 +215,7 @@ The standard layout of the assistant project is the following:
 
 - Directory `sessions`: stores per-session chat transcripts. You do not need to work with these files directly - the Assistant nicely renders their content in the Assistant panel in Designer.
 - Directory `sprints`: specification documents for each sprint. The Assistant uses sprints to partition large and complex work into manageable pieces and uses `sprints` directory to keep track of the scope of each sprint. The files in this folder are created automatically and managed as needed by the Assistant. Note that this folder may not be created at all for simple assistant projects.
+- Directory `knowledge_project`: what the Assistant has learned about this particular project, one markdown file per entry, optionally grouped into subfolders by topic. The Librarian agent writes these and searches them when a later session asks something that has already been answered.
 - `ARCHITECTURE.md`: design document for the assistant project – provides overview of the project’s purpose, its sources and targets, business logics, etc.
 - `DECISIONS.md`: open/answered decisions with each decision having a stable id (like "D001") so that it can be referred to later if needed.
 - `JOURNAL.md`: a simple append-only event log, every change the Assistant makes is noted here.
@@ -219,11 +224,27 @@ The standard layout of the assistant project is the following:
 
 All these files can be quite useful to review – especially if you are coming back to a project after a while or if you need to collaborate on a project with someone else.
 
+### Chat commands and the context window
+
+Besides talking to the Assistant in plain language, you can type a few commands straight into the chat input. Type `/` and the Assistant offers the list.
+**`/compact`**
+Summarizes the older part of the conversation and replaces it with that summary, which frees up room in the context window. Use it when a long session is filling up and you would rather continue in it than start a new one.
+**`/profile <name>`**
+Switches this chat view to a different set of models. Type `/profile` on its own to pick from the profiles you have configured. The switch applies to this view only and is forgotten when you close it – to change what the Assistant runs on by default, use [Model profiles](../admin/designer-configuration.md#model-profiles) in the preferences.
+**`/read-only`**
+Puts the session into read-only mode: tools that only read stay available and everything that would write, run or commit is refused. Useful when you want the Assistant to investigate something with no chance of it changing the project.
+**`/read-write`**
+Restores full access.
+
+Every model has a limit on how much conversation it can keep in mind at once – its **context window**. The header of the Assistant view shows how full it currently is, next to the number of tokens the session has consumed so far across all agents; hover over either readout for the exact figures.
+
+You rarely need to watch it, because the Assistant compacts the conversation by itself once it approaches the limit, exactly as `/compact` would. Compacting is not free – the summary is shorter than what it replaces, so detail is lost – which is why starting a new session for a new piece of work is usually better than compacting the same one over and over.
+
 ### Assistant’s knowledge base - CloverDXMCPKnowledge
 
 CloverDX Assistant uses a special library called **CloverDXMCPKnowledge** which provides knowledge base to the Assistant. This knowledge base contains information about components, design patterns, various skills and more to help the Assistant create and debug CloverDX jobs.
 
-![assistant knowledge base library](..//figures/assistant-knowledge-base-library.png)
+![assistant knowledge base library](../figures/assistant-knowledge-base-library.png)
 *Figure 61. Libraries module showing the CloverDXMCPKnowledge installed on the Server.*
 
 The library is installed automatically for you as soon as you install CloverDX 7.5 or newer – regardless of whether it is an update of an existing instance or a clean deployment. Each build of CloverDX Server carries with it its own version of the library which will be automatically deployed to your instance during installation.

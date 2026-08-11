@@ -83,7 +83,7 @@ Slave data is pulled out from a lookup table, so depending on the lookup table t
 
 ![reflookup join key](../figures/reflookup_join_key.png)
 *Figure 437. Edit Key Wizard*
-Example 402. Join Key for LookupJoin
+Example 401. Join Key for LookupJoin
 
 ```ctl
 $LookupKeyField1=$InputField1;$LookupKeyField2=$InputField2

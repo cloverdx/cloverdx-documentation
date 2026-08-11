@@ -148,7 +148,7 @@ Adds a **Namespace** as a new `xmlns:prefix` attribute of the selected element. 
 Adds a special directive to populate the element with attributes based on **Include** / **Exclude** wildcard patterns instead of mapping these attributes explicitly. This feature is useful when you need to retain metadata independence.
 
 Attribute names are generated from field names of the respective metadata. Syntax: use `$portNumber.field` or `$portName.field` to specify a field, use * in the field name for "any string". Use ; to specify multiple patterns.
-Example 386. Using Expressions in ports and fields
+Example 385. Using Expressions in ports and fields
 `$0.*`- all fields on port 0
 
 `$0.*;$1.*`- all fields on ports 0 and 1 combined
@@ -161,7 +161,7 @@ There are two main properties in a Wildcard attribute. At least one of them has 
 
 - **Include** - defines the inclusion pattern, i.e. which fields should be included in the automatically generated list. This is defined by an expression whose syntax is `$port.field`. A good use of expressions explained above can be made here. **Include** can be left blank provided **Exclude** is set (and vice versa). If **Include** is blank, XMLWriter lets you use all ports that are connected to nodes up above the current element (i.e. all its parents) or to the element itself.
 - **Exclude** - lets you specify the fields that you explicitly do not want in the automatically generated list. Expressions can be used here the same way as when working with **Include**.
-Example 387. Include and Exclude property examples
+Example 386. Include and Exclude property examples
 1. **Include** = `$0.i*`
 
 **Exclude** = `$0.index`
@@ -180,7 +180,7 @@ Include is not given so all ports connected to the node or up above are taken in
 ##### Attribute
 
 Adds a single attribute to the selected element. Once done, the Attribute name can be changed either by double-clicking it or editing **Attribute name** at the bottom. The attribute **Value** can either be a fixed string or a field value that you map to it. You can even combine static text and multiple field mappings. See example below.
-Example 388. Attribute value examples
+Example 387. Attribute value examples
 `Film` the attribute’s value is set to the literal string "Film".
 
 `$1.category` - the `category` field of port $1 becomes the attribute value
@@ -204,7 +204,7 @@ Depending on an element’s location in the tree and ports connected to it, the 
 - **Element name** - name of the element as it will appear in the output XML.
 - **Value** - element value. You can map a field to an element and it will populate its value. On the other hand, if you map a port to an element, you will create a **Binding** (see [Creating the mapping - mapping ports and fields](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields)). If **Value** is not present, right-click the element and choose **Add Child - Text node**. The element then gets a new field representing its text value. The newly created Text node cannot be left blank.
 - **Write null attribute** - by default, attributes with values mapping to NULL will not be put to the output. However, here you can explicitly list names of attributes that will always appear in the output.
-  Example 389. Writing null attribute
+  Example 388. Writing null attribute
   Let us say you have an element <date> and its attribute "time" that maps to input port 0, field `time` (i.e. <date time="$0.time"/>). For records where the `time` field is empty (null), the default output would be:
   ```xml
   <date/>
@@ -214,7 +214,7 @@ Depending on an element’s location in the tree and ports connected to it, the 
   <date time="" />
   ```
 - **Omit null attribute** - in contrast to **Write null attribute**, this one specifies which of the current element’s attributes will NOT be written if their values are null. Obviously, such behavior is default. The true purpose of **Omit null attribute** lies in wildcard expressions in combination with **Write null attribute**.
-Example 390. Omitting Null attribute
+Example 389. Omitting Null attribute
 You have an element with a **Wildcard attribute**. he element is connected to port 2 and its fields are mapped to the wildcard attribute, i.e. **Include**=$2.*. You know that some of the fields contain no data. You would like to write SOME of the empty ones, e.g. `height` and `width`. To achieve that, click the element and set:
 
 **Write null attribute**=$2.* - forces writing of all attributes although they are null.
@@ -222,7 +222,7 @@ You have an element with a **Wildcard attribute**. he element is connected to po
 **Omit null attribute**=$2.height;$2.width - only these attributes will not be written.
 
 - **Hide** - in elements having a port connected, set **Hide** to `true` to force the following behavior: the selected element is not written to the output XML while all its children are. By default, the property is set to `false`. Hidden elements are displayed with a grayish font in the Mapping editor.
-  Example 391. Hide element
+  Example 390. Hide element
   Imagine an example XML:
   ```xml
   <address>
@@ -262,7 +262,7 @@ You have an element with a **Wildcard attribute**. he element is connected to po
   ```
 - **Partition** - by default, partitioning is done according to the first and topmost element that has a port connected to it. If you have more such elements, set **Partition** to `true` in one of them to distinguish which element governs the partitioning.
   Please note that partitioning can be set only once. That is if you set an element’s **Partition** to `true`, you should not set it in either of its subelements (otherwise the graph fails). For a closer look on partitioning, see [Partitioning output into different output files](partitioning-output-into-different-output-files.md).
-  Example 392. Partitioning according to any element
+  Example 391. Partitioning according to any element
   In the mapping snippet below, setting **Partition** to `true` on the <invoice> element produces the following behavior:
   <person> will be repeated in every file
   <invoice> will be divided (partitioned) into several files
@@ -283,7 +283,7 @@ Adds a set of elements. The **Include** and **Exclude** properties influence whi
 
 - **Write null element** - use the `$port.field` syntax to determine which elements are written to the output despite having no content. By default, if an element has no value, it is not written. **Write null element** does not have to be entered on condition that the **Omit null element** is given. Same as in **Include** and **Exclude**, all ports connected to the element or up above are then available. See example below.
 - **Omit null element** - use the `$port.field` syntax to skip blank elements. Even though they are not written by default, you might want to use **Omit null element** to skip the blank elements you have previously forced to be written in **Write null element**. Alternatively, using **Omit null element** only is also possible. That means you exclude blank elements coming from all ports connected to the element or above.
-  Example 393. Writing and omitting blank elements
+  Example 392. Writing and omitting blank elements
   Say you aim to create an XML file like this:
   ```xml
   <person>
@@ -412,7 +412,7 @@ Every **Binding** comes with a set of properties:
 To remove **Binding**, click it and press Delete (alternatively, right-click and select **Remove** or find this option in the toolbar).
 
 Finally, **Binding** can specify JOIN between an input port and its parent node in the XML structure (meaning the closest parent node that is bound to an input port). Note that you can join the input with itself, i.e. the element and its parent being driven by the same port. That, however, implies caching and thus slower operation. See the following example:
-Example 394. Binding that serves as JOIN
+Example 393. Binding that serves as JOIN
 Let us have two input ports:
 
 0 - customers (id, name, address)
@@ -512,7 +512,7 @@ There are some useful keyboard shortcuts in the **Source** tab. Ctrl+F brings th
    The inserted code corresponds to nodes and their properties as described in [Creating the mapping - designing new XML structure](extxmlwriter.md#creating-the-mapping-designing-new-xml-structure).
 2. Inside the "" quotes - Content Assist lets you smoothly choose values of node properties (e.g. particular ports and fields in **Include** and **Exclude**) and even add Delimiters. Use Delimiters to separate multiple expressions from each other.
 3. In a free space in between two elements - apart from inserting a port or field of your choice, you can add **Wildcard element** (as described in [Creating the mapping - designing new XML structure](extxmlwriter.md#creating-the-mapping-designing-new-xml-structure)), **Insert template** or **Declare template** - see below.
-Example 395. Insert Wildcard attributes in Source tab
+Example 394. Insert Wildcard attributes in Source tab
 First, create an element. Next, click inside the element tag, press Space, then press Ctrl+Space and choose **Include attributes**. The following code is inserted: `clover:include=""`. Afterwards, you have to determine which port and fields the attributes will be received from (i.e. identical activity to setting the **Include** property in the Mapping tab). Instead of manually typing e.g. `$1.id`, use the Content Assist again. Click inside the "" brackets, press Ctrl+Space and you will get a list of all available ports. Choose one and press Ctrl+Space again.
 
 Now that you are done with `include`, press Space and then Ctrl+Space again. You will see the Content Assist adapts to what you are doing and where you are. A new option has turned up: **Exclude attributes**. Choose it to insert `clover:exclude=""`. Specifying its value corresponds to entering the **Exclude** property in Mapping.

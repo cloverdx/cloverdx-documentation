@@ -33,7 +33,7 @@ See the documentation of the particular lookup table for handling of duplicated 
 **Compatibility**
 
 The `count(string)` function is available since **CloverETL 3.0.x**.
-Example 333. Usage of count
+Example 332. Usage of count
 A lookup table with a one-field key.
 
 ```ctl
@@ -63,7 +63,7 @@ The `keyVal` in the function is a sequence of values of the field names separate
 **Compatibility**
 
 The `get(string)` function is available since **CloverETL 3.2.2** or earlier.
-Example 334. Usage of get
+Example 333. Usage of get
 There is a lookup table `users` having fields `name`, `surname`, `phone`. The key is formed by fields `name` and `surname`.
 
 The phone of `John Smith` is acquired by the statement:
@@ -100,7 +100,7 @@ It returns the next record with the same key. If there is no such record, it ret
 **Compatibility**
 
 The `next()` function is available since **CloverETL 3.2.2** or earlier.
-Example 335. Usage of next
+Example 334. Usage of next
 The basic usage:
 
 ```ctl
@@ -138,7 +138,7 @@ The operation may not be supported by all types of lookup tables (it is not supp
 **Compatibility**
 
 The `put(record)` function is available since **CloverETL 3.4.x**.
-Example 336. Usage of put
+Example 335. Usage of put
 
 ```ctl
 //Users is a same record as in the lookup table
@@ -150,7 +150,7 @@ lookup(users).put(u);
 ```
 
 **See also:**[get](lookup-table-functions-ctl2.md#get)
-Example 337. Usage of Lookup Table Functions
+Example 336. Usage of Lookup Table Functions
 A **UsersLookup** lookup table contains **Firstname**, **Surname**, and **Username** columns. **Firstname** and **Surname** fields form the key. Lookup all **Usernames** for each particular **Firstname** and **Surname** tuple received from an input port.
 
 ```ctl

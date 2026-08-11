@@ -53,7 +53,7 @@ Does not check the type of elements of lists and maps, only checks if the value 
 **Compatibility**
 
 The `cast(variant, type, subtype…)` function is available since **CloverDX 5.6.0**.
-Example 307. Usage of cast
+Example 306. Usage of cast
 
 ```ctl
 variant value = "ABC";
@@ -93,7 +93,7 @@ The `currentTimeMillis()` function returns the current time in milliseconds sinc
 **Compatibility**
 
 The `currentTimeMillis()` function is available since **CloverDX 6.4.0**.
-Example 308. Usage of currentTimeMillis()`long millis = currentTimeMillis();`
+Example 307. Usage of currentTimeMillis()`long millis = currentTimeMillis();`
 #### evalExpression
 
 ```ctl
@@ -120,7 +120,7 @@ In this example, the `expression` variable is assigned the value of the `USER_PR
 The expression parameter is a string containing the expression to be evaluated. The expression can include arithmetic, logical, or relational operators, as well as functions and constants supported by the CTL engine. The only requirement is the expression should return a value, `for, if` or other statements are not allowed. In addition to simple expressions, the `evalExpression` function can handle more complex logic using custom functions.
 
 To reference external custom functions, make sure the function is defined and accessible within the scope of the `evalExpression` function. The custom function should accept input parameters as needed and return a value that can be used within the expression.
-Example 309. Example of using a custom function:
+Example 308. Example of using a custom function:
 
 ```ctl
 import "trans/myCustomFunctions.ctl";
@@ -147,7 +147,7 @@ function number doCalculation(integer a, integer b){
 In case the provided expression is invalid or causes a runtime error, the `evalExpression` function generates an exception. To handle these exceptions, use a try-catch block with the `CTLException` exception type.
 
 Error handling is important when using the `evalExpression` function because it is designed for defining external expressions, mainly from users or from dynamic configurations. Therefore, it is necessary to check for syntax and runtime errors. In case the expression is propagated from outside, it is essential to ensure proper error handling to prevent unexpected behavior or crashes in the application.
-Example 310. Error handling
+Example 309. Error handling
 
 ```ctl
 import "trans/myCustomFunctions.ctl";
@@ -170,7 +170,7 @@ function number doCalculation(integer a, integer b){
 ```
 
 In this example, a runtime exception will occur because `b` is equal to 0, which will cause a division by zero error. The actual source of the exception is in the `doCalculation` function (which is an external). In this example, the issue occurred on line 7 of the transformation, but the actual error is in `myCustomFunctions.ctl` on line 2.
-Example 311. Error output
+Example 310. Error output
 
 ```ctl
 Interpreter runtime exception when dynamically evaluating CTL expression on line 12 column 18
@@ -188,7 +188,7 @@ Interpreter runtime exception when dynamically evaluating CTL expression on line
 ```
 
 Example of error handling with the `evalExpression` function:
-Example 312. Error handling
+Example 311. Error handling
 
 ```ctl
 try {
@@ -211,7 +211,7 @@ An environment variable is a system-dependent external named value. Similar to t
 **Compatibility**
 
 The `isEmpty()` function is available since **CloverETL 3.3.x**.
-Example 313. Usage of getEnvironmentVariables()`string envPath = getEnvironmentVariables()["PATH"];`
+Example 312. Usage of getEnvironmentVariables()`string envPath = getEnvironmentVariables()["PATH"];`
 **See also:**[getJavaProperties](miscellaneous-functions-ctl2.md#getjavaproperties)
 
 #### getJavaProperties
@@ -227,7 +227,7 @@ Similar to the Java function `System.getProperties()`.
 **Compatibility**
 
 The `getJavaProperties()` function is available since **CloverETL 3.3.x**.
-Example 314. Usage of getJavaProperties()`string operatingSystem = getJavaProperties()["os.name"];`
+Example 313. Usage of getJavaProperties()`string operatingSystem = getJavaProperties()["os.name"];`
 **See also:**[getEnvironmentVariables](miscellaneous-functions-ctl2.md#getenvironmentvariables)
 
 #### getParamValue
@@ -247,7 +247,7 @@ The function returns `null` for non-existent parameters.
 **Compatibility**
 
 The `getParamValue(string)` function is available since **CloverETL 3.3.x**.
-Example 315. Usage of getParamValue`string datainDir = getParamValue("DATAIN_DIR"); // will contain "./data-in"`
+Example 314. Usage of getParamValue`string datainDir = getParamValue("DATAIN_DIR"); // will contain "./data-in"`
 **See also:**[getParamValues](miscellaneous-functions-ctl2.md#getparamvalues)
 
 #### getParamValues
@@ -267,7 +267,7 @@ The function returns `null` for non-existent parameters.
 **Compatibility**
 
 The `getParamValues()` function is available since **CloverETL 3.3.x**.
-Example 316. Usage of getParamValues`string datainDir = getParamValues()["DATAIN_DIR"]; // will contain "./data-in"`
+Example 315. Usage of getParamValues`string datainDir = getParamValues()["DATAIN_DIR"]; // will contain "./data-in"`
 **See also:**[getParamValue](miscellaneous-functions-ctl2.md#getparamvalue)
 
 #### getRawParamValue
@@ -285,7 +285,7 @@ The function returns `null` for non-existent parameters.
 **Compatibility**
 
 The `getRawParamValue(string)` function is available since **CloverETL 3.5.0**.
-Example 317. Usage of getRawParamValue`string datainDir = getRawParamValue("DATAIN_DIR"); // will contain "${PROJECT}/data-in"`
+Example 316. Usage of getRawParamValue`string datainDir = getRawParamValue("DATAIN_DIR"); // will contain "${PROJECT}/data-in"`
 **See also:**[getRawParamValues](miscellaneous-functions-ctl2.md#getrawparamvalues)
 
 #### getRawParamValues
@@ -303,7 +303,7 @@ The function returns `null` for non-existent parameters.
 **Compatibility**
 
 The `getRawParamValues()` function is available since **CloverETL 3.5.0**.
-Example 318. Usage of getRawParamValues`string datainDir = getRawParamValues()["DATAIN_DIR"]; // will contain "${PROJECT}/data-in"`
+Example 317. Usage of getRawParamValues`string datainDir = getRawParamValues()["DATAIN_DIR"]; // will contain "${PROJECT}/data-in"`
 **See also:**[getRawParamValue](miscellaneous-functions-ctl2.md#getrawparamvalue)
 
 #### getType
@@ -319,7 +319,7 @@ If the argument is `null`, the function returns the string `"null"`.
 **Compatibility**
 
 The `getType(variant)` function is available since **CloverDX 5.6.0**.
-Example 319. Usage of getType
+Example 318. Usage of getType
 
 ```ctl
 variant myString = "ABC";
@@ -350,7 +350,7 @@ Returns java hashCode of parameter.
 **Compatibility**
 
 The `hashcode(…)` function is available since **CloverETL 3.5.0-M1**.
-Example 320. Usage of hashCode The function `hashCode(5)` returns some number.
+Example 319. Usage of hashCode The function `hashCode(5)` returns some number.
 #### iif
 
 ```ctl
@@ -364,7 +364,7 @@ If the first argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `iif(boolean,E,E)` function is available since **CloverETL 3.0.0**.
-Example 321. Usage of iif
+Example 320. Usage of iif
 The function `iif(true, "abc", "def")` returns `abc`.
 
 The function `iif(false, "abc", "def")` returns `def`.
@@ -397,7 +397,7 @@ For `string` argument, the `isBlank()` function returns a boolean value dependin
 
 - The `isBlank(string)` function is available since **CloverETL 3.0.0**.
 - The overloads for types other than string are available since **CloverDX 7.3.0**.
-Example 322. Usage of isBlank
+Example 321. Usage of isBlank
 
 ```ctl
 // basic data types behave like integer - function returns true for null values
@@ -466,7 +466,7 @@ The `isnull()` function returns a boolean value depending on whether the argumen
 **Compatibility**
 
 The `isnull()` function is available since **CloverETL 3.0.0**.
-Example 323. Usage of isnull
+Example 322. Usage of isnull
 The function `isnull(null)` returns `true`.
 
 The function `isnull(123)` returns `false`.
@@ -484,7 +484,7 @@ The `nvl()` function returns the first argument, if its value is not `null`, oth
 **Compatibility**
 
 The `nvl()` function is available since **CloverETL 3.0.0**.
-Example 324. Usage of nvl
+Example 323. Usage of nvl
 The function `nvl(null, "def")` returns `def`.
 
 The function `nvl("abc", "def")` returns `abc`.
@@ -502,7 +502,7 @@ The `nvl2()` function returns the second argument, if the first argument has not
 **Compatibility**
 
 The `nvl2(obj,obj,obj)` function is available since **CloverETL 3.0.0**.
-Example 325. Usage of nvl2
+Example 324. Usage of nvl2
 The function `nvl2(null, "abc", "def")` returns `def`.
 
 The function `nvl2(123, "abc", "def")` returns `abc`.
@@ -543,7 +543,7 @@ If the input string is `null` or empty, the function returns an empty map.
 **Compatibility**
 
 The `parseProperties()` function is available since **CloverETL 4.1.0**.
-Example 326. Sample property file
+Example 325. Sample property file
 
 ```properties
 # lines starting with # are comments
@@ -567,7 +567,7 @@ key\ with\ spaces = This is the value that could be looked up with the key "key 
 uuml : \u00FC
 ```
 
-Example 327. Usage of parseProperties
+Example 326. Usage of parseProperties
 The function `parseProperties("key1=value1\nkey2=value2")["key2"]` returns `"value2"`.
 
 Assuming that string variable `input` contains the sample property file from above, `parseProperties(input)` produces the following map: `{key=value, longvalue=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, website=http://www.cloverdx.com/, key with spaces=This is the value that could be looked up with the key "key with spaces"., uuml=ü}`.
@@ -622,7 +622,7 @@ By default, the message is logged to graph’s run log. A custom logger may be c
 The `printLog(level,string)` function is available since **CloverETL 3.0.0**.
 
 The `printLog(level loglevel, string logger, <any type> message)` function is available since **CloverDX 6.4.0.**
-Example 328. Usage of printLog
+Example 327. Usage of printLog
 The function `printLog(warn, "abc")` prints `abc` into the log.
 
 `printLog(info, $out.0)` prints a string representation of a record to the log.
@@ -644,7 +644,7 @@ The execution of the graph is aborted.
 **Compatibility**
 
 The `raiseError(string)` function is available since **CloverETL 3.0.0**.
-Example 329. Usage of raiseError`raiseError("The error message")`
+Example 328. Usage of raiseError`raiseError("The error message")`
 **See also:**[printErr](miscellaneous-functions-ctl2.md#printerr), [printLog](miscellaneous-functions-ctl2.md#printlog)
 
 #### resolveParams
@@ -667,7 +667,7 @@ The second parameter controls whether character escape sequences (like `\n` or `
 > For example, code like `printLog(info, "The input directory is ${DATAIN_DIR}")` will print "The input directory is ./data-in" into the graph log.
 >
 > The `resolveParams` is only needed when the data that includes parameter references is read from a file or computed in the graph.
-Example 330. Usage of resolveParams The usage of the function `resolveParams()` is necessary if the string containing a parameter is created at runtime:
+Example 329. Usage of resolveParams The usage of the function `resolveParams()` is necessary if the string containing a parameter is created at runtime:
 
 ```ctl
 const string[] FOLDER_TYPES = ["IN", "OUT", "TMP"];
@@ -697,7 +697,7 @@ The `sleep()` function pauses the execution for specified time in milliseconds.
 **Compatibility**
 
 The `sleep(long)` function is available since **CloverETL 3.1.0**.
-Example 331. Usage of sleep The function `sleep(5000)` will sleep for 5 seconds.
+Example 330. Usage of sleep The function `sleep(5000)` will sleep for 5 seconds.
 #### toAbsolutePath
 
 ```ctl
@@ -724,5 +724,5 @@ If the given parameter is `null`, the function fails with an error.
 **Compatibility**
 
 The `toAbsolutePath(string)` function is available since **CloverETL 3.3.x**.
-Example 332. Usage of toAbsolutePath The function `toAbsolutePath("graph")` will return for example `C:/workspace/doc_project/graph`.
+Example 331. Usage of toAbsolutePath The function `toAbsolutePath("graph")` will return for example `C:/workspace/doc_project/graph`.
 **See also:**[translate](string-functions-ctl2.md#translate)
