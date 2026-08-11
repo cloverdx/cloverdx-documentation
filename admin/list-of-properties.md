@@ -161,6 +161,7 @@ Additional properties used for Cluster configuration can be found in [Cluster co
 | properties_resolver.placeholders.server_props_list_default | A list of properties from a subset of properties, that may be used as placeholders and shall be resolved if used in paths. The properties can be used if you define a path to the root of a sandbox, or to locations of local or partitioned sandboxes, or path to a script, or path in archiver job. Users are strongly discouraged from modification of the property. The property name changed since **CloverDX 4.2**, however the obsolete name is also still accepted to maintain backwards compatibility. | clover.home, sandboxes.home, sandboxes.home.local, sandboxes.home.partitioned, user.data.home |
 | **Data Services** |  |  |
 | dataservice.invocation.record.max.age | It sets the maximal age in minutes before the record is removed from the database. The default is 1440 min = 24 h. | 1440 |
+| dataservice.default.response.encoding | Optional default character encoding for Data Service responses. When empty, CloverDX does not explicitly set the response encoding; supported servlet containers use UTF-8 by default. Set it to `ISO-8859-1` for compatibility with legacy Data Service jobs that relied on ISO-8859-1 as the servlet container’s default response encoding. | empty |
 | dataservice.https.connector.session.timeout | Used for Data Services jobs accessed through an HTTPS connector. It configures HTTP session inactivity timeout before the session is invalidated. The value is in minutes and its default is the same as HTTP session timeout for **CloverDX Server** web application. | 50 |
 | dataservice.cors.allowed | Enables or disables CORS filter. | true |
 | dataservice.access.control.allow.origin | A comma separated list of origins that are allowed to access Data Service endpoints. |  |
@@ -561,6 +562,7 @@ These configuration properties control how the CloverDX Server integrates with t
 | [dataservice.access.control.expose.headers](list-of-properties.md#lop-dataservice-access-control-expose-headers) |
 | [dataservice.access.control.max.age](list-of-properties.md#lop-dataservice-access-control-max-age) |
 | [dataservice.cors.allowed](list-of-properties.md#lop-dataservice-cors-filter-enabled) |
+| [dataservice.default.response.encoding](list-of-properties.md#lop-dataservice-default-response-encoding) |
 | [dataservice.https.connector.session.timeout](list-of-properties.md#lop-dataservice-https-connector-session-timeout) |
 | [dataservice.invocation.record.max.age](list-of-properties.md#lop-dataservice-invocation-record-max-age) |
 | [datasource.jndiName](list-of-properties.md#lop-datasource-jndiname) |

@@ -24,8 +24,13 @@ Ensure you have the following configured in **SQL Server Configuration Manager**
 > While port `1433` is the default for MS SQL databases, you can use any unused port. This guide uses port `1433` for demonstration purposes.
 
 ##### Creating database
-
-The following commands can be used to create a system database and user configuration.
+> [!NOTE]
+> If you do not specify a database collation, SQL Server uses the server collation for the database. If your SQL Server instance uses a legacy [SQL Server collation](https://learn.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support?view=sql-server-ver17#SQL-collations), such as a collation whose name starts with `SQL_`, we recommend that you create the CloverDX system database with a [Windows collation](https://learn.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support?view=sql-server-ver17#Windows-collations) that matches your locale and requirements. For example, in SQL Server 2019 and later, you can use a UTF-8 Windows collation:
+>
+>
+> ```sql
+> CREATE DATABASE clover_db COLLATE Latin1_General_100_CI_AS_SC_UTF8;
+> ```
 > [!NOTE]
 > Remember to modify the script according to your specific needs. This includes replacing the following:
 >

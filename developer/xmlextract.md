@@ -90,7 +90,7 @@ Each metadata can use [Autofilling functions](metadata-records-and-fields.md#aut
 | [Usage of useParentRecord attribute](xmlextract.md#usage-of-useparentrecord-attribute) |
 
 In **XMLExtract**, you can map tags, attributes and input fields to the output. It can read multiple elements of the same name as a list. The mapping is specified in **XMLExtract Mapping Editor**.
-Example 372. Mapping in XMLExtract
+Example 371. Mapping in XMLExtract
 
 ```xml
 <Mappings>
@@ -248,7 +248,7 @@ Example:
   `outputField="fieldName"`
 
 The nested structure of `<Mapping>` tags copies the nested structure of XML elements in input XML files. See example below.
-Example 373. From XML structure to mapping structure
+Example 372. From XML structure to mapping structure
 - **If XML structure looks like this:**
   ```xml
   <[prefix:]nameOfElement>

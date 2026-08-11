@@ -89,7 +89,7 @@ In the driver tab, there are two panes. The **Fields** pane on the left and the 
 *Figure 441. Join key wizard (Slave Key tab)*
 
 In each of the slave tab(s) there are two panes. The **Fields** pane on the left and the **Key mapping** pane on the right. In the left pane you can see the list of the slave field names. In the right pane you can see two columns: **Master key field** and **Slave key field**. The left column contains the selected field names of the driver input port. If you want to map a driver field to slave field, select the slave field in the left pane by clicking its item, push the left mouse button, drag to the **Slave key field** column in the right pane and release the button. The same must be done for each slave. Note that you can also use the **Auto mapping** button or other buttons in each tab.
-Example 403. Join key for RelationalJoin
+Example 402. Join key for RelationalJoin
 
 ```ctl
 $first_name;$last_name#$fname;$lname#$f_name;$l_name

@@ -85,7 +85,7 @@ As a consequence, you map the input records to the output file in a manner simil
   - **Arrays** - arrays are ordered sets of values in JSON enclosed between the `[` and `]` brackets. To learn how to map them in **JSONWriter**, see [Writing arrays II](jsonwriter.md#writing-arrays-ii).
   - [Wildcard elements](extxmlwriter.md#wildcard-element)- another option to mapping elements explicitly. You use the **Include** and **Exclude** patterns to generate element names from respective metadata.
 - Connect input records to output (wildcard) elements to create [Binding](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields).
-  Example 382. Creating Binding
+  Example 381. Creating Binding
   ![JSONWriter mappingWithBindings](../figures/JSONWriter-mappingWithBindings.png)
   *Figure 396. Example mapping in JSONWriter - employees are joined with projectsthey work on.Fields in bold (their content) will be printed to the output file - see below.*
   Excerpt from the output file related to [the figure above](jsonwriter.md#jsonwriter-fig-mapping) (example of one employee written as JSON):

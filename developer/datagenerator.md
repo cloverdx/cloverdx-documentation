@@ -196,7 +196,7 @@ Following are the methods of `RecordGenerate` interface:
 Sometimes the number of records to be generated is not known at design time. In such a case, set the value of the **Number of records to generate** attribute to a negative number. The component will then generate records until the `generate()` function returns `STOP` (in this case, it is not considered an error). This works for transformations defined both in Java and CTL.
 > [!WARNING]
 > Note that in the last iteration when `STOP` is returned, no records will be sent to any of the output ports.
-Example 368. Generating variable number of records in CTL
+Example 367. Generating variable number of records in CTL
 
 ```ctl
 integer total = randomInteger(1, 100);
@@ -227,7 +227,7 @@ function integer generate() {
 Sometimes you need to generate random values in a graph and it should be possible to rerun it again returning the same values. This might be useful, for example, for tests.
 
 The solution is to set the random seed for random number generator to some fixed value.
-Example 369. Generating random values with fixed random seed
+Example 368. Generating random values with fixed random seed
 
 ```ctl
 function boolean init() {

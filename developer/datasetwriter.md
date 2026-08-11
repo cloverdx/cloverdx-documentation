@@ -40,6 +40,7 @@ The **TransactionalDataSetWriter** component propagates metadata on the input po
 | --- | --- | --- | --- |
 | Basic |  |  |  |
 | Data Set | **✓** | Data set to write to. Clicking on the **Edit set** button will show all transactional data sets that your user (when using a local Data Manager connection) or the user configured in the remote connection (when using a remote Data Manager connection) has permission to edit. See [Data set permissions in Data Manager](../user/data-manager-introduction.md#data-set-permissions).  Data set is identified by its code. The code is assigned to the data set when it is created and does not change when the data set is renamed. |  |
+| Operation |  | Allows you to select whether the component will insert new rows or update existing ones. | Insert, Update |
 | Input mapping |  | Allows you to map incoming records to records in the data set. Default mapping (when nothing is configured) is to map by name. |  |
 | Output mapping |  | Allows you to map data written to the data set to the output port. By default, this is set to *Map by name* and fields with matching names and types will be mapped automatically. This is consistent with the common usage where the metadata on output port 0 is auto-propagated and will match the data set exactly. |  |
 
@@ -161,6 +162,14 @@ $out.0._messages = {
 	}
 };
 ```
+
+#### Updating existing records
+
+TransactionalDataSetWriter also allows you to update existing records in the data set. To enable the update functionality, change the *Operation* to Update.
+
+To properly update a row, you will have to provide its `_id` so that Data Manager can determine exactly which row to update. You will have to map all fields to the data set record in the component. The component will automatically determine which fields have changed and will only modify and create audit entries for those changed field.
+> [!NOTE]
+> If you only map some of the fields, the remaining ones will all be set to `null`. To properly update your data set, map all fields in the component and let the component determine which fields changed to properly create audit logs.
 
 #### See also
 

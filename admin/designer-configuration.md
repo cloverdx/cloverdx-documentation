@@ -39,32 +39,82 @@ All CloverDX settings are grouped together in one node of the settings tree acce
 
 ### CloverDX AI Assistant configuration
 
-The **AI Assistant** pages allow you configure **Clover Assistant**. The most important part is the API key for 3rd party LLM (Large Language Model) such as GPT or Claude which power Clover Assistant. Additional options allow you to configure agent behavior, logging and more.
+The **AI Assistant** pages allow you configure **Clover Assistant**. The most important part is the connection to a 3rd party LLM (Large Language Model) provider such as OpenAI or Anthropic which powers Clover Assistant. On top of that you decide which model each agent runs on, and additional options allow you to configure agent behavior, logging and more.
 > [!NOTE]
-> CloverDX AI Assistant is released as a **technology preview** in CloverDX 7.5.0. It is present in Designer but remains inert until you apply an Assistant license key and configure an AI provider in Designer preferences (it will not do anything on its own).
+> CloverDX AI Assistant is released as a **technology preview** in CloverDX 7.5.0. It is present in Designer but remains inert until you apply an Assistant license key and configure an LLM connection in Designer preferences (it will not do anything on its own).
 >
 > As a technology preview, it is under active development. Its behavior, interfaces, and defaults may change in future releases, sometimes in incompatible ways. **Use it in dev/test environments only, not in production.** Treat it as a tool for evaluation and non-critical work, and review everything it produces before relying on it. Use it with caution: the Assistant can read and modify files and run jobs in the CloverDX Server project you connect it to.
 >
 > Gathering feedback on how teams want to govern the Assistant is one of the goals of this technology preview. Contact your Account representative if you wish to provide feedback that could help us improve future versions of the Assistant.
 
-#### General options
-
-On this page, you can configure which models are used for different agents. See [Agent types](../developer/designer-ai-assistant.md#agent-types) for more details about different kinds of agents, their requirements and usage patterns.
+The main **AI Assistant** page holds two groups: **Connections**, the named LLM connections available to the Assistant, and **Model profiles**, which decides what each agent runs on. **At least one connection is required before the Assistant can be used.**
 
 ![designer config ai assistant general](../figures/designer-config-ai-assistant-general.png)
 *Figure 63. General settings for Clover Assistant.*
 
-Following options are available:
-**Provider**
-Allows you to select which provider to use. **This is required and must be configured before the Assistant can be used.** Multiple providers are allowed each with their own settings.
+#### Connections
 
-In general, you will need an **API key** for the selected provider, and you may also need additional information such as endpoint URLs etc. Follow the tooltips for each provider configuration option once you’ve selected you provider to get more information about what each option means.
-**Models**
-Allows you to select models you wish to use for each agent. Pressing the **Reload** button will connect to the provider you selected above and will download the list of models you have currently available. You can then select different models for each agent type. See [Agent types](../developer/designer-ai-assistant.md#agent-types) for more details about agents.
+A **connection** describes one LLM endpoint: its provider, the API key and whatever else that provider needs. Connections are named and there can be as many of them as you like – one per provider, several accounts with the same provider, or a cloud provider next to a locally hosted model. Agents then refer to connections by name, so you can point different agents at different providers.
 
-The configuration allows you to configure one **Master model** which will serve as default for all sub-agents unless you override them for each specific agent.
+The table lists the connection **Name**, its **Provider** and the **Endpoint** it points at (empty for providers that have a single fixed endpoint). The buttons on the right manage the list. Removing a connection also deletes its API key from the secure storage, once you confirm the page with **OK** or **Apply**.
 
-In general, we recommend largest ("frontier") models for Architect, and medium-size models or models from previous generation for other sub-agents.
+Each connection is edited in its own dialog. Enter a **Name** – it is what you will pick from in the agents grid, so name connections after what they are for – choose a **Provider**, and fill in the fields that provider requires. Every field carries an info icon with a description of what belongs in it.
+
+The following providers are available:
+
+| Provider | Connects to |
+| --- | --- |
+| **OpenAI** | GPT models provided by OpenAI. |
+| **OpenAI compatible** | A tool exposing an OpenAI-compatible API, such as Ollama, vLLM or a custom proxy. The **Base URL** is the address of that API, e.g. `http://localhost:11434/v1`; the API key is optional, so an endpoint that requires no credentials can be used as well. |
+| **Anthropic** | Claude models such as Opus or Sonnet provided by Anthropic. |
+| **Google AI** | Gemini models provided by Google AI. |
+| **Microsoft Foundry (Azure OpenAI)** | OpenAI GPT models hosted by Microsoft in the Azure cloud. |
+| **Microsoft Foundry via Azure AI Gateway** | Microsoft Foundry models via API endpoints provided by Azure API Management. |
+| **OpenAI-compatible via Azure AI Gateway** | Azure-hosted endpoints exposing OpenAI-compatible APIs of non-Microsoft providers. |
+
+The **Test connection** button verifies the connection: it loads the list of models the endpoint offers and sends a short request to check the credentials. The loaded models are remembered and offered in the agents grid afterwards.
+> [!NOTE]
+> For the three Azure variants the model is part of the connection itself – the **Deployment name**, or the **Model name** for the OpenAI-compatible gateway – because a deployment serves exactly one model. Such a connection offers that single model to the agents. The remaining providers serve their whole catalogue, so their models are listed separately for each agent.
+
+#### Model profiles
+
+A **profile** is a named set of choices – which connection and which model each agent uses, plus optional per-agent model properties. You can keep several profiles side by side, for example a fast and cheap one for everyday work and a frontier-model one for hard design tasks, and switch between them.
+
+The bar at the top of the group selects the **Profile** you are editing – it is also the profile the Assistant runs on – and manages the list with **New…​**, **Duplicate**, **Rename…​** and **Delete**. At least one profile always remains.
+
+The grid below configures the agents of the selected profile. See [Agent types](../developer/designer-ai-assistant.md#agent-types) for more details about the individual agents, their requirements and usage patterns.
+**Connection**
+The connection the agent’s model is called on. Leave the cell blank to inherit; the inherited connection is then shown greyed.
+**Model**
+The model to use. The drop-down offers the models the agent’s connection reported – press **Reload models** to refresh them – but you can also type a model name the list does not contain. Leave the cell blank to inherit.
+**Properties**
+Per-agent model settings, see [Model properties](designer-configuration.md#model-properties) below. The button reads *Default* while the agent overrides nothing and *Custom…​* once it does.
+
+Values are inherited along the agent hierarchy: the **Sub-agent** row is the default for every sub-agent and inherits from **Master**, and each specific agent below it inherits from **Sub-agent**. Configuring the Master row is therefore enough to run the whole Assistant, and the rows below are there for the cases where one agent should differ. The Master is the root of the hierarchy – it cannot inherit and always carries its own connection and model.
+
+In general, we recommend largest ("frontier") models for Master and Architect, and medium-size models or models from previous generation for other agents.
+
+The two buttons below the grid work on the whole active profile:
+**Reload models**
+Connects to every connection the profile uses and downloads the list of models you have currently available. The lists are remembered between Designer sessions, so this is only needed when a provider’s offer changes.
+**Test connection**
+Sends a short request to every distinct connection/model pair the profile uses and reports the result of each. This is the quickest check that a profile is fully usable.
+
+##### Model properties
+
+The **Properties** button of a row opens the model properties of that agent. Leave a field blank to inherit it – the greyed value shows what would apply.
+**Temperature**
+How focused or creative the answers are: 0.0 for the most focused ones, higher values for more creative ones. When left blank, the model’s own default applies. The accepted range depends on the provider (up to 1.0 for Anthropic, up to 2.0 elsewhere).
+**Max output tokens**
+Maximum number of tokens this agent’s model may generate in a single reply. When left blank, the global value from the [Advanced configuration](designer-configuration.md#advanced-configuration) applies.
+
+Only the properties the agent’s provider actually accepts are shown.
+
+##### Switching the profile from chat
+
+The active profile can also be switched directly from the chat, without opening the preferences: type `/profile` in the chat input to pick from the available profiles, or `/profile <name>` to switch straight away.
+
+The switch applies to that chat view only and is not persisted – it is a way to try a different profile for a while, not a way to change the configured default. While a view runs on something other than the default, its header shows a **Model profile** badge with the profile name.
 
 #### Advanced configuration
 
@@ -83,25 +133,25 @@ The main assistant agent that talks to you. It may delegate work to sub-agents (
 
 ##### Limits
 
-The **Limits** section allows you to influence token consumption and iteration counts for your agents. These guard against runaway tool call loops and oversized model responses. The default suit regular usage, change these values only if you are hitting the limits or if you need tighter control over your Assistant costs.
-**Max tokens / turn**
-Configure the maximum number of tokens the model may generate in a single reply. This limits the length of each model response within a turn, not the turn’s total token count. Raise this limit if answers are being cut off in the middle of the output; lower this value to reduce per-reply cost. The value range is from 256 to 64000.
+The **Limits** section allows you to influence token consumption and iteration counts for your agents. These guard against runaway tool call loops and oversized model responses. The defaults suit regular usage, change these values only if you are hitting the limits or if you need tighter control over your Assistant costs.
+**Max output tokens**
+Configure the maximum number of tokens the model may generate in a single reply. This limits the length of each model response within a turn, not the turn’s total token count. Raise this limit if answers are being cut off in the middle of the output; lower this value to reduce per-reply cost. The value range is from 256 to 64000. This value applies to every agent that does not set its own – see [Model properties](designer-configuration.md#model-properties).
 **Master max iterations / turn**
 Configure the maximum number of model round trips the Master may make while answering one message. If the Master reaches this ceiling without producing a final answer, the turn stops with an iteration limit error – usually a sign of a confused tool call loop. Raise this only for genuinely long, multi-step tasks. You can use values from 5 to 200.
 **Sub-agent max iterations**
-Configure the number of model round trips sub-agentsmay makewhileanswering the queries they are given. If a sub-agent reaches this limit without finishing, it will return an error to Master. Master can then decide whether to call the task with narrower scope or to try another approach. Value range is 5 to 200.
+Configure the number of model round trips sub-agents may make while answering the queries they are given. If a sub-agent reaches this limit without finishing, it will return an error to Master. Master can then decide whether to call the task with narrower scope or to try another approach. Value range is 5 to 200.
 **MCP tool timeout (s)**
 Configure how long to wait for MCP Server’s response in seconds. If MCP does not respond before the timeout expires, the call is considered a failure, and the agent will then decide how to continue (whether to end the turn, call the tool again, or switch to a different tool). Increase this value if legitimate calls to long-running tools time out (e.g., on overloaded Server). Decrease the value to fail faster if the Server is stuck. Values can range from 10 seconds to 600 seconds.
 
 ##### Logging
 
-The **Logging** section allows you to configure the amount and location of logs produced by agents when they run.
+The **Logging** section allows you to configure the amount and location of logs produced by agents when they run. Logging settings are applied when an agent starts, so they take effect once you reopen the chat view.
 **Log level**
-Configure which log messages are written to the log. Note that on *DEBUG* and *TRACE* levels, full requests and responses may be written to logs which can significantly increase the log size. Default level is *INFO* and should be suitable for most common situations.
+Configure which log messages are written to the log. Note that on *DEBUG* and *TRACE* levels, full requests and responses may be written to logs which can significantly increase the log size; on these levels every model call also writes its full request into the session’s debug folder for offline diagnosis. Default level is *INFO* and should be suitable for most common situations.
 **Log LLM requests and responses**
 Allows you to force agents to always write full requests and responses to log files. By default, this is disabled.
 **Log file**
-Configure the location of the Assistant log file. By default, this will be a file within `.metadata` folder of your current workspace.
+Location of the Assistant log file. By default, this will be a file within `.metadata` folder of your current workspace. Use the **Open logs folder** button to open the containing folder.
 
 ##### Appearance
 

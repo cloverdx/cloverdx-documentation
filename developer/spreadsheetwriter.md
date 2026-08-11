@@ -256,7 +256,7 @@ Which format is used if both are set?
 - Is **Field with format** not specified or a value of that particular field is empty (null or empty string)? Yes – use **Format** from the metadata field (if set with the `excel:` prefix). See also [Field details](metadata-editor.md#field-details).
 
 You can use the `excel:General` format – either in **Field with format** or in metadata **Format** – the output will be set to general format (Excel terms).
-Example 384. Writing Excel format
+Example 383. Writing Excel format
 Let us have two fields: `fieldValue (integer)` and `fieldFormat (string)` mapped onto cell A1 (one as value, the other as **Field with format**). Imagine these incoming records:
 
 - (100, `"#00,0"`)
@@ -290,7 +290,7 @@ Links can be of several types: **Document**, **Email**, **File** or **URL**.
 Link is created in the **Properties** pane. Map the field with a link text to desired cell, change **Hyperlink type** (in **Properties**) to desired type and select field with target in **Field with hyperlink address**.
 
 Hyperlinks are persisted to a file along with font and style (blue and underline).
-Example 385. Writing hyperlinks
+Example 384. Writing hyperlinks
 Following are examples of proper addresses for all hyperlink types:
 
 - **Document**

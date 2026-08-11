@@ -61,7 +61,7 @@ If one of the given record fields is of type `list`, `map` or `variant`, the fun
 **Compatibility**
 
 The `compare(reference,integer,reference,integer)` and `compare(reference,string,reference,string)` functions are available since **CloverETL 3.2.0**.
-Example 276. Usage of compare
+Example 275. Usage of compare
 
 ```ctl
 $out.0.field1 = $in.0.field1 + 1;
@@ -90,7 +90,7 @@ If a record specified as a first argument has a `null` reference, the function f
 **Compatibility**
 
 The `copyByName(reference,reference)` function is available since **CloverETL 3.2.2** or earlier.
-Example 277. Usage of copyByName
+Example 276. Usage of copyByName
 There are two records. The input record has fields `city`, `countryCode` and `phone`. The output record has fields `countryCode`, `phone` and `email`.
 
 The function `copyByName($out.0, $in.0)` copies fields `countryCode` and `phone`.
@@ -110,7 +110,7 @@ If a record specified as a first argument has a `null` reference, the function f
 **Compatibility**
 
 The `copyByPosition(reference,reference)` function is available since **CloverETL 3.2.2** or earlier.
-Example 278. Usage of copyByPosition There are two records. The input record has fields `field1`, `field2` and `field3`. The output record has fields `firstField` and `lastField`. The function `copyByPosition($out.0, $in.0)` copies value from `field1` to `firstField` and from `field2` to `lastField`.
+Example 277. Usage of copyByPosition There are two records. The input record has fields `field1`, `field2` and `field3`. The output record has fields `firstField` and `lastField`. The function `copyByPosition($out.0, $in.0)` copies value from `field1` to `firstField` and from `field2` to `lastField`.
 **See also:**[copyByName](field-access-functions-ctl2.md#copybyname)
 
 #### getBoolValue
@@ -127,7 +127,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getBoolValue(reference, integer)` and `getBoolValue(reference,string)` functions are available since **CloverETL 3.2.0**.
-Example 279. Usage of getBoolValue
+Example 278. Usage of getBoolValue
 There is a record with with fields `field1`, `field2` and `field3` and values `[true, false, true]`.
 
 The function `getBoolValue($in.0, 1)` returns `false` as second field of record is set to `false`.
@@ -150,7 +150,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getByteValue(record,integer)` and `getByteValue(record,string)` functions are available since **CloverETL 3.2.0**.
-Example 280. Usage of getByteValue
+Example 279. Usage of getByteValue
 There is a record with fields `field1`,`field2` and `field3` containing values `oak`, `larch` and `pine`.
 
 The function `getByteValue($in.0, 0)` returns `oak`.
@@ -175,7 +175,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getDateValue(reference,integer)` and `getDateValue(reference,string)` functions are available since **CloverETL 3.2.0**.
-Example 281. Usage of getDateValue
+Example 280. Usage of getDateValue
 There is a record having fields `date1`, `date2`, `date3` and `date4` with values `2010-10-10`, `2011-11-11`, `2012-12-12` and `null`.
 
 The function `getDateValue($in.0, 0)` returns `2010-10-10`.
@@ -204,7 +204,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getDecimalValue(reference,integer)` and `getDecimalValue(reference,string)` functions are available **CloverETL 3.2.0**.
-Example 282. Usage of DecimalValue
+Example 281. Usage of DecimalValue
 There is a record having fields `field1`, `field2` and `field3` with values `1.01D`, `20.52D` and `100.75D`.
 
 The function `getDecimalValue($in.0, 0)` returns `1.01`.
@@ -226,7 +226,7 @@ If a given record has a `null` reference, the function fails with an error.
 **Compatibility**
 
 The `getFieldIndex(reference,string)` function is available since **CloverETL 3.2.0**.
-Example 283. Usage of getFieldIndex
+Example 282. Usage of getFieldIndex
 There is a record having fields `field1`, `field2` and `field3`.
 
 The function `getFieldIndex($in.0, "field1")` returns `0`.
@@ -248,7 +248,7 @@ If a given record has a `null` reference, the function fails with an error.
 **Compatibility**
 
 The `getFieldLabel(record,integer)` and `getFieldLabel(record,string)` functions are available since **CloverETL 3.2.0**.
-Example 284. Usage of getFieldLabel
+Example 283. Usage of getFieldLabel
 There is a record having fields `field1` and `field2` with field labels `The first field` and `The second field`.
 
 The function `getFieldLabel($in.0, "field1")` returns `The first field`.
@@ -283,7 +283,7 @@ If a given record has a `null` reference, the function fails with an error.
 **Compatibility**
 
 The `getFieldName(record,integer)` function is available since **CloverETL 3.0.0**.
-Example 285. Usage of getFieldName
+Example 284. Usage of getFieldName
 There is a record having fields `field1` and `field2`.
 
 The function `getFieldName($in.0, 0)` returns `field1`.
@@ -308,7 +308,7 @@ If a `null` reference is passed to any of the arguments, if the field index is o
 **Compatibility**
 
 The `getFieldProperties(re)` function is available since **CloverETL 4.1.0-M1**.
-Example 286. Usage of getFieldProperties
+Example 285. Usage of getFieldProperties
 Assume there is a record with fields `rawValue` of type `string` and `convertedValue` of type `integer` on the first input and first output port.
 
 ```ctl
@@ -343,7 +343,7 @@ If a given record has a `null` reference, the function fails with an error.
 The `getFieldType(record,integer)` function is available since **CloverETL 3.0.0**.
 
 The `getFieldType(record,string)` function is available since **CloverETL 4.1**.
-Example 287. Usage of getFieldType There is a record having first field of data type `string`. The function `getFieldType($in.0, 0)` returns `string`.
+Example 286. Usage of getFieldType There is a record having first field of data type `string`. The function `getFieldType($in.0, 0)` returns `string`.
 **See also:**[getFieldIndex](field-access-functions-ctl2.md#getfieldindex), [getFieldLabel](field-access-functions-ctl2.md#getfieldlabel), [getFieldName](field-access-functions-ctl2.md#getfieldname)
 
 #### getIntValue
@@ -360,7 +360,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getIntValue(record,integer)` and `getIntValue(record,string)` functions are available since **CloverETL 3.2.0**.
-Example 288. Usage of getIntValue
+Example 287. Usage of getIntValue
 There is a record having integer fields `field1` and `field2` with values `25` and `22`.
 
 The function `getIntValue($in.0, 1)` returns `22`.
@@ -383,7 +383,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getLongValue(record,integer)` and `getLongValue(record,string)` functions are available since **CloverETL 3.2.0**.
-Example 289. Usage of getLongValue
+Example 288. Usage of getLongValue
 There is a record having fields `field1` and `field2` with values `443L` and `509L`.
 
 The function `getLongValue($in.0, 1)` returns `509`.
@@ -406,7 +406,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getNumValue(recored,integer)` and `getNumValue(record,string)` functions are available since **CloverETL 3.2.0**.
-Example 290. Usage of getNumValue
+Example 289. Usage of getNumValue
 There is a record having fields `field1` and `field2` with values `1.41` and `1.7`.
 
 The function `getNumValue($in.0, 0)` returns `1.41`.
@@ -430,7 +430,7 @@ If a `null` reference is passed as the argument, the function fails with an erro
 **Compatibility**
 
 The `getRecordProperties(record)` function is available since **CloverETL 4.1.0-M1**.
-Example 291. Usage of getRecordProperties
+Example 290. Usage of getRecordProperties
 Assume there is a record with fields `rawValue` of type `string` on the first input and first output port.
 
 ```ctl
@@ -455,7 +455,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `getStringValue(record, integer)` function is available since **CloverETL 3.2.0**.
-Example 292. Usage of getStringValue
+Example 291. Usage of getStringValue
 There is a record having fields `field1` and `field2` with values `orange` and `yellow`.
 
 The function `getStringValue($in.0, 0)` returns `orange`.
@@ -480,7 +480,7 @@ If the record is `null`, the function fails with an error.
 **Compatibility**
 
 The function is available since **CloverDX 5.7.0**.
-Example 293. Usage of getValue
+Example 292. Usage of getValue
 
 ```ctl
 // assumes that the first input port $in.0 has two fields, "field1" and "field2":
@@ -508,7 +508,7 @@ If a given record has a `null` reference, the function fails with an error.
 **Compatibility**
 
 The `getValueAsString(record,integer)` and `getValueAsString(record,string)` function is available since **CloverETL 3.2.0**.
-Example 294. Usage of getValueAsString
+Example 293. Usage of getValueAsString
 There is a record having fields `field1` and `field2` of `boolean` data type with values `true` and `false`.
 
 The function `getValueAsString($in.0, 0)` returns `true` as string.
@@ -529,7 +529,7 @@ The `isNull()` function checks whether a given field is `null`. The field is ide
 **Compatibility**
 
 The `isNull(record,integer)` and `isNull(record,string)` function is available since **CloverETL 3.2.0**.
-Example 295. Usage of isNull
+Example 294. Usage of isNull
 There is a record having fields `field1`, `field2`, `field3` and `field4` with values `true`, `false`, `null` and `null`, respectively.
 
 The function `isNull($in.0, 0)` returns `false`.
@@ -555,7 +555,7 @@ For a record with `null` reference, the function returns `0`.
 **Compatibility**
 
 The `length(record)` function is available since **CloverETL 3.0.0**.
-Example 296. Usage of length There is an input record having 14 fields. The function `length($in.0)` returns `14`.
+Example 295. Usage of length There is an input record having 14 fields. The function `length($in.0)` returns `14`.
 **See also:** String functions: [length(string)](string-functions-ctl2.md#length), Container functions: [length(container)](container-functions-ctl2.md#length)
 
 #### resetRecord
@@ -569,7 +569,7 @@ The function `resetRecord()` resets fields of the record to default values.
 **Compatibility**
 
 The `resetRecord(record)` function is available since **CloverETL 3.2.2** or earlier.
-Example 297. Usage of resetRecord
+Example 296. Usage of resetRecord
 The output record in the example will contain field `field3` set to `3`. The field `field2` will contain `null`, as the field is reset to the default value.
 
 ```ctl
@@ -594,7 +594,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setBoolValue(record,integer,boolean)` and `setBoolValue(record,string,boolean)` functions are available since **CloverETL 3.2.0**.
-Example 298. Usage of setBoolValue
+Example 297. Usage of setBoolValue
 There is a record of booleans having fields `field1` and `field2`.
 
 The function `setBoolValue($out.0, 0, true)` sets the first field of an output record to `true`.
@@ -619,7 +619,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setByteValue(record,integer,byte)`, `setByteValue(record,string,byte)` functions are available since **CloverETL 3.2.0**.
-Example 299. Usage of setByteValue
+Example 298. Usage of setByteValue
 There is a record of booleans having fields `field1` and `field2`.
 
 The function `setByteValue($out.0, 0, str2byte("etc", "utf-8"))` sets the first field to byte value of string `etc` (`0x65`, `0x74`, `0x63`).
@@ -642,7 +642,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setDateValue(record,integer,date)` and `setDateValue(record,string,date)` functions are available since **CloverETL 3.2.0**.
-Example 300. Usage of setDateValue
+Example 299. Usage of setDateValue
 The function `setDateValue($out.0, 0, '2010-10-10')` sets the first field of an output record to `2010-10-10`.
 
 the function `setDateValue($out.0, "field", '2011-11-11')`
@@ -663,7 +663,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setDecimalValue(record,integer,decimal)` and `setDecimalValue(record,string,decimal)` functions are available since **CloverETL 3.2.0**.
-Example 301. Usage of seDecimalValue
+Example 300. Usage of seDecimalValue
 The function `setDecimalValue($out.0, 0, 3.14D)` sets the first field of an output record to `3.14`.
 
 The function `setDecimalValue($out.0, "field3", 2.72D)` sets the first field of an output record to `2.72D`
@@ -684,7 +684,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setIntValue(record,integer,integer)` and `setIntValue(record,string,integer)` functions are available since **CloverETL 3.2.0**.
-Example 302. Usage of setIntValue
+Example 301. Usage of setIntValue
 The function `setIntValue($out.0, 1, 2718)` sets the second field of an output record to `2718`.
 
 The function `setIntValue($out.0, "field1", 1414)` sets the field `field1` of an output record to `1414`.
@@ -705,7 +705,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setLongValue(record,integer,long)` and `setLongValue(record,string,long)` functions are available since **CloverETL 3.2.0**.
-Example 303. Usage of setLongValue
+Example 302. Usage of setLongValue
 The function `setLongValue($out.0, 0, 8080L)` sets the first field of a record to `8080`.
 
 The function `setLongValue($out.0, "field3", 127L)` sets the field `field3` of an output record to `127`.
@@ -726,7 +726,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setNumValue(record,integer,number)` and `setNumValue(record,string,number)` functions are available since **CloverETL 3.2.0**.
-Example 304. Usage of setNumValue
+Example 303. Usage of setNumValue
 The function `setNumValue($out.0, 2, 2.718)` sets the third field of an output record to `2.718`.
 
 The function `setNumValue($out.0, "field1", 1.732)` sets the field `field3` of an output record to `1.732`.
@@ -747,7 +747,7 @@ If a given record has a `null` reference, the function fails with an error. If t
 **Compatibility**
 
 The `setStringValue(record,integer,string)` and `setStringValue(record,string,string)` functions are available since **CloverETL 3.2.0**.
-Example 305. Usage of setStringValue
+Example 304. Usage of setStringValue
 The function `setStringValue($out.0, 1, "chocolate cake")` sets the second field of an output record to `chocolate cake`.
 
 The function `setStringValue($out.0, "field1", "donut")` sets the second field `donut` of an output record to `donut`.
@@ -770,7 +770,7 @@ If the given record is `null`, the function fails with an error.
 **Compatibility**
 
 The function is available since **CloverDX 5.7.0**.
-Example 306. Usage of setValue
+Example 305. Usage of setValue
 
 ```ctl
 // assumes that the first output port $out.0 has three fields and one of them is "Name":

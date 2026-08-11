@@ -77,7 +77,7 @@ Metadata can use [Autofilling functions](metadata-records-and-fields.md#autofill
 **XMLXPathReader** reads data from XML files (using the `DOM` parser). It can also read data from compressed files, input port, and dictionary.
 
 This component is slower and needs more memory than [XMLExtract](xmlextract.md), which can read XML files too. [XMLReader](xmlreader.md) supersedes the *XMLXPathReader*.
-Example 376. Mapping in XMLXPathReader
+Example 375. Mapping in XMLXPathReader
 
 ```xml
 <Context xpath="/employees/employee" outPort="0">

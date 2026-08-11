@@ -368,6 +368,15 @@ string s;
 string s2 = "Hello world!";
 ```
 
+A string in CTL represents its data in UTF-16 format (just like Java). This means it can represent any text including complex scripts. Since UTF-16 is used, there is no 1:1 correspondence between a "character" in string and elements of the string itself. Strings are composed of Unicode code units with each code unit being 16 bits long (i.e., a number from 0 to 65536). To represent one character, multiple code units may be needed - one for "basic" characters (like Western languages; most, but not all, characters in East Asian languages etc.) while some more complex characters may require multiple code units (various symbols, less common East Asian language characters, emoji). There is actually no limit in how long a "character" is - in fact, what most people would understand as a character is called grapheme.
+
+The above representation of data (and many other quirks of Unicode normalization) mean that is not that simple to work with strings that can contain complex graphemes. Few examples to illustrate this (try copying those examples into Designer to see them work):
+
+- Basic text works as expected: `length("Hello")` is 5 and `left("Hello", 2)` is `"He"`.
+- Same also works for common Japanese (and Chinese etc.) characters: `length("日本")` is 2 and `left("日本", 2)` is `"日本"` (whole string fits into two code points which are "simple" and therefore only need one code unit each).
+- But more complex characters, like "🤦🏼‍♂️" can be surprising: `length("🤦🏼‍♂️")` is 7 (because it is 5 Unicode code points which map to 7 UTF-16 code units). This is a single grapheme and doing substrings on it will lead to unexpected (and incorrect) results: `left("🤦🏼‍♂️", 2)` is "🤦" - it grabs just the first two code units which is the "Face Palm" character which will likely be rendered differently depending on your font. `left("🤦🏼‍♂️", 1)` is even worse since it creates incomplete code point which will be rendered as a square or similar character depending on your font.
+- Even simple characters can be surprising since there may be more than one way of writing them: `length("Å")` is 2 since the letter is written as *U+0041 LATIN CAPITAL LETTER A* + *U+030A COMBINING RING ABOVE* Unicode code points. But you can also have "Å" written as single code point *U+00C5 LATIN CAPITAL LETTER A WITH RING ABOVE* in which case the `length` will return 1.
+
 ##### list
 
 Since **CloverDX 5.6**, the type of elements of a list may be any other data type, including nested lists or maps.

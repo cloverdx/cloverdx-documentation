@@ -27,7 +27,7 @@ The function `getSubgraphInputPortsCount()` returns the number of input ports.
 **Compatibility**
 
 The function `getSubgraphInputPortsCount()` is available since **CloverETL 4.1.0**.
-Example 338. Usage of getSubgraphInputPortsCount There is a subgraph having two input ports and one output port. The function `getSubgraphInputPortsCount()` returns `2`.
+Example 337. Usage of getSubgraphInputPortsCount There is a subgraph having two input ports and one output port. The function `getSubgraphInputPortsCount()` returns `2`.
 **See also:**[getSubgraphOutputPortsCount](subgraph-functions-ctl2.md#getsubgraphoutputportscount), [isSubgraphInputPortConnected](subgraph-functions-ctl2.md#issubgraphinputportconnected), [isSubgraphOutputPortConnected](subgraph-functions-ctl2.md#issubgraphoutputportconnected)
 
 #### getSubgraphOutputPortsCount
@@ -41,7 +41,7 @@ The function `getSubgraphOutputPortsCount()` returns the number of output ports.
 **Compatibility**
 
 The function `getSubgraphOutputPortsCount()` is available since **CloverETL 4.1.0**.
-Example 339. Usage of getSubgraphOutputPortsCount There is a subgraph having two input ports and one output port. The function `getSubgraphOutputPortsCount()` returns `1`.
+Example 338. Usage of getSubgraphOutputPortsCount There is a subgraph having two input ports and one output port. The function `getSubgraphOutputPortsCount()` returns `1`.
 **See also:**[getSubgraphInputPortsCount](subgraph-functions-ctl2.md#getsubgraphinputportscount), [isSubgraphInputPortConnected](subgraph-functions-ctl2.md#issubgraphinputportconnected), [isSubgraphOutputPortConnected](subgraph-functions-ctl2.md#issubgraphoutputportconnected)
 
 #### isSubgraphInputPortConnected
@@ -59,7 +59,7 @@ If `portNo` is not a valid port number of a particular subgraph (negative value 
 **Compatibility**
 
 The `isSubgraphInputPortConnected()` function is available since **CloverETL 4.1.0**.
-Example 340. Usage of isSubgraphInputPortConnected
+Example 339. Usage of isSubgraphInputPortConnected
 There is a subgraph having two input ports: the first one is connected, the second one is not connected.
 
 The function `isSubgraphInputPortConnected(0)` returns `true`.
@@ -85,7 +85,7 @@ If `portNo` is not a valid port number of a particular subgraph (negative value 
 **Compatibility**
 
 The `isSubgraphOutputPortConnected()` function is available since **CloverETL 4.1.0**.
-Example 341. Usage of isSubgraphOutputPortConnected
+Example 340. Usage of isSubgraphOutputPortConnected
 There is a subgraph having two output ports: the first one is connected, the second one is not connected.
 
 The function `isSubgraphOutputPortConnected(0)` returns `true`.

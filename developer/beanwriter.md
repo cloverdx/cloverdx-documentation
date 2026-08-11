@@ -91,7 +91,7 @@ Metadata on the input edge(s) are displayed on the left hand side. The right han
   - Maps
   Click the green '+' sign to **Add entry**. This adds a new item into the tree - its type depends on context (the node you have selected). **Remember** the button is not available every time as the output structure is determined by [bean structure](beanwriter.md#defining-bean-structure).
 - Connect input records to output nodes to create [Binding](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields).
-  Example 379. Creating Binding
+  Example 378. Creating Binding
   ![JavaBeanWriter binding](../figures/JavaBeanWriter-binding.png)
   *Figure 391. Example mapping in JavaBeanWriter*
   In the example above, you can see the employees are joined with projects they work on. Fields in bold (their content) will be printed to the output dictionary, i.e. they are used in the mapping.

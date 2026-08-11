@@ -421,7 +421,7 @@ integer getDayOfWeek(date arg);
 integer getDayOfWeek(date arg, string timeZone);
 ```
 
-The `getDayOfWeek()` function returns the day of the week of `arg`.
+The `getDayOfWeek()` function returns the day of the week (Monday = 1 …​ Sunday = 7) of `arg`.
 
 If the argument is `null`, the function returns `null`.
 
