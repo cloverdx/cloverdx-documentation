@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Parameters -->
 
-## 26. Parameters
+## 27. Parameters
 
 Parameters are a set of key-value pairs that are often used for job configuration. The are defined once - in Parameters section of the Outline - and can be reused as many times as needed in the whole graph. This provides nice benefit of centralization (later change the values only in one place) and configuration.
 

@@ -1,6 +1,6 @@
 <!-- Development > CTL2 - CloverDX Transformation Language > CTL overview -->
 
-## 32. CTL overview
+## 33. CTL overview
 
 CTL is a proprietary scripting language oriented on data processing in transformation components of **CloverDX**.
 
@@ -41,7 +41,7 @@ function integer transform() {
    CTL2 is strongly typed. Each variable has its data type. The declarations of container types contain the data types as well.
 3. **Arbitrary order of code parts**
    Declare your variable where you need them.
-   CTL2 allows to declare variables and functions in any place of the code. Only one condition must be fulfilled - each variable and function must be declared before it is used.
+   CTL2 allows to declare variables and functions in any place of the code. Only one condition must be fulfilled - each variable must be declared before it is used. Functions and record types may even be used before the code declaring them.
    CTL2 also allows to define mapping in any place of the transformation and be followed by other code.
    Parts of CTL2 code may be interspersed almost arbitrarily.
 4. **Almost as fast as Java**

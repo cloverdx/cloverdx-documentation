@@ -11,7 +11,7 @@ Users who wish to access the Data Manager can do so either from the CloverDX Hom
 Every user wanting to access the Data Manager will require Data Manager permissions which are configured on a per [user group](groups.md) basis. Following permissions control whether users can access Data Manager:
 
 ![data manager group permissions](../figures/data-manager-group-permissions.png)
-*Figure 143. Data Manager permissions in Group permissions configuration.*
+*Figure 145. Data Manager permissions in Group permissions configuration.*
 
 The **Access to Data Manager app** permission at the bottom gives the users the ability to log in to the Data Manager. The user’s permission to work with the data sets is controlled by setting the role (Admin, Editor, Approver, Reader) directly on the individual data sets. Each user with this permission requires a Data Manager seat (see [Data Manager licensing](data-manager-administration.md#data-manager-licensing) for more details).
 
@@ -34,7 +34,7 @@ To configure the Data Manager, go to **Configuration** → **Setup** → **Data 
 Select [**Local (Hosted on this CloverDX Server)**](data-manager-administration.md#local-data-manager-configuration) to configure Data Manager for your standalone CloverDX Server or CloverDX cluster environment. In this mode, data sets are available exclusively to that instance-accessible both through the Data Manager interface and within CloverDX Designer, where they can be manipulated using dedicated components for data set handling.
 
 ![DM diagram local](../figures/DM-diagram-local.png)
-*Figure 144. Diagram of local Data Manager setup*
+*Figure 146. Diagram of local Data Manager setup*
 
 Select [**Remote (Connect to Data Manager hosted on another CloverDX Server)**](data-manager-administration.md#remote-data-manager-configuration) to connect your CloverDX Server instance to a Data Manager hosted on a different CloverDX Server environment. This setup allows multiple CloverDX environments to share a central repository of data sets. Once connected, data sets from the main Server environment where the Data Manager is set up become available for use in graphs within projects on other Server environments.
 
@@ -43,12 +43,12 @@ Users logged into the CloverDX Server Console on remote servers can view data se
 Note that accessing the Data Manager UI from a remote Server instance will automatically redirect you to the Data Manager URL of the main Server.
 
 ![DM diagram remote](../figures/DM-diagram-remote.png)
-*Figure 145. Diagram of remote Data Manager setup*
+*Figure 147. Diagram of remote Data Manager setup*
 
 #### Local Data Manager configuration
 
 ![DM config local](../figures/DM-config-local.png)
-*Figure 146. Local Data Manager configuration in Setup*
+*Figure 148. Local Data Manager configuration in Setup*
 
 Local Data Manager requires a dedicated database. Make sure Data Manager doesn’t use the same database schema as your CloverDX Server. It’s best to create a separate schema or even a separate database. This keeps your CloverDX system data (like settings and logs) separate from the business data stored in Data Manager.
 
@@ -67,7 +67,7 @@ Use the **Validate** button at the bottom to see if your connection is valid. Af
 #### Remote Data Manager configuration
 
 ![DM config remote](../figures/DM-config-remote.png)
-*Figure 147. Remote Data Manager configuration in Setup*
+*Figure 149. Remote Data Manager configuration in Setup*
 
 To configure a remote Data Manager connection:
 
@@ -95,7 +95,7 @@ The number of seats that you have available can be shown in **Configuration** �
 If you have more users than the seats, an error will be displayed in your Server Console:
 
 ![data manager license too many users](../figures/data-manager-license-too-many-users.png)
-*Figure 148. An error shown if more users have access to the Data Manager than there are Data Manager seats on the Server.*
+*Figure 150. An error shown if more users have access to the Data Manager than there are Data Manager seats on the Server.*
 
 If this happens, you will not be able to use the Data Manager user interface, but the data will remain intact. Your users will be able to log-in to the Data Manager again once the number of seats is higher than the number of users with Data Manager permissions (i.e., you will have to either add additional seats or change user permissions so that fewer users have access).
 
@@ -109,7 +109,7 @@ The **Data Sets** modules provides a list of data sets configured in Data Manage
 - When connected to a **remote Data Manager**, only data sets *visible to the user specified in the [remote Data Manager configuration](data-manager-administration.md#remote-data-manager-configuration)* are shown. At least *Read-only* access must be granted for a reference data set to be listed, or *Data editor* access for a transactional data set to be listed. See [Data set permissions](../user/data-manager-introduction.md#data-set-permissions) for more information.
 
 ![trans data sets module](../figures/trans-data-sets-module.png)
-*Figure 149. Transactional Data Sets module showing a list of data sets and a sidebar with details of the selected data set.*
+*Figure 151. Transactional Data Sets module showing a list of data sets and a sidebar with details of the selected data set.*
 
 The information displayed for each **transactional data set** includes the following:
 
@@ -127,7 +127,7 @@ The information displayed for each **transactional data set** includes the follo
 - **Committed Rows**: number of rows that have *Committed* status in the data set.
 
 ![ref data sets module](../figures/ref-data-sets-module.png)
-*Figure 150. Reference Data Sets module showing a list of data sets and a sidebar with details of the selected data set.*
+*Figure 152. Reference Data Sets module showing a list of data sets and a sidebar with details of the selected data set.*
 
 The information displayed for each **reference data set** includes the following:
 

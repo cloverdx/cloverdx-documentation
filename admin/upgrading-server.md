@@ -33,14 +33,14 @@
    - If any changes to the database schema are necessary, the new server will automatically make them when you start it for the first time. Since this operation could be dangerous as there is a chance the update might fail and damage the system database, the start of the server is suspended and a confirmation dialog is displayed.
 
 ![upgrade server confirm dialog](../figures/upgrade-server-confirm-dialog.png)
-*Figure 60. Confirm dialog*
+*Figure 59. Confirm dialog*
 
 - You are presented with 2 options:
   1. Make a database backup and proceed with the update by typing in "*backup completed*" and clicking on **Proceed**.
   2. Cancel the update. In this case, the database is not modified and the server fails to start. You must stop the application server the CloverDX Server is running on and deploy the previous version of CloverDX Server (clover.war).
 
 ![upgrade server cancel dialog](../figures/upgrade-server-cancel-dialog.png)
-*Figure 61. Cancel dialog*
+*Figure 60. Cancel dialog*
 > [!TIP]
 > In a cluster, the confirmation is needed only on one node.
 > [!TIP]

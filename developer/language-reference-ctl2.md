@@ -1,6 +1,6 @@
 <!-- Development > CTL2 - CloverDX Transformation Language > Language reference -->
 
-## 33. Language reference
+## 34. Language reference
 
 This chapter describes the syntax of **CloverDX** Transformation Language - CTL. CTL can be used to define transformations in many components.
 
@@ -16,8 +16,8 @@ This section describes the following areas:
 - [Operators](language-reference-ctl2.md#operators)
 - [Simple statement and block of statements](language-reference-ctl2.md#simple-statement-and-block-of-statements)
 - [Control statements](language-reference-ctl2.md#control-statements)
+- [Error handling](language-reference-ctl2.md#error-handling)
 - [Functions](language-reference-ctl2.md#functions)
-- [Conditional fail expression](language-reference-ctl2.md#conditional-fail-expression)
 - [Accessing data records and fields](language-reference-ctl2.md#accessing-data-records-and-fields)
 - [Mapping](language-reference-ctl2.md#mapping)
 - [Parameters](language-reference-ctl2.md#parameters)
@@ -28,6 +28,7 @@ Each program written in CTL must contain the following parts:
 
 ```ctl
 ImportStatements
+RecordTypeDeclarations
 VariableDeclarations
 FunctionDeclarations
 Statements
@@ -37,10 +38,14 @@ Mappings
 All of them may be interspersed; however, there are some principles that are valid for them:
 
 - If an import statement is defined, it must be situated at the beginning of the code.
-- Variables and functions must be declared before use.
+- Variables must be declared before use.
+- Functions and record types are an exception - they may be used before the code declaring them, so their declarations can be kept together at the end of the script.
+- Functions and record types can only be declared at the top level of the script, never inside a function or a block.
 - Declarations of variables and functions, statements and mappings may also be mutually interspersed.
+
+Besides the metadata of the graph and metadata imported from an external `.fmt` file, a record structure can be declared in the script itself. For the syntax of such a declaration, see [Declaring a record type in CTL](language-reference-ctl2.md#declaring-a-record-type-in-ctl).
 > [!IMPORTANT]
-> In CTL2, variables and functions may be declared in any place of the transformation code and may be preceded by other code. However, remember that each variable and function must always be declared before it is used.
+> In CTL2, variables and functions may be declared in any place of the transformation code and may be preceded by other code. However, remember that each variable must always be declared before it is used. This does not apply to functions and record types, which may be used before the code declaring them.
 >
 > This is one of the differences between the two versions of **CloverDX** Transformation Language.
 Example 17. Example of CTL2 syntax (Rollup)
@@ -103,6 +108,64 @@ integer count = 0; // Comment can follow the code
    Everything between starting and ending symbol is a comment. */
 ```
 
+#### Documentation comments
+
+A multiline comment which starts with `/**` and stands directly above a declaration is a documentation comment. **CloverDX Designer** reads it and describes the declaration with it in the content assist - in the list of proposals and in the documentation popup next to it - the same way it describes a built-in function.
+
+A documentation comment can be written above
+
+- a function declaration,
+- a record type declaration, see [Declaring a record type in CTL](language-reference-ctl2.md#declaring-a-record-type-in-ctl),
+- a variable or a constant declaration, a local one as well as a global one.
+
+It also works for the declarations of the CTL files you import, so a library of functions can document itself.
+
+The comment must be the closest thing above the declaration - only the `const` keyword may stand between them. An ordinary multiline comment is never shown, the comment has to start with `/**` to be documentation.
+
+The leading asterisk of each line is optional and is stripped, blank lines are dropped and the remaining lines are joined into a single description. The list of proposals shows the first sentence of the description, the documentation popup shows all of it.
+
+**Tags**
+
+A line which starts with an `@tag` is not part of the description. The following tags describe the signature of a function and are shown as separate sections of the documentation popup:
+
+- `@param name description` documents one parameter of the function.
+- `@return description` documents the returned value. `@returns` is accepted as well.
+- `@throws type description` documents an error the function raises. `@exception` is accepted as well.
+
+Any other tag, `@author` or `@version` for example, is shown as a labelled entry below these sections. The text of a tag can continue on the following lines.
+Example 18. Documenting a record type, a constant and a function
+
+```ctl
+//#CTL2
+
+/** Order of a single customer. */
+record Order {
+    string customerId not null;
+    decimal total;
+}
+
+/** VAT rate applied to every order. */
+const decimal VAT_RATE = 0.21D;
+
+/**
+ * Computes the price of an order including VAT.
+ *
+ * Prices of the individual items are not rounded.
+ *
+ * @param order the order to be priced
+ * @param rate the VAT rate to apply
+ * @return the total price including VAT
+ * @author Data Integration Team
+ */
+function decimal priceWithVat(Order order, decimal rate) {
+    return order.total * (1 + rate);
+}
+```
+
+Designer can write the skeleton of a documentation comment for you. Place the caret on a declaration and choose **Generate Element Comment** from the context menu of the editor, or press **Ctrl+Alt+J**. The generated comment already contains a `@param` tag for every parameter of the function and a `@return` tag when the function returns a value.
+
+Documentation comments are available since **CloverDX 7.6.0**.
+
 ### Import
 
 Import makes accessible functions from other `.ctl` files. It is similar to `import` statement in Java or `include` statement in C/C++. Files to be included must be defined at the beginning before any other declaration(s) and/or statement(s).
@@ -115,7 +178,7 @@ Import makes accessible functions from other `.ctl` files. It is similar to `imp
   ```
 
 You must decide whether you want to use single or double quotes. Single quotes do not escape so called escape sequences. For more details see [Literals](language-reference-ctl2.md#literals) below. For these `fileURL`, you must type the URL of some existing source code file.
-Example 18. Example of an import of a CTL file
+Example 19. Example of an import of a CTL file
 
 ```ctl
 //#CTL2
@@ -130,7 +193,7 @@ function integer transform() {
 ```
 
 You can use graph parameters to define the name of the imported file.
-Example 19. Example of importing a CTL file with a graph parameter
+Example 20. Example of importing a CTL file with a graph parameter
 
 ```ctl
 //#CTL2
@@ -159,7 +222,7 @@ import metadata "<path>" <new name>;
 ```
 
 The scope of these new metadata definitions is limited just to the current CTL script, so other components don’t see them.
-Example 20. CTL metadata import
+Example 21. CTL metadata import
 
 ```ctl
 //#CTL2
@@ -176,6 +239,8 @@ item.quantity = 5;
 Customer c;
 c.firstName = "John";
 ```
+
+If the structure you need does not exist as metadata at all, you can declare it in the script itself instead of importing it, see [Declaring a record type in CTL](language-reference-ctl2.md#declaring-a-record-type-in-ctl).
 
 ### Data types in CTL2
 
@@ -207,7 +272,7 @@ The default value is `false`.
 It can be either `true` or `false`.
 
 Its declaration looks like this: `boolean identifier;`
-Example 21. Declaration of boolean variable
+Example 22. Declaration of boolean variable
 
 ```ctl
 boolean b;        // declaration
@@ -221,7 +286,7 @@ This data type stores binary data of a length that can be up to `Integer.MAX_VAL
 The default value is `null`.
 
 Its declaration looks like this: `byte identifier;`
-Example 22. Declaration of byte variable
+Example 23. Declaration of byte variable
 
 ```ctl
 byte b;
@@ -236,7 +301,7 @@ This data type is a compressed representation of byte data type to reduce runtim
 The default value is `null`.
 
 Its declaration looks like this: `cbyte identifier;`
-Example 23. Declaration of cbyte variable
+Example 24. Declaration of cbyte variable
 
 ```ctl
 cbyte c1;
@@ -250,7 +315,7 @@ The `date` data type contains date and time.
 The default value is `1970-01-01 00:00:00 GMT`.
 
 Its declaration looks like this: `date identifier;`
-Example 24. Declaration of date variable
+Example 25. Declaration of date variable
 
 ```ctl
 // declaration of variable
@@ -273,13 +338,13 @@ The default value is `0`.
 Its declaration looks like this: `decimal identifier;`
 
 By default, any decimal may have up to 32 significant digits. If you want to have different **Length** or **Scale**, you need to set these properties of `decimal` field in metadata.
-Example 25. Usage of decimal data type in CTL2
+Example 26. Usage of decimal data type in CTL2
 If you assign `100.0 / 3` to a decimal variable, its value will be `33.333333333333336`. As `100.0` is double and `3` is integer, the both operands were firstly converted to double, then the value has been calculated and finally the result value has been converted to decimal. Assigning it to a decimal field (with default **Length** and **Scale**, which are 12 and 2, respectively), it will be converted to `33.33D`.
 
 You can cast any float number to the decimal data type by appending the `d` letter to its end.
 
 Any numeric data type (integer, long, number/double) can be converted to `decimal`.
-Example 26. Declaration of decimal variable
+Example 27. Declaration of decimal variable
 
 ```ctl
 decimal d;
@@ -303,7 +368,7 @@ Its declaration looks like this: `integer identifier;`
 If you append the `L` letter to the end of any integer number, you can cast it to the long data type.
 
 `Integer` can be converted to `long`, `double` or `decimal` using automatic conversions.
-Example 27. Declaration of integer variable
+Example 28. Declaration of integer variable
 
 ```ctl
 integer i1;
@@ -327,7 +392,7 @@ Its declaration looks like this: `long identifier;`
 Any integer number can be cast to `long` data type by appending the `l` letter to its end.
 
 `Long` data type can be converted to `number/double` or `decimal` without explicit casting.
-Example 28. Declaration of long variable
+Example 29. Declaration of long variable
 
 ```ctl
 long myLong;
@@ -347,7 +412,7 @@ If you need a data type for money amount, we advise using `decimal` instead of `
 The `integer` and `long` data types can be converted to `double` using automatic conversions. If `long` is being converted to `number (double)`, lost of precision may occur.
 
 `Number(double)` can be converted to `decimal` without explicit casting.
-Example 29. Declaration of number (double) variable
+Example 30. Declaration of number (double) variable
 
 ```ctl
 double d;
@@ -361,7 +426,7 @@ This data type serves to store sequences of characters.
 The default value is *empty string*.
 
 The declaration looks like this: `string identifier;`
-Example 30. Declaration of string variable
+Example 31. Declaration of string variable
 
 ```ctl
 string s;
@@ -388,7 +453,7 @@ Its declaration can look like this: `string[] identifier;`
 For nested lists or maps, use the following syntax instead: `listtype of elements>] identifier;`
 
 The default list is an empty list.
-Example 31. List
+Example 32. List
 
 ```ctl
 integer[] myIntegerList;
@@ -444,7 +509,7 @@ Its declaration looks like this: `maptype of key>, <type of value>]``identifier`
 Since **CloverDX 5.6**, the `Value` can be any of the other data types, including records, nested lists or other maps, but the `Key` can only be a primitive data type: `boolean`, `date`, `decimal`, `integer`, `long`, `number` or `string`.
 
 The default map is an empty map.
-Example 32. Map
+Example 33. Map
 
 ```ctl
 map[string, boolean] map1;
@@ -503,7 +568,7 @@ The default value is `null`, so the variable must be initialized to an empty lis
 Functions with arguments of type variant can be passed any value. However, they may throw runtime exceptions if the value is not valid for the function. For example, ["append(variant list, variant element)"](container-functions-ctl2.md#append) can be passed any value as the first argument, but it will throw an exception unless the value really is a list.
 
 The type supports only a few basic operations ([== and != comparison](language-reference-ctl2.md#relational-operators), [toString](conversion-functions-ctl2.md#tostring), etc.). In order to perform type-specific operations, the values must be explicitly type-cast to a more specific type. See [*typeof operator*](language-reference-ctl2.md#typeof-operator) and [cast](miscellaneous-functions-ctl2.md#cast) and [getType](miscellaneous-functions-ctl2.md#gettype) functions.
-Example 33. Variant
+Example 34. Variant
 
 ```ctl
 variant myVariant = {};
@@ -576,17 +641,138 @@ The assignments are similar to those valid for a list or a map:
 
 Record is a container that can contain different primitive data types.
 
-The structure of record is based on metadata. Any metadata item represents a data type.
+The structure of a record is described by a record type, and every record type represents a data type of the language. A record type can come from three places:
 
-Declaration of a record looks like this: `<metadata name> identifier;`
+- metadata of the graph,
+- metadata imported from an external `.fmt` file, see [Metadata import in CTL2](language-reference-ctl2.md#metadata-import-in-ctl2),
+- a record type declared in the CTL script itself, see [Declaring a record type in CTL](language-reference-ctl2.md#declaring-a-record-type-in-ctl) below.
 
-Metadata names must be unique in a graph. Different metadata must have different names.
+Whichever of the three it is, a record is declared in the same way: `<record type name> identifier;`
+
+The name of a record type has to be unique. A record type declared in CTL must not use the name of imported metadata or of a record type provided by the engine, such as `CTLException` - both are reported as `Duplicate record type`. A declaration which uses the name of graph metadata is accepted and takes precedence over it throughout the script, in the same way as imported metadata does - references above the declaration resolve to it too. Such a declaration is reported as the warning `Record type '<name>' shadows metadata of the same name defined in the graph`.
+
+Record types are compared by structure, not by name. Two of them are the same type when they declare the same fields - the same number of them, in the same order, with the same names and the same data and container types, and with the same precision and scale on a `decimal` field. The name of the type takes no part in it, so two identically shaped types are the same type whatever they are called. Nullability is not compared either, so a `not null` field and a nullable one of the same name and type still make the two types the same. This holds for every record type, wherever its structure comes from.
+
+A record can only be assigned to a record of the same type. An assignment between records of a different type is reported as a `Type mismatch` error when the script is compiled. Copy such records field by field with the wildcard form instead:
+
+```ctl
+recordA.* = recordB.*;
+```
+
+The wildcard form maps the fields which have the same name and type and leaves the rest untouched. It is the form to use for copying records in general, see [Mapping](language-reference-ctl2.md#mapping).
 
 For more detailed information about possible expressions and records usage, see [Accessing Data Records and Fields](language-reference-ctl2.md#accessing-data-records-and-fields).
 
 Record does not have a default value.
 
 It can be indexed by both integer numbers and strings (field names). If indexed by numbers, fields are indexed starting from 0.
+
+##### Declaring a record type in CTL
+
+A record structure can be declared directly in the CTL script, without any metadata having to exist for it. This is useful for a structure you only need inside the transformation - an intermediate result, the parameter of a function, or the element type of a list.
+
+```ctl
+record <type name> {
+    <type> <field name> [not null];
+    ...
+}
+```
+
+A declaration must contain at least one field.
+
+**Placement and scope**
+
+A record type declaration is only allowed at the top level of the script, never inside a function or a block. Unlike a variable, the declared type may be used before the code declaring it, so the declarations can be kept together at the end of the script. For the declaration order of a CTL program as a whole, see [Program structure](language-reference-ctl2.md#program-structure).
+
+The declared type is shared by the whole CTL program - the script and everything it imports - in the same way as imported metadata. Other components do not see it and it never becomes metadata of the graph.
+
+**Field types**
+
+A field can be of any of the following primitive types: `boolean`, `byte`, `cbyte`, `date`, `decimal`, `integer`, `long`, `number` (`double`) and `string`.
+
+A field can also be a container:
+
+- `<type>[]` declares a list field, for example `string[] tags;`.
+- `map[string, <type>]` declares a map field, for example `map[string, integer] scores;`. Map fields always have string keys.
+
+A `decimal` field uses the CTL-internal precision and scale, which are 32 and 10 by default, rather than the metadata defaults of 12 and 2. The values are configurable through the `CTL.DECIMAL_PRECISION` and `CTL.DECIMAL_SCALE` engine properties.
+
+**Non-nullable fields**
+
+A field followed by `not null` cannot hold a null value. Assigning null to such a field fails at run time with an error naming the field and the record type. Assigning the `null` literal is reported as an error already when the script is compiled.
+
+The modifier can only be used with a primitive field, not with a list or a map field.
+Example 35. Record type with non-nullable fields
+
+```ctl
+//#CTL2
+
+record Employee {
+    string name not null;
+    integer age not null;
+    string descr;
+}
+
+Employee employee;
+employee.name = "John";  // fine
+employee.descr = null;   // fine, the field is nullable
+employee.name = null;    // error, the field is declared 'not null'
+```
+
+**Restrictions**
+
+The declaration is a simplified form of metadata - delimiters, sizes, formats and default values cannot be specified. The following are reported as errors:
+
+- a declaration placed inside a function or a block, or a declaration with no field,
+- a field of a record type - record structures cannot be nested,
+- a field of the `variant` or `object` type,
+- `list[<type>]` used as a field type - use `<type>[]` instead,
+- a map field with a key type other than `string`,
+- `not null` used with a list or a map field,
+- a duplicate type name or a duplicate field name within one declaration.
+
+**Using the declared type**
+
+The type name can be used anywhere a metadata name can - to declare a global or a local variable, as the element type of a list or a map, as a function parameter or return type, and in the `typeof` operator.
+
+A declared type is compared with any other record type by structure, so it is interchangeable with an identically shaped type of another name, metadata of the graph included. Records of types which differ are copied with the wildcard form, see [record](language-reference-ctl2.md#ctl2-record-assignment) above.
+Example 36. Using a record type declared in CTL
+
+```ctl
+//#CTL2
+
+record Item {
+    string code;
+    integer qty;
+}
+
+Item[] items;
+map[string, Item] index;
+
+function integer totalOf(Item[] itemList) {
+    integer total = 0;
+    foreach (Item i : itemList) {
+        total = total + i.qty;
+    }
+    return total;
+}
+
+function integer transform() {
+    Item item;
+    item.code = "A";
+    item.qty = 3;
+
+    append(items, item);
+    index["A"] = item;
+
+    $out.0.count = totalOf(items);
+    $out.0.isItem = item typeof Item;
+
+    return ALL;
+}
+```
+
+Record type declarations are available since **CloverDX 7.6.0**.
 
 ### Literals
 
@@ -641,7 +827,7 @@ Both cases of variable declaration and initialization are shown below:
 - ```ctl
   dataType variable = expression;
   ```
-Example 34. Variables
+Example 37. Variables
 
 ```ctl
 int a;
@@ -653,7 +839,7 @@ int c = a;
 #### Constants
 
 Adding `const` modifier to a variable declaration will protect it from being accidentally modified later in the code. CTL validator will report an error on any attempt to assign a value to a constant. Note that modifications via function calls, e.g. `clear()`, are not checked.
-Example 35. Constants
+Example 38. Constants
 
 ```ctl
 const integer INT_CONSTANT = 10;
@@ -665,6 +851,8 @@ MY_ID = ""; // error
 LIST_CONSTANT[0] = "x"; // error
 clear(LIST_CONSTANT); // not checked
 ```
+
+The `const` modifier can be used for a parameter of a function as well, see [Functions](language-reference-ctl2.md#functions).
 
 ### Dictionary in CTL2
 
@@ -1047,7 +1235,7 @@ Tests if a value (left operand) is of the specified type (right operand).
 Returns false if the value is `null`.
 
 For lists and maps, does not check the type of elements.
-Example 36. Usage of typeof
+Example 39. Usage of typeof
 
 ```ctl
 variant myVariant = 5;
@@ -1134,7 +1322,7 @@ Compound operators allow you to use a variable as an accumulator.
 Since **CloverETL 4.1.0-M1**, CTL2 supports the following compound assignment operators: `+=` (addition, string concatenation, list concatenation and map union), `-=` (subtraction), `*=` (multiplication), `/=` (division), and `%=` (modulus).
 
 If the original value of the left-hand side variable is `null`, the default value for the target type (0, empty string, empty list, empty map) is used for the evaluation instead. See variables `ns` and `ns2` in the example below.
-Example 37. Compound assignment operators
+Example 40. Compound assignment operators
 
 ```ctl
 integer i = 5;
@@ -1191,7 +1379,7 @@ integer i = 5;
 > It works with `-=`, `*=`, `/=` and `%=` as well.
 
 As of **CloverETL 3.3**, the = operator does not just pass object references, but performs a **deep copy** of values. That is of course more demanding in terms of performance. Deep copy is only performed for mutable data types, i.e. lists, maps, records and dates. Other types are considered immutable, as CTL2 does not provide any means of changing the state of an existing object (even though the object is mutable in Java). Therefore it is safe to pass a reference instead of copying the value. Note that this assumption may not be valid for custom CTL2 function libraries.
-Example 38. Modification of a copied list, map and record
+Example 41. Modification of a copied list, map and record
 
 ```ctl
 integer[] list1 = [1, 2, 3];
@@ -1245,16 +1433,6 @@ For example, you can use a ternary operator to assign minimum of `c` and `d` int
 ```ctl
 a = c < d ? c : d;
 ```
-
-#### Conditional fail expression
-
-The conditional fail expression allows the user to conditionally execute a piece of code depending on a failure occurred in the previous part of the code. `variable = expr1 : expr2 : … : exprN;`
-
-`integer count = getCachedValue() : refreshCacheAndGetCachedValue() : defaultValue;`
-
-Conditional expression is available only in an interpreted mode. It is not available in a compiled mode.
-
-[raiseError](miscellaneous-functions-ctl2.md#raiseerror).
 
 #### Simple statement and block of statements
 
@@ -1310,7 +1488,7 @@ The `Statement2` can even be another `if` statement, and also with an `else` bra
       else if (Condition2) Statement3
           else Statement4
   ```
-Example 39. If statement
+Example 42. If statement
 
 ```ctl
 integer a = 123;
@@ -1353,7 +1531,7 @@ In the following case, even if the value of the `Expression` does not equal the 
       default : StatementN+1 StatementZ
   }
   ```
-Example 40. Switch statement
+Example 43. Switch statement
 
 ```ctl
 integer ok = 0;
@@ -1390,7 +1568,7 @@ If the `Condition` is false at the beginning, the process jumps over the `Statem
 > Remember that the `Initialization` part of the `For Loop` may also contain the declaration of the variable that is used in the loop.
 >
 > `Initialization`, `Condition` and `Iteration` are optional.
-Example 41. For loop
+Example 44. For loop
 
 ```ctl
 integer result = 1;
@@ -1516,6 +1694,8 @@ Sometimes the code throws a runtime exception (e.g. unexpected null value, inval
 - [Try-Catch Statement](language-reference-ctl2.md#try-catch-statement)
   - recommended, available since CloverDX 5.6
 - [OnError() Functions](language-reference-ctl2.md#onerror-functions)
+- [Conditional fail expression](language-reference-ctl2.md#conditional-fail-expression)
+  - an expression which fails the graph when none of its alternatives can be used
 
 #### Try-catch statement
 
@@ -1534,7 +1714,7 @@ Depending on whether the try block encounters an error or not, the execution of 
 The implementation of how to handle the error is up to you. For example, you can throw a custom error using the `raiseError()` function, log the exception and have the execution finish successfully, or execute a custom code as a workaround for the exception. You can access some details about the exceptions via the `CTLException` data structure.
 
 `try-catch` statements can be nested.
-Example 42. Try-catch statement
+Example 45. Try-catch statement
 
 ```ctl
 integer a = 123;
@@ -1584,6 +1764,32 @@ In this `transformOnError()`, any incorrect code can be fixed, an error message 
 >
 > If you want some `OnError()` function to be called, you need to use the `raiseError(string arg)` function. Or (as stated before) any exception thrown by original required function calls its `OnError()` counterpart as well.
 
+#### Conditional fail expression
+
+A conditional fail expression offers several alternatives for one value and fails the graph when none of them can be used.
+
+It looks like this:
+
+```ctl
+expression1 : expression2 : expression3 : ... : expressionN;
+```
+
+The expressions are evaluated one by one, starting from the first expression and going from left to right.
+
+1. As soon as one of these expressions is successfully evaluated, it is used and the other expressions are not evaluated.
+2. If none of these expressions may be used (assigned to a variable, mapped to the output field, or used as an argument), the graph fails.
+
+The expression may be used in all three of those places: for assigning to a variable, for mapping to an output field, and as an argument of a function.
+Example 46. Conditional fail expression
+
+```ctl
+integer count = getCachedValue() : refreshCacheAndGetCachedValue() : defaultValue;
+```
+
+Unlike the try-catch statement and the `OnError()` functions, the conditional fail expression is available only in the interpreted mode. It is not available in the [compiled mode](ctl-overview.md#ctl-2-compiled-mode).
+
+To fail the graph with a message of your own instead, see [raiseError](miscellaneous-functions-ctl2.md#raiseerror).
+
 ### Functions
 
 You can define your own functions in the following way:
@@ -1591,22 +1797,124 @@ You can define your own functions in the following way:
 ```ctl
 function returnType functionName (type1 arg1, type2 arg2,..., typeN argN) {
         variableDeclarations
-        otherFunctionDeclarations
         Statements
         Mappings
         return [expression];
     }
 ```
 
-You must put the return statement at the end. For more information about the return statement, see [Return Statement](language-reference-ctl2.md#return-statement). Inside some functions, there can be `Mappings`. These may be in any place inside the function.
+Functions are declared at the top level of the script. A function cannot be declared inside another function or inside a block.
 
-In addition to any other data type mentioned above, the function can also return `void`.
+Unlike a variable, a function does not have to be declared before it is used - a function declared at the end of the script can be called from the beginning of it. A function may also call itself.
 
 ```ctl
 function integer add (integer i1, integer i2) {
     return i1 + i2;
 }
 ```
+
+Write a [documentation comment](language-reference-ctl2.md#documentation-comments) above the function to have the content assist describe it the same way as a built-in function.
+
+#### Parameters and the return type
+
+A parameter can be of any data type described in [Data types in CTL2](language-reference-ctl2.md#data-types-in-ctl2) - a primitive type, a list, a map, a record type, or `variant`. The number of parameters is fixed: CTL has neither variable-length parameter lists nor default values, and the type of a parameter always has to be written out.
+
+The return type can be any of those types as well, and in addition `void`.
+
+Mark a parameter `const` to protect it from being changed inside the function, in the same way as a [constant](language-reference-ctl2.md#constants).
+Example 47. Parameters of various types
+
+```ctl
+function decimal totalPrice(const Order order, decimal rate, string[] discounts) {
+    ...
+}
+
+function void logAll(map[string, variant] values) {
+    ...
+}
+```
+
+Global variables are visible inside a function. A parameter or a local variable may have the same name as a global variable, in which case it hides the global one for the body of the function. Two variables of the same name cannot be declared within one function.
+
+#### Returning a value
+
+A function which declares a return type has to return a value on every path through its body, otherwise the code is reported as `Missing 'return' statement`. A branch counts as returning only if it always does - an `if` needs an `else` and both branches have to return, a `switch` needs a `default`, and a `try` statement needs its `catch` to return as well. The body of a loop never counts, because it may be executed no times at all.
+
+The `return` statement does not have to be the last statement of the function, and there may be several of them. Statements written after a `return` in the same block are reported as `Unreachable code`.
+
+A `void` function does not need a `return` statement at all. Only in a `void` function can `return` be used without a value.
+
+For more information about the return statement, see [Return Statement](language-reference-ctl2.md#return-statement).
+
+Inside some functions, there can be `Mappings`. These may be in any place inside the function.
+Example 48. Several return statements
+
+```ctl
+function integer classify(integer value) {
+    if (isnull(value)) {
+        return 0;
+    }
+    if (value < 0) {
+        return -1;
+    }
+    return 1;
+}
+
+function void logValue(string value) {
+    if (isnull(value)) {
+        return;             // no value - the function is void
+    }
+    printErr(value);
+}
+```
+
+#### Calling a function
+
+A function - your own as well as a built-in one - can be called in two ways. Writing all the arguments in the parentheses is the usual one:
+
+```ctl
+myFunction(a, b)
+```
+
+The first argument can also be written in front of the function, separated by a dot. This form is sometimes referred to as **object notation**:
+
+```ctl
+a.myFunction(b)
+```
+
+Both forms are the very same call - the value in front of the dot simply becomes the first argument. `arg.substring(1, 3)` and `substring(arg, 1, 3)` are therefore equivalent, and it is a matter of taste which one you write.
+
+The value in front of the dot can be any expression - a literal, a variable, a record field, or the result of another call. Calls can be chained, which is what makes object notation worth using: the calls are then read in the order they are performed.
+Example 49. The two notations
+
+```ctl
+// the same transformation written in both ways
+$out.0.code = substring(upperCase(getAlphanumericChars($in.0.field1)), 1, 3);
+$out.0.code = $in.0.field1.getAlphanumericChars().upperCase().substring(1, 3);
+
+// object notation works for your own functions too
+$out.0.total = totalPrice(order, 0.21D, discounts);
+$out.0.total = order.totalPrice(0.21D, discounts);
+```
+
+> [!IMPORTANT]
+> Object notation cannot be used with `isnull`, `nvl`, `nvl2`, `iif`, `printErr`, `printLog`, `printStack`, `raiseError`, `cast` and `evalExpression`. These are a part of the language itself rather than ordinary functions, so `arg.isnull()` is not valid - write `isnull(arg)` instead.
+
+For the functions **CloverDX** provides, see [CTL2 functions reference](functions-reference-ctl2.md) and the [list of all functions](ctl2-list-of-functions.md).
+
+#### Function overloading
+
+Several functions can share one name as long as they differ in their parameters, either in the types or in their number. Declaring two functions with the same name and the same parameters is reported as `Duplicate function`, even when they differ in the return type.
+
+```ctl
+function integer sum() { return 0; }
+function integer sum(integer a) { return a; }
+function integer sum(integer a, integer b) { return a + b; }
+```
+
+When a call fits more than one of the functions, the one whose parameters need the least conversion is used. If two of them fit equally well, the call is reported as `Function '<name>' is ambiguous`, and you have to make the types of the arguments explicit.
+
+You can also declare a function of the same name as a built-in one. Your function replaces the built-in one for every call whose arguments it fits at least as well, when it declares exactly the same parameters. Calls which fit another overload of the built-in name better keep resolving to the library. A function which fits the call equally well with a different parameter list makes the call `Function '<name>' is ambiguous` instead.
 
 #### Message function
 
@@ -1619,25 +1927,6 @@ function string getMessage() {
 ```
 
 This `message` variable should be declared as a global string variable and defined anywhere in the code so as to be used in the place where the `getMessage()` function is located. The `message` will be written to the console.
-
-### Conditional fail expression
-
-You can also use conditional fail expressions.
-
-They look like this:
-
-```ctl
-expression1 : expression2 : expression3 : ... : expressionN;
-```
-
-This conditional fail expression may be used for mapping, assignment to a variable and as an argument of a function too.
-
-The expressions are evaluated one by one, starting from the first expression and going from left to right.
-
-1. As soon as one of these expressions is successfully evaluated, it is used and the other expressions are not evaluated.
-2. If none of these expressions may be used (assigned to a variable, mapped to the output field, or used as an argument), the graph fails.
-> [!TIP]
-> This expression may be used in multiple ways: for assigning to a variable, mapping to an output field, or argument of a function.
 
 ### Accessing data records and fields
 
@@ -1672,10 +1961,11 @@ Following expressions represent the value of the third field (field 2) of the sp
 - `$<metadata name>.<field name>`
   Example: `$customers.firstname`
 
-You can also define records in CTL code. Such definitions can look like these:
+You can also declare a record variable in CTL code. Such declarations can look like these:
 
 - `<metadata name> MyCTLRecord;`
   Example: `customers myCustomers;`
+  The type is the name of graph metadata, of metadata imported with `import metadata`, or of a record type declared in the script, see [Declaring a record type in CTL](language-reference-ctl2.md#declaring-a-record-type-in-ctl).
 - After that, you can use the following expressions:
   `<record variable name>.<field name>`
   Example: `myCustomers.firstname;`
@@ -1760,7 +2050,7 @@ In addition to the simple mapping as shown above (`$out.0.* = $in.0.*;`), you ca
 void copyByName( record to, record from );
 ```
 
-Example 43. Mapping of metadata by name (using the copyByName() function)
+Example 50. Mapping of metadata by name (using the copyByName() function)
 
 ```ctl
 recordName2 myOutputRecord;
@@ -1783,7 +2073,7 @@ To achieve this, you *must* use the following function:
 void copyByPosition( record to, record from );
 ```
 
-Example 44. Mapping of metadata by position
+Example 51. Mapping of metadata by position
 
 ```ctl
 recordName2 myOutputRecord;
@@ -1808,7 +2098,7 @@ We have a graph with the **Map** component. Metadata on its input and output are
 #### Examples of mapping
 
 As the first possibility, we have the mapping for both ports and all fields defined inside the `transform()` function of CTL template.
-Example 45. Example of mapping with individual fields
+Example 52. Example of mapping with individual fields
 Note that the mappings will be performed for all records. In other words, even when the record goes to the output port 1, the mapping for output port 0 will be performed, and vice versa.
 
 Moreover, mapping consists of individual fields, which may be complex in case there are many fields in a record. In the next examples, we will see how this can be solved in a better way.
@@ -1835,7 +2125,7 @@ function integer transform() {
 > In CTL2, mapping may be in any place of the transformation code and may be followed by any code.
 
 As the second possibility, we also have the mapping for both ports and all fields defined inside the `transform()` function of CTL template. But now there are wild cards used in the mapping. These pass the records unchanged to the outputs and, after this wildcard mapping, the fields that should be changed are specified.
-Example 46. Example of mapping with wild cards
+Example 53. Example of mapping with wild cards
 Note that mappings will be performed for all records. In other words, even when the record goes to the output port 1, the mapping for output port 0 will be performed, and vice versa.
 
 However, now the mapping uses wild cards at first, which passes the records unchanged to the output, but the first field is changed *below* the mapping with wild cards.
@@ -1869,7 +2159,7 @@ Wild cards are used here as well.
 The mapping that is defined in a separate function for each output port allows the following improvements:
 
 - Mapping is performed only for a respective output port. In other words, now there is no need to map the record to the port 1 when it will go to the port 0, and vice versa.
-Example 47. Example of mapping with wild cards in separate user-defined functions
+Example 54. Example of mapping with wild cards in separate user-defined functions
 Moreover, mapping uses wild cards at first, which pass the records unchanged to the output. The first field is changed below the mapping with wild card. This is useful when there are many unchanged fields and a few that will be changed.
 
 ```ctl
@@ -1939,7 +2229,7 @@ If you encounter specific use cases beyond the covered tokens, we recommend refe
 | `^` and `$` | Start and end of strings | Caret (`^`) or dollar signs (`$`) can be used to limit your search to the start or end of a string. | - `^SH7890` - `SH7890$` - `^SH7890$` | - `^SH7890` will match product codes begging with `SH7890`, e.g., `SH7890456` or `SH7890BA1`. - `SH7890$` will match product codes ending in `SH7890`, e.g., `415YSH7890` or `464SH7890`. - `^SH7890$` will match `SH7890` only. |
 
 ##### Regular expressions use examples
-Example 48. Matching dates
+Example 55. Matching dates
 Create a basic formula that would find dates in the format `DD/MM/YYYY` (format matching `2 digits/2 digits/4 digits`).
 Click to reveal the formula and explanation
 The regex formula would be: `\d{2}/\d{2}/\d{4}`.
@@ -1951,7 +2241,7 @@ The regex formula would be: `\d{2}/\d{2}/\d{4}`.
 - `\d{2}`: Similar to the first part, this matches exactly two digits again.
 - `/`: Another literal forward slash match.
 - `\d{4}`: This matches exactly four digits. This captures the year (e.g., `2024`).
-Example 50. Validating US postal codes
+Example 57. Validating US postal codes
 Postal codes need to be in the format `#####` (basic 5-digit zip code) or `#####-####` (ZIP+4 code).
 Click to reveal the formula and explanation
 The regex formula would be: `^\d{5}(-\d{4})?$`.
@@ -1963,7 +2253,7 @@ The regex formula would be: `^\d{5}(-\d{4})?$`.
 - `(-`: Matches a literal hyphen character (-) but only if it appears after the first five digits.
 - `\d{4})?`: Matches an optional group containing four digits (0-9). The question mark `?` makes the entire group optional, allowing the hyphen and four digits to be absent.
 - `$`: Matches the end of the string.
-Example 52. Validating shipping address format
+Example 59. Validating shipping address format
 Create a basic validation that would match the following format: `123 Main Street, Anytown, USA 12345`, i.e., it:
 
 - Starts with a house number (one or more digits).
@@ -1989,7 +2279,7 @@ The regex formula would be: `^(\d+)\s+([A-Za-z\s]+),\s+([A-Za-z\s]+),\s+USA\s+(\
 - `\s+`: Matches one or more whitespace characters again.
 - `(\d{5})`: Captures exactly five digits for the ZIP code.
 - `$`: Matches the end of the string.
-Example 54. Validating email addresses
+Example 61. Validating email addresses
 Identify email addresses that adhere to the following rules:
 
 - The local part can contain letters, numbers, underscores, hyphens, and dots.

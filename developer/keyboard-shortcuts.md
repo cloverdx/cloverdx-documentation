@@ -1,6 +1,6 @@
 <!-- Development > Designer user interface > Keyboard shortcuts -->
 
-## 4. Keyboard shortcuts
+## 5. Keyboard shortcuts
 
 Access to the frequently used dialogs can be sped up using keyboard shortcuts - see the list below. The list does not contain well known shortcuts not related to **CloverDX Designer** (e.g. Ctrl+C, etc.).
 
@@ -18,10 +18,12 @@ Access to the frequently used dialogs can be sped up using keyboard shortcuts - 
 - Ctrl+L - jump to the line in a text editor.
 - Ctrl+N - open the wizard for a new item (project, file, graph, jobflow, etc.)
 - Ctrl+O - open **Find components** dialog. See [Finding components](components.md#finding-components-in-jobs).
+  In a CTL editor, it opens the quick outline of the edited script instead - a searchable list of everything the script declares and imports.
 - Ctrl+R - run the graph on the currently active tab.
 - Ctrl+S - save a graph, text, etc.
 - Ctrl+Y - make the **redo** action.
 - Ctrl+Z - make the **undo** action.
+- Ctrl+Alt+J - in a CTL editor, generate a documentation comment for the declaration at the cursor. See [Documentation comments](language-reference-ctl2.md#documentation-comments).
 - Ctrl+F11 - run a graph on a currently active tab or last launch configuration. If you close a graph and have no graph opened, you can rerun it using Ctrl+F11.
 - Ctrl+Shift+L - Key Assist.
 - Ctrl+Shift+W - close all opened files.

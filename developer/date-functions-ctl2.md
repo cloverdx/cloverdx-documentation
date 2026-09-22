@@ -58,7 +58,7 @@ If one or more of specified parameters is `null`, the function fails.
 **Compatibility**
 
 The functions `createDate(integer,integer,integer)`, `createDate(integer,integer,integer,string)`, `createDate(integer,integer,integer,integer,integer,integer)`, `createDate(integer,integer,integer,integer,integer,integer,integer)`, `createDate(integer,integer,integer,integer,integer,integer,string)` and `createDate(integer,integer,integer,integer,integer,integer,string)` are available since **CloverETL 3.5.0-M1**.
-Example 102. Usage of createDate
+Example 111. Usage of createDate
 The function `createDate(2013, 7, 31)` returns a date corresponding to the 31 July 2013 0:00 using the default time zone. The summer/winter time is taken into account. For example, the expression returns `30 July 2013 22:00 GMT` in time zone `GMT+1` using the summer time.
 
 The function `createDate(2013, 10, 4, "GMT+3")` returns `4 October 2013 0:00 GMT+3`. It is the same as `3 October 2013 21:00 GMT+0`.
@@ -94,7 +94,7 @@ If one of the arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `dateAdd(date,long,timeunit)` function is available since **CloverETL 3.0.0**.
-Example 103. Usage of dateAdd
+Example 112. Usage of dateAdd
 Let us set up `date d` to 13 February 2009 23:31:30 GMT.
 
 The function `dateAdd(d, 1, year)` returns `2010-02-13 23:31:30 GMT`.
@@ -146,7 +146,7 @@ If one of the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `dateDiff(date,date,timeunit)` function is available since **CloverETL 3.0.0**.
-Example 104. Usage of dateDiff
+Example 113. Usage of dateDiff
 The function `dateDiff(2008-06-18, 2001-02-03, year)` returns `7`. But, `dateDiff(2001-02-03, 2008-06-18, year)` returns `-7`.
 
 Let’s call `2009-02-13 23:31:30 GMT+0` as `d1` and `2011-01-10 20:12:33` as `d2`.
@@ -196,7 +196,7 @@ The default locale and default time zone are applied.
 **Compatibility**
 
 The `extractDate(date)` function is available since **CloverETL 3.0.0**.
-Example 105. Usage of extractDate
+Example 114. Usage of extractDate
 Let’s call 13 February 2009 23:31:30 GMT+0 as `d`.
 
 The function `extractDate(d)` returns `2009-02-13 0:00:00 GMT+0` provided the default time zone is GMT+0. If the default time zone is GMT+1, the function will return `2009-02-14 0:00:00 GMT+1`. (The result corresponds to `2009-02-13 23:00:00 GMT+0`.)
@@ -218,7 +218,7 @@ The default locale and default time zone are applied.
 **Compatibility**
 
 The `extractTime(date)` function is available since **CloverETL 3.0.0**.
-Example 106. Usage of extractTime
+Example 115. Usage of extractTime
 Let’s call 13 February 2009 23:31:30 GMT+0 as `d`.
 
 The function `extractTime(d)` returns `23:31:30` provided the default time zone is GMT+0. If the default time zone is GMT+1, the function will return `0:31:30`.
@@ -241,7 +241,7 @@ If the `timeZone` argument is `null` or the argument is missing, the function us
 **Compatibility**
 
 The `getYear(date)` and `getYear(date,string)` functions are available since **CloverETL 3.5.0-M1**.
-Example 107. Usage of getYear
+Example 116. Usage of getYear
 Let’s call 2011-01-01 1:05:00 GMT as `d`.
 
 The function `getYear(d)` returns `2011`. The default time zone is used.
@@ -268,7 +268,7 @@ If the `timeZone` argument is `null` or the argument is missing, the function us
 **Compatibility**
 
 The `getMonth(date)` and `getMonth(date,string)` functions are available since **CloverETL 3.5.0-M1**.
-Example 108. Usage of getMonth
+Example 117. Usage of getMonth
 Let’s call 2011-01-01 1:05:00 GMT as `d`.
 
 The function `getMonth(d)` returns `1` provided the default time zone is `GMT+1`.
@@ -295,7 +295,7 @@ If the `timeZone` argument is `null` or the time zone argument is not present, t
 **Compatibility**
 
 The `getDay(date)` and `getDay(date,string)` functions are available since **CloverETL 3.5.0-M1**.
-Example 109. Usage of getDay
+Example 118. Usage of getDay
 Let’s call 2011-01-01 1:05:00 GMT as `d`.
 
 The function `getDay(d)` returns `1` provided the default time zone is `GMT+1`.
@@ -322,7 +322,7 @@ If the `timeZone` argument is `null`, the function uses the default [Time Zone](
 **Compatibility**
 
 The `getHour(date)` and `getHour(date)` functions are available since **CloverETL 3.5.0-M1**.
-Example 110. Usage of getHour
+Example 119. Usage of getHour
 Let’s call 2011-01-01 1:05:00 GMT as `d`.
 
 The function `getHour(d)` returns `2` provided the default time zone is `GMT+1`.
@@ -349,7 +349,7 @@ If the `timeZone` argument is `null` or the parameter is not present, the functi
 **Compatibility**
 
 The `getMinute(date)` and `getMinute(date,string)` functions are available since **CloverETL 3.5.0-M1**.
-Example 111. Usage of getMinute
+Example 120. Usage of getMinute
 Let’s call 2011-01-01 1:05:00 GMT as `d`.
 
 The function `getMinute(d)` returns `5`, provided the default time zone is `GMT+1`.
@@ -376,7 +376,7 @@ If the `timeZone` argument is `null` or the argument in not present, the functio
 **Compatibility**
 
 The `getSecond(date)` and `getSecond(date,string)` functions are available since **CloverETL 3.5.0-M1**.
-Example 112. Usage of getSecond
+Example 121. Usage of getSecond
 Let’s call 2011-01-01 1:05:02 GMT as `d`.
 
 The function `getSecond(d)` returns `2`.
@@ -403,7 +403,7 @@ If the `timeZone` argument is `null` or the parameter is not present, the functi
 **Compatibility**
 
 The `getMillisecond(date)` and `getMillisecond(date,string)` functions are available since **CloverETL 3.5.0-M1**.
-Example 113. Usage of getMillisecond
+Example 122. Usage of getMillisecond
 Let’s call 2011-01-01 1:05:02.123 GMT as `d`.
 
 The function `getMillisecond(d)` returns `123`.
@@ -430,7 +430,7 @@ If the `timeZone` argument is `null` or the time zone argument is not present, t
 **Compatibility**
 
 The `getDayOfWeek(date)` and `getDayOfWeek(date,string)` functions are available since **CloverDX 6.5**.
-Example 114. Usage of getDayOfWeek
+Example 123. Usage of getDayOfWeek
 Let’s call 2024-01-01 1:05:00 GMT as `d`.
 
 The function `getDayOfWeek(d)` returns `1` provided the default time zone is `GMT+1`.
@@ -468,7 +468,7 @@ If the `locale` is `null` or the field is missing, the default [Locale](metadata
 The `randomDate(long,long)`, `randomDate(date,date)`, `randomDate(string,string,string,string)` and `randomDate(string,string,string)` functions are available since **CloverETL 3.0.0**.
 
 The function `randomDate(string,string,string,string,string)` is available since **CloverETL 3.5.0-M1**.
-Example 115. Usage of randomDate
+Example 124. Usage of randomDate
 Let’s call `2011-01-01 0:00:00` as `date1` and `2012-01-01 0:00:00` as `date2`. The function `randomDate(date1, date2)` returns for example `2011-06-19`.
 
 The function `randomDate(123456789000L, 1266103890000L)` returns for example `2009-06-20`.
@@ -492,7 +492,7 @@ The `today()` function accepts no argument and returns current date and time.
 **Compatibility**
 
 The `today()` function is available since **CloverETL 3.0.0**.
-Example 116. Usage of today The `today()` function returns, for example, `2013-11-06 12:32:15` provided today is 6 November 2013 and the time is 12:32:15.
+Example 125. Usage of today The `today()` function returns, for example, `2013-11-06 12:32:15` provided today is 6 November 2013 and the time is 12:32:15.
 **See also:**[zeroDate](date-functions-ctl2.md#zerodate)
 
 #### zeroDate

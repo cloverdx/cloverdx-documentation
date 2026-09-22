@@ -117,7 +117,7 @@ To the selected **Master key** fields, the same number of fields should be mappe
 In each of the slave tab(s), there are two panes: **Fields** and **Key mapping**. The **Fields** pane is on the left. There you can see the list of the slave field names and their data types. The **Key mapping** pane is on the right. In the right pane you can see two columns: **Master key field** and **Slave key field**. The left column contains the selected field names of the driver input port.
 
 If you want to map some driver field to some slave field, select the slave field in the left pane by clicking its item. Then push the left mouse button, drag the field to the **Slave key field** column in the right pane and release the button. The same must be done for each slave. Note that you can also use the **Auto mapping** button or other buttons in each tab.
-Example 400. Join Key for ExtMergeJoin
+Example 412. Join Key for ExtMergeJoin
 
 ```ctl
 $first_name;$last_name#$fname;$lname#$f_name;$l_name

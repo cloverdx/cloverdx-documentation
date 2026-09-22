@@ -1,10 +1,10 @@
 <!-- Development > CTL2 - CloverDX Transformation Language > CTL2 functions reference -->
 
-## 35. CTL2 functions reference
+## 36. CTL2 functions reference
 
-**CloverDX** transformation language has at its disposal a set of functions you can use. We describe them here.
+CloverDX Transformation Language (CTL) provides a comprehensive library of built-in functions for common data transformation and processing tasks.
 
-All functions can be grouped into following categories:
+The built-in functions are organized into the following categories:
 
 - [Conversion functions](conversion-functions-ctl2.md)
 - [Container functions](container-functions-ctl2.md)
@@ -19,35 +19,49 @@ All functions can be grouped into following categories:
 - [Subgraph functions](subgraph-functions-ctl2.md)
 - [Data Service HTTP Library functions](http-ctl2.html)
 - [Custom CTL functions](custom-functions-ctl2.md)
+
+Besides built-in functions, CTL2 also lets you declare your own functions. You can declare your own functions with arguments of supported data types. For example:
+
+```ctl
+function integer myFunction(integer arg1, string arg2, boolean arg3) {
+    <function body>
+}
+```
+
+Both built-in and custom functions can be called using either standard notation or object notation.
+
+In standard notation, the function is followed by its arguments in parentheses. For example:
+
+```ctl
+substring(upperCase(getAlphanumericChars($in.0.field1)), 1, 3)
+myFunction($in.0.integerField, $in.0.stringField, $in.0.booleanField)
+```
+
+Alternatively, you can use **object notation**, where the first argument precedes the function:
+
+```ctl
+$in.0.field1.getAlphanumericChars().upperCase().substring(1, 3)
+$in.0.integerField.myFunction($in.0.stringField, $in.0.booleanField)
+```
+
+The two expressions are equivalent.
+
+For both notations, see [Calling a function](language-reference-ctl2.md#calling-a-function).
+> [!WARNING]
+> The object notation (`<first argument>.function(<other arguments>`) cannot be used in **Miscellaneous** functions. See [Miscellaneous Functions](miscellaneous-functions-ctl2.md).
 > [!IMPORTANT]
-> Remember that with CTL2 you can use both **CloverDX** built-in functions and your own functions in one of the ways listed below.
+> The **Null value** metadata property affects how functions handle string fields.
 >
-> **Built-in functions**
+> If the Null value property of a string field is set to a non-empty string, a function that throws a `NullPointerException` when applied to null, such as `length()`, also throws the exception when applied to that configured null value.
 >
-> - `substring(upperCase(getAplhanumericChars($in.0.field1))1,3)`
-> - `$in.0.field1.getAlphanumericChars().upperCase().substring(1,3)`
->
-> The two expressions above are equivalent. The second option with the first argument preceding the function itself is sometimes referred to as **object notation**. Do not forget to use the `$port.field.function()` syntax. Thus, `arg.substring(1,3)` is equal to `substring(arg,1,3).`
->
-> You can also declare your own function with a set of arguments of any data type, e.g.:
+> For example, suppose `field1` has its Null value property set to `"<null>"`. In that case:
 >
 >
 > ```ctl
-> function integer myFunction(integer arg1, string arg2, boolean arg3) {
->     <function body>
-> }
+> length($in.0.field1)
 > ```
 >
 >
-> **User-defined functions**
+> fails for records where the value of field1 is `"<null>"`. For an empty field, the function returns `0`.
 >
-> - `myFunction($in.0.integerField,$in.0.stringField,$in.0.booleanField)`
-> - `$in.0.integerField.myFunction($in.0.stringField,$in.0.booleanField)`
-> [!WARNING]
-> Remember that the object notation (<first argument>.function(<other arguments>) cannot be used in **Miscellaneous** functions. See [Miscellaneous Functions](miscellaneous-functions-ctl2.md).
-> [!IMPORTANT]
-> Remember that if you set the **Null value** property in metadata for any `string` data field to any non-empty string, any function that accepts `string` data field as an argument and throws NPE when applied on `null` (e.g., `length()`) will throw NPE when applied on such specific string.
->
-> For example, if `field1` has the **Null value** property set to `"<null>"`, `length($in.0.field1)` will fail on the records in which the value of `field1` is `"<null>"` and it will be 0 for empty field.
->
-> For detailed information, see [Null value](metadata-editor.md#null-value-bridge).
+> For more information, see [Null value](metadata-editor.md#null-value-bridge).

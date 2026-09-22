@@ -58,7 +58,8 @@ Input metadata of **SpreadsheetDataWriter** can have arbitrary field data types;
 | Create directories |  | If set to `true`, non existing directories included in the **File URL** path will be automatically created. | false (default) \| true |
 | Records per file |  | A maximum number of records that are written to a single file. See [Partitioning output into different output files](partitioning-output-into-different-output-files.md) | 1-N |
 | Number of skipped records |  | A total number of records throughout all output files that will be skipped. See [Selecting input records](selecting-input-records.md). | 0-N |
-| Max number of records |  | A total number of records throughout all output files that will be written out. See [Selecting input records](selecting-input-records.md). | 0-N |
+| Max number of records |  | A total number of records throughout all output files that will be written out.  See [Selecting input records](selecting-input-records.md). | 0-N |
+| Exclude fields |  | Fields that will not be written to the output spreadsheet. |  |
 | Partition key |  | A key whose values control the distribution of records among multiple output files. For more information, see [Partitioning output into different output files](partitioning-output-into-different-output-files.md). |  |
 | Partition lookup table | [[2]](spreadsheetwriter.md#spreadsheetwriter-attributes-fn02) | The ID of a lookup table. The table serves for selecting records which should be written to the output file(s). For more information, see [Partitioning output into different output files](partitioning-output-into-different-output-files.md). |  |
 | Partition file tag |  | By default, output files are numbered. If this attribute is set to `Key file tag`, output files are named according to values of **Partition key** or **Partition output fields**. For more information, see [Partitioning output into different output files](partitioning-output-into-different-output-files.md). | Number file tag (default) \| Key file tag |
@@ -256,7 +257,7 @@ Which format is used if both are set?
 - Is **Field with format** not specified or a value of that particular field is empty (null or empty string)? Yes – use **Format** from the metadata field (if set with the `excel:` prefix). See also [Field details](metadata-editor.md#field-details).
 
 You can use the `excel:General` format – either in **Field with format** or in metadata **Format** – the output will be set to general format (Excel terms).
-Example 383. Writing Excel format
+Example 395. Writing Excel format
 Let us have two fields: `fieldValue (integer)` and `fieldFormat (string)` mapped onto cell A1 (one as value, the other as **Field with format**). Imagine these incoming records:
 
 - (100, `"#00,0"`)
@@ -290,7 +291,7 @@ Links can be of several types: **Document**, **Email**, **File** or **URL**.
 Link is created in the **Properties** pane. Map the field with a link text to desired cell, change **Hyperlink type** (in **Properties**) to desired type and select field with target in **Field with hyperlink address**.
 
 Hyperlinks are persisted to a file along with font and style (blue and underline).
-Example 384. Writing hyperlinks
+Example 396. Writing hyperlinks
 Following are examples of proper addresses for all hyperlink types:
 
 - **Document**

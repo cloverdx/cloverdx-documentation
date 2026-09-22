@@ -38,14 +38,14 @@ If the **CloverDX Server** must be evaluated on application containers other tha
        export JAVA_HOME=/opt/jdk-17.0.18+10
        ```
        ![java home linux](../figures/java_home_linux.png)
-       *Figure 32. setenv.sh edited in Linux.*
+       *Figure 31. setenv.sh edited in Linux.*
    - **Windows system:**
      - Open the `/bin/setenv.bat` file and define the path at the beginning of the file:
        ```bat
        set "JAVA_HOME=C:\java\jdk-17.0.18+10"
        ```
        ![java home win](../figures/java_home_win.png)
-       *Figure 33. setenv.bat edited in Windows.*
+       *Figure 32. setenv.bat edited in Windows.*
 4. Run Tomcat.
    - **Unix-like systems:** run `/bin/startup.sh`.
    - **Windows system:** run `\bin\startup.bat`.

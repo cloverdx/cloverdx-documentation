@@ -54,6 +54,7 @@
 | Sorted input |  | Tells **JSONWriter** whether the input data is sorted. Setting the attribute to true declares you want to use the sort order defined in **Sort keys**, see below. | false (default) \| true |
 | Sort keys |  | Tells **JSONWriter** how the input data is sorted, thus enabling streaming. The sort order of fields can be given for each port in a separate tab. Working with **Sort keys** has been described in [Sort key](components.md#sort-key). |  |
 | Max number of records |  | The maximum number of records written to all output files. See [Selecting output records](selecting-output-records.md). | 0-N |
+| Skip empty arrays |  | Tells **JSONWriter** not to print empty arrays into output. Does not affect variants. | false |
 | Partitioning |  |  |  |
 | Records per file |  | The maximum number of records that are written to a single file. See [Partitioning output into different output files](partitioning-output-into-different-output-files.md) | 1-N |
 | Partition key |  | The key whose values control the distribution of records among multiple output files. For more information, see [Partitioning output into different output files](partitioning-output-into-different-output-files.md). |  |
@@ -85,7 +86,7 @@ As a consequence, you map the input records to the output file in a manner simil
   - **Arrays** - arrays are ordered sets of values in JSON enclosed between the `[` and `]` brackets. To learn how to map them in **JSONWriter**, see [Writing arrays II](jsonwriter.md#writing-arrays-ii).
   - [Wildcard elements](extxmlwriter.md#wildcard-element)- another option to mapping elements explicitly. You use the **Include** and **Exclude** patterns to generate element names from respective metadata.
 - Connect input records to output (wildcard) elements to create [Binding](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields).
-  Example 381. Creating Binding
+  Example 393. Creating Binding
   ![JSONWriter mappingWithBindings](../figures/JSONWriter-mappingWithBindings.png)
   *Figure 396. Example mapping in JSONWriter - employees are joined with projectsthey work on.Fields in bold (their content) will be printed to the output file - see below.*
   Excerpt from the output file related to [the figure above](jsonwriter.md#jsonwriter-fig-mapping) (example of one employee written as JSON):

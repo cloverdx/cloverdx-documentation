@@ -280,7 +280,7 @@ The component for data filtering is called **Filter** and can be found in the **
 
 Filter requires an input as well as output - it reads data from its input port and produces data on its output ports. First input port and first output port are both mandatory and must be connected. The second output port is optional (for removed records) and does not need to be connected.
 
-To insert the component, you can either add if from the **Add component dialog** (shown via kdb:[Ctlr+Space]) or from the **Palette**. Once you select the component in the dialog or the Palette, you can add it directly on the edge between **FlatFileReader** and **SpredsheetDataWriter** by clicking on the edge. The **Filter** will be inserted and the edge will be split as needed.
+To insert the component, you can either add if from the **Add component dialog** (shown via Shift+Space) or from the **Palette**. Once you select the component in the dialog or the Palette, you can add it directly on the edge between **FlatFileReader** and **SpredsheetDataWriter** by clicking on the edge. The **Filter** will be inserted and the edge will be split as needed.
 
 ![filtering 0110](../figures/filtering-0110.png)
 *Figure 31. Adding the Filter component to the existing edge. Notice the mouse cursor is changed to "Add component" cursor and edge you hover over is highlighted.*

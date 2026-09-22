@@ -4,7 +4,7 @@
 
 While it is possible to configure **CloverDX Server** by modifying the [configuration file](setup.md#configuration-file) in a text editor, the **Setup** with a user-friendly GUI offers a much easier way of configuring basic properties according to your preferences and requirements. Setup is accessible from **Server Console** under **Configuration > Setup**.
 > [!IMPORTANT]
-> To access the Setup section, you need the [Server Setup permission](groups.md#permission-server-setup).
+> To access the Setup section, you need the [Setup and OAuth2 permission](groups.md#permission-server-setup).
 
 The Setup module consists of multiple tabs that allow you to configure the following:
 
@@ -12,14 +12,14 @@ The Setup module consists of multiple tabs that allow you to configure the follo
 | --- |
 | [License](setup.md#license) |
 | [System database connection](setup.md#system-database) |
-| [Worker](setup.md#worker) |
 | [Data Manager connection](setup.md#data-manager) |
+| [Worker](setup.md#worker) |
+| [MCP Server](setup.md#mcp-server) |
 | [Sandbox paths](setup.md#sandboxes) |
 | [Encryption](setup.md#encryption) |
 | [E-mail](setup.md#e-mail) |
 | [LDAP connection](setup.md#ldap) |
 | [Cluster configuration](setup.md#cluster) |
-| [OAuth2 authentication](setup.md#oauth2-authentication) |
 > [!TIP]
 > To keep your settings and data in the case of a database migration (e.g., from evaluation to production environment), see [Server Configuration Migration](server-config.md).
 
@@ -34,7 +34,7 @@ Before using the Setup module, you must specify the path to the configuration fi
    If you start the Server without configuration, you will see decorators pointing to the Setup. The decorators mark problems that require your attention. The displayed number corresponds to the number of items.
    The [**Configuration File tab**](setup.md#configuration-file) provides step-by-step instructions for creating and configuring the file.
    ![setup empty](../figures/setup-empty.png)
-   *Figure 122. Setup GUI with decorators*
+   *Figure 125. Setup GUI with decorators*
 2. **Add libraries to the classpath**
    Next, place the libraries required for further configuration in the application server’s classpath. For Tomcat, place the files in the `<TOMCAT_INSTALL_DIR>/lib` directory. You will need:
    - A JDBC driver for the [system database connection](examples-db-connection-configuration.md).
@@ -80,7 +80,7 @@ If you want to add advanced configuration properties, see [List of configuration
 > Refer [here](example-configuration-file.md) for an example configuration file.
 
 ![setup configuration file](../figures/setup-configuration-file.png)
-*Figure 123. Example of the Server Configuration file*
+*Figure 126. Example of the Server Configuration file*
 
 #### License
 
@@ -88,7 +88,7 @@ The **License** tab allows you to **view the details** of your currently loaded 
 
 To see license details, click on the ![setup licenses dropdown arrow](../figures/setup-licenses-dropdown-arrow.png) dropdown button.
 
-The panel on the right provides a summary of enabled features and their values (e.g., maximum number of CPU cores or Wrangler or Data Manager users) from all loaded licenses.
+The panel on the right provides a summary of enabled features and their values (e.g., maximum number of [CPU cores](system-requirements-for-cloverdx-server.md#cpu-recommendations) or [Wrangler](wrangler-administration.md#licensing-number-of-allowed-wrangler-seats), [Data Manager](data-manager-administration.md#data-manager-licensing) or [AI Authoring](server-config-mcp.md#ai-authoring-seats) seats) from all loaded licenses. A value that has been exceeded – more users than seats, more CPU cores than allowed – is highlighted in the summary.
 
 The license overview also displays the location of your licenses in the **Location** row:
 
@@ -98,7 +98,7 @@ The license overview also displays the location of your licenses in the **Locati
 > If you load your license into the system database, when the database changes (e.g., when switching from the default Derby database used for evaluation purposes to one of the [recommended databases](system-requirements-for-cloverdx-server.md#system-database) for commercial use), you will need to load the license again into the new database.
 
 ![setup licenses](../figures/setup-licenses.gif)
-*Figure 124. The License tab*
+*Figure 127. The License tab*
 
 #### System database
 
@@ -109,7 +109,7 @@ For manual deployments, you need to create a database for CloverDX Server and ad
 > CloverDX Server **requires a working database connection** to store license information. Therefore, it allows you to access the Setup and configure the connection **prior** to the Server **activation** - simply log into the Server Console and click the **Close** button. Otherwise, you would have to activate the server again after switching from the default Derby database to a new system database.
 
 ![setup server not activated](../figures/setup-server-not-activated.png)
-*Figure 125. Server console without an active license*
+*Figure 128. Server console without an active license*
 
 The **Database** tab lets you configure the connection to the database. You can connect via:
 
@@ -120,13 +120,13 @@ The **Database** tab lets you configure the connection to the database. You can 
   > An Apache Derby JDBC 4-compliant driver is bundled with CloverDX Server. The **Derby database** is intended for **for evaluation purposes only**. For commercial use, switch to one of the supported databases. When switching, add the appropriate JDBC-4 compliant driver to the classpath (i.e., for Tomcat, place the driver in the `<TOMCAT_INSTALL_DIR>/lib` directory) and restart the application server.
 
 ![setup database jdbc](../figures/setup-database-jdbc.png)
-*Figure 126. Database connection configuration for a JDBC connection*
+*Figure 129. Database connection configuration for a JDBC connection*
 
 - **JNDI**
   With JNDI, you can access the datasource configured at the application server level. Select your **Database** platform and choose the suitable item from the JNDI tree. For more information on how to enable JNDI connections at the application server level, see [JNDI DB Datasource](jndi-datasource-config.md#jndi-db-datasource).
 
 ![setup database jndi](../figures/setup-database-jndi.png)
-*Figure 127. Database connection configuration for a JNDI connection*
+*Figure 130. Database connection configuration for a JNDI connection*
 
 #### Data Manager
 
@@ -143,24 +143,61 @@ You can change the **Initial** and **Maximum heap size** for the Worker process,
 Changes in Worker configuration require a restart - click on **Finish jobs & restart** or **Restart now** to do so.
 
 ![setup worker](../figures/setup_worker.png)
-*Figure 128. The Worker tab*
+*Figure 131. The Worker tab*
+
+#### MCP Server
+
+The **MCP Server** tab configures the [CloverDX MCP Server](server-config-mcp.md): whether MCP is enabled, whether this instance serves a remote Server instead of its own runtime, where the support tools send a problem report, which client callbacks may be authorized, and which tools are exposed.
+
+Every field on the tab stands for one [MCP configuration property](list-of-properties.md#mcp-support-properties), so the same settings can be made by editing the [configuration file](setup.md#configuration-file) directly.
+
+![setup mcp](../figures/setup-mcp.png)
+*Figure 132. The MCP Server tab*
+
+| Field | Description | Property |
+| --- | --- | --- |
+| **General** |  |  |
+| Enable MCP | Turns the MCP endpoints of this Server on and off. | [`clover.mcp.enabled`](list-of-properties.md#lop-clover-mcp-enabled) |
+| **Remote MCP – a Server that answers with another Server’s runtime, see [Configuration for CloverDX 6.0 to 7.2](server-config-mcp.md#configuration-for-cloverdx-60-to-72)** |  |  |
+| Use remote MCP server | Routes MCP tool execution through a remote CloverDX MCP endpoint instead of the local runtime. A proxy serves the diagnostic tools only. | [`clover.mcp.remote.enabled`](list-of-properties.md#lop-clover-mcp-remote-enabled) |
+| Remote URL | Base CloverDX Server URL of the remote instance. The MCP path is appended automatically. | [`clover.mcp.remote.url`](list-of-properties.md#lop-clover-mcp-remote-url) |
+| Remote user, Remote password | Credentials used for HTTP Basic authentication against the remote Server. Use a dedicated account and consider [encrypting the password](secure-configuration-properties.md). | [`clover.mcp.remote.user`](list-of-properties.md#lop-clover-mcp-remote-user), [`clover.mcp.remote.password`](list-of-properties.md#lop-clover-mcp-remote-password) |
+| **Support – where the MCP support tools report a problem** |  |  |
+| Support email | Address a problem report is sent to when the user asks for it. The report goes through the Server’s own SMTP connection, so the [E-mail](setup.md#e-mail) tab has to be configured as well. Leaving the address empty disables reporting by email. | [`clover.mcp.support.email`](list-of-properties.md#lop-clover-mcp-support-email) |
+| Support portal URL | Base URL of the CloverDX Support Portal used for issue reporting. | [`clover.mcp.customer.portal.api.url`](list-of-properties.md#lop-clover-mcp-customer-portal-api-url) |
+| **OAuth2 Authorization – applies when [OAuth2](oauth2-authentication.md) is enabled for the MCP scope** |  |  |
+| Allowed redirect URLs | Callback URLs of MCP clients that do not run on the user’s own machine, separated by commas. Each URL is matched in full, so copy it exactly as the client shows it; clients calling back to `localhost` or `127.0.0.1` are accepted without being listed. The preset URLs are the callbacks of the hosted Claude and ChatGPT clients – remove them if clients of those services are not to authorize against this Server. | [`clover.mcp.oauth2.redirect.allowed`](list-of-properties.md#lop-clover-mcp-oauth2-redirect-allowed) |
+| **Tool Permissions – see [MCP tools permissions](server-config-mcp.md#mcp-tools-permissions)** |  |  |
+| Enable read-only mode | Blocks the write tools, leaving the read-only ones exposed. Individual tool overrides take priority over it. | [`clover.mcp.read.only`](list-of-properties.md#lop-clover-mcp-read-only) |
+| **Tool Groups** |  |  |
+| Enable Diagnostic group, Enable Authoring group | Each switch covers a whole group – its tools, prompts and resources. Withdrawing a group hides it from everybody, whatever permissions they hold. Individual tool overrides take priority over the group switches. | [`clover.mcp.diagnostic.enabled`](list-of-properties.md#lop-clover-mcp-diagnostic-enabled), [`clover.mcp.authoring.enabled`](list-of-properties.md#lop-clover-mcp-authoring-enabled) |
+| **Sandbox File Access – see [Sandbox file access](server-config-mcp.md#sandbox-file-access)** |  |  |
+| Allowed file patterns, Denied file patterns | Comma-separated wildcard patterns restricting which files the MCP sandbox file tools may reach. Empty lists mean no restriction; the deny list is applied last and always wins. The page warns when a non-empty allow list omits the CloverDX job files, because graph and job tools then refuse to work. | [`clover.mcp.sandbox.allowedFiles`](list-of-properties.md#lop-clover-mcp-sandbox-allowedfiles), [`clover.mcp.sandbox.deniedFiles`](list-of-properties.md#lop-clover-mcp-sandbox-deniedfiles) |
+
+A Server restart is required for changes to the exposed tools to take effect.
+
+The **Company Knowledge** section names the sandbox holding the customer’s own knowledge entries for AI agents – see [Company knowledge store](server-config-mcp.md#company-knowledge-store).
+
+Who may use the exposed tools is a separate question, answered by permissions and AI Authoring seats – see [MCP permissions and AI Authoring seats](server-config-mcp.md#mcp-permissions-and-ai-authoring-seats).
+
+The properties that have no field on this tab – token lifetimes among them – are listed in [MCP Support properties](list-of-properties.md#mcp-support-properties).
 
 #### Sandboxes
 
 The **Sandboxes** tab lets you configure a path to a directory used to store sandbox data. In a cluster environment, you can configure paths to [shared](../admin/cluster-setup-index.md#shared-sandbox), [local](../admin/cluster-setup-index.md#local-sandbox), and [partitioned](../admin/cluster-setup-index.md#partitioned-sandbox) sandboxes.
 
 ![setup sandboxes standalone](../figures/setup-sandboxes-standalone.png)
-*Figure 129. Sandbox path configuration in a standalone environment*
+*Figure 133. Sandbox path configuration in a standalone environment*
 
 ![setup sandboxes cluster](../figures/setup-sandboxes-cluster.png)
-*Figure 130. Sandbox path configuration in a cluster environment*
+*Figure 134. Sandbox path configuration in a cluster environment*
 
 #### Encryption
 
 To secure sensitive information entered in other Setup tabs, you can use the **Encryption** feature. When enabled, passwords entered in sections like *System Database* or *Email* are automatically saved in an encrypted form in the configuration file.
 
 ![setup config file encrypted](../figures/setup-config-file-encrypted.png)
-*Figure 131. Configuration file with an encrypted value in jdbc.password.*
+*Figure 135. Configuration file with an encrypted value in jdbc.password.*
 
 To enable encryption, select the **Enable encryption** check box and choose the desired **Encryption provider** (*SunJCE* or *Custom*) and **Encryption algorithm**. Among the default algorithms provided by SunJCE, `PBEWithHmacSHA512AndAES_256` is the strongest one. To encrypt currently unencrypted passwords, use the **Save & Encrypt** button.
 
@@ -169,7 +206,7 @@ Since the default algorithms are generally weaker, we **recommend** using [Bounc
 > If you want to use a custom provider, the related library has to be added to the appserver classpath. For Tomcat, this means adding the file to the `<TOMCAT_INSTALL_DIR>/lib` directory.
 
 ![setup encryption](../figures/setup-encryption.png)
-*Figure 132. Encryption configuration*
+*Figure 136. Encryption configuration*
 
 #### E-Mail
 
@@ -182,19 +219,19 @@ If OAuth2 authentication is used in a cluster, all nodes must use an identical O
 > You can set the default sender address by populating the **Default sender** field.
 
 ![setup email](../figures/setup-email.png)
-*Figure 133. E-mail configuration*
+*Figure 137. E-mail configuration*
 
 To make sure the configuration of the **Outgoing SMTP Server** is correct, you can send a **test email** from the **Test email** section at the bottom.
 
 ![setup email test email](../figures/setup-email-test-email.png)
-*Figure 134. Test email section*
+*Figure 138. Test email section*
 
 #### LDAP
 
 The **LDAP** tab lets you use an existing LDAP database for user authentication. For detailed information on how to set up an LDAP connection, see [LDAP authentication](ldap-authentication.md).
 
 ![setup ldap](../figures/setup-ldap.png)
-*Figure 135. LDAP configuration*
+*Figure 139. LDAP configuration*
 
 #### Cluster
 
@@ -203,15 +240,4 @@ The **Cluster** tab lets you configure clustering features. For more information
 In case your license does not allow clustering, the `Enable clustering` checkbox is grayed out, and the note `The license does not allow clustering.` appears at the top.
 
 ![setup cluster](../figures/setup-cluster.png)
-*Figure 136. Cluster configuration*
-
-#### OAuth2 authentication
-
-The **OAuth2 authentication** tab lets you configure OAuth2 authentication for **REST API** and **Data services**. This authentication depends on a third party **Identity Provider** and information entered here contains properties of a client application created at the provider. The **REST API** and **Data services** consume access tokens which are verified with the used **Identity Provider**.
-
-For more information on how to configure an OAuth2 authentication see [User OAuth2 authentication](oauth2-authentication.md).
-
-If you allow OAuth2 authentication the **HTTP Basic** authentication for **REST API** and **Data services** will be disabled.
-
-![setup oauth2](../figures/setup-oauth2.png)
-*Figure 137. OAuth2 authentication*
+*Figure 140. Cluster configuration*

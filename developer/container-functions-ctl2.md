@@ -52,7 +52,7 @@ This function is an alias of the `push` function.
 - The variant version fails if the first argument is not a list.
 
 ##### Examples
-Example 252. Usage of append
+Example 261. Usage of append
 
 ```ctl
 string[] files = ["orders.csv", "customers.csv", "products.csv"];
@@ -92,7 +92,7 @@ When appending a map with conflicting keys the original values are preserved (i.
 - The variant version fails if one of the arguments is not a list or a map or both arguments are not of the same type.
 
 ##### Examples
-Example 253. Usage of appendAll
+Example 262. Usage of appendAll
 
 ```ctl
 appendAll(["order_id", "customer_id", "order_date"], ["status", "total_amount"]);
@@ -135,7 +135,7 @@ If the list contains multiple elements equal to the `value`, the function does n
 - The function fails if either of the arguments is `null` or if `element_type` is not comparable.
 
 ##### Examples
-Example 254. Usage of binarySearch
+Example 263. Usage of binarySearch
 
 ```ctl
 binarySearch(["bronze", "gold", "silver"], "gold")
@@ -170,7 +170,7 @@ Empties the given list or map (removes all elements from them). If the `target` 
 - If the `target` is `null`, the function fails with an error.
 
 ##### Examples
-Example 255. Usage of clear
+Example 264. Usage of clear
 
 ```ctl
 list[string] listOfStrings = ["new", "paid"];
@@ -212,7 +212,7 @@ The `containsAll()` function returns `true` if the `collection` list contains ev
 - If either of the given lists is `null`, the function fails with an error.
 
 ##### Examples
-Example 256. Usage of containsAll
+Example 265. Usage of containsAll
 
 ```ctl
 containsAll(["new", "paid", "shipped"], ["paid", "shipped"])
@@ -247,7 +247,7 @@ Returns `true`, if the `searchMap` contains element with key `key`. Note that th
 - If `searchMap` is `null`, the function fails with an error.
 
 ##### Examples
-Example 257. Usage of containsKey
+Example 266. Usage of containsKey
 
 ```ctl
 containsKey({ "order_id" -> "ORD-1001", "status" -> "paid" }, "order_id");
@@ -291,7 +291,7 @@ The `containsValue(variant, variant)` function works as one of the two functions
 - If the first argument is `null`, the function fails with an error.
 
 ##### Examples
-Example 258. Usage of containsValue
+Example 267. Usage of containsValue
 
 ```ctl
 map[integer, integer] mapOfIntegers = { 1 -> 17, 5 -> 19 };
@@ -348,7 +348,7 @@ For maps, the function adds the key-value pairs from the `source` map to the `ta
 - If one of the arguments is `null`, the function fails with an error.
 
 ##### Examples
-Example 259. Usage of copy
+Example 268. Usage of copy
 
 ```ctl
 list[string] sourceFiles = ["orders.csv", "customers.csv"];
@@ -403,7 +403,7 @@ The container can be of any data type, however if it contains no map, the result
 - If the key` is a record, byte, or `cbyte array, the function fails with an error.
 
 ##### Examples
-Example 260. Usage of findAllValues
+Example 269. Usage of findAllValues
 
 ```ctl
 variant json = { // usually obtained by parseJson('...');
@@ -471,7 +471,7 @@ Returns the list of keys from the specified map. The returned list has elements 
 - The variant version fails if the argument is not a map.
 
 ##### Examples
-Example 261. Usage of getKeys
+Example 270. Usage of getKeys
 
 ```ctl
 map[string, integer] orderTotals = { "ORD-1001" -> 129, "ORD-1002" -> 250 };
@@ -515,7 +515,7 @@ Returns the values contained in the specified map as a list. If the argument is 
 
 - The `getValues(map[key_type, value_type])` function is available since **CloverETL 4.0.0**.
 - The `getValues(variant)` function is available since **CloverDX 5.7.0**.
-Example 262. Usage of getValues
+Example 271. Usage of getValues
 
 ```ctl
 map[string, string] statusLabels = { "N" -> "new", "P" -> "paid" };
@@ -547,7 +547,7 @@ Returns `true` if the specified collection contains the specified element. If th
 Note that seach in list is performed as linear search and can be slow for large lists. Searching in maps is constant time since only keys are searched.
 
 ##### Examples
-Example 263. Usage of in
+Example 272. Usage of in
 
 ```ctl
 in("paid", ["new", "paid"]); // returns true
@@ -562,7 +562,7 @@ in("street", streetTypes); // false, "street" is a value, not a key
 Note that for lists and maps of a specific numeric type, e.g. `number[]` or a map with keys of type number, the searched-for element is automatically converted to the target type if possible (e.g., integers are converted to numbers).
 
 For variant, there is no such automatic type conversion, the types must exactly match for the function to return true.
-Example 264. Type conversion when using in
+Example 273. Type conversion when using in
 
 ```ctl
 integer i = 2;
@@ -602,7 +602,7 @@ Inserts one or more elements into the list at the specified position, indexed fr
 - If the list given as the first argument is `null`, the function fails with an error.
 
 ##### Examples
-Example 265. Usage of insert
+Example 274. Usage of insert
 
 ```ctl
 list[string] originalList = ["extract", "load", "archive"];
@@ -652,7 +652,7 @@ Returns `true` if the specified list, map or variant is empty.
 - If the argument is `null`, the function fails with an error.
 
 ##### Examples
-Example 266. Usage of isEmpty
+Example 275. Usage of isEmpty
 
 ```ctl
 // list:
@@ -711,7 +711,7 @@ Returns the number of elements forming a given structured data type. The type of
 - If the argument is `null`, the function returns `0`.
 
 ##### Examples
-Example 267. Usage of length
+Example 276. Usage of length
 
 ```ctl
 byte byteVal = hex2byte("f09f92a9");
@@ -762,7 +762,7 @@ If the `list` is empty, the function returns `null`.
 - If `list` is `null`, the function fails with an error.
 
 ##### Examples
-Example 268. Usage of poll
+Example 277. Usage of poll
 
 ```ctl
 string[] statuses = ["new", "paid", "shipped"];
@@ -795,7 +795,7 @@ The `pop` function removes the **last** element from a given list and returns th
 - If `list` is `null`, the function fails with an error.
 
 ##### Examples
-Example 269. Usage of pop
+Example 278. Usage of pop
 
 ```ctl
 string[] statuses = ["new", "paid", "shipped"];
@@ -833,7 +833,7 @@ This function is an alias of the `append` function.
 - The variant version fails if the first argument is not a list or if it is `null`.
 
 ##### Examples
-Example 270. Usage of push
+Example 279. Usage of push
 
 ```ctl
 // list:
@@ -879,7 +879,7 @@ The function removes:
 - If `removeFrom` is `null`, the function fails with an error.
 
 ##### Examples
-Example 271. Usage of remove
+Example 280. Usage of remove
 
 ```ctl
 //  list:
@@ -922,7 +922,7 @@ Reverses the order of elements of given list and returns the modified list (orig
 - The variant version fails if the argument is not a list or if it is `null`.
 
 ##### Examples
-Example 272. Usage of reverse
+Example 281. Usage of reverse
 
 ```ctl
 // list:
@@ -962,7 +962,7 @@ The `sort` function sorts the elements of a given list in ascending order accord
 - The function will fail if the input list is `null`.
 
 ##### Examples
-Example 273. Usage of sort
+Example 282. Usage of sort
 
 ```ctl
 string[] cities = ["London", "Prague", "Berlin"];
@@ -1006,7 +1006,7 @@ Note that `values` and `keys` can contain `null` values which will become keys o
 ##### Compatibility
 
 - The `toMap` function is available since **CloverETL 4.0.0**.
-Example 274. Usage of toMap
+Example 283. Usage of toMap
 
 ```ctl
 string[] columnLabels = ["Order ID", "Customer ID", "Order Date"];

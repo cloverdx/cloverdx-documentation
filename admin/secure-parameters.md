@@ -11,12 +11,12 @@ The encryption algorithm must be initialized with a **master password**. The mas
 The maximum length of the master password is 255 characters; there are no other restrictions or complexity requirements.
 
 ![secure parameters initialisation](../figures/secure_parameters_initialisation.png)
-*Figure 96. Master password initialization*
+*Figure 99. Master password initialization*
 
 After setting the master password, secure parameters are fully available in **Graph Parameters Editor** in **CloverDX Designer**. When setting value of a secure parameter, it will be automatically encrypted using the master password. Secure parameters are automatically decrypted by the Server in graph runtime. A parameter value can also be encrypted in the **CloverDX Server** Console in the *Configuration > Security > Secure Parameters* page - use the **Encrypt text** section.
 
 ![secure parameters](../figures/secure_parameters.png)
-*Figure 97. Graph parameters tab with initialized master password*
+*Figure 100. Graph parameters tab with initialized master password*
 
 If you change the master password, the secure parameters encrypted using the old master password cannot be decrypted correctly anymore. In that case existing secure parameters need to be encrypted again with the new master password. That can be accomplished simply by setting their value (non-encrypted) again in the **Graph Parameters Editor**. Similar master password inconsistency issue can occur if you move a transformation graph with some secure parameters to another Server with a different master password. So it is highly recommended to use an identical master password for all your **CloverDX Server** installations.
 

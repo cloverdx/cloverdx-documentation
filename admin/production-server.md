@@ -143,6 +143,7 @@ jdbc.password=yourPassword
 jdbc.dialect=org.hibernate.dialect.PostgreSQLDialect
 ```
 
+If the Server will serve the [CloverDX MCP Server](server-config-mcp.md), it also needs the OAuth2 discovery rules placed in this Tomcat – see [Redirecting the OAuth2 discovery documents](postinstallation-configuration.md#redirecting-the-oauth2-discovery-documents). A Server installed from the CloverDX Tomcat bundle or from an installer has them already.
 Properties File in Specified Location
 The properties file is loaded from a location specified by a system property or by an environment variable `clover_config_file` or `clover.config.file`.
 
@@ -168,14 +169,14 @@ We recommend using the first and easiest option (for other options, see [CloverD
 If the **CloverDX Server** has been started without assigning any license, click the **Activate server** link on the welcome page. You will be redirected to the **Add New License** form where you can upload the license file using the **Browse** button, or simply copy the license from the file and paste it into the **License key text** field.
 
 ![cetl serv no license](../figures/cetl_serv_no_license.png)
-*Figure 34. Login page of CloverDX Server without license*
+*Figure 33. Login page of CloverDX Server without license*
 
 After clicking the **Update** button, the license is validated and saved to the database. If the license is valid, a table with license’s description appears. To proceed to **CloverDX Server** console click **Continue to server console**.
 
 You can skip adding a license by clicking the **Cancel** button.
 
 ![cetl serv add license](../figures/cetl_serv_add_license.png)
-*Figure 35. Add new license form*
+*Figure 34. Add new license form*
 
 ###### Add CloverDX Server License in the Configuration Section
 
@@ -189,7 +190,7 @@ You can paste a license text into a **License key** text area or use the **Brows
 After clicking the **Add license** button, the license is saved to the database and all licenses are reloaded.
 
 ![cetl serv update license](../figures/cetl_serv_update_license.png)
-*Figure 36. Update license form*
+*Figure 35. Update license form*
 
 ###### Remove CloverDX Server License in the Configuration Section
 
@@ -199,7 +200,7 @@ License can be removed from **CloverDX Server** if its stored in the server data
 - Remove unwanted license by clicking on trash tray icon under the detail of the license.
 
 ![cetl serv remove license](../figures/cetl_serv_remove_license.png)
-*Figure 37. Remove license*
+*Figure 36. Remove license*
 > [!TIP]
 > The **CloverDX** license can be **changed** at any time by replacing `license.dat` file. Afterwards, you have to let **CloverDX Server** know the license has changed.
 >

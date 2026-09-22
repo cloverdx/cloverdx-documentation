@@ -40,9 +40,8 @@ When you select some connection to a database. For more details, see [Database C
 > [!NOTE]
 > If multiple SQL types are listed, actual syntax depends on particular metadata (size for fixed-length field, length, scale, etc.).
 
-| DB type | DB2 | Hive | Informix | MSAccess |
+| CloverDX type | DB2 | Hive | Informix | Microsoft Access |
 | --- | --- | --- | --- | --- |
-| CloverDX type |  |  |  |  |
 | boolean | SMALLINT | BOOLEAN | BOOLEAN | BIT |
 | byte | VARCHAR(80) FOR BIT DATA | BINARY[[1]](metadata-merge.md#from-0-8-0) | BYTE | VARBINARY(80) |
 | CHAR(n) FOR BIT DATA |  |  | BINARY(n) |  |
@@ -67,9 +66,8 @@ When you select some connection to a database. For more details, see [Database C
 | 2 | Available from version 0.11.0 of Hive |
 | --- | --- |
 
-| DB type | MSSQL | MSSQL | MySQL | Oracle | Pervasive |
+| CloverDX type | Microsoft SQL Server 2000-2005 | Microsoft SQL Server 2008 or newer | MySQL | Oracle | Pervasive |
 | --- | --- | --- | --- | --- | --- |
-| CloverDX type | 2000-2005 | 2008 or newer |  |  |  |
 | boolean | BIT | BIT | TINYINT(1) | SMALLINT | BIT |
 | byte | VARBINARY(80) | VARBINARY(80) | VARBINARY(80) | RAW(80) | LONGVARBINARY(80) |
 | BINARY(n) | BINARY(n) | BINARY(n) | RAW(n) | BINARY(n) |  |
@@ -88,9 +86,8 @@ When you select some connection to a database. For more details, see [Database C
 | string | VARCHAR(80) | VARCHAR(80) | VARCHAR(80) | VARCHAR2(80) | VARCHAR2(80) |
 | CHAR(n) | CHAR(n) | CHAR(n) | CHAR(n) | CHAR(n) |  |
 
-| DB type | PostgreSQL | Snowflake | SQLite | Sybase | Generic |
+| CloverDX type | PostgreSQL | Snowflake | SQLite | Sybase | Generic |
 | --- | --- | --- | --- | --- | --- |
-| CloverDX type |  |  |  |  |  |
 | boolean | BOOLEAN | BOOLEAN | BOOLEAN | BIT | BOOLEAN |
 | byte | BYTEA | VARBINARY | VARBINARY(80) | VARBINARY(80) | VARBINARY(80) |
 |  |  | VARBINARY(80) | BINARY(n) | BINARY(n) |  |

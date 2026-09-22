@@ -2,28 +2,57 @@
 
 #### OAuth2 authentication
 
-By configuring the **OAuth2 Authentication** section in **CloverDX Server**, server **REST API** and **Data services** become accessible only via **OAuth2 access token** and authentication via **HTTP Basic** is disabled. However, authorization (access levels to sandbox content and privileges for operations) is still handled by the CloverDX security module. Each user, even when authenticated via OAuth2, requires a corresponding user record within the CloverDX [Users](users.md) module and assignment to at least one [user group](groups.md) for proper access. Also each user has to have its **CloverDX Server** user record linked to its **Identity provider** account.
+With **OAuth2**, a client reaches the **CloverDX Server** APIs with an **access token** instead of a CloverDX password. It is configured in **Configuration** ****OAuth2**, which takes the [Setup and OAuth2](groups.md#permission-server-setup) permission. Four parts of the Server can be covered: the **Server REST API**, the **Data Manager REST API**, **Data services** and the [**MCP Server**](server-config-mcp.md). Each is covered on its own – authentication via **HTTP Basic** is disabled for the parts an enabled profile names among its **Server scopes**, and stays in place for the rest. Configuring OAuth2 for the **MCP** scope alone therefore changes nothing about how the other three are reached.
 
-You have to register your **client application** with your **Identity provider** first and then copy its properties here. Each HTTP request on server **REST API** or **Data services** has to contain **OAuth2 access token** so server can verify this token with the **Identity Provider**. As a result server obtains external user account identity ID and can determine which **CloverDX Server** user record is linked to this external ID.
+What a client authorizes against is an **OAuth2 profile**: one client application at one **Identity provider**, together with the scopes it covers and the user groups whose members may use it. A deployment can hold as many profiles as it needs, and more than one profile may carry the same scope.
+
+OAuth2 decides authentication only. Authorization – access levels to sandbox content and privileges for operations – is still handled by the CloverDX security module. With an **Identity provider**, the user’s **CloverDX Server** record has to be [linked](oauth2-authentication.md#linking-user-account-with-oauth2-providers-account) to their account there: the Server reads the account identity from the token it verifies and looks the CloverDX user up by it. With the [Built-in provider](oauth2-authentication.md#built-in) there is no external account to link, so this step falls away.
+
+The page lists every profile with its scopes and user groups. The toggle in the **Enabled** column turns a profile on and off without deleting it, **New OAuth2 profile** creates one, and the menu at the end of each row duplicates or deletes it. Click a profile to open its settings.
 
 ![setup oauth2](../figures/setup-oauth2.png)
-*Figure 94. OAuth2 authentication*
+*Figure 95. The OAuth2 module*
 
-##### OAuth2 setup
+##### OAuth2 profile setup
 
 | Attribute | Description | Possible values |
 | --- | --- | --- |
-| Enable OAuth2 authentication | Enables OAuth2 authentication for Apis and Data Services. By default, **CloverDX Server** allows only **HTTP Basic** for authentication. Setting this attribute to true essentially forces **OAuth2** authentication. | `false` (default) \| `true` |
-| Provider | Your identity provider. You have to select from a list of supported providers. | Azure (Microsoft), Google |
+| Enabled | Enables/disables OAuth2 profile usage. | `true` (default) \| `false` |
+| Name | Unique name of the **OAuth2 profile**. This name is shown in the list of available profiles in **OAuth2 Authentication**. |  |
+| Description | Optional description of the **OAuth2 profile**. |  |
+| Scopes | Scopes define the parts of the **REST API** that can be accessed by a user authorized against the **OAuth2 profile**. | Server REST API, Data Manager REST API, Data Services, MCP |
+| User groups | List of user groups whose members have access to the **OAuth2 profile**. |  |
+| Provider | Your identity provider. You have to select from a list of supported providers. | Azure (Microsoft), Google, Built-in |
 | Client ID | Application/Client ID as defined by the provider. |  |
 | Client secret | Application/Client secret as defined by the provider. Its optional unless you need to link user accounts by completing the authorization flow. |  |
-| Tennant ID | Tennant ID is available only for Azure (Microsoft) defined applications. |  |
+| Tenant ID | Tenant ID is available only for Azure (Microsoft) defined applications. |  |
 | Authorization endpoint | Authorization URL needed when you link user accounts by completing the authorization flow. You don’t need to change its default value unless there is a specific network setup preventing usage of default hostname etc. |  |
 | Token endpoint | Token URL needed when you link user accounts by completing the authorization flow. You don’t need to change its default value unless there is a specific network setup preventing usage of default hostname etc. |  |
-| Use PKCE | Use Proof Key for Code Exchange (PKCE) with you provider’s application. | `false` (default) \| `true` |
+| Use PKCE | Use Proof Key for Code Exchange (PKCE) with you provider’s application. Required on a profile that carries the **MCP** scope – without it, MCP authorization requests are refused. | `false` (default) \| `true` |
 | Redirect endpoint | Redirect URL needed when you link user accounts by completing the authorization flow. You don’t need to change its default value unless there is a specific network setup preventing usage of your server hostname from outside etc. This URL has to be registered with you provider’s application. |  |
 
-##### OAuth2 provider setup
+![setup oauth2 profile](../figures/setup-oauth2-profile.png)
+*Figure 96. OAuth2 profile*
+
+##### Server scopes
+
+Server scope is a part of the **CloverDX Server REST API** which can be accessed by an **OAuth2 profile**. There are four available scopes.
+
+**Server REST API** - see 'https://[server-hostname]:[server-port]/clover/api/rest/v1/docs.html'
+
+**Data Manager REST API** - see 'https://[server-hostname]:[server-port]/clover/api/rest/data-manager/v1/docs.html'
+
+**Data Services** - all published [Data Services](../operations/data-services.md)
+
+**MCP** - [CloverDX MCP Server](server-config-mcp.md)
+> [!NOTE]
+> Only one **OAuth2 profile** can have the MCP scope assigned.
+
+##### Providers
+
+A profile’s **Provider** is one of three: **Azure (Microsoft)**, **Google**, or **Built-in**, which is the **CloverDX Server** itself.
+
+With an identity provider, register **CloverDX Server** as a client application there first; the profile is then filled in from that registration.
 > [!NOTE]
 > **Identity provider** can have specific requirements when registering **OAuth2** client application with them.
 >
@@ -39,11 +68,31 @@ You have to also create at least one 'scope' for you provider’s application. T
 
 When registering application you have to assign 'scope' with name **'openid'** to your provider’s application.
 
+###### Built-in
+
+The Built-in provider is a special case of an **OAuth2 profile**. It can be used only with the MCP scope. There are no **Identity provider** parameters because this provider is the **CloverDX Server** itself.
+
+![setup oauth2 builtin](../figures/setup-oauth2-builtin.png)
+*Figure 97. OAuth2 with built in provider*
+
+With this provider, **CloverDX Server** authorizes MCP clients on its own: nothing is registered at Entra or Google, no client secret is kept in the Server configuration, and no user account is linked by hand. The user signs in on a CloverDX page with their own credentials and approves the client there. Everything on the client side stays the same – see [Authorizing MCP clients with the built-in provider](server-config-mcp.md#with-the-built-in-provider).
+
+Two limits apply to such a profile:
+
+- **MCP only.** A profile with this provider carries the **MCP** scope and nothing else, so the **REST API**, **Data services** and the **Data Manager REST API** still need an **Identity provider** profile.
+- **Password security domains only.** An account in the CloverDX domain or in an [LDAP](ldap-authentication.md) domain can complete the flow. An account in a [SAML](saml-authentication.md) domain cannot, and is refused with the same message a wrong password gives.
+
+Users are checked against the profile’s **User groups**, and every renewal of a client’s session re-checks the CloverDX account. A user who is disabled, deleted, or taken out of those groups loses access at the next renewal.
+
 ##### Linking user account with OAuth2 provider’s account
 > [!NOTE]
-> The section **OAuth2 Authentication** is available only of OAuth2 authentication is configured on server.
+> The section **OAuth2 Authentication** is available only if OAuth2 authentication is configured on server. At least one **OAuth2 profile** has to be enabled. A profile with the [Built-in provider](oauth2-authentication.md#built-in) is not offered here – it has no external identity to link an account to.
 
 Before user can use **OAuth2 authentication** its **CloverDX** user account has to be linked with **Identity provider** user account ID. This can be done by completing standard authorization flow or by using already existing acces token.
+
+###### Authorization profile
+
+There can be multiple **OAuth2 profiles** configured. Select which profile the user should be authorized against. The important limitation here is that, for each **OAuth2 profile**, each **Identity provider** user account ID can be used only once.
 
 ###### Authorization request
 
@@ -54,4 +103,4 @@ By clicking on **Generate request** server with create standard authorization UR
 If your administrator already has a valid **access token** it can be paste directly to server UI. This token is validated by server which allows server to obtain user provider’s account ID.
 
 ![user oauth2](../figures/user-oauth2.png)
-*Figure 95. Linking user account*
+*Figure 98. Linking user account*

@@ -17,6 +17,7 @@ To help CloverDX administrators in common scenarios, several groups are created 
 | Group name | Description |
 | --- | --- |
 | Administrator | Members of the Administrator group have complete and unrestricted access to **CloverDX Server**. By default, this group includes `clover` system user. |
+| AI Authoring | Members of the *AI Authoring* group can use the CloverDX MCP Server and the AI Assistant in the Designer. Besides the [*Use all MCP tools* permission](groups.md#permission-mcp-all) the group grants the ordinary permissions the AI tools need to work with jobs and logs. The group is created empty and stays that way – every member occupies an [AI Authoring seat](server-config-mcp.md#ai-authoring-seats), so membership is always an explicit decision. |
 | All users | This legacy group was intended to include all users; however, the assignment must be maintained by server administrator manually. If you need to handle all users, **use the Everyone group instead**. It is possible to remove users from this group, but it is not recommended. This group is useful mainly to simplify management of permissions to various sandboxes or other features which you may want to make available to all users. |
 | Data App users | Members of the *Data App users* group have very limited permissions and can only access Data Apps user interface. |
 | Data Manager administrator | Members of the *Data Manager administrator group* have access to Data Manager user interface and administration. Membership in this group does not grant access to **CloverDX Server Console**. |
@@ -357,9 +358,9 @@ The following section describes what different permissions mean:
   - **Temp space management**
     Allows the user to access **Temp Space Management** section.
     See [Temp Space Management](tempspace.md).
-  - **Server setup**
-    Allows the user to access the server setup.
-    See [Setup](setup.md).
+  - **Setup and OAuth2**
+    Allows the user to access the Setup module and the OAuth2 module.
+    See [Setup](setup.md) and [OAuth2 authentication](oauth2-authentication.md).
   - **Heap memory dump**
     Allows the user to create a **Thread dump** and a **Heap Memory Dump**.
     See [Diagnostics](../operations/diagnostics.md).
@@ -374,3 +375,18 @@ The following section describes what different permissions mean:
   - **Shared workspace administrator**
     Allows user to manage permission of Wrangler’s shared workspace via **Wrangler** app.
     Users with this permission also require [*Access to Wrangler app* permission](groups.md#permission-access-wrangler) and therefore will consume one Wrangler seat once they login at least once.
+- **AI**
+  Main permission for the AI features of CloverDX – the Assistant in the Wrangler, the AI Assistant in the Designer and the MCP tools.
+  The only permission granted from this branch after installation is [*Use Wrangler Assistant*](groups.md#permission-clover-assistant), on the groups that work with Wrangler. No user holds an MCP permission, not even the administrator: the AI authoring tools are licensed per named user, so they are never granted implicitly – see [AI Authoring seats](server-config-mcp.md#ai-authoring-seats).
+  - **Use Wrangler Assistant**
+    Allows the user to use the Assistant in the **Wrangler** app.
+    This permission is covered by the Wrangler license and occupies no AI Authoring seat. In releases before 7.6 it was named *Use Clover AI Assistant*; what it governs has not changed.
+  - **Use all MCP tools**
+    Allows the user to use both groups of MCP tools. The [AI Assistant in the Designer](part-installation-instructions.md#enabling-cloverdx-ai-assistant) draws on all of them, so this is the simplest way to let a user run it – a single group below is not enough for the Assistant.
+    Granting this permission occupies an AI Authoring seat, because it includes the authoring tools.
+    - **Use AI Diagnostic MCP tools**
+      Allows the user to use the diagnostic MCP tools – the tools for looking into a running Server: listing jobs, their status, logs and tracking, aborting a job, reading a file in a sandbox, searching server and performance logs, querying the system database, describing the deployment and reporting an issue to CloverDX support. These are the tools CloverDX offered in 7.3.
+      The diagnostic tools occupy no AI Authoring seat and keep working even when the seats are exhausted.
+    - **Use AI Authoring MCP tools**
+      Allows the user to use the authoring MCP tools – everything that builds or changes a solution: writing sandbox files, editing graphs, running jobs, the component reference and the knowledge base.
+      Every user holding this permission occupies one [AI Authoring seat](server-config-mcp.md#ai-authoring-seats), whether they were granted it directly or through a permission above it, and whether or not they ever use it.

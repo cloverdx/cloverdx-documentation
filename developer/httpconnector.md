@@ -208,7 +208,7 @@ Map content of multipart entity
 Use input mapping to set a content of multipart. The multipart name will be same as the fieldname and the content will be specified by a mapping.
 Map content and filename
 The multipart content will be used by the mapping, but there will be an additional multipart header in the request using the filename as mapped.
-Example 403. CTL mapping and multipart entities
+Example 415. CTL mapping and multipart entities
 The CTL mapping
 
 ```ctl

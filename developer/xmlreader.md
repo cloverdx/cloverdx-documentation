@@ -97,7 +97,7 @@ If you intend to use the last output port for error logging, metadata must have 
 | [Mapping Input Fields](xmlreader.md#mapping-input-fields) |
 
 Records and fields to be send out to the output ports are specified using XML elements and attributes. Each `Context` element corresponds to one output port attached. Each `Mapping` element defines a mapping to one field. See the example below.
-Example 373. Mapping in XMLReader
+Example 385. Mapping in XMLReader
 
 ```xml
 <Context xpath="/employees/employee" outPort="0">
@@ -239,7 +239,7 @@ However, the **Mapping** attribute does not need to copy whole XML structure, it
 You can read only lists, however (see [Multivalue fields](multivalue-fields.md)).
 > [!NOTE]
 > Reading maps is handled as reading pure `string` (for all data types as map’s values).
-Example 374. Reading lists with XMLReader
+Example 386. Reading lists with XMLReader
 An example input file containing these elements (just a code snippet):
 
 ```xml

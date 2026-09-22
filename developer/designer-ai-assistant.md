@@ -9,19 +9,15 @@
 - **Solution architect**: it can work on solutions that are much bigger than just a single job. The Assistant can help you build complex solutions based on specification provided in specification files (which are typically markdown, but it will ingest Word documents, too). It will suggest architecture; help you build the solution and even document it for you including data flow diagrams to make it easy to follow and understand.
 - **Development companion**: the Assistant can help you while building your graphs – modify them based on a prompt, help you understand what the graphs are doing, improve CTL code, generate sample data and more. You can think of the Assistant as your everyday pair-programmer who is ready to help you turn natural language prompts into working graphs.
 - **Troubleshooter**: the Assistant can also help you understand job failures. Not just the ones that it has created, but any job. It has full access to your Server’s logs, tracking data and more. It can help you diagnose the problem, suggest a fix or even implement it for you.
-> [!NOTE]
-> CloverDX AI Assistant is released as a **technology preview** in CloverDX 7.5.0. It is present in Designer but remains inert until you apply an Assistant license key and configure an LLM connection in Designer preferences (it will not do anything on its own).
->
-> As a technology preview, it is under active development. Its behavior, interfaces, and defaults may change in future releases, sometimes in incompatible ways. **Use it in dev/test environments only, not in production.** Treat it as a tool for evaluation and non-critical work, and review everything it produces before relying on it. Use it with caution: the Assistant can read and modify files and run jobs in the CloverDX Server project you connect it to.
->
-> Gathering feedback on how teams want to govern the Assistant is one of the goals of this technology preview. Contact your Account representative if you wish to provide feedback that could help us improve future versions of the Assistant.
+> [!IMPORTANT]
+> The Assistant can read and modify files and run jobs in the CloverDX Server project you connect it to. Review what it produces before you rely on it – every change it makes is recorded in the project’s git history, so there is always something to look at. Point it at development and test projects; production data should reach it only when you decide so.
 
-The Assistant itself is available via **Assistant View** – a view usually docked to the right side of your Designer window.
+The Assistant itself is available via the **AI Assistant** view – a view usually docked to the right side of your Designer window.
 
 ![designer assistant intro](../figures/designer-assistant-intro.gif)
 *Figure 46. Designer Assistant shown in a sidebar after running through a number of tasks that modified an existing project.*
 > [!TIP]
-> If you close the Assistant view by mistake, you can get it back by resetting your perspective via **Window** ****Perspective** ****Reset Perspective** main menu item. Alternatively, you can reopen the view by going to **Window** ****Show View** ****Other…​** and searching for **Clover Assistant** in the **Show view** dialog.
+> If you close the Assistant view, click the **AI Assistant** button in the main toolbar to bring it back. Alternatively, open it from **Window** ****Show View** ****Other…​** and search for **AI Assistant**.
 
 The Assistant requires CloverDX Designer where it runs as well as CloverDX Server since it uses Server’s Model Context Protocol (MCP) API to work with projects. The Assistant requires connectivity to an LLM (which is typically hosted in the cloud), however only the Designer requires this access, the Server does not have to be publicly accessible – it only needs to be accessible from the Designer.
 
@@ -39,9 +35,9 @@ The diagram above shows basic building blocks required for the Assistant to work
 
 Each Assistant user has their own instance of Designer with their own LLM configuration. However, the tools are shared by all users using single CloverDX Server and the Server administrator can configure MCP to allow/disallow specific tools if needed via [MCP tool permissions](../admin/server-config-mcp.md#mcp-tools-permissions).
 > [!NOTE]
-> CloverDX AI Assistant requires a license to activate. See more details about the licensing requirements and activation in [Activating CloverDX AI Assistant](../admin/part-installation-instructions.md#activating-cloverdx-ai-assistant).
+> CloverDX AI Assistant comes with every activated Designer – there is no separate Designer license for it. What you need is an **AI Authoring seat** on the CloverDX Server your project is connected to: a seat is assigned to your Server user account by the Server administrator, and it covers both the Assistant in Designer and the authoring tools of the CloverDX MCP Server used from other AI clients. See [Enabling CloverDX AI Assistant](../admin/part-installation-instructions.md#enabling-cloverdx-ai-assistant) for what the Server has to allow you, and [AI Authoring seats](../admin/server-config-mcp.md#ai-authoring-seats) for how the seats work.
 >
-> Additionally, since the Assistant uses third party Large Language Models (LLMs), you will need to connect it to your own account with one of the supported LLM providers such as OpenAI, Anthropic, Google, or others. See more details about this configuration in [CloverDX AI Assistant Configuration](../admin/designer-configuration.md#cloverdx-ai-assistant-configuration).
+> Additionally, since the Assistant uses third party Large Language Models (LLMs), you will need to connect it to your own account with one of the supported LLM providers such as OpenAI, Anthropic, Google, or others – the Assistant is a bring-your-own-key (BYOK) experience, the model calls are billed by your provider and CloverDX meters nothing. See more details about this configuration in [CloverDX AI Assistant Configuration](../admin/designer-configuration.md#cloverdx-ai-assistant-configuration).
 
 ### AI Assistant Quick Start
 > [!NOTE]
@@ -49,12 +45,16 @@ Each Assistant user has their own instance of Designer with their own LLM config
 
 #### Enabling the Assistant
 
-Before you can use the Assistant, you must [activate it](../admin/part-installation-instructions.md#activating-cloverdx-ai-assistant) (provide a license). Once activated, you’ll need to configure the [access to Large Language Model (LLM)](../admin/designer-configuration.md#cloverdx-ai-assistant-configuration) that powers the Assistant. The Assistant provides helpful guides that will tell you whether any of these steps still need to be completed.
+The Assistant needs two things: the [access to Large Language Model (LLM)](../admin/designer-configuration.md#cloverdx-ai-assistant-configuration) that powers it, configured in your Designer, and a CloverDX Server that [allows you to use it](../admin/part-installation-instructions.md#enabling-cloverdx-ai-assistant) – your Server user account has to hold an [AI Authoring seat](../admin/server-config-mcp.md#ai-authoring-seats), which your Server administrator assigns. The Assistant walks you through both on its welcome page and tells you which step is still missing.
 
-Once the Assistant is fully activated and configured, you will see an intro screen like this:
+Without the seat the Assistant is locked: you can open assistant projects and read their conversations, but you cannot continue a chat or start a new one. The chat tells you what to ask your Server administrator for.
+
+You may use the Assistant from one workstation at a time. If the same CloverDX account starts working with the Assistant on another machine, that machine takes the account over and your chat is refused for the next hour; the message tells you when you may use it again. It is not a connection problem, and reconnecting the project or restarting the Designer does not bring the account back – either wait for the hour to pass, or return to the machine that is now using it. See [One place at a time](../admin/server-config-mcp.md#one-place-at-a-time).
+
+Once the Assistant is configured and the Server allows you in, you will see an intro screen like this:
 
 ![designer assistant activated](../figures/designer-assistant-activated.png)
-*Figure 48. Assistant view in Designer right after it has been activated in an empty workspace (without any projects).*
+*Figure 48. Assistant view in Designer in an empty workspace (without any projects).*
 
 To start working with the Assistant, you’ll have to either create a new Server project or import or open an existing one. In this quick start we’ll use an example project called **DWHExample**. This project is part of every CloverDX Server installation by default.
 
@@ -199,14 +199,16 @@ When you create a new assistant project, the Assistant will create all markdown 
 
 At the same time, the Assistant maintains a server-side git repository which keeps track of all changes that it is making. This includes assets the Assistant is working on (graphs, metadata files, etc.) as well as memory files in the assistant project. This allows the Assistant to go back in history to review past decisions or even return to a previous state if needed. These git repositories are kept in `.git-assistant` folders in your sandbox.
 
-The Assistant uses **sessions** to help you distinguish between different streams of work within a project. Sessions are separate from each other and the Assistant does not see chat history from one session when working on another. This can help you keep multiple implementations separate without having to worry about mixing them up or confusing the agent by having too many things in one chat.
+The Assistant uses **sessions** to help you distinguish between different streams of work within a project. A new session is called *New session* (numbered – *New session (2)*, *New session (3)* – when the project already has unnamed ones) until your first message, from which the Assistant derives its name. Sessions are separate from each other and the Assistant does not see chat history from one session when working on another. This can help you keep multiple implementations separate without having to worry about mixing them up or confusing the agent by having too many things in one chat.
 
-You can manage projects and sessions through the AI Assistant view. New projects can be created in sandboxes by clicking on the plus symbol next to each sandbox name in the view. Clicking on an existing project will open it and load the latest sessions from the project into the Assistant view.
+You can manage projects and sessions through the AI Assistant view. New projects can be created in sandboxes by clicking on the plus symbol next to each sandbox name in the view. Clicking on an existing project will open it and load the latest sessions from the project into the Assistant view. Once the workspace holds five or more projects, a filter box and **Recent**/**Name** sort buttons appear above the project cards: typing narrows the list to projects whose name, sandbox or goal contains the text (Enter opens the first match), and clicking the active sort button reverses its order. The filter also takes alternatives separated by `|` (`crm | billing`). The two icons next to the sort buttons switch between the cards and a compact list with one row per project.
+
+The Assistant never switches projects on its own — you can open a job from another project while a chat is running. To sync the two on request, right-click a project, folder or file of a Server project in the Project Explorer and choose **Open in AI Assistant**: the Assistant opens the assistant project of that sandbox, or, when the sandbox holds several assistant projects, shows the project chooser filtered to them. A folder or file is also attached to the chat – to the running chat when it already belongs to that project, otherwise to the session the project opens with. Right-clicking the canvas of an open job offers **Ask AI Assistant about this job**, which starts a new session in that sandbox’s assistant project with the job attached to the chat. Right-clicking a component on the canvas, or any element in the Outline (a component, metadata, parameter, lookup table, connection, sequence, …), offers **Insert into AI Assistant**: the job is attached and the element’s kind, name and id are inserted into the chat box at the cursor — into the running chat when it already belongs to that project, otherwise into a new session — so you can point the Assistant at an element without typing its name. Dragging an element from the Outline onto the Assistant view does the same.
 
 ![designer assistant projects view](../figures/designer-assistant-projects-view.png)
 *Figure 59. Assistant view showing an existing assistant project ProjectDocumentation in Demo-DataManager project and five other sandboxes which do not have any assistant projects yet.*
 
-The projects and sessions can also be managed via switcher accessible by clicking on a dropdown button in top right corner of the Assistant view:
+The projects and sessions can also be managed via switcher accessible by clicking on a dropdown button in top right corner of the Assistant view. Its first row offers the two ways of starting something new: **New session** starts another session in the current project, **New window** opens another AI Assistant view – each view runs its own session, so you can work on two sessions or projects side by side.
 
 ![designer assistant sessions switcher](../figures/designer-assistant-sessions-switcher.png)
 *Figure 60. Managing sessions or projects via menu in the Assistant view.*
@@ -230,7 +232,7 @@ Besides talking to the Assistant in plain language, you can type a few commands 
 **`/compact`**
 Summarizes the older part of the conversation and replaces it with that summary, which frees up room in the context window. Use it when a long session is filling up and you would rather continue in it than start a new one.
 **`/profile <name>`**
-Switches this chat view to a different set of models. Type `/profile` on its own to pick from the profiles you have configured. The switch applies to this view only and is forgotten when you close it – to change what the Assistant runs on by default, use [Model profiles](../admin/designer-configuration.md#model-profiles) in the preferences.
+Switches this chat view to a different set of models. Type `/profile` on its own to pick from the profiles you have configured. The switch applies to this view only and is forgotten when you close it – to change what the Assistant runs on by default, use [Model profiles](../admin/designer-configuration.md#model-selection) in the preferences.
 **`/read-only`**
 Puts the session into read-only mode: tools that only read stay available and everything that would write, run or commit is refused. Useful when you want the Assistant to investigate something with no chance of it changing the project.
 **`/read-write`**
@@ -250,3 +252,5 @@ CloverDX Assistant uses a special library called **CloverDXMCPKnowledge** which 
 The library is installed automatically for you as soon as you install CloverDX 7.5 or newer – regardless of whether it is an update of an existing instance or a clean deployment. Each build of CloverDX Server carries with it its own version of the library which will be automatically deployed to your instance during installation.
 
 You can have more than version of the library installed – the Assistant will simply use the latest version (the one with the highest version number).
+
+The library is what CloverDX knows. Your own rules and reference material – naming conventions, connection standards, the sources a job may read – belong to [company knowledge](assistant-company-knowledge.md), a second store the Assistant reads next to the library.

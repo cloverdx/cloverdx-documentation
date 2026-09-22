@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Others -->
 
-## 45. Others
+## 46. Others
 
 | [Common Properties of Others](common-of-others.md) |
 | --- |

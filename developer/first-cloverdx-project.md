@@ -1,6 +1,6 @@
 <!-- Development > Projects > Creating CloverDX projects -->
 
-## 11. Creating CloverDX projects
+## 12. Creating CloverDX projects
 
 This chapter describes how to create **CloverDX** projects.
 

@@ -1,6 +1,6 @@
 <!-- Development > Projects > Structure of CloverDX projects -->
 
-## 10. Structure of CloverDX projects
+## 11. Structure of CloverDX projects
 
 In this chapter, we present only a brief overview of what happens when you are creating any **CloverDX** project.
 

@@ -39,4 +39,4 @@ For initial configuration after the installation of **CloverDX Server**, follow 
   For more information, see the [Encryption](setup.md#encryption) section.
 
 ![server dbconfig dx](../figures/server_dbconfig_dx.png)
-*Figure 86. CloverDX Server’s System database configuration*
+*Figure 87. CloverDX Server’s System database configuration*

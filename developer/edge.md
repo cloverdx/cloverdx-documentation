@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Edges -->
 
-## 23. Edges
+## 24. Edges
 
 This chapter presents an overview of edges. It describes their purpose, how they can be connected to components of a graph, how metadata can be assigned to them and propagated through them, how edges can be debugged and how data flowing through edges can be analyzed.
 

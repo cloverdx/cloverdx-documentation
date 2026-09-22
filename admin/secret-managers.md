@@ -19,7 +19,7 @@ We support **Azure Key Vault** and **AWS Secrets Manager**.
 The usage of secrets is similar to graph parameters. You first configure the connection via **Configuration** > **Secret Managers** > **New Secret Manager**.
 
 ![secret manager configuration](../figures/secret-manager-configuration.png)
-*Figure 98. Secret Manager Configuration*
+*Figure 101. Secret Manager Configuration*
 
 Then you use a placeholder in your job file. At runtime, the placeholder is replaced with the value of the secret.
 
@@ -50,7 +50,7 @@ Azure Key Vault is a secret management service available in the Microsoft Azure 
 Both these schemes also require a **Vault URI** in the form `https://<your-unique-keyvault-name>.vault.azure.net/`. The URI can be found in the Overview section of the selected Key Vault.
 
 ![azure key vault overview](../figures/azure-key-vault-overview.png)
-*Figure 99. Azure Key Vault Overview*
+*Figure 102. Azure Key Vault Overview*
 
 ##### AWS Secrets Manager
 
@@ -87,7 +87,7 @@ Note that the `<secretName>` may also contain slashes. The `<key>` is always the
 As said, the secrets are loaded on demand, at the moment they are used. You can view the currently stored data on the **Cached secrets** tab. Intentionally no values are shown, only names.
 
 ![secret manager cached secrets](../figures/secret-manager-cached-secrets.png)
-*Figure 100. List of secrets cached by particular manager, the second one being expired*
+*Figure 103. List of secrets cached by particular manager, the second one being expired*
 
 ##### Secret revocation
 
@@ -98,4 +98,4 @@ But if the value of a secret changes before its expiration date, for example whe
 You can **Clear all cached secrets** via the top context menu.
 
 ![secret manager clear cache](../figures/secret-manager-clear-cache.png)
-*Figure 101. Clearing of the cached secrets*
+*Figure 104. Clearing of the cached secrets*

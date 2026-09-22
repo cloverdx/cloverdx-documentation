@@ -6,14 +6,53 @@ Wrangler allows you to build data transformations in an interactive way without 
 
 #### Jobs screen
 
-**Jobs** screen is the "front page" of the Wrangler - it is a place which allows you to quickly see which jobs you have in the currently selected workspace, run them, view their results and more.
+**Jobs** screen is the "front page" of the Wrangler. It shows the jobs in your currently selected workspace, and lets you run them, view their results, and organize them into categories.
 
 ![jobs page](../figures/jobs-page.png)
-*Figure 78. Jobs page showing jobs and their history.*
+*Figure 80. Jobs page showing jobs and their history.*
 
 To learn more about various statuses and how to work with reject files, see the [Running jobs in Wrangler](transforming-data.md#running-jobs-in-wrangler) section below.
 
 The jobs page also allows you to quickly see who last modified each job. This is most useful when working in shared workspace where other users may have made changes to the job.
+
+##### Organizing jobs with categories
+
+Jobs can be organized into categories, the same way data sets are organized in Data Manager. Categories are shared across Clover: the same list of categories is used in Data Manager and in Wrangler, and a change made in one place applies in the other. When creating a job, you can assign it a category, either by selecting an existing one or by typing a new name to create one.
+
+###### Grouping the job list
+
+Above the job list, a view switcher lets you choose how jobs are displayed:
+
+- **Group by category** — the default. Jobs are shown under their category.
+- **No grouping** — jobs are shown as a single list.
+
+Jobs with no category assigned are grouped separately, under **Uncategorized**. Categories are sorted A to Z, with **Uncategorized** always shown last.
+
+Your choice of grouping, and which categories are expanded or collapsed, is remembered the next time you open the Jobs screen.
+
+###### Assigning a category
+
+To assign a job to a category, open its menu and select **Edit configuration**. From there, you can pick an existing category or add a new category.
+
+![wrangler assign category](../figures/wrangler-assign-category.gif)
+*Figure 81. Assigning a category to a job.*
+
+###### Renaming a category
+
+You can rename a category directly from the job list, using **Rename category** on the category, or by editing its name inline. Renaming a category applies the new name to every job under it.
+
+If the category is also used elsewhere in Clover, for example in Data Manager, a dialog lets you choose whether to rename it only in Wrangler, or everywhere it’s used — the same dialog appears in Data Manager when renaming a category from there.
+
+If no job uses a category anymore, the category is removed automatically from the job list. If the category is still used in Data Manager, it remains available when selecting a category.
+
+###### Working with categories
+
+To change the category of an existing job, open its menu, select **Edit configuration**, and change the category in the dialog that opens. When you copy a job to a shared workspace, its category is copied along with it. You can also move a job into a different category by dragging it in the job list and dropping it onto the target category.
+
+Search matches both job names and category names. Searching for a category name expands that category automatically and shows the jobs inside it.
+
+![wrangler jobs grouped by category](../figures/wrangler-jobs-grouped-by-category.gif)
+*Figure 82. Job list grouped by category*
 
 ##### Creating your job
 
@@ -22,7 +61,7 @@ To create a transformation, click on the **Create new job** button on the **Jobs
 When using the **Create new job** button, you’ll first have to **pick your data source**. You can either pick an existing data source that you have already added to **Sources**, or you can drop a new file at the top of your screen.
 
 ![create job selecting data source](../figures/create-job-selecting-data-source.png)
-*Figure 79. Selecting a data source when creating a new job*
+*Figure 83. Selecting a data source when creating a new job.*
 
 Regardless of how you create your data source, Wrangler will show you preview of the data, and you’ll be able to continue to create your transformation by pressing the **Select** button in the top-right corner.
 
@@ -35,18 +74,18 @@ To create a copy of an existing job use the **Duplicate** job action, which is a
 To share jobs between users, jobs can be exported and imported. To export a job, use the **Export** job action, which is available under the **⋮** menu on the right side of each job on the **Jobs** page.
 
 ![export job message](../figures/export-job-message.png)
-*Figure 80. Job export dialog.*
+*Figure 84. Job export dialog*
 
 You can optionally select to include the data source and lookup files (this option applies to CSV file sources only). The export will generate a single ZIP file.
 
-To import a job use the **Import job** button in the top-right corner of the **Jobs** page. Drag and drop or upload a job ZIP file and optionally select if you want to overwrite the job if it already exists. The imported job will be added to the bottom of the job list.
+To import a job, use the **Import job** button in the top-right corner of the **Jobs** page. Drag and drop or upload a job ZIP file and optionally select if you want to overwrite the job if it already exists. The imported job will be added to the bottom of the job list.
 
 ![import job message](../figures/import-job-message.png)
-*Figure 81. Job import dialog.*
+*Figure 85. Job import dialog*
 
 ##### Copying jobs
 
-Jobs can be copied to another workspace using **Copy** commands that are available in the **⋮** menu for each job. This functionality is most commonly used when collaboration between multiple users is needed. To read more about that, please see [Collaborating with other users](wrangler-workspaces.md#collaborating-with-other-users) section.
+Jobs can be copied to another workspace using **Copy** commands that are available in the **⋮** menu for each job. This functionality is most used when collaboration between multiple users is needed. To read more about that, please see [Collaborating with other users](wrangler-workspaces.md#collaborating-with-other-users) section.
 
 ##### Test run
 
@@ -59,7 +98,7 @@ The **Test run** option is available when your job writes data into a [data targ
 When working with data in Wrangler you will be creating jobs that define transformations to apply to your data. Data transformations are edited in an interactive way in **transformation editor** screen which shows you large preview of your data and allows you to quickly add, modify or remove transformation steps. Each step defines an operation with your data set - for example "add column", "sort data", "calculate formula" and so on.
 
 ![transformation editor screen](../figures/transformation-editor-screen.png)
-*Figure 82. Transformation editor screen.*
+*Figure 86. Transformation editor screen*
 
 Transformation editor screen consists of several parts that allow you navigate and work with your data:
 
@@ -68,7 +107,7 @@ Transformation editor screen consists of several parts that allow you navigate a
   ![transform editor column header](../figures/transform-editor-column-header.png)
 - **Job overview diagram** at the top of the screen. It provides quick overview of what your job looks like. Clicking on **Source** or **Target** icons allows you to change settings of your data source or your data target.
   ![job diagram](../figures/job-diagram.png)
-- **Steps sidebar** shows you the steps you’ve added to your transformation so far. Clicking on different steps in the sidebar allows you to move to different part of your transformation and review what your data looks like after given transformation step.
+- **Steps sidebar** shows you the steps you’ve added to your transformation so far. Clicking on different steps in the sidebar allows you to move to a different part of your transformation and review what your data looks like after given transformation step.
   ![steps sidebar](../figures/steps-sidebar.png)
 
 #### Data quality bar
@@ -135,10 +174,10 @@ You can enhance your transformation workflow by organizing steps into **groups**
 Each step offers multiple options that are shown next to it when you hover your mouse over the step or when the step is selected:
 
 ![steps sidebar additional options](../figures/steps-sidebar-additional-options.png)
-*Figure 83. Contracted Steps options*
+*Figure 87. Contracted Steps options*
 
 ![steps sidebar maximized](../figures/steps-sidebar-maximized.png)
-*Figure 84. Steps options on high resolution screens or when the Steps panel width is adjusted*
+*Figure 88. Steps options on high resolution screens or when the Steps panel width is adjusted.*
 
 - **Edit a step** (pencil icon) will open a step editor in the sidebar. Layout of the editor depends on the step you selected.
 - **Disable a step** (stop sign icon) allows you to disable the step so that it no longer applies to your data. Note that disabling a step may invalidate the rest of your transformation - for example if you disable a step that adds a column which is used later in the transformation. Disabled step shows in gray like this:
@@ -152,7 +191,7 @@ Each step offers multiple options that are shown next to it when you hover your 
 Each column in Wrangler has its data type that defines how the data in that column is stored and what kind of operations can be applied to it. Data types are visible in the header of data preview:
 
 ![transformation editor screen](../figures/transformation-editor-screen.png)
-*Figure 85. Transformation editor screen showing columns of different types.*
+*Figure 89. Transformation editor screen showing columns of different types.*
 
 Wrangler supports 5 data types: **integer**, **decimal**, **string**, **date** and **boolean**. Conversions between different data types can be done using [Data conversion steps](wrangler-conversion-steps.md).
 
@@ -191,7 +230,7 @@ String columns represent text data in Wrangler. They can store text in any langu
 Data containing multi-line strings will be displayed with a preview of the first line followed by ellipses (…​). To view the full content, simply hover your cursor over the value.
 
 ![multiline strings](../figures/multiline-strings.png)
-*Figure 86. Example of a multi-line string*
+*Figure 90. Example of a multi-line string*
 
 ##### Boolean data type
 
@@ -204,7 +243,7 @@ Boolean columns store results of logical expressions and can store a "yes" or "n
 Besides storing values, each column in Wrangler can also store empty value (sometimes called **null** values). Empty values are shown as **No value** in the data preview:
 
 ![no value columns](../figures/no-value-columns.png)
-*Figure 87. Sample data preview showing display of empty values.*
+*Figure 91. Sample data preview showing display of empty values.*
 
 Note the *String column* which shows two different kinds of empty value - a `null` (shown as *No value*) and empty string (shown as cell with no text inside it).
 
@@ -349,12 +388,12 @@ You’ll often need to reference various columns from your data set in your form
 If you type a wrong column name (a name that does not exist in your data set), you’ll get an error like this:
 
 ![formula error technical name wrong](../figures/formula-error-technical-name-wrong.png)
-*Figure 88. Incorrect technical name in Formula editor*
+*Figure 92. Incorrect technical name in Formula editor*
 
 You can easily find and copy the technical name of a column by hovering your mouse over the column header in the data preview and clicking on **Copy**. Alternatively, you can take advantage of the [autocomplete feature](transforming-data.md#autocomplete-feature-in-formula-editor) to quickly display the list of all available technical names or formulas.
 
 ![column technical name](../figures/column-technical-name.gif)
-*Figure 89. How to find and copy a technical name*
+*Figure 93. How to find and copy a technical name.*
 
 ##### Autocomplete feature in Formula editor
 
@@ -368,45 +407,45 @@ Take advantage of the autocomplete feature in Formula editor to help you quickly
 
 ##### Using AI to write your formulas
 
-**Clover Assistant** in Wrangler allows you to use AI in formula editors to help you create, refine, and correct formulas more easily. This functionality is available in formula-based editors in [Calculate formula](wrangler-step-formula.md), [Filter rows based on formula](wrangler-step-filter-with-formula.md), and in formula rules in the [Mapping editor](data-sources-data-targets.md#target-mapping).
+**Wrangler Assistant** allows you to use AI in formula editors to help you create, refine, and correct formulas more easily. This functionality is available in formula-based editors in [Calculate formula](wrangler-step-formula.md), [Filter rows based on formula](wrangler-step-filter-with-formula.md), and in formula rules in the [Mapping editor](data-sources-data-targets.md#target-mapping).
 
-###### Clover Assistant
+###### Wrangler Assistant
 
-You can use Clover Assistant to help write or improve a formula by describing the result you want. The Assistant is displayed directly in the sidebar, so you can work with the formula and the Assistant at the same time.
+You can use the Wrangler Assistant to help write or improve a formula by describing the result you want. The Assistant is displayed directly in the sidebar, so you can work with the formula and the Assistant at the same time.
 
 Suggested formulas in the conversation are clickable. When selected, a suggestion replaces the current formula in the editor. The formula remains fully editable after the suggestion is applied. Dynamic preview can then help you easily see the results of your formula and verify that it produces the expected results.
 
 If you are editing an existing formula, the editor also provides a **Revert** button, which restores the original saved formula.
 
 ![ai formula suggestion](../figures/ai-formula-suggestion.gif)
-*Figure 90. How AI writes a suggested formula.*
+*Figure 94. How AI writes a suggested formula.*
 
 ###### Using Improve answers
 
-Clover Assistant can work without using your data, but some requests may benefit from access to data values so the Assistant can provide more accurate suggestions or fixes.
+The Assistant can work without using your data, but some requests may benefit from access to data values so the Assistant can provide more accurate suggestions or fixes.
 
-The **Improve answers** option allows Clover Assistant to use relevant data from the current context to improve the quality of its response. When this option is enabled and a request requires access to data, Wrangler uses the relevant data to help Clover Assistant provide a better answer.
+The **Improve answers** option allows the Assistant to use relevant data from the current context to improve the quality of its response. When this option is enabled and a request requires access to data, Wrangler uses the relevant data to help the Assistant provide a better answer.
 
 Use data sharing only when your data can be shared according to your company’s policies.
 
 ![ai improve answers button](../figures/ai-improve-answers-button.png)
-*Figure 91. Improve answers button.*
+*Figure 95. Improve answers button*
 
 ###### Use Clover AI to fix your formulas
 
 If a formula contains a syntax error, Wrangler displays the error message in the bottom area of the editor which also shows a **Fix with AI** button next to the error message.
 
-Click **Fix with AI** to invoke Clover Assistant and try to automatically correct the syntax of your formula. If the correction is successful, the formula in the editor is replaced with the corrected version and the data preview is refreshed automatically.
+Click **Fix with AI** to invoke the Assistant and try to automatically correct the syntax of your formula. If the correction is successful, the formula in the editor is replaced with the corrected version and the data preview is refreshed automatically.
 
-If Clover Assistant cannot fix the formula for you, it shows a notification and leaves the formula unchanged.
+If the Assistant cannot fix the formula for you, it shows a notification and leaves the formula unchanged.
 
 ###### Output errors
 
 If a formula produces an error in the preview output, Wrangler displays the error message in the bottom area of the editor after the preview is generated. The formula editor also shows a **Fix with AI** button next to the error message.
 
-To help resolve this type of error, Clover Assistant may require access to your data. In that case, Wrangler asks for confirmation before sharing the data. You can choose **Share this time only** to allow data sharing only for the current request.
+To help resolve this type of error, the Assistant may require access to your data. In that case, Wrangler asks for confirmation before sharing the data. You can choose **Share this time only** to allow data sharing only for the current request.
 
-After the request is sent, Clover Assistant suggests an updated formula in the chat. You can then review the suggestion and apply it to the editor.
+After the request is sent, the Assistant suggests an updated formula in the chat. You can then review the suggestion and apply it to the editor.
 
 ##### Quick example
 
@@ -517,7 +556,7 @@ Your data may not always match the expected format. For example, you may get tex
 If a row which contains any kind of an error gets through the transformation all the way to the data target, it will be **rejected**. Rejected records are collected in a file that allows you to inspect error details even in large data sets. See below for additional details about reject file format.
 
 ![error handling data errors](../figures/error-handling-data-errors.png)
-*Figure 92. Invalid data shows up as red cells in the data preview.*
+*Figure 96. Invalid data shows up as red cells in the data preview.*
 
 For data errors you can see that the value read from source is retained even if it does not fit into expected format - for example, the `Date paid` column in the above screenshot contains values like `n/a` or incorrectly formatted dates. Wrangler allows you to access the original (invalid) value in variety of steps so that you can attempt to fix the issue in your transformation.
 
@@ -530,7 +569,7 @@ Some values might be invalid even if they are of correct type and have correct f
 All values that are flagged as invalid - validation errors - are shown just like any other error in Wrangler with red cells in data preview.
 
 ![error handling validation errors](../figures/error-handling-validation-errors.png)
-*Figure 93. Validation errors reported by validation steps - Validate phone number step in this example.*
+*Figure 97. Validation errors reported by validation steps - Validate phone number step in this example.*
 
 ##### Errors occurring during step execution
 
@@ -539,7 +578,7 @@ These errors happen when you run a step and it encounters a value it cannot hand
 Just as before, Wrangler will show the errors in the data preview and will allow you to work with all other records even if some data is in error.
 
 ![error handling runtime errors](../figures/error-handling-runtime-errors.png)
-*Figure 94. Errors from step execution in data preview.*
+*Figure 98. Errors from step execution in data preview.*
 
 Notice that these errors do not show any value in the cell since the calculation of the new value could not finish. Instead, they are shown as **Error**. To fix this type of error, you usually need to find the step that causes it and either fix the data before that step so that the steps does not fail anymore or modify the step settings.
 
@@ -552,7 +591,7 @@ These errors happen during design time and are detected by Wrangler as you work 
 For example, the following screenshot shows a step configured to use a column that is no longer part of the data set:
 
 ![error handling step config error](../figures/error-handling-step-config-error.png)
-*Figure 95. Step configuration error that prevent the step from running.*
+*Figure 99. Step configuration error that prevents the step from running.*
 
 To learn how to fix these errors, read more in [Fixing step configuration errors](transforming-data.md#fixing-step-configuration-errors) section.
 
@@ -570,7 +609,7 @@ Since data targets may not be able to write the malformed or erroneous data into
 Both of the options above are available in the target configuration dialog. Read more about this in [CSV data target configuration](data-sources-data-targets.md#csv-data-target-configuration) and [Excel data target configuration](data-sources-data-targets.md#excel-data-target-configuration).
 
 ![reject file example](../figures/reject-file-example.png)
-*Figure 96. Sample reject file in Microsoft Excel format showing error message as well as rejected records.*
+*Figure 100. Sample reject file in Microsoft Excel format showing error message as well as rejected records.*
 
 #### Fixing errors
 
@@ -594,12 +633,12 @@ If changing type is not viable, you can attempt to parse or interpret the origin
 For example, common error is that you receive dates with incorrect format like in the `Date paid` column on the following screenshot:
 
 ![error handling generic](../figures/error-handling-generic.png)
-*Figure 97. Original data set with errors in Date paid column.*
+*Figure 101. Original data set with errors in Date paid column.*
 
 To fix these, you can use [Replace errors step](wrangler-step-replace-errors.md) and parse the incorrectly formatted date with different format by using a formula `str2date($Date_paid, "d.M.yyyy")`. This will result in the following output where the incorrectly formatted dates are fixed:
 
 ![replace errors fix format example after step1](../figures/replace-errors-fix-format-example-after-step1.png)
-*Figure 98. Data set after incorrectly formatted dates have been fixed with Replace errors step.*
+*Figure 102. Data set after incorrectly formatted dates have been fixed with Replace errors step.*
 
 ##### Fixing step execution errors
 
@@ -652,7 +691,7 @@ When you run a job, it will read the complete data source (CSV file or a connect
 The **Jobs** page will show you the status of your jobs - it shows each job on a single row and displays status of the last run of the job.
 
 ![jobs page](../figures/jobs-page.png)
-*Figure 99. Jobs page showing job statuses.*
+*Figure 103. Jobs page showing job statuses.*
 
 Jobs can have one of the following statuses:
 
@@ -673,7 +712,7 @@ After the job finished successfully, you will be able to download its results di
 For jobs that produced reject files or ended in an error, you can view additional details in the **Last run** status dialog. To open the dialog, click on the *rejected rows status message* (orange text) or on the *failed status* (red text) on the **Jobs** page.
 
 ![jobs job statuses rejects and failed](../figures/jobs-job-statuses-rejects-and-failed.png)
-*Figure 100. Jobs table showing two jobs - a failed one and a job that produced a reject file.*
+*Figure 104. Jobs table showing two jobs - a failed one and a job that produced a reject file.*
 
 The dialog allows you to download result as well as reject files via **Download result** and **Download reject file** buttons in the left part of the dialog.
 
@@ -681,15 +720,15 @@ In the right half of the dialog, you can see additional details about the errors
 
 - **Per step** groups the errors based on the step which raised those errors. I.e., for each step that produced an error, there will be a single row in this table and it will show number of errors in the reject file that were produced by given step. This view is useful to see which parts of your job may need to be updated to handle invalid data or edge cases in your data.
   ![last run detail rejects per step](../figures/last-run-detail-rejects-per-step.png)
-  *Figure 101. Last run detail of a job with reject file showing Per step error summary.*
+  *Figure 105. Last run detail of a job with reject file showing Per step error summary.*
 - **Per column** shows number of errors in each column of the data. This view is useful to see whether given column frequently contains invalid data or not which can help to decide whether to update the job to handle the data in a better way or whether to go to the source system and request data to be fixed there.
   ![last run detail rejects per column](../figures/last-run-detail-rejects-per-column.png)
-  *Figure 102. Last run detail of a job with reject file showing Per column error summary.*
+  *Figure 106. Last run detail of a job with reject file showing Per column error summary.*
 
 If the job ended in an error, the dialog will allow you to see additional details about the error:
 
 ![last run detail failed job](../figures/last-run-detail-failed-job.png)
-*Figure 103. Last run detail of a failed job.*
+*Figure 107. Last run detail of a failed job.*
 
 #### How does Wrangler expression language differ from CTL?
 

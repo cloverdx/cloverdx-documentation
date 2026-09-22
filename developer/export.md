@@ -1,6 +1,6 @@
 <!-- Development > Designer user interface > Export -->
 
-## 8. Export
+## 9. Export
 
 **Export** converts graphs (and jobflow) to formats independent of **CloverDX Designer**, or exports metadata or converts graphs to jobflow, jobflow or subgraphs to graphs.
 

@@ -375,7 +375,7 @@ You have multiple options of mapping columns:
 
 1. Drag and drop a column header from the data preview into the mapping rule area in the mapping editor. It is possible to map one column from the data preview to multiple target columns.
 2. Select a compatible source column directly from the mapping rule menu in the mapping editor.
-3. You can use the **Automapping tools** feature. This functionality offers automated column mapping and can use AI via Clover Assistant if enabled. See [Automapping tools](data-sources-data-targets.md#automapping-tools) below for more details about how it works.
+3. You can use the **Automapping tools** feature. This functionality offers automated column mapping and can use AI via the Wrangler Assistant if enabled. See [Automapping tools](data-sources-data-targets.md#automapping-tools) below for more details about how it works.
    Note that automapping is applied to visible columns only. If you used the **Search** option above the data preview or if you filtered columns in the Mapping editor, only the columns visible in both parts of the screen will be considered during automapping.
 
 You can freely combine these options for maximum efficiency.
@@ -432,18 +432,18 @@ You can also preview the mapped target output as a whole. Click **Preview** in t
 Automapping tools offer multiple ways of automatically mapping your data to the target layout.
 
 ![target mapping automapping tools](../figures/target-mapping-automapping-tools.png)
-*Figure 54. Automapping tools menu shows three options when AI Assistant is available.*
+*Figure 54. Automapping tools menu shows three options when the Wrangler Assistant is available.*
 
 Following options are available:
 
-- **Assistant (Structure + Data)**: uses Clover AI Assistant to determine the mapping. In this case, the Assistant will also receive sample data which may help resolve more complex or ambiguous mappings. Note that when this option is selected, sample of your data is uploaded to the LLM provider.
-- **Assistant (Structure only)**: uses Clover AI Assistant to determine mapping. In this case, only the metadata is sent to the LLM provider - column names in your data, in target, their descriptions, types and so on. Data samples are NOT sent to the LLM provider. In most cases this option works great and there is no need to send sample data to LLM.
-- **Quick automap**: this option does not use AI at all, it builds the mapping based on column name similarity, data type matches and so on. This option runs fully locally and does not send any data to the cloud at all. If you don’t have access to the AI Assistant, this is the only option available.
+- **Assistant (Structure + Data)**: uses the Wrangler Assistant to determine the mapping. In this case, the Assistant will also receive sample data which may help resolve more complex or ambiguous mappings. Note that when this option is selected, sample of your data is uploaded to the LLM provider.
+- **Assistant (Structure only)**: uses the Wrangler Assistant to determine the mapping. In this case, only the metadata is sent to the LLM provider - column names in your data, in target, their descriptions, types and so on. Data samples are NOT sent to the LLM provider. In most cases this option works great and there is no need to send sample data to LLM.
+- **Quick automap**: this option does not use AI at all, it builds the mapping based on column name similarity, data type matches and so on. This option runs fully locally and does not send any data to the cloud at all. If you don’t have access to the Wrangler Assistant, this is the only option available.
 
-When using AI Assistant to create the mapping, a new block will be created for you at the end of the transformation. This block will contain prompt for the mapping and will allow you to review the mapping suggestions later. The suggestions from the AI Assistant may look like this:
+When using the Assistant to create the mapping, a new block will be created for you at the end of the transformation. This block will contain prompt for the mapping and will allow you to review the mapping suggestions later. The suggestions from the Assistant may look like this:
 
 ![target ai mapping](../figures/target-ai-mapping.gif)
-*Figure 55. Suggestions returned by the AI Assistant after selecting the Assistant (Structure + Data) option.*
+*Figure 55. Suggestions returned by the Wrangler Assistant after selecting the Assistant (Structure + Data) option.*
 
 Just as with step suggestions, you can select which mapping to keep and which ones to ignore. Once you add the mappings to your job, the mapping view will be updated and the automapping block will show the suggestions for later review as well.
 

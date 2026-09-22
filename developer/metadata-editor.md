@@ -126,6 +126,8 @@ The section should help you understand these basic differences.
 
 **Description** is a pure comment. Use it to give advice to yourself or other users who are going to work with your metadata. It produces no outputs.
 
+**Field group** names a group of consecutive fields, used to make a wide record easier to navigate. Set it on the field where the group starts; the following fields stay in it until another group starts. It says nothing about the data and is not used by **Designer**; it is shown in **Data Manager**, **Wrangler** and **Data Catalog**.
+
 #### Details pane
 
 The contents of the **Details** pane changes in accordance with the row selected in the **Record** pane.
@@ -244,6 +246,10 @@ When the **Details** pane presents information about a field, there are displaye
   For more detailed information, see [Data types in metadata](metadata-records-and-fields.md#data-types-in-metadata).
 - Description
   **Description** is user defined long text concerning the particular field. The field can be several paragraphs long.
+- Field group
+  **Field group** organizes the fields of a wide record into named sets of consecutive fields. A group starts at the field you set the name on and covers the following fields until another group starts, so leave the property empty on a field which stays in the group of the previous field. The fields before the first group belong to an unnamed default group which is never shown.
+  Group names must be unique within one metadata, ignoring case, which is what keeps the fields of a group together; the metadata editor reports a name used again after another group has started. Names are limited to 200 characters.
+  **Designer** does not use field groups for anything else. They are shown in **Data Manager**, **Wrangler** and **Data Catalog**, and they are propagated from and to data sets through reader and writer components.
 
 ##### Advanced
 

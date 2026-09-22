@@ -69,7 +69,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `abs(integer)`, `abs(long)`, `abs(decimal)`, `abs(number)` functions are available since **CloverETL 3.0.0**.
-Example 117. Usage of abs
+Example 126. Usage of abs
 The function `abs(-123)` returns `123` as integer.
 
 The function `abs(-1234L)` returns `1234` as long.
@@ -92,7 +92,7 @@ If a given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `acos(decimal|number)` function is available since **CloverETL 3.5.0-M2**.
-Example 118. Usage of acos
+Example 127. Usage of acos
 The function `acos(0)` returns `1.5707963267948966`.
 
 The function `acos(1L)` returns `0.0`.
@@ -121,7 +121,7 @@ date addNoise(date value, long noise, unit timeunit);
 The `addNoise()` function returns 'anonymized' value of the original value.
 
 The parameter 'noise' allows to set ranges the return value can obtain - 'value +- noise'.
-Example 119. Usage of addNoise
+Example 128. Usage of addNoise
 The function `addNoise(null, 10)` returns `null`.
 
 The function `addNoise(1, 10)` returns value between `-9` and `11`.
@@ -146,7 +146,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `asin()` function is available since **CloverETL 3.5.0-M2**.
-Example 120. Usage of asin
+Example 129. Usage of asin
 The function `asin(0)` returns `0.0`.
 
 The function `asin(1L)` returns `1.5707963267948966`.
@@ -175,7 +175,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `atan()` function is available since **CloverETL 3.5.0-M2**.
-Example 121. Usage of atan
+Example 130. Usage of atan
 The function `atan(0)` returns `0.0`.
 
 The function `atan(1L)` returns `0.7853981633974483`.
@@ -211,7 +211,7 @@ If the `byte` arguments are of different length, the length of returned `byte` i
 The `bitAnd(integer,integer)` and `bitAnd(long,long)` functions are available since **CloverETL 3.0.0**.
 
 The `byte bitAnd(byte, byte)` function is available since **CloverETL 4.0.0-M2**.
-Example 122. Usage of bitAnd
+Example 131. Usage of bitAnd
 The function `bitAnd(6, 3)` returns `2` as `integer`.
 
 The function `bitAnd(12L, 6L)` returns `4` as `long`.
@@ -240,7 +240,7 @@ If one of the given arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `bitIsSet(integer,integer)` and `bitIsSet(long,integer)` functions are available since **CloverETL 3.0.0**.
-Example 123. Usage of bitIsSet
+Example 132. Usage of bitIsSet
 The function `bitIsSet(19, 1)` returns `true`.
 
 The function `bitIsSet(18, 0)` returns `false`.
@@ -269,7 +269,7 @@ If one of the argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `bitLShift(integer,integer)` and `bitLShift(long,long)` functions are available since **CloverETL 3.0.0**.
-Example 124. Usage of bitLShift
+Example 133. Usage of bitLShift
 The function `bitLShift(4, 3)` returns `32`.
 
 The function `bitLShift(4, 28)` returns `1073741824`.
@@ -305,7 +305,7 @@ If a given argument is `null`, the function fails with an error.
 The `bitNegate(integer)` and `bitNegate(long)` functions are available since **CloverETL 3.0.0**.
 
 The `bitNegate(byte)` function is available since **CloverETL 4.0.0-M2**.
-Example 125. Usage of bitNegate
+Example 134. Usage of bitNegate
 The function `bitNegate(11)` returns `-12`. The function inverts all bits in an argument. The result is `integer`.
 
 The function `bitNegate(6L)` returns `-7`. The result value is `long`.
@@ -337,7 +337,7 @@ If the `byte` arguments are of different length, the length of returned `byte` i
 The `bitOr(integer,integer)` and `bitOr(long,long)` functions are available since **CloverETL 3.0.0**.
 
 The function `byte bitOr(byte, byte)` is available since **CloverETL 4.0.0-M2**.
-Example 126. Usage of bitOr
+Example 135. Usage of bitOr
 The function `bitOr(6, 3)` returns `7` as `integer`.
 
 The function `bitOr(12L, 6L)` returns `14` as `long`.
@@ -366,7 +366,7 @@ If one of the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `bitRshift(integer,integer)` and `bitRShift(long,long)` functions are available since **CloverETL 3.0.0**.
-Example 127. Usage of bitRShift
+Example 136. Usage of bitRShift
 The function `bitRShift(4, 2)`returns `1`.
 
 The function `bitRShift(129L, 3)`returns `16`.
@@ -387,7 +387,7 @@ If one of the given arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `bitSet(integer,integer,integer,boolean)` and `bitSet(long,long,long,boolean)` functions are available since **CloverETL 3.0.0**.
-Example 128. Usage of bitSet
+Example 137. Usage of bitSet
 The function `bitSet(11,3,false)` returns `3`. As decimal `11` can be expressed as bitwise `1011`, the bit whose index is 3 (the fourth from the right) is set to `0`, thus the result is `11` which corresponds to decimal `3`.
 
 The function `bitSet(11,2,true)` returns `1111` which corresponds to decimal `15`.
@@ -423,7 +423,7 @@ If the `byte` arguments are of different length, the length of returned `byte` i
 The `bitXor(integer,integer)` and `bitXor(long,long)` functions are available since **CloverETL 3.0.0**.
 
 The `byte bitXor(byte,byte)` function is available since **CloverETL 4.0.0-M2**.
-Example 129. Usage of bitXor
+Example 138. Usage of bitXor
 The function `bitXor(3, 7)` returns `4`.
 
 The function `bitXor(4, 10L)` returns `14`.
@@ -450,7 +450,7 @@ If the given argument is `null`, the function fails with an error.
 The `ceil(number)` and `ceil(decimal)` functions are available since **CloverETL 3.0.0**.
 
 The function returns `number` for all input numeric data types in **CloverDX 3.4** and older.
-Example 130. Usage of ceil
+Example 139. Usage of ceil
 The function `ceil(-3.45D)` returns `-3.0`.
 
 The function `ceil(3)` returns `3.0`.
@@ -477,7 +477,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `cos(decimal)` and `cos(number)` functions are available since **CloverETL 3.5.0-M2**.
-Example 131. Usage of cos
+Example 140. Usage of cos
 The function `cos(0.0D)` returns `1.0`.
 
 The function `cos(pi()/4)` returns `0.7071067811865476`.
@@ -497,7 +497,7 @@ The `e()` function returns the Euler number.
 **Compatibility**
 
 The `e()` function is available since **CloverETL 3.0.0**.
-Example 132. Usage of e The function `e()` returns `2.718281828459045`.
+Example 141. Usage of e The function `e()` returns `2.718281828459045`.
 **See also:**[exp](mathematical-functions-ctl2.md#exp), [pi](mathematical-functions-ctl2.md#pi)
 
 #### exp
@@ -518,7 +518,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `exp(decimal)` and `exp(number)` functions are available since **CloverETL 3.0.0**.
-Example 133. Usage of exp
+Example 142. Usage of exp
 The function `exp(1)` returns `2.7182818284590455`.
 
 The function `exp(0L)` returns `1.0`.
@@ -549,7 +549,7 @@ If the given argument is `null`, the function fails with an error.
 The `floor(decimal)` and `floor(number)` functions are available since **CloverETL 3.0.0**.
 
 The function returns `number` for all input numeric data types in **CloverETL 3.4** and older.
-Example 134. Usage of floor
+Example 143. Usage of floor
 The function `floor(5)` returns `5.0` as number (double).
 
 The function `floor(-10L)` returns `-10.0` as number (double).
@@ -574,7 +574,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `log(decimal)` and `log(number)` functions are available since **CloverETL 3.0.0**.
-Example 135. Usage of log
+Example 144. Usage of log
 The function `log(1)` returns `0.0`.
 
 The function `log(10L)` returns `2.302585092994046`.
@@ -603,7 +603,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `log10(decimal)` and `log10(number)` functions are available since **CloverETL 3.0.0**.
-Example 136. Usage of log10
+Example 145. Usage of log10
 The function `log10(1)` returns `0.0`.
 
 The function `log10(10L)` returns `1.0`.
@@ -637,7 +637,7 @@ If a given list contains only `null` values or is empty, the function returns `n
 **Compatibility**
 
 The `max(integer, integer)`, `max(long,long)`, `max(number,number)`, `max(decimal,decimal)` and `max(E[])` functions are available since **CloverETL 3.5.0-M2**.
-Example 137. Usage of max
+Example 146. Usage of max
 The function `max(1, 2)` returns `2` as integer.
 
 The function `max(3L, 4)` returns `4` as long.
@@ -673,7 +673,7 @@ If one of the given arguments is `null`, the function returns the other argument
 **Compatibility**
 
 The `min(integer)`,`min(long)`, `min(number)`, `min(decimal)` and `min(E[])` functions are available since **CloverETL 3.5.0-M2**.
-Example 138. Usage of min
+Example 147. Usage of min
 The function `min(2, 1)` returns `1` as integer.
 
 The function `min(2L, 7)` returns `2` as long.
@@ -699,7 +699,7 @@ The `pi` function returns the pi number.
 **Compatibility**
 
 The `pi()` function is available since **CloverETL 3.0.0**.
-Example 139. Usage of pi The `pi()` function returns `3.141592653589793`.
+Example 148. Usage of pi The `pi()` function returns `3.141592653589793`.
 **See also:**[e](mathematical-functions-ctl2.md#e)
 
 #### pow
@@ -720,7 +720,7 @@ If one of the given arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `pow(decimal)`, `pow(number)`, `power(number,number)` and `pow(decimal,decimal)`. functions are available since **CloverETL 3.0.0**.
-Example 140. Usage of pow
+Example 149. Usage of pow
 The function `pow(2L, 3)` returns `8.0` as number (double).
 
 The function `pow(4, 3.5D)` returns `64.00` as decimal. The integer part of second argument is used. The result is same as a result of `pow(4, 3)`.
@@ -753,7 +753,7 @@ If one of the given arguments is `null`, the function fails with an error.
 The `random()` function is available since **CloverETL 3.0.0**.
 
 The `random(number,number)` function is available since **CloverETL 6.4.0**.
-Example 141. Usage of random The function `random()` returns for example `0.23096784138492643`. It can return another random value, e.g. 0.7559335772251974.
+Example 150. Usage of random The function `random()` returns for example `0.23096784138492643`. It can return another random value, e.g. 0.7559335772251974.
 **See also:**[randomBoolean](mathematical-functions-ctl2.md#randomboolean), [randomDate](date-functions-ctl2.md#randomdate), [randomDecimal](mathematical-functions-ctl2.md#randomdecimal), [randomGaussian](mathematical-functions-ctl2.md#randomgaussian), [randomInteger](mathematical-functions-ctl2.md#randominteger), [randomLong](mathematical-functions-ctl2.md#randomlong), [randomString](string-functions-ctl2.md#randomstring), [randomUUID](string-functions-ctl2.md#randomuuid), [setRandomSeed](mathematical-functions-ctl2.md#setrandomseed), [addNoise](mathematical-functions-ctl2.md#addnoise)
 
 #### randomBoolean
@@ -769,7 +769,7 @@ If these values are sent to any numeric data type field, they are converted to t
 **Compatibility**
 
 The `randomBoolean()` function is available since **CloverETL 3.0.0**.
-Example 142. Usage of randomBoolean The function `randomBoolean()` returns `true` for example. It can return `false` too as the result is random.
+Example 151. Usage of randomBoolean The function `randomBoolean()` returns `true` for example. It can return `false` too as the result is random.
 **See also:**[random](mathematical-functions-ctl2.md#random), [randomDate](date-functions-ctl2.md#randomdate), [randomDecimal](mathematical-functions-ctl2.md#randomdecimal), [randomGaussian](mathematical-functions-ctl2.md#randomgaussian), [randomInteger](mathematical-functions-ctl2.md#randominteger), [randomLong](mathematical-functions-ctl2.md#randomlong), [randomString](string-functions-ctl2.md#randomstring), [randomUUID](string-functions-ctl2.md#randomuuid), [setRandomSeed](mathematical-functions-ctl2.md#setrandomseed), [addNoise](mathematical-functions-ctl2.md#addnoise)
 
 #### randomDecimal
@@ -788,7 +788,7 @@ If one of the given arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `randomDecimal()` and `randomDecimal(decimal, decimal)` functions are available since **CloverETL 6.4.0**.
-Example 143. Usage of randomDecimal
+Example 152. Usage of randomDecimal
 The function `randomDecimal()` returns for example `0.23096784138492643`.
 
 The function `randomDecimal(1D, 5D)` returns for example `2.35885588812358749`.
@@ -808,7 +808,7 @@ The mean value is `0`. The standard deviation is `1`.
 **Compatibility**
 
 The `randomGausian()` function is available since **CloverETL 3.0.0**.
-Example 144. Usage of randomGaussian The function `randomGaussian()` can return e.g. `-1.7478412353643376`.
+Example 153. Usage of randomGaussian The function `randomGaussian()` can return e.g. `-1.7478412353643376`.
 **See also:**[random](mathematical-functions-ctl2.md#random), [randomBoolean](mathematical-functions-ctl2.md#randomboolean), [randomDate](date-functions-ctl2.md#randomdate), [randomDecimal](mathematical-functions-ctl2.md#randomdecimal), [randomInteger](mathematical-functions-ctl2.md#randominteger), [randomLong](mathematical-functions-ctl2.md#randomlong), [randomString](string-functions-ctl2.md#randomstring), [randomUUID](string-functions-ctl2.md#randomuuid), [setRandomSeed](mathematical-functions-ctl2.md#setrandomseed), [addNoise](mathematical-functions-ctl2.md#addnoise)
 
 #### randomInteger
@@ -827,7 +827,7 @@ If one of the given arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `randomInteger()` and `randomInteger(integer,integer)` functions are available since **CloverETL 3.0.0**.
-Example 145. Usage of randomInteger
+Example 154. Usage of randomInteger
 The function `randomInteger()` returns for example `-767954592`.
 
 The function `randomInteger(0, 10)` returns for example `7`.
@@ -850,7 +850,7 @@ If one of the given arguments is `null`, the function fails with an error.
 **Compatibility**
 
 The `randomLong()` and `randomLong(long,long)` function is available since **CloverETL 3.0.0**.
-Example 146. Usage of randomLong
+Example 155. Usage of randomLong
 The function `randomLong()` returns for example `-7985800599050861074`.
 
 The function `randomLong(0, 5000000000L)` returns for example `4594415452`.
@@ -883,7 +883,7 @@ See also `roundHalfToEven(decimal, integer)`.
 The `round(decimal)` and `round(number)` functions are available since **CloverETL 3.0.0**.
 
 The `round(int)`, `round(long)`, `round(int,int)` and `round(long,int)` functions are available since **CloverETL 3.5.0-M2**.
-Example 147. Usage of round
+Example 156. Usage of round
 The function `round(2.5D)` returns `3.00` as decimal.
 
 The function `round(4.5)` returns `5` as long.
@@ -916,7 +916,7 @@ Positive `precision` denotes the number of places after the decimal point and ne
 **Compatibility**
 
 The `roundHalfToEven(decimal)` and `roundHalfToEven(number)` functions are available since **CloverETL 3.5.0-M2**.
-Example 148. Usage of roundHalfToEven
+Example 157. Usage of roundHalfToEven
 The function `roundHalfToEven(2.5D)` returns `2`.
 
 The function `roundHalfToEven(3.5D)` returns `4`.
@@ -948,7 +948,7 @@ The `setRandomSeed()` function sets random seed only for the CLT2 code of the co
 **Compatibility**
 
 The `setRandomSeed(long)` function is available since **CloverETL 3.0.0**.
-Example 149. Usage of setRandomSeed`function boolean init() { setRandomSeed(123456789012345678L); return true; }`
+Example 158. Usage of setRandomSeed`function boolean init() { setRandomSeed(123456789012345678L); return true; }`
 **See also:**[random](mathematical-functions-ctl2.md#random), [randomBoolean](mathematical-functions-ctl2.md#randomboolean), [randomDate](date-functions-ctl2.md#randomdate), [randomDecimal](mathematical-functions-ctl2.md#randomdecimal), [randomGaussian](mathematical-functions-ctl2.md#randomgaussian), [randomInteger](mathematical-functions-ctl2.md#randominteger), [randomLong](mathematical-functions-ctl2.md#randomlong), [randomString](string-functions-ctl2.md#randomstring), [randomUUID](string-functions-ctl2.md#randomuuid), [setRandomSeed](mathematical-functions-ctl2.md#setrandomseed), [addNoise](mathematical-functions-ctl2.md#addnoise)
 
 #### signum
@@ -969,7 +969,7 @@ If the argument is `null`, the function fails.
 **Compatibility**
 
 The `signum(integer)`, `signum(long)`, `signum(number)` and `signum(decimal)` functions are available since **CloverETL 3.5.0-M2**.
-Example 150. Usage of signum
+Example 159. Usage of signum
 The function `signum(-2147483648)`returns `-1`.
 
 The function `signum(-123456789012345L)` returns `-1`.
@@ -994,7 +994,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `sin(decimal)` and `sin(number)` functions are available since **CloverETL 3.5.0-M2**.
-Example 151. Usage of sin
+Example 160. Usage of sin
 The function `sin(0D)` returns `0.0`.
 
 The function `sin(pi()*0.5)` returns `1.0`.
@@ -1019,7 +1019,7 @@ If a given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `sqrt(decimal)` and `sqrt(number)` functions are available since **CloverETL 3.0.0**.
-Example 152. Usage of sqrt
+Example 161. Usage of sqrt
 The function `sqrt(81)` returns `9.0`.
 
 The function `sqrt(40532396646334464L)` returns `2.01326592E8`.
@@ -1048,7 +1048,7 @@ If the given argument is `null`, the function fails with an error.
 **Compatibility**
 
 The `tan(decimal)` and `tan(number)` functions are available since **CloverETL 3.5.0-M2**.
-Example 153. Usage of tan
+Example 162. Usage of tan
 The function `tan(0.0D)` returns `0.0`.
 
 The function `tan(pi()/3)` returns `1.7320508075688767`.
@@ -1071,7 +1071,7 @@ The `angle` is in radians. If the angle is `null`, the function fails.
 **Compatibility**
 
 The `toDegrees(decimal)` and `toDegrees(number)` functions are available since **CloverETL 3.5.0-M2**.
-Example 154. Usage of toDegrees
+Example 163. Usage of toDegrees
 The function `toDegrees(0)` returns `0.0`.
 
 The function `toDegrees(pi())` returns `180.0`.
@@ -1092,7 +1092,7 @@ The `angle` is in degrees. If the `angle` is `null`, the function fails.
 **Compatibility**
 
 The `toRadians(decimal)` and `toRadians(number)` functions are available since **CloverETL 3.5.0-M2**.
-Example 155. Usage of toRadians
+Example 164. Usage of toRadians
 The function `toRadians(0)` returns `0`.
 
 The function `toRadians(90d)` returns `1.5707963267948966`.

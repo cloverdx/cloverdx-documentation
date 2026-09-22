@@ -144,6 +144,8 @@ The *Default output and error mapping* is used whenever the response type (as de
 
 *Default output and error mapping* is specified as a transformation that allows you to use CTL and provides access to the response, its HTTP status code and even **headers** or component attributes. This gives you the ability to process all parts of the response as needed.
 
+The transformation return value is ignored. Records are sent only to output ports that are written to in the mapping. For example, if the mapping writes only to `$out.1`, a record is sent only to output port 1, even if the return value is `ALL`.
+
 The *Default output and error mapping* will also apply in cases where the API call failed on the network level or due to other runtime error - e.g., target server was not found, the call timed out and so on. In such cases, the `errorMessage` field will provide additional information about the failure. This is similar to the approach used in [HTTPConnector’s output mapping](httpconnector.html#id_httpcon_outputmapping_desc).
 
 The following example sends all responses (not covered by the *JSON response mapping*, see its example) to port 4:

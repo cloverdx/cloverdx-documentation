@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Metadata -->
 
-## 24. Metadata
+## 25. Metadata
 
 Metadata is data describing the data structure.
 

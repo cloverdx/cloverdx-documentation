@@ -1,6 +1,6 @@
 <!-- Development > Designer user interface > Import -->
 
-## 7. Import
+## 8. Import
 
 **CloverDX Designer** allows you to import already prepared **CloverDX** projects, graphs and/or metadata. If you want to import something, select **File** ****Import…​** from the main menu, or right-click in the **Project Explorer** pane and select **Import** ****Import…​** from the context menu.
 

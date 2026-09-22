@@ -35,14 +35,14 @@ This section provides detailed instructions for upgrading CloverDX Server runnin
    - If any changes to the database schema are necessary, the new Server will automatically make them when you start it for the first time. Since this operation could be dangerous as there is a chance the update might fail and damage the system database, the start of the server is suspended and a confirmation dialog is displayed.
 
 ![upgrade server confirm dialog](../figures/upgrade-server-confirm-dialog.png)
-*Figure 58. Confirm dialog*
+*Figure 57. Confirm dialog*
 
 - You are presented with 2 options:
   1. Make a database backup and proceed with the update by typing in "*backup completed*" and clicking on **Proceed**.
   2. Cancel the update. In this case, the database is not modified and the server fails to start. You must stop the new CloverDX Server container and start the previous CloverDX Server image.
 
 ![upgrade server cancel dialog](../figures/upgrade-server-cancel-dialog.png)
-*Figure 59. Cancel dialog*
+*Figure 58. Cancel dialog*
 > [!TIP]
 > The approval can be skipped by setting the server property [`autoapply.sys.db.patches`](list-of-properties.md#lop-autoapply-sys-db-patches) to the version you are upgrading to or newer.
 

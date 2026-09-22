@@ -1,6 +1,6 @@
 <!-- Development > Projects > Converting CloverDX projects -->
 
-## 12. Converting CloverDX projects
+## 13. Converting CloverDX projects
 
 You can convert local project to **Server project** and you can convert **Server project** to local project.
 

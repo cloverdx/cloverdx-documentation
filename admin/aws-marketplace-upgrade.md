@@ -20,29 +20,29 @@ The steps below focus on the actions specific to the upgrade process and assume 
 1. Pause processing of jobs in your current deployment - disable listeners and schedules. This starts the downtime of your current CloverDX Server environment.
 2. Create a snapshot of the system RDS database - you can find the RDS database in the **Resources** section of your stack.
    ![marketplace aws upgrade rds select](../figures/marketplace-aws-upgrade-rds-select.png)
-   *Figure 46. Selecting the RDS system database in the stack*
+   *Figure 45. Selecting the RDS system database in the stack*
    After clicking on it, use the **Take Snapshot** action on the database.
    ![marketplace aws upgrade rds snapshot](../figures/marketplace-aws-upgrade-rds-snapshot.png)
-   *Figure 47. Creating a snapshot of the RDS system database*
+   *Figure 46. Creating a snapshot of the RDS system database*
 3. In the **Aurora and RDS console** > **Snapshots** section, locate the **Snapshot ARN** value to be later used in the **RDS Database Snapshot** parameter in the CloudFormation upgrade template.
    ![marketplace aws upgrade rds snapshot arn](../figures/marketplace-aws-upgrade-rds-snapshot-arn.png)
-   *Figure 48. RDS system database snapshot ARN*
+   *Figure 47. RDS system database snapshot ARN*
 4. Create a snapshot of the data disk - in the **Resources** section of your stack, you can find the EC2 instance.
    ![marketplace aws upgrade ec2 select](../figures/marketplace-aws-upgrade-ec2-select.png)
-   *Figure 49. Selecting CloverDX Server EC2 instance*
+   *Figure 48. Selecting CloverDX Server EC2 instance*
    After clicking on it, in the EC2 details, you can click on the `/dev/sdf` volume to take you to the EBS volume to create the snapshot.
    ![marketplace aws upgrade ebs select](../figures/marketplace-aws-upgrade-ebs-select.png)
-   *Figure 50. Selecting data disk EBS volume*
+   *Figure 49. Selecting data disk EBS volume*
    ![marketplace aws upgrade snapshot create](../figures/marketplace-aws-upgrade-snapshot-create.png)
-   *Figure 51. Create snapshot option*
+   *Figure 50. Create snapshot option*
 5. In the **EC2 console** > **Snapshots** section, select the snapshot and locate the **Snapshot ID** value to be later used in the **Data disk snapshot** parameter in the CloudFormation upgrade template.
    ![marketplace aws upgrade datadisk snapshot id](../figures/marketplace-aws-upgrade-datadisk-snapshot-id.png)
-   *Figure 52. Data disk snapshot ID*
+   *Figure 51. Data disk snapshot ID*
 6. Resume processing of jobs in your current version - this ends the downtime.
 7. Subscribe to the new version of **CloverDX Data Management Platform - Server BYOL** offering on the AWS Marketplace, and use the **CloverDX Server Upgrade** CloudFormation template.
 8. Configure the stack of the new version:
    ![marketplace aws upgrade stack details](../figures/marketplace-aws-upgrade-stack-details.png)
-   *Figure 53. Upgrade stack details*
+   *Figure 52. Upgrade stack details*
 
 | Parameter | Description |
 | --- | --- |

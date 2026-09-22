@@ -2,7 +2,7 @@
 
 ### Tutorial: Getting started with Wrangler
 
-This chapter provides a quick introduction to using CloverDX Wrangler and Clover AI Assistant when creating your transformations. This step-by-step tutorial walks you through preparing an invoice dataset in CloverDX Wrangler from start to finish. You’ll connect data, organize work into clear blocks, add core transformations, and produce a clean output ready to be used.
+This chapter provides a quick introduction to using CloverDX Wrangler and the Wrangler Assistant when creating your transformations. This step-by-step tutorial walks you through preparing an invoice dataset in CloverDX Wrangler from start to finish. You’ll connect data, organize work into clear blocks, add core transformations, and produce a clean output ready to be used.
 
 You’ll learn how to
 
@@ -14,7 +14,7 @@ You’ll learn how to
 
 The text is split into two parts each dealing with different approaches to building your transformations in Wrangler.
 
-In the first part, [Solve the task using Clover AI Assistant](wrangler-tutorial.md#solve-the-task-using-clover-ai-assistant), you’ll learn how to effectively use Clover AI Assistant to create a transformation job. This is usually the fastest way of building jobs in Wrangler and does not require any technical knowledge to get started.
+In the first part, [Solve the task using the Wrangler Assistant](wrangler-tutorial.md#solve-the-task-using-the-wrangler-assistant), you’ll learn how to effectively use the Wrangler Assistant to create a transformation job. This is usually the fastest way of building jobs in Wrangler and does not require any technical knowledge to get started.
 
 In the second part, [Solve the task manually without AI](wrangler-tutorial.md#solve-the-task-manually-without-ai), you’ll learn how to create Wrangler transformations without using AI. This approach gives you additional control over what your finished jobs look like while still being very simple and requiring no technical skills to complete.
 
@@ -35,9 +35,9 @@ To continue with the tutorial, please download these files and save them to your
 
 You’ll upload them to your CloverDX Wrangler as part of this tutorial.
 
-#### Solve the task using Clover AI Assistant
+#### Solve the task using the Wrangler Assistant
 
-In this section you’ll learn how you can use Clover AI Assistant to create jobs in Wrangler. Note that since AI can respond in different ways, you may get different responses (even for the same prompts) than what you see on screenshots in this chapter. If you do not get a good response, you can always ignore it and try again (even by invoking the same functionality) - Clover AI Assistant does not make any changes to your jobs on its own and it always requires confirmation when adding steps.
+In this section you’ll learn how you can use the Wrangler Assistant to create jobs in Wrangler. Note that since AI can respond in different ways, you may get different responses (even for the same prompts) than what you see on screenshots in this chapter. If you do not get a good response, you can always ignore it and try again (even by invoking the same functionality) - the Assistant does not make any changes to your jobs on its own and it always requires confirmation when adding steps.
 
 ##### Step 1: Uploading sample files to Wrangler
 
@@ -57,9 +57,9 @@ In this section you’ll learn how you can use Clover AI Assistant to create job
 - Give your job a name - for example, **Late fees**. Click on **Create**. You’ll see a large preview of your data with empty **Transform** side panel. This is the job editor screen in Wrangler where you can create and edit your transformations using AI or manually.
 
 ![wrangler tutorial job empty](../figures/wrangler-tutorial-job-empty.png)
-*Figure 4. Empty job showing the data preview and Clover AI Assistant welcome screen in the Transform side bar on the right side.*
+*Figure 4. Empty job showing the data preview and Wrangler Assistant welcome screen in the Transform side bar on the right side.*
 
-Note that if you do not have your Clover AI Assistant enabled or configured, you will not see the Assistant welcome screen - you’ll only see the empty Transform panel. In such case, please ask your CloverDX administrator to configure and enable Clover AI Assistant for you. In the meantime, you can continue with the tutorial [without the Assistant](wrangler-tutorial.md#solve-the-task-manually-without-ai).
+Note that if you do not have the Wrangler Assistant enabled or configured, you will not see the Assistant welcome screen - you’ll only see the empty Transform panel. In such case, please ask your CloverDX administrator to configure and enable the Wrangler Assistant for you. In the meantime, you can continue with the tutorial [without the Assistant](wrangler-tutorial.md#solve-the-task-manually-without-ai).
 
 ##### Step 2: Find overdue invoices
 
@@ -67,10 +67,10 @@ Before you can add transformations, you need a **block**. A **block** is a conta
 
 You can create a block in two ways:
 
-- With Clover AI Assistant by typing your request in the **Ask Assistant** box.
+- With the Wrangler Assistant by typing your request in the **Ask Assistant** box.
 - Manually, using the **Add new block**.
 
-In this part of the tutorial, you’ll use the AI Assistant to create the block and transformation steps within it. Clover AI Assistant will create a new block automatically - you only need to type your request.
+In this part of the tutorial, you’ll use the Assistant to create the block and transformation steps within it. The Assistant will create a new block automatically - you only need to type your request.
 
 To find overdue invoices, do the following:
 
@@ -80,7 +80,7 @@ To find overdue invoices, do the following:
   ```
 - Press **Enter** or click **Ask Assistant** button to submit the request.
 
-Your view will switch to the Ask Assistant view which represents your conversation with Clover AI Assistant. The conversation is represented as a block in your Wrangler job. Once the AI responds, the response will look like this:
+Your view will switch to the Ask Assistant view which represents your conversation with the Assistant. The conversation is represented as a block in your Wrangler job. Once the AI responds, the response will look like this:
 
 ![wrangler tutorial filter overdue suggestions](../figures/wrangler-tutorial-filter-overdue-suggestions.png)
 *Figure 5. Ask Assistant view showing one suggested step to filter invoices so that only overdue invoices remain.*
@@ -125,7 +125,7 @@ The error message in this case tells you that the calculation failed because the
 
 There are multiple ways of solving similar data quality issues in Wrangler:
 
-- Use **Assist with fixing errors** functionality in Clover AI Assistant. The Assistant can help you fix your errors by looking at your data (this will automatically upload sample of your data to your AI provider). It will suggest steps you can take and will modify your transformation accordingly.
+- Use **Assist with fixing errors** functionality of the Wrangler Assistant. The Assistant can help you fix your errors by looking at your data (this will automatically upload sample of your data to your AI provider). It will suggest steps you can take and will modify your transformation accordingly.
 - You can **leave the errors as they are**. Wrangler will keep all the data and the error message and will reject the record when it gets to the end of the process - you’ll get a **reject file**. This is best in cases where you cannot fix the data since you get a report of errors at the end of the process and you can work on fixing the data in the source. Read more about reject files and error handling [here](transforming-data.md#error-handling-in-wrangler).
 - You can **update your Exchange rates** table to also contain the currency codes that did not match. In this case, this would not be difficult since there are only handful of currencies to add. To do this, you can simply edit the `Exchange rates.csv` file on your computer and reupload to Wrangler.
   You can also improve the overall approach by using [reference data set](data-manager-working-with-reference-data.md) in the [Data Manager](dm-index.md) to maintain the lookup table instead of a file - this would be much more scalable and easier to maintain, but it is outside the scope of this tutorial.
@@ -194,7 +194,7 @@ Finally, let’s clean up the result so that it is easier to review and present.
 - Remove all unnecessary temporary columns from the result.
 - Round the numbers to two decimal places as is usual for currency values.
 
-These changes can be made using AI Assistant, but in this part of the tutorial let’s implement them without AI to show how you can combine both approaches to get the most of Wrangler. To implement the clean-up, do the following:
+These changes can be made using the Assistant, but in this part of the tutorial let’s implement them without AI to show how you can combine both approaches to get the most of Wrangler. To implement the clean-up, do the following:
 
 - Create a new block by clicking on the **Add new block** button. A new empty block will be added at the end of the transformation.
 - Click on **Describe** to give the block a nice description. Let’s use "Clean-up".
@@ -249,7 +249,7 @@ On this screen, you can download the results of your jobs, see the rejected reco
 ![wrangler tutorial job empty ai disabled](../figures/wrangler-tutorial-job-empty-ai-disabled.png)
 *Figure 20. Empty job showing the data preview and empty Transform side bar without any blocks or steps. Note that the Ask Assistant box at the bottom is disabled since the AI is not configured in this Wrangler.*
 
-Note that if you have your **Clover AI Assistant** enabled and properly configured, your **Transform** view will look slightly different - it will contain the Clover AI Assistant welcome page. Note that regardless of whether you have AI enabled or not, you’ll be able to use the approach described in this part of the tutorial to create your job. If you’d like to see how to work with AI, please continue with the [using AI Assistant tutorial](wrangler-tutorial.md#solve-the-task-using-clover-ai-assistant).
+Note that if you have the **Wrangler Assistant** enabled and properly configured, your **Transform** view will look slightly different - it will contain the Assistant’s welcome page. Note that regardless of whether you have AI enabled or not, you’ll be able to use the approach described in this part of the tutorial to create your job. If you’d like to see how to work with AI, please continue with the [tutorial using the Wrangler Assistant](wrangler-tutorial.md#solve-the-task-using-the-wrangler-assistant).
 
 ##### Step 2: Find overdue invoices
 
@@ -258,7 +258,7 @@ Before you can add transformations steps, you need a **block**. A **block** is a
 You can create a block in two ways:
 
 - Manually, using the **Add new block**.
-- With Clover AI Assistant by typing your request in the **Ask Assistant** box.
+- With the Wrangler Assistant by typing your request in the **Ask Assistant** box.
 
 In this part of the tutorial, you’ll use the manual approach to create the block and transformation steps within it.
 
@@ -324,7 +324,7 @@ There are multiple ways of solving similar data quality issues in Wrangler:
   You can also improve the overall approach by using [reference data set](data-manager-working-with-reference-data.md) in the [Data Manager](dm-index.md) to maintain the lookup table instead of a file - this would be much more scalable and easier to maintain, but it is outside the scope of this tutorial.
   However, the approach of fixing the lookup table like this may not always be viable due to large number of values or even missing data where you cannot easily find the correct value to use as lookup key.
 - You can **update your transformation** to replace the invalid value with correct currency codes before the [Lookup](wrangler-step-lookup.md) step. This is best when there are only handful different values like this and where the data can be fixed in simple way (e.g., using [Calculate formula](wrangler-step-formula.md), [Replace text](wrangler-step-replace-text.md), another *Lookup* or other steps).
-- If you have **Clover AI Assistant** available, you can use AI to try to help you fix the errors by using Assistant’s **Assist with fixing errors** functionality. The Assistant will look at your data (this will automatically upload sample of your data to your AI provider) and try to suggest ways to fix the errors.
+- If you have the **Wrangler Assistant** available, you can use AI to try to help you fix the errors by using Assistant’s **Assist with fixing errors** functionality. The Assistant will look at your data (this will automatically upload sample of your data to your AI provider) and try to suggest ways to fix the errors.
 
 In this case, the default behavior of Wrangler is what you are looking for - it will save the rows that contain errors to a separate reject file which you can download alongside the transformation output. You can then go back to the source system with this file and ask the data owners to fix the data.
 

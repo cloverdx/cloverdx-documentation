@@ -47,7 +47,7 @@ High-level overview of steps:
    1. First step: **Specify template** - a CloudFormation template is already selected from the marketplace offering, continue with **Next**.
    2. Second step: **Specify stack details** - configure the stack:
       ![marketplace aws stack details](../figures/marketplace-aws-stack-details.png)
-      *Figure 15. Stack details*
+      *Figure 14. Stack details*
       | Parameter | Description |
       | --- | --- |
       | **Stack name** | Enter a unique stack name. |
@@ -71,19 +71,19 @@ High-level overview of steps:
    4. Create stack - click the final **Create Stack** button to start the stack. Creation of the whole stack takes some time (up to a few minutes). You will see a CloudFormation log of resources being created.
       The stack is created and ready to use when the state changes to `CREATE_COMPLETE`.
       ![marketplace aws stack deploy](../figures/marketplace-aws-stack-deploy.png)
-      *Figure 16. Stack deployment*
+      *Figure 15. Stack deployment*
 
 **Success**. **CloverDX Server** is now available in AWS. You can find its URL in the `Outputs` tab of the CloudFormation stack - the `ServerURL` entry. There, you can also find its hostname for SSH access.
 
 ![marketplace aws stack outputs](../figures/marketplace-aws-stack-outputs.png)
-*Figure 17. Stack outputs*
+*Figure 16. Stack outputs*
 
 On the Server’s URL, you will see the login page where you can:
 
 - Activate the Server - the Server is licensed in BYOL (Bring Your Own License) mode. Load a compatible Server license. If you have an existing Server license, you can download it from our [Customer Portal](https://support.cloverdx.com/license-keys). If you do not have a license, reach out to your [Account Manager](https://support.cloverdx.com/contact).
 - To log in, use the credentials set in the CloudFormation configuration wizard (**Admin user name and password** in the CloverDX section).
   ![marketplace login page](../figures/marketplace-login-page.png)
-  *Figure 18. CloverDX Server login page*
+  *Figure 17. CloverDX Server login page*
 
 The Server is running with default settings and is immediately usable. It can be configured further to get it into full production quality.
 
@@ -96,7 +96,7 @@ Deployment steps and settings in this case are similar as those described in [Qu
 1. Subscribe to **CloverDX Data Management Platform - Server BYOL** offering on the AWS Marketplace - use the **CloverDX Server Deployment Existing VPC** template.
 2. When configuring the stack, fill in the **Network settings** to point to existing VPC, Server, and database subnets, and Security Group.
    ![marketplace aws existing infra stack details](../figures/marketplace-aws-existing-infra-stack-details.png)
-   *Figure 19. Deployment to an existing infrastructure stack details*
+   *Figure 18. Deployment to an existing infrastructure stack details*
 
 | Parameter | Description |
 | --- | --- |
@@ -111,7 +111,7 @@ Deployment steps and settings in this case are similar as those described in [Qu
 The **CloverDX Server** AWS offering consists of an AMI image of a virtual machine and a CloudFormation template that orchestrates the required cloud resources:
 
 ![marketplace aws architecture](../figures/marketplace-aws-architecture.png)
-*Figure 20. Architecture - CloverDX Server in AWS marketplace*
+*Figure 19. Architecture - CloverDX Server in AWS marketplace*
 
 ##### Details of the AWS topology
 
@@ -168,7 +168,7 @@ The VM is pre-configured to send some specific logs to [Amazon CloudWatch](https
 
 1. Set the **Collect logs in CloudWatch** stack parameter to `yes`. The template will automatically create an IAM role that allows the EC2 instance to send the logs to *CloudWatch*.
    ![marketplace aws logs stack](../figures/marketplace-aws-logs-stack.png)
-   *Figure 21. Collect logs in CloudWatch stack parameter*
+   *Figure 20. Collect logs in CloudWatch stack parameter*
    This operation requires that the user starting the stack has permissions to manipulate IAM roles. Example of an IAM policy that allows the user to do that:
    ```json
    {
@@ -196,12 +196,12 @@ The VM is pre-configured to send some specific logs to [Amazon CloudWatch](https
    ```
 2. Acknowledge that the template might create IAM resources in the last step of launching the stack. If you don’t acknowledge that, you’ll see an error message `Requires capabilities : [CAPABILITY_IAM]`.
    ![marketplace aws logs iam](../figures/marketplace-aws-logs-iam.png)
-   *Figure 22. Confirmation that your stack can create IAM resources*
+   *Figure 21. Confirmation that your stack can create IAM resources*
 
 The CloudWatch integration creates a log group called `/cloverdx/stack-name`, with the following logs:
 
 ![marketplace aws logs cloudwatch](../figures/marketplace-aws-logs-cloudwatch.png)
-*Figure 23. Logs in CloudWatch*
+*Figure 22. Logs in CloudWatch*
 
 - `all.log` - main CloverDX Server log.
 - `performance.log` - contains performance metrics that are useful for diagnostics of incidents, see [Performance log](../operations/logging.md#performance-log).

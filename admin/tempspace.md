@@ -24,7 +24,7 @@ The overview panel displays a list of temp spaces for each node in a Cluster. Th
 > It is possible to use system properties and environment variables as placeholders. See [Using environment variables and system properties](tempspace.md#using-environment-variables-and-system-properties).
 
 ![tempspace overview](../figures/tempspace_overview.png)
-*Figure 118. Configured temp spaces overview - one default temp space on each Cluster node*
+*Figure 121. Configured temp spaces overview - one default temp space on each Cluster node*
 
 #### Management
 

@@ -18,7 +18,7 @@ The **CloverDX Data Integration platform** consists of two installed components:
 
 ---
 
-*This guide refers to CloverDX 7.5.1 release.*
+*This guide refers to CloverDX 7.6.0 release.*
 
 *Copyright © 2010-2026 CloverDX a.s. All rights reserved.*
 

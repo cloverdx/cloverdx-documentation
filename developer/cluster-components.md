@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Data Partitioning -->
 
-## 43. Data Partitioning
+## 44. Data Partitioning
 
 | [Common properties of Data Partitioning components](common-of-cluster-components.md) |
 | --- |

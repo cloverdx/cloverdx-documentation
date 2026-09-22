@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Components -->
 
-## 22. Components
+## 23. Components
 
 Components (nodes) are the most important graph elements. They all serve to process data. Most of them have ports through which they can receive data and/or send the processed data out. Most components work only when edges are connected to these ports. Each edge in a graph connected to a port must have metadata assigned to it. Metadata describes the structure of data flowing through the edge from one component to another.
 

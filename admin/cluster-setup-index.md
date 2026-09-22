@@ -159,7 +159,7 @@ This section contains examples of **CloverDX** cluster nodes configuration. We a
 This example describes a simple cluster: each node has a direct connection to a database.
 
 ![cluster 2 nodes basic 3d simp](../figures/cluster-2-nodes-basic-3d_simp.png)
-*Figure 38. Configuration of a 2-node cluster, each node has access to a database*
+*Figure 37. Configuration of a 2-node cluster, each node has access to a database*
 
 Configuration of Node 1 on 192.168.1.131
 
@@ -208,7 +208,7 @@ The configuration is done in a **properties file**. The file can be placed eithe
 If you use an external load balancer, the configuration of CloverDX cluster will be same as in the first example.
 
 ![cluster 2 nodes load balancer 3d simp](../figures/cluster-2-nodes-load-balancer-3d_simp.png)
-*Figure 39. Configuration of a 2-node cluster with load balancer*
+*Figure 38. Configuration of a 2-node cluster with load balancer*
 
 The `cluster.http.url` and `cluster.jgroups.bind_address` are URLs of particular cluster nodes even if you use a load balancer.
 
@@ -259,7 +259,7 @@ sandboxes.home=/home/clover/shared_sandboxes
 This example describes a cluster with three nodes where each node has a direct connection to a database.
 
 ![cluster 3 nodes simp](../figures/cluster-3-nodes_simp.png)
-*Figure 40. Configuration of a 3-node cluster, each node has access to a database*
+*Figure 39. Configuration of a 3-node cluster, each node has access to a database*
 
 Configuration of Node 1 on 192.168.1.131
 
@@ -418,6 +418,7 @@ If you run more clusters, each cluster has to have its own unique name. If the n
 3. All nodes share a DB, thus it must support transactions. For example, the MySQL table engine, MyISAM, may cause unusual behavior because it is not transactional.
 4. All nodes share a DB, which is a single point of failure. Use of a clustered DB is strongly recommended.
 5. Configure the license using the `license.file` property or upload it in the Web GUI, so it is stored in the database.
+6. Every request of one MCP session has to reach the node that created it. The [CloverDX MCP Server](server-config-mcp.md) keeps the session in the memory of that node, and a request landing on another one is refused. A load balancer in front of the cluster therefore has to be configured with session affinity – either on a cookie of its own, which the AI Assistant in the Designer returns, or on the `mcp-session-id` HTTP header, which every MCP client sends.
 
 ### Troubleshooting
 
@@ -608,7 +609,7 @@ There are three sandbox types in total - shared sandboxes, and partitioned and l
 This type of sandbox must be used for all data which is supposed to be accessible on all cluster nodes. This includes all graphs, jobflows, metadata, connections, classes and input/output data for graphs which should support high availability (HA). All shared sandboxes reside in the directory, which must be properly shared among all cluster nodes. You can use a suitable sharing/replicating tool according to the operating system and filesystem.
 
 ![cluster creating shared sandbox](../figures/cluster-creating-shared-sandbox.png)
-*Figure 41. Dialog form for creating a new shared sandbox*
+*Figure 40. Dialog form for creating a new shared sandbox*
 
 As you can see in the screenshot above, you can specify the root path on the filesystem and you can use placeholders or absolute path. Placeholders available are environment variables, system properties or **CloverDX Server** configuration property intended for this use: `sandboxes.home`. Default path is set as `[user.data.home]/CloverDX/sandboxes/[sandboxID]` where the `sandboxID` is an ID specified by the user. The `user.data.home` placeholder refers to the home directory of the user running the JVM process (`/home` subdirectory on Unix-like OS); it is determined as the first writable directory selected from the following values:
 
@@ -626,7 +627,7 @@ This sandbox type is intended for data, which is accessible only by certain clus
 Do not use a local sandbox for common project data (graphs, metadata, connections, lookups, properties files, etc.), as it can cause odd behavior. Use shared sandboxes instead.
 
 ![cluster creating local sandbox](../figures/cluster-creating-local-sandbox.png)
-*Figure 42. Dialog form for creating a new local sandbox*
+*Figure 41. Dialog form for creating a new local sandbox*
 
 The sandbox location path is pre-filled with the `sandboxes.home.local` placeholder which, by default, points to `[user.data.home]/CloverDX/sandboxes-local`. The placeholder can be configured as any other CloverDX configuration property.
 
@@ -640,7 +641,7 @@ This type of sandbox is an abstract wrapper for physical locations existing typi
    During parallel data processing, each physical location contains only part of the data. Typically, input data is split in more input files, so each file is put into a different location and each worker processes its own file.
 
 ![cluster creating partitioned sandbox](../figures/cluster-creating-partitioned-sandbox.png)
-*Figure 43. Dialog form for creating a new partitioned sandbox*
+*Figure 42. Dialog form for creating a new partitioned sandbox*
 
 As you can see on the screenshot above, for a partitioned sandbox, you can specify one or more physical locations on different cluster nodes.
 
@@ -659,4 +660,4 @@ The following figure shows how nodes in a cluster communicate and transfer data 
 This communication protocol and its implementation have consequences for the memory consumption of remote edges. A single remote edge will consume 3 x chunk size (1.5 MB by default) of memory on the node that is the source side of the edge and 1 x chunk size (512KB by default) on the node that is the target of the edge. A smaller chunk size will save memory; however, more HTTP requests will be needed to transfer the data and the network latency will lower the throughput. Large data chunks will improve the edge throughput at the cost of higher memory consumption.
 
 ![cluster remote edge](../figures/cluster_remote_edge.png)
-*Figure 44. Remote edge implementation*
+*Figure 43. Remote edge implementation*

@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Sequences -->
 
-## 27. Sequences
+## 28. Sequences
 
 **Sequence** is an object designed to create a sequence of numbers.
 

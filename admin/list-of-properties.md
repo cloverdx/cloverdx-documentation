@@ -12,7 +12,7 @@
 | [Job execution properties](list-of-properties.md#job-execution-properties) |
 | [Data Manager properties](list-of-properties.md#data-manager-properties) |
 | [AI-related properties](list-of-properties.md#ai-related-properties) |
-| [Clover AI Assistant properties](list-of-properties.md#clover-ai-assistant-properties) |
+| [Wrangler Assistant properties](list-of-properties.md#wrangler-assistant-properties) |
 
 Below you can find the configuration properties available in **CloverDX Server**. The properties can be configured using the *[Setup GUI](setup.md)* or by directly editing one of the several [configuration sources](configuration-sources.md).
 
@@ -45,7 +45,7 @@ Additional properties used for Cluster configuration can be found in [Cluster co
 | [API](list-of-properties.md#lop-api) |
 | [JVM](list-of-properties.md#lop-jvm) |
 | [Misc](list-of-properties.md#lop-misc) |
-| [Clover AI Assistant properties](list-of-properties.md#clover-ai-assistant-properties) |
+| [Wrangler Assistant properties](list-of-properties.md#wrangler-assistant-properties) |
 | [MCP Support properties](list-of-properties.md#mcp-support-properties) |
 
 | Key | Description | Default Value |
@@ -257,7 +257,7 @@ See table below for basic JNDI properties.
 You can monitor the state of the datasources via JMX. See [Additional diagnostic tools](../operations/diagnostics.md#additional-diagnostic-tools) for details on how to enable JMX on Worker. Then you can connect to the Worker’s JMX interface with tools like `jconsole` and monitor the JNDI datasources, e.g. for the number of currently open connections. The related MBeans are under the `Tomcat/DataSource/localhost///javax.sql.DataSource` path:
 
 ![jndi jmx](../figures/jndi_jmx.png)
-*Figure 87. MBean for a JNDI datasource in jconsole*
+*Figure 88. MBean for a JNDI datasource in jconsole*
 
 | Key | Description | Example |
 | --- | --- | --- |
@@ -453,9 +453,9 @@ These configuration properties control the performance and resource usage of [AI
 | 1 | For models loaded in a CloverDX Server environment, this refers to the home directory of the operating system user under which the Server is running. For models loaded locally in CloverDX Designer, it refers to the home directory of the user currently running the Designer. For more information, refer [here](https://djl.ai/docs/development/cache_management.html). |
 | --- | --- |
 
-##### Clover AI Assistant properties
+##### Wrangler Assistant properties
 
-These configuration properties control how the CloverDX Assistant connects to AI providers, manages data sampling, and configures its overall behavior.
+These configuration properties control how the Wrangler Assistant connects to AI providers, manages data sampling, and configures its overall behavior.
 
 | Key | Description | Default Value |
 | --- | --- | --- |
@@ -467,24 +467,41 @@ These configuration properties control how the CloverDX Assistant connects to AI
 | clover.assistant.dataSample.enabled | Controls whether the Assistant generates data samples used for suggesting transformations. When set to true, the Assistant may load a subset of incoming records to understand their structure. | true |
 | clover.assistant.dataSample.dataset.size | Maximum number of records loaded from each dataset when building a data sample. This limits memory usage and processing overhead. | 50 |
 | clover.assistant.dataSample.lookups.size | Maximum number of records loaded from lookup datasets during sampling. | 50 |
+| clover.assistant.model.name | Overrides the default AI model used by the Assistant. Only applicable when the OpenAI provider is selected; for Azure OpenAI and Azure AI Gateway, the model is determined by the configured deployment instead. Leave blank to use the default model. | gpt-5.4-mini |
+| clover.assistant.model.reasoningEffort | Controls how much reasoning effort the model applies before responding. Supported by reasoning models such as the GPT o-series and GPT 5.x, for any of the assistant providers. Leave blank for standard models or to use the provider default. | (not set) |
 | clover.assistant.provider | Defines which AI provider is used by the Assistant. Typical values: openai, azure, or other custom providers. | openai |
 
 ##### MCP Support properties
 
-These configuration properties control how the CloverDX Server integrates with the MCP layer, connects to a remote MCP instance, and accesses the CloverDX Customer Support Portal.
+These configuration properties control how the CloverDX Server integrates with the MCP layer: which tools it exposes, how MCP clients authenticate and how long their authorizations last, how it connects to a remote MCP instance, and how it accesses the CloverDX Customer Support Portal.
 
 | Key | Description | Default Value |
 | --- | --- | --- |
 | clover.mcp.enabled | Enables or disables the MCP functionality on the CloverDX Server. When set to true, MCP functionality features are activated and MCP endpoints become available. | true |
-| clover.mcp.anonymous.access.enabled | Allows anonymous access to MCP using the built-in clover user. Useful when OAuth2 is not enabled. | false |
+| clover.mcp.token.access.enabled | Allows an MCP client to authenticate with a CloverDX session token sent in the `X-CLOVER-USE-AUTH-TOKEN` header. This is how the [AI Assistant in the Designer](part-installation-instructions.md#enabling-cloverdx-ai-assistant) reaches the Server; other MCP clients authenticate with [OAuth2](oauth2-authentication.md). When set to `false`, the header is ignored and every client has to use OAuth2. | true |
+| clover.mcp.diagnostic.enabled | Exposes the diagnostic group – its tools, prompts and resources. When set to `false`, the group is unavailable to everybody, whatever permissions they hold. Individual tool overrides take priority over this setting. Changing this property requires a Server restart to take effect. | true |
+| clover.mcp.authoring.enabled | Exposes the authoring group – its tools, prompts and resources. When set to `false`, the group is unavailable to everybody, whatever permissions they hold. Individual tool overrides take priority over this setting. Changing this property requires a Server restart to take effect. | true |
 | clover.mcp.remote.enabled | Determines whether the server should connect to a remote MCP instance instead of using its local MCP services. | false |
 | clover.mcp.remote.url | URL of the remote MCP server. Example: [http://my-server.com:8080/clover](http://my-server.com:8080/clover) Used only when clover.mcp.remote.enabled=true. | (no default) |
 | clover.mcp.remote.user | Username used when authenticating to the remote MCP server. | (no default) |
 | clover.mcp.remote.password | Password for authenticating to the remote MCP server. | (no default) |
+| clover.mcp.support.email | Email address the MCP support tool sends a problem report to when the user asks for it. The report is sent through the Server’s own SMTP connection, so [E-mail](setup.md#e-mail) has to be configured as well. Leaving the address unset disables reporting by email; reporting to the Support Portal is unaffected. | (no default) |
+| clover.mcp.customer.portal.api.url | Base URL of the CloverDX Support Portal the MCP support tool reports problems to. | [https://clovercare.zendesk.com](https://clovercare.zendesk.com) |
 | clover.mcp.customer.portal.rate.limit | Minimum delay (in milliseconds) between consecutive API requests to the CloverDX Support Portal. Prevents excessive request volume. | 60000 |
+| clover.mcp.oauth2.redirect.allowed | Comma-separated callback URLs the MCP authorize endpoint accepts besides loopback addresses, which are always allowed. Each entry is matched in full, without wildcards, so copy the URL exactly as the client shows it. The preset value holds the callbacks of the hosted Claude and ChatGPT clients; clear it to accept loopback callbacks only. | [https://claude.ai/api/mcp/auth_callback](https://claude.ai/api/mcp/auth_callback), [https://chatgpt.com/connector_platform_oauth_redirect](https://chatgpt.com/connector_platform_oauth_redirect) |
+| clover.mcp.oauth2.access.token.ttl.seconds | Lifetime of an access token issued to an MCP client, in seconds. It also decides how often the account is re-checked at the identity provider, because that happens when the client refreshes. | 3600 (1 hour) |
+| clover.mcp.oauth2.refresh.token.ttl.days | Lifetime of a refresh token issued to an MCP client, in days. It slides on use – every rotation extends it – so it limits inactivity rather than the authorization itself. | 30 |
+| clover.mcp.oauth2.refresh.token.max.lifetime.days | How long an MCP authorization may be renewed for at all, in days, counted from when it was granted. `0` lets an authorization in daily use go on indefinitely; any other value is how often the user is sent through the identity provider again, however actively the client is used. | 90 |
+| clover.mcp.oauth2.refresh.token.grace.seconds | How long after a rotation the refresh token it replaced is still accepted, in seconds. It covers a client that renewed but did not keep the answer – one restored from a snapshot, or a second process reading the token store before the first wrote to it. Within the window such a call is answered with the replacement already issued instead of signing the client out. | 30 |
 | clover.mcp.read.only | When set to `true`, write MCP tools are blocked and only read-only tools are exposed to AI agents. Individual tool overrides (`clover.mcp.tools.individual.enabled`, `clover.mcp.tools.individual.disabled`) take priority over this setting. Changing this property requires a Server restart to take effect. | false |
 | clover.mcp.tools.individual.enabled | Comma-separated list of individual tool names to enable. A tool listed here is always enabled, even if read-only mode is on. | (no default) |
 | clover.mcp.tools.individual.disabled | Comma-separated list of individual tool names to disable. A tool listed here is always disabled, even if read-only mode is off. | (no default) |
+| clover.mcp.sandbox.allowedFiles | Comma-separated list of wildcard patterns of files MCP sandbox file tools may access, matched case-insensitively against the whole sandbox-relative path (e.g. `*.grf`, `data/*.csv`). Empty means every file is allowed. `clover.mcp.sandbox.deniedFiles` takes priority. | (no default) |
+| clover.mcp.sandbox.deniedFiles | Comma-separated list of wildcard patterns of files MCP sandbox file tools must not access. Applied last — always wins over the allow list. A pattern like `hidden_dir/*` hides the directory itself and everything under it. | (no default) |
+| clover.mcp.sandbox.git.max.file.bytes | Per-file size cap, in bytes, for the git repository behind the AI Assistant’s checkpoints and rollback. A file above the cap is kept out of the repository entirely rather than versioned, so a rollback does not restore it. | 5242880 (5 MB) |
+| clover.mcp.dataservice.invoke.timeout.seconds | How long the `dataservice_invoke` tool waits for an endpoint to answer before it reports a timeout. The graph behind the endpoint is not aborted – the wait ends, the run does not. Raise it for endpoints that are meant to take longer. | 120 |
+| clover.mcp.knowledge.company.sandbox | Location of the company knowledge store the AI agents read: the sandbox code, followed by the folder inside it (e.g. `company_knowledge/knowledge_company`). Empty means there is no company knowledge store. | (no default) |
+| clover.mcp.knowledge.company.cache.ttl.seconds | How long, in seconds, the company knowledge entries stay in memory before the store is read again. `0` reads the store on every call. | 60 |
 
 ##### List of all properties
 
@@ -498,6 +515,8 @@ These configuration properties control how the CloverDX Server integrates with t
 | [clover.assistant.dataSample.enabled](list-of-properties.md#lop-clover-assistant-datasample-enabled) |
 | [clover.assistant.dataSample.dataset.size](list-of-properties.md#lop-clover-assistant-datasample-dataset-size) |
 | [clover.assistant.dataSample.lookups.size](list-of-properties.md#lop-clover-assistant-datasample-lookups-size) |
+| [clover.assistant.model.name](list-of-properties.md#lop-clover-assistant-model-name) |
+| [clover.assistant.model.reasoningEffort](list-of-properties.md#lop-clover-assistant-model-reasoningeffort) |
 | [clover.assistant.provider](list-of-properties.md#lop-clover-assistant-provider) |
 | [clover.config.file](list-of-properties.md#lop-config-file) |
 | [clover.event.fileCheckMinInterval](list-of-properties.md#lop-clover-event-filecheckmininterval) |
@@ -506,14 +525,29 @@ These configuration properties control how the CloverDX Server integrates with t
 | [clover.home](list-of-properties.md#lop-clover-home) |
 | [clover.inDevelopment](list-of-properties.md#lop-clover-indevelopment) |
 | [clover.mcp.enabled](list-of-properties.md#lop-clover-mcp-enabled) |
-| [clover.mcp.anonymous.access.enabled](list-of-properties.md#lop-clover-mcp-anonymous-access-enabled) |
+| [clover.mcp.token.access.enabled](list-of-properties.md#lop-clover-mcp-token-access-enabled) |
+| [clover.mcp.diagnostic.enabled](list-of-properties.md#lop-clover-mcp-diagnostic-enabled) |
+| [clover.mcp.authoring.enabled](list-of-properties.md#lop-clover-mcp-authoring-enabled) |
 | [clover.mcp.remote.enabled](list-of-properties.md#lop-clover-mcp-remote-enabled) |
 | [clover.mcp.remote.url](list-of-properties.md#lop-clover-mcp-remote-url) |
 | [clover.mcp.remote.user](list-of-properties.md#lop-clover-mcp-remote-user) |
 | [clover.mcp.remote.password](list-of-properties.md#lop-clover-mcp-remote-password) |
+| [clover.mcp.support.email](list-of-properties.md#lop-clover-mcp-support-email) |
+| [clover.mcp.customer.portal.api.url](list-of-properties.md#lop-clover-mcp-customer-portal-api-url) |
 | [clover.mcp.customer.portal.rate.limit](list-of-properties.md#lop-clover-mcp-customer-portal-rate-limit) |
+| [clover.mcp.oauth2.redirect.allowed](list-of-properties.md#lop-clover-mcp-oauth2-redirect-allowed) |
+| [clover.mcp.oauth2.access.token.ttl.seconds](list-of-properties.md#lop-clover-mcp-oauth2-access-token-ttl-seconds) |
+| [clover.mcp.oauth2.refresh.token.ttl.days](list-of-properties.md#lop-clover-mcp-oauth2-refresh-token-ttl-days) |
+| [clover.mcp.oauth2.refresh.token.max.lifetime.days](list-of-properties.md#lop-clover-mcp-oauth2-refresh-token-max-lifetime-days) |
+| [clover.mcp.oauth2.refresh.token.grace.seconds](list-of-properties.md#lop-clover-mcp-oauth2-refresh-token-grace-seconds) |
 | [clover.mcp.read.only](list-of-properties.md#lop-clover-mcp-read-only) |
 | [clover.mcp.tools.individual.disabled](list-of-properties.md#lop-clover-mcp-tools-individual-disabled) |
+| [clover.mcp.sandbox.allowedFiles](list-of-properties.md#lop-clover-mcp-sandbox-allowedfiles) |
+| [clover.mcp.sandbox.deniedFiles](list-of-properties.md#lop-clover-mcp-sandbox-deniedfiles) |
+| [clover.mcp.sandbox.git.max.file.bytes](list-of-properties.md#lop-clover-mcp-sandbox-git-max-file-bytes) |
+| [clover.mcp.dataservice.invoke.timeout.seconds](list-of-properties.md#lop-clover-mcp-dataservice-invoke-timeout-seconds) |
+| [clover.mcp.knowledge.company.sandbox](list-of-properties.md#lop-clover-mcp-knowledge-company-sandbox) |
+| [clover.mcp.knowledge.company.cache.ttl.seconds](list-of-properties.md#lop-clover-mcp-knowledge-company-cache-ttl-seconds) |
 | [clover.mcp.tools.individual.enabled](list-of-properties.md#lop-clover-mcp-tools-individual-enabled) |
 | [clover.smtp.additional.*](list-of-properties.md#lop-clover-smtp-additional) |
 | [clover.smtp.authentication.method](list-of-properties.md#lop-clover-smtp-authentication-method) |

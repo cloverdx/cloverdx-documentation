@@ -103,7 +103,7 @@ You can map Clover fields to database fields either by query or using a table na
 - **The Query Contains Question Marks**
   Question marks serve as placeholders for Clover field values in one of the ways shown below. For more information, see [Mapping of Clover fields to DB fields](dboutputtable.md#mapping-of-clover-fields-to-db-fields).
   See also [SQL Query Editor](dboutputtable.md#sql-query-editor).
-  Example 376. Examples of Insert Queries
+  Example 388. Examples of Insert Queries
   | Statement | Form |
   | --- | --- |
   | **Infobright, Informix, MSSQL2008 or newer, MSSQL2000-2005, MySQL, Sybase[[1]](dboutputtable.md#dboutputtable-footnote3)** |  |
@@ -121,7 +121,7 @@ You can map Clover fields to database fields either by query or using a table na
   | --- | --- |
   | 3 |  These databases do not return anything in the `insert` statement. |
   | --- | --- |
-  Example 377. Examples of Update and Delete Queries
+  Example 389. Examples of Update and Delete Queries
   | Statement | Form |
   | --- | --- |
   | **All databases[[1]](dboutputtable.md#dboutputtable-footnote6)** |  |

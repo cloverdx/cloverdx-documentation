@@ -1,6 +1,6 @@
 <!-- Development > Designer user interface > Designer default layout -->
 
-## 3. Designer default layout
+## 4. Designer default layout
 
 The **CloverDX** perspective consists of 5 panes:
 

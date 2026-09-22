@@ -48,7 +48,7 @@ If `targetField` is also omitted, the function returns all source fields that ar
 - It also throws an exception if `sourceIndex` is out of bounds or `null`.
 
 ##### Examples
-Example 248. Usage of getMappedSourceFields
+Example 257. Usage of getMappedSourceFields
 
 ```ctl
 getMappedSourceFields("$customerId=$crmId;$email=$crmEmail;#$customerId=$orderCustomerId;$status=$orderStatus;", "customerId", 1);
@@ -92,7 +92,7 @@ If `sourceField` is also omitted, the function returns all target fields that ha
 - It also throws an exception if `sourceIndex` is out of bounds or `null`.
 
 ##### Examples
-Example 249. Usage of getMappedTargetFields
+Example 258. Usage of getMappedTargetFields
 
 ```ctl
 getMappedTargetFields("$billingCity=$city;$shippingCity=$city;#$billingCity=$location;$warehouseCity=$city;", "city", 1);
@@ -133,7 +133,7 @@ If `sourceIndex` is omitted, the function returns `true` if a field with the spe
 - It also throws an exception if `sourceIndex` is out of bounds or `null`.
 
 ##### Examples
-Example 250. Usage of isSourceFieldMapped
+Example 259. Usage of isSourceFieldMapped
 
 ```ctl
 isSourceFieldMapped("$customerId=$crmId;$email=$crmEmail;#$customerId=$orderCustomerId;$status=$orderStatus;", "orderStatus", 1);
@@ -173,7 +173,7 @@ The function throws an exception if `mapping` is invalid or `null`.
 ##### Compatibility
 
 - The `isTargetFieldMapped` function is available since **CloverETL 4.1.0**.
-Example 251. Usage of isTargetFieldMapped
+Example 260. Usage of isTargetFieldMapped
 
 ```ctl
 isTargetFieldMapped("$customerId=$crmId;$email=$crmEmail;#$customerId=$orderCustomerId;$status=$orderStatus;", "status");
