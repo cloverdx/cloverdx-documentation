@@ -1,6 +1,6 @@
 <!-- Development > Projects > Working with CloverDX Server projects -->
 
-## 13. Working with CloverDX Server projects
+## 14. Working with CloverDX Server projects
 
 | [CloverDX Server project basic principles](server-projects-usage.md#cloverdx-server-project-basic-principles) |
 | --- |

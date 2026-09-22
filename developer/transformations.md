@@ -376,6 +376,10 @@ If you press these two keys outside any of the expressions, the help offers a li
 ![transformation 13](../figures/transformation_13.png)
 *Figure 156. Content assist (List of CTL functions)*
 
+What is offered depends on where the cursor stands: the assist resolves the expression being written and prefers the proposals which fit the type expected at that place.
+
+A proposal is described in a documentation window next to the list - a built-in function by its own documentation, a function, record type or variable of your own by its [documentation comment](language-reference-ctl2.md#documentation-comments).
+
 If you have an error in your definition, a red circle with a white cross appears on the corresponding line followed by a more detailed information at the lower left corner.
 
 ###### Convert to Java

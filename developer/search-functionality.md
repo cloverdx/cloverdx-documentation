@@ -1,6 +1,6 @@
 <!-- Development > Designer user interface > Search functionality -->
 
-## 5. Search functionality
+## 6. Search functionality
 
 To search in **CloverDX Designer**, select **Search** ****Search…​** ****CloverDX Search** from the main menu.
 

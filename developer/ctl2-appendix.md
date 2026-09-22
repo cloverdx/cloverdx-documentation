@@ -2,7 +2,7 @@
 
 ### CTL2 appendix - list of national-specific characters
 
-Several functions, e.g. ["editDistance (string, string, integer, string, integer)"](string-functions-ctl2.md#editdistance) need to operate with special national characters. These are important especially when sorting items with a defined comparison strength.
+Several functions, e.g. ["editDistance (string, string, integer, string, integer)"](string-functions-ctl2.md#editdistance-arg1-arg2-strength-locale-maxdifference) need to operate with special national characters. These are important especially when sorting items with a defined comparison strength.
 
 The list below shows first the locale and then the list of its national-specific derivatives for each letter. These may be treated either as equal or different characters depending on the comparison strength you define.
 

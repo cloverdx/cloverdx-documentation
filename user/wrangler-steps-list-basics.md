@@ -15,14 +15,14 @@ For supported steps, the editor provides preview functionality, which helps you 
 Step preview is shown in a panel next on top of the main data preview. Step preview displays the output produced by the currently edited step together with the related source columns when they are needed for context. This allows you to compare the original values with the previewed result directly during editing.
 
 ![step preview](../figures/step-preview.gif)
-*Figure 104. Step preview showing the output of the Lookup step.*
+*Figure 108. Step preview showing the output of the Lookup step.*
 
 For steps that remove rows from the data set, the preview will show you which rows will be removed since there are no newly produced output columns or values. This applies to steps such as [Filter rows based on formula](wrangler-step-filter-with-formula.md) and [Remove rows with errors](wrangler-step-remove-rows-with-errors.md).
 
 These steps do not change values or create new columns. Instead, they remove rows from further processing based on various conditions. To make this clear before applying the step, rows that will be removed are highlighted in the preview, while rows that will remain are shown without this highlight.
 
 ![step preview filtered out rows](../figures/step-preview-filtered-out-rows.gif)
-*Figure 105. Step preview showing rows which will be removed with yellow background.*
+*Figure 109. Step preview showing rows which will be removed with yellow background.*
 
 Filtered-out rows are also marked in the custom vertical scrollbar. The markers are positioned proportionally to the row location in the preview, similarly to error indicators, so you can notice affected rows even when they are outside of the currently visible part of the preview.
 

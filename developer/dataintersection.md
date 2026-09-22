@@ -90,7 +90,7 @@ A transformation must be defined if output port 1 is connected. The transformati
 
 - **Join key**
   Expressed as a sequence of individual subexpressions separated from each other by a semicolon. Each subexpression is an assignment of a field name from the first input port (prefixed by a dollar sign), on the left side, and a field name from the second input port (prefixed by a dollar sign), on the right side.
-  Example 395. Join Key for DataIntersection`$first_name=$fname;$last_name=$lname`
+  Example 407. Join Key for DataIntersection`$first_name=$fname;$last_name=$lname`
   In this **Join key**, `first_name` and `last_name` are fields of metadata on the first input port and `fname` and `lname` are fields of metadata on the second input port.
   Pairs of records containing the same value of this key on both input ports are transformed and sent to the second output port. Records incoming through the first input port for which there is no counterpart on the second input port are sent to the first output port without being changed. Records incoming through the second input port for which there is no counterpart on the first input port are sent to the third output port without being changed.
 > [!NOTE]

@@ -136,7 +136,7 @@ $driver_field1=$slave_field1(parameters);...;$driver_fieldN=$slave_fieldN(parame
 
 ![200800](../figures/200800.png)
 *Figure 470. An Example of the Join Key Attribute in ApproximativeJoin Component*
-Example 405. Join Key for ApproximativeJoin
+Example 417. Join Key for ApproximativeJoin
 `$first_name=$fname(3 0.8 true false false false);$last_name=$lname(4 0.2 true false false false)`. In this **Join key**, `first_name` and `last_name` are fields from the first (master) data flow and `fname` and `lname` are fields from the second (slave) data flow.
 
 ##### Matching key
@@ -150,7 +150,7 @@ In the **Slave key** tab, you must select one of the slave fields in the **Field
 
 ![200810B](../figures/200810B.png)
 *Figure 472. Matching Key Wizard (Slave Key Tab)*
-Example 406. Matching Key
+Example 418. Matching Key
 **Matching key** looks like this:
 
 ```ctl

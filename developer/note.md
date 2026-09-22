@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Notes -->
 
-## 29. Notes
+## 30. Notes
 
 Notes let the user type necessary pieces of information directly into a graph. The notes can serve as a documentation to a particular graph.
 

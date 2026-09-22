@@ -1,6 +1,6 @@
 <!-- Development > Advanced > Shared lookup tables in CloverDX Server -->
 
-## 49. Shared lookup tables in CloverDX Server
+## 50. Shared lookup tables in CloverDX Server
 
 Since CloverDX 6.5 it is possible to define **shared lookup tables** that are managed by the Server and are accessible to the Data Manager. These lookups work like [Simple lookup](lookup-tables.md#simple-lookup-table) or [Database lookup](lookup-tables.md#database-lookup-table), but their data is stored and cached by the Server rather than by each job that works with the lookup.
 

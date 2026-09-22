@@ -90,7 +90,7 @@ The transformation uses a CTL template for **Denormalizer**, implements a `Recor
 ##### Key
 
 **Key** is expressed as a sequence of field names separated from each other by a semicolon, colon, or pipe.
-Example 396. Key for Denormalizer`first_name;last_name`
+Example 408. Key for Denormalizer`first_name;last_name`
 In this **Key**, `first_name` and `last_name` are fields of metadata on input port.
 
 ##### Sort order

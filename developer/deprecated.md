@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Deprecated -->
 
-## 46. Deprecated
+## 47. Deprecated
 
 **Deprecated** category contains components that have been replaced by other new components. We do not recommend using deprecated components in newly created graphs.
 

@@ -102,7 +102,7 @@ The executable to run is `CloverDXDesigner/CloverDXDesigner`.
 
 ### Starting
 
-The first thing you will be prompted to define after the **CloverDX Designer** launches, is the **workspace** folder. **Workspace** is a place your projects will be stored at; usually a folder in the user’s `home` directory (e.g., `C:\Users\your_name\workspace` or `/home/your_name/CloverDX/workspace` )
+The first thing you will be prompted to define after the **CloverDX Designer** launches, is the **workspace** folder. **Workspace** is a place your projects will be stored at; usually a folder in the user’s `home` directory (e.g., `C:\Users\your_name\workspace` or `/home/your_name/CloverDX/workspace`). You can of course select any parent directory for your workspaces.
 
 ![cloverdx designer workspace selection](../figures/cloverdx-designer-workspace-selection.png)
 *Figure 1. Workspace selection shown during CloverDX Designer start-up.*
@@ -167,27 +167,32 @@ You can see details about your license in [*License Manager*](part-installation-
 >
 > The license key can be also acquired on your **CloverDX Account**: log in at [www.cloverdx.com/login](https://support.cloverdx.com/login) and under the section **Download** you see a **View license key** button.
 
-### Activating CloverDX AI Assistant
+### Enabling CloverDX AI Assistant
 
-**CloverDX AI Assistant** requires its own separate license. If you wish to use it, you’ll have to load the Assistant’s license into your CloverDX Designer after you’ve activated your Designer. To get your Assistant license, please visit [License keys](https://support.cloverdx.com/license-keys) on [CloverDX Customer Portal](https://support.cloverdx.com/myaccount).
+**CloverDX AI Assistant** is part of every activated **CloverDX Designer** – there is no Designer license to add for it. Whether you may use it is decided by the **CloverDX Server** your project is connected to: your Server user account has to hold an **AI Authoring seat**. The seat is a Server license item and is assigned by the Server administrator; one seat per named user covers both the Assistant in Designer and the authoring tools of the CloverDX MCP Server used from other AI clients. See [AI Authoring seats](server-config-mcp.md#ai-authoring-seats) for the model.
 
-When you first start CloverDX if the Assistant is not yet activated, it will show you a welcome screen which will guide you through the activation process via a simple wizard.
+The Assistant asks the Server before each step you take, and three conditions have to hold on the Server:
 
-![assistant first start activate](../figures/assistant-first-start-activate.png)
-*Figure 7. First start of CloverDX AI Assistant will show you a welcome screen where you can easily add your Assistant license by clicking on the Activate Assistant button.*
+- MCP and both of its tool groups are enabled. See [CloverDX MCP Server](server-config-mcp.md).
+- Your account is allowed to use both groups of MCP tools, the diagnostic and the authoring one – the **Use all MCP tools** permission grants both at once. See [AI permissions](groups.md#permission-ai).
+- The users holding the authoring permission fit into the AI Authoring seats the Server license grants.
 
-Alternatively, you can also add the license via [License Manager dialog](part-installation-instructions.md#license-manager).
+If any of them is missing, the Assistant is locked and tells you at the top of the chat what to ask your Server administrator for. Assistant projects can still be opened and their conversations read; only writing is taken away – you cannot continue a chat or start a new one.
+> [!NOTE]
+> The Assistant works with projects stored on a CloverDX Server. In a local project the chat stays locked.
 
-Once your Assistant is activated, you’ll have to configure the API keys so that it can access Large Language Model – the Assistant is a Bring-your-own-key experience (BYOK). See more details about the Assistant’s LLM configuration in [CloverDX AI Assistant configuration](designer-configuration.md#cloverdx-ai-assistant-configuration).
+One account may use the Assistant from one workstation at a time. If the same account starts working with the Assistant on another machine, that machine takes the account over and this one is refused for the next hour, with a message saying when it may be used again. See [One place at a time](server-config-mcp.md#one-place-at-a-time).
+
+Once you can use the Assistant, you’ll have to configure the API keys so that it can access Large Language Model – the Assistant is a Bring-your-own-key experience (BYOK). See more details about the Assistant’s LLM configuration in [CloverDX AI Assistant configuration](designer-configuration.md#cloverdx-ai-assistant-configuration).
 
 ### License manager
 
-**License Manager** is a dialog that allows you to manage all licenses that have been loaded into your **CloverDX Designer**. Multiple licenses can be loaded at any time – some of them may be older, inactive licenses; or you can have a separate license that unlocks **CloverDX AI Assistant**, etc.
+**License Manager** is a dialog that allows you to manage all licenses that have been loaded into your **CloverDX Designer**. Multiple licenses can be loaded at any time – some of them may be older, inactive licenses, etc.
 
 The manager is accessible in the main menu – select **Help** ****CloverDX** ****License Manager**.
 
 ![license manager](../figures/license-manager.png)
-*Figure 8. License Manager showing two installed and active licenses – the first one activates the Designer itself while the second one is for CloverDX AI Assistant.*
+*Figure 7. License Manager showing an installed and active license.*
 
 License manager allows you to:
 
@@ -206,7 +211,7 @@ License manager allows you to:
 **CloverDX** License dialog shows all available information about the license. **License terms** are available from this place. It can be opened from **License Manager** ([License Manager](part-installation-instructions.md#license-manager))
 
 ![license details dialog](../figures/license-details-dialog.png)
-*Figure 9. CloverDX License dialog*
+*Figure 8. CloverDX License dialog*
 
 ### Troubleshooting
 
@@ -219,23 +224,23 @@ This chapter provides information about some common issues you may encounter whi
 In the case of installation of **CloverDX Designer** on Microsoft Windows, the installer may be prevented from starting by SmartScreen. Microsoft Defender SmartScreen is a security feature built into Windows that is designed to protect you from malware. It picks up CloverDX since it uses exe-based installer rather than msi-based one.
 
 ![installation smart screen 1](../figures/installation-smart-screen-1.png)
-*Figure 10. SmartScreen warning.*
+*Figure 9. SmartScreen warning.*
 
-To run the Designer installer, you must click on **More info** button in the bottom right corner. This will show you additional information about the installer – its signature (certificate) overview and a **Run**.
+To run the Designer installer, you must click on **More info** link under the text in the dialog. This will show you additional information about the installer – its signature (certificate) overview and additional option **Run anyway**.
 
 ![installation smart screen 2](../figures/installation-smart-screen-2.png)
-*Figure 11. SmartScreen showing additional information about the installer. Note the "funny" characters are OK - SmartScreen warning does not support Czech characters which appear in the address on the certificate.*
+*Figure 10. SmartScreen showing additional information about the installer.*
 
-Click on the **Run** button to proceed with the installation.
+Click on the **Run anyway** button to proceed with the installation.
 
 ##### User account control
 
 Installing CloverDX Designer on Microsoft Windows may require administrator privileges. As a security measure against automated installers, Windows will show a User Account Control prompt asking you to confirm that CloverDX Designer installer may make changes to your computer.
 
-Click **YES** to allow the installer to run.
+Click **Yes** to allow the installer to run.
 
 ![installation user account control](../figures/installation-user-account-control.png)
-*Figure 12. User Account Control asking for confirmation to continue with the installation.*
+*Figure 11. User Account Control asking for confirmation to continue with the installation.*
 
 ##### Windows firewall
 

@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Lookup tables -->
 
-## 28. Lookup tables
+## 29. Lookup tables
 
 Lookup tables are data structures that allow fast access to data stored using a known key or SQL query. This way you can reduce the need to browse a database or data files.
 > [!WARNING]

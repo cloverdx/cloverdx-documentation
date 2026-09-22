@@ -92,6 +92,9 @@
 | [getEnvironmentVariables](miscellaneous-functions-ctl2.md#getenvironmentvariables) |
 | [getType](miscellaneous-functions-ctl2.md#gettype) |
 | [getFieldIndex](field-access-functions-ctl2.md#getfieldindex) |
+| [getFieldGroupList](field-access-functions-ctl2.md#getfieldgrouplist) |
+| [getFieldGroupMembers](field-access-functions-ctl2.md#getfieldgroupmembers) |
+| [getFieldGroupName](field-access-functions-ctl2.md#getfieldgroupname) |
 | [getFieldLabel](field-access-functions-ctl2.md#getfieldlabel) |
 | [getFieldName](field-access-functions-ctl2.md#getfieldname) |
 | [getFieldProperties](field-access-functions-ctl2.md#getfieldproperties) |
@@ -184,6 +187,7 @@
 | [long2packDecimal](conversion-functions-ctl2.md#long2packdecimal) |
 | [lowerCase](string-functions-ctl2.md#lowercase) |
 | [lpad](string-functions-ctl2.md#lpad) |
+| [map2record](conversion-functions-ctl2.md#map2record) |
 | [matches](string-functions-ctl2.md#matches) |
 | [matchGroups](string-functions-ctl2.md#matchgroups) |
 | [max](mathematical-functions-ctl2.md#max) |
@@ -192,6 +196,7 @@
 | [metaphone](string-functions-ctl2.md#metaphone) |
 | [min](mathematical-functions-ctl2.md#min) |
 | [next](lookup-table-functions-ctl2.md#next) |
+| [normalizeDecimal](string-functions-ctl2.md#normalizedecimal) |
 | [normalizePath](string-functions-ctl2.md#normalizepath) |
 | [normalizeWhitespaces](string-functions-ctl2.md#normalizewhitespaces) |
 | [num2bool](conversion-functions-ctl2.md#num2bool) |
@@ -298,6 +303,7 @@
 | [validateCreditCard](string-functions-ctl2.md#validatecreditcard) |
 | [validateEmail](string-functions-ctl2.md#validateemail) |
 | [validatePhoneNumber](string-functions-ctl2.md#validatephonenumber) |
+| [variant2record](conversion-functions-ctl2.md#variant2record) |
 | [writeAvro](conversion-functions-ctl2.md#writeavro) |
 | [writeBson](conversion-functions-ctl2.md#writebson) |
 | [writeExtendedBson](conversion-functions-ctl2.md#writeextendedbson) |

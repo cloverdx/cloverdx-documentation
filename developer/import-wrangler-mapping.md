@@ -1,6 +1,6 @@
 <!-- Development > Projects > Import Wrangler mapping -->
 
-## 16. Import Wrangler mapping
+## 17. Import Wrangler mapping
 
 In some cases it is very useful to allow Wrangler users to define data transformations that are then used in more complex projects created in the Designer. A common use case for this is data ingestion where you need to read many different data types (often provided by customers in inconsistent formats) and transform incoming data to a common format (e.g., a data warehouse table). In such cases, it is advantageous for the business analysts to be able to easily create their transformations without having to understand CloverDX Designer and the complexities of building a subgraph that reads and transforms data into the specific format.
 

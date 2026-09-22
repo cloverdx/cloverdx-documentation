@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Readers -->
 
-## 36. Readers
+## 37. Readers
 
 | [Common properties of Readers](common-of-readers.md) |
 | --- |

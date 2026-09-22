@@ -13,7 +13,7 @@ Lookup step works by searching for values of key columns in lookup data set. If 
 The principle of a lookup step can be illustrated on the following diagram:
 
 ![lookup step diagram](../figures/lookup-step-diagram.png)
-*Figure 106. Lookup step where main data set contains line items, lookup data set contains products and the output data set contains extended line item table with product details added at the end.*
+*Figure 110. Lookup step where main data set contains line items, lookup data set contains products and the output data set contains extended line item table with product details added at the end.*
 
 The above diagram uses following lookup settings:
 

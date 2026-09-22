@@ -1,6 +1,6 @@
 <!-- Development > Projects > Export project as library -->
 
-## 15. Export project as library
+## 16. Export project as library
 > [!TIP]
 > See the [Libraries](libraries-dev.md) section for more information on CloverDX libraries and libraries development best practices and recommendations.
 

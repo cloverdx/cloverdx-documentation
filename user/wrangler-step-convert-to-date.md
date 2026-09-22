@@ -21,10 +21,10 @@ To learn more about formatting options consult our [date format documentation](t
 A simple example showing conversion results alongside settings step settings:
 
 ![convert to date example](../figures/convert-to-date-example.png)
-*Figure 112. Result of the conversion*
+*Figure 116. Result of the conversion*
 
 ![convert to date settings](../figures/convert-to-date-settings.png)
-*Figure 113. Convert to date step settings*
+*Figure 117. Convert to date step settings*
 
 Note that for the above screenshot, the date column uses `yyyy-MM-dd HH:mm:ss.SSS` display format. You can observe that:
 

@@ -1,6 +1,6 @@
 <!-- Development > Designer user interface > Common dialogs -->
 
-## 6. Common dialogs
+## 7. Common dialogs
 
 ### URL file dialog
 

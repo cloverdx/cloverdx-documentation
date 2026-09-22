@@ -11,7 +11,7 @@ The Server environment can integrate with an [SMTP server](setup.md#e-mail) to s
 Architecturally, the server consists of two standalone JVMs (Java Virtual Machine): the ***Core***, which orchestrates overall operations, and the ***Worker***, responsible for executing jobs.
 
 ![server worker architecture](../figures/server-worker-architecture.png)
-*Figure 13. System architecture*
+*Figure 12. System architecture*
 
 #### CloverDX Core
 

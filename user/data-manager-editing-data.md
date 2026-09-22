@@ -7,7 +7,7 @@
 Data is edited on the **Data Editor** screen which is shown when you click on a data set or data set batch. Transactional data sets and reference data sets use slightly different layout of the Data Editor screen but most of the functionality is the same. In this chapter we’ll describe the common functionality and will point out the differences between the two types of data sets.
 
 ![data editor with audit new](../figures/data-editor-with-audit-new.png)
-*Figure 182. Data Editor screen for transactional data sets showing the data grid and audit side bar.*
+*Figure 196. Data Editor screen for transactional data sets showing the data grid and audit side bar.*
 
 The main part of the screen is taken by the **editor grid** (or data grid). The grid shows data in the data set as a simple table with columns shown in the same order as the order defined in the data set layout.
 
@@ -30,7 +30,7 @@ Each column shows additional information in its header:
 Data editor uses different **background colors** when working with transactional data sets to provide additional information about the row. The following screenshot show different background colors you may see in the data grid:
 
 ![data editor row colors explained](../figures/data-editor-row-colors-explained.png)
-*Figure 183. Colors in the data grid provide additional information about the row.*
+*Figure 197. Colors in the data grid provide additional information about the row.*
 
 Most rows typically use the default color (white) to denote that they do not have any special property.
 
@@ -43,7 +43,7 @@ There can be any number of **selected rows** while there is always at maximum on
 Reference data sets use slightly different color scheme in their data editor. The following screenshot provides overview of different colors you can see when working with reference data sets:
 
 ![data editor reference row colors explained](../figures/data-editor-reference-row-colors-explained.png)
-*Figure 184. Colors in the data grid provide additional information about the row.*
+*Figure 198. Colors in the data grid provide additional information about the row.*
 
 Rows that do not have any special property use the white background and dark text. [Disabled rows](data-manager-working-with-reference-data.md#enabled-and-disabled-rows) use light grey text to make them stand out. Selected and current rows use the same color scheme as in transactional data sets.
 
@@ -103,7 +103,7 @@ The audit log is used to show the blue change markers in cells in the data edito
 To display the audit log of the current row, use the **Audit log**![data editor toolbar audit button](../figures/data-editor-toolbar-audit-button.png) icon on the toolbar. The audit log will be displayed in a side bar:
 
 ![data manager audit log side bar](../figures/data-manager-audit-log-side-bar.png)
-*Figure 185. Audit log showing events for a single row.*
+*Figure 199. Audit log showing events for a single row.*
 
 The side bar allows you to filter the view if you are looking for a specific change. You can show audit for a selected column by selecting the column in **Show audit for** dropdown.
 
@@ -127,7 +127,7 @@ To reset the sorting, right click the column and select the **Clear sorting** it
 It is also possible to **sort based on multiple columns**. To add a column as a sorting key, hold the *Shift* key when you left click the column header. The order in which the columns were added defines the order of the columns in the sort key – this is shown as little numbers to the right of the sort direction arrow for given column:
 
 ![data manager column sort multiple columns](../figures/data-manager-column-sort-multiple-columns.png)
-*Figure 186. Data grid header showing data sorted by the State column and then by the City column.*
+*Figure 200. Data grid header showing data sorted by the State column and then by the City column.*
 
 To change the sorting direction of a column when sorting by multiple columns, *Shift* + click the column header.
 
@@ -138,7 +138,7 @@ To help you find the data you’d like to work with, the editor screen offers mu
 The filtering is configured using multiple controls on the data editor screen:
 
 ![data editor filtering ui explained](../figures/data-editor-filtering-ui-explained.png)
-*Figure 187. User interface elements on the data editor screen that allow you to configure variety of filters.*
+*Figure 201. User interface elements on the data editor screen that allow you to configure variety of filters.*
 
 If any filtering is enabled, the toolbar will show **Clear all filters** button that allows you to reset all filters and show the whole data set. The button will appear in the upper right section of the toolbar next to the Errors only and Audit filters:
 
@@ -153,7 +153,7 @@ Reference data sets have additional filters available in the form of View modes.
 Global search is a full-text search box in the top-right corner right above the editor grid. Typing into the box will filter in real-time in the whole data set (i.e., even if the data set contains more data than what is currently displayed).
 
 ![data editor filter global search](../figures/data-editor-filter-global-search.png)
-*Figure 188. Screenshot showing global search with highlighted occurrences of the search string.*
+*Figure 202. Screenshot showing global search with highlighted occurrences of the search string.*
 
 When searching using the full-text search, the matches will be highlighted in the data grid to allow you to easily spot the occurrences of your search string.
 
@@ -162,7 +162,7 @@ When searching using the full-text search, the matches will be highlighted in th
 **Column value filters** can be shown by clicking on the down arrow on each column. This will show a new filtering row under the header. Each column can be configured with its own filter with the filtering options that depend on the data type of the column:
 
 ![data editor filter value filters](../figures/data-editor-filter-value-filters.png)
-*Figure 189. Data editor with expanded value filters showing filters on Postal code and Date of Birth columns.*
+*Figure 203. Data editor with expanded value filters showing filters on Postal code and Date of Birth columns.*
 
 Depending on the column type, you will be able to filter in different ways. Default filter for each column type is applied when you type a value into the box itself, additional filter types can be shown by clicking on the magnifying glass icon. The following table provides a summary of filtering options for different column types.
 
@@ -206,7 +206,7 @@ If multiple filters are configured above (e.g., you filter by column and user), 
 In wide data sets it can be useful to not show all columns all the time to simplify the navigation within the data. You can configure the current view and the columns that are shown in the data editor using either **drag & drop** or with the **Column chooser** dialog. This dialog can be shown by clicking on the **Column chooser** icon in the toolbar:
 
 ![data editor column chooser](../figures/data-editor-column-chooser.png)
-*Figure 190. Column chooser allows you to select which columns to show and their order. It can be shown by clicking on the icon to the left of the full text search.*
+*Figure 204. Column chooser allows you to select which columns to show and their order. It can be shown by clicking on the icon to the left of the full text search.*
 
 Note that not all columns can be shown or hidden. The ability to show or hide specific columns depends on how they are configured in the data set’s layout:
 
@@ -230,4 +230,4 @@ Two export options are provided:
 Both options produce output with the same formatting – a single Excel file in XLSX format. The file will contain a single worksheet with one header row and the rest taken by the data. The only difference between the two options is whether all data from the data set is included or just the selected rows.
 
 ![data manager excel export](../figures/data-manager-excel-export.png)
-*Figure 191. Data exported from the Data Manager via the Export to Excel function.*
+*Figure 205. Data exported from the Data Manager via the Export to Excel function.*

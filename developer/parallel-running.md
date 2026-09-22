@@ -1,6 +1,6 @@
 <!-- Development > Advanced > Data partitioning (parallel running) -->
 
-## 48. Data partitioning (parallel running)
+## 49. Data partitioning (parallel running)
 
 This chapter describes ways to speed up graph runs with help of data partitioning.
 > [!TIP]

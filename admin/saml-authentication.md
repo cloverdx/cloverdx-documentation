@@ -49,6 +49,21 @@ SAML authentication can be set up in the [configuration file](configuration-sour
 | security.saml.sp_nameid_format | No | Specifies constraints on the name identifier used to represent the requested subject. For more information see [the Oasis SAML Specification](https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf) |
 | security.saml.user_autocreate | No | Enablement of automatic user account creation on first time login using SAML (defaults to false). |
 | security.saml.default_user_group | Conditional | The group to which automatically created user accounts should be assigned to. Expected value is the `code` of the group. The property is required if `security.saml.user_autocreate` is set to true. |
+| security.saml.authnrequest_signed | No | Whether the authentication request sent to the Identity Provider is signed (defaults to false). The published service provider metadata advertises this setting to the Identity Provider. |
+| security.saml.logoutrequest_signed | No | Whether the logout request sent to the Identity Provider is signed (defaults to false). |
+| security.saml.logoutresponse_signed | No | Whether the logout response sent to the Identity Provider is signed (defaults to false). |
+| security.saml.sign_metadata | No | Whether the service provider metadata published at `/saml/metadata` is signed with the service provider private key (defaults to false). |
+| security.saml.nameid_encrypted | No | Whether the NameID in the logout request sent to the Identity Provider is encrypted (defaults to false). Encryption uses the Identity Provider certificate, so `security.saml.idp_x509cert` is required when this setting is enabled. |
+| security.saml.want_messages_signed | No | Whether the response, logout request and logout response received from the Identity Provider are required to be signed (defaults to false). Verification uses the Identity Provider certificate, the service provider keyStore is not needed. |
+| security.saml.want_assertions_signed | No | Whether assertions received from the Identity Provider are required to be signed (defaults to false). Verification uses the Identity Provider certificate, the service provider keyStore is not needed. |
+| security.saml.want_assertions_encrypted | No | Whether assertions received from the Identity Provider are required to be encrypted (defaults to false). |
+| security.saml.want_nameid_encrypted | No | Whether the NameID received from the Identity Provider is required to be encrypted (defaults to false). |
+| security.saml.reject_deprecated_alg | No | Whether messages signed with a deprecated algorithm, such as SHA-1, are rejected (defaults to false). The setting applies to signature verification only, the service provider keyStore is not needed. |
+| security.saml.signature_algorithm | No | Algorithm used to sign the messages **CloverDX Server** sends. Defaults to `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`. |
+| security.saml.digest_algorithm | No | Digest algorithm used when signing. Defaults to `http://www.w3.org/2001/04/xmlenc#sha256`. |
+| security.saml.sp_keystore | Conditional | Path to the keyStore file holding the service provider private key and certificate. The property is required if any of `security.saml.authnrequest_signed`, `security.saml.logoutrequest_signed`, `security.saml.logoutresponse_signed`, `security.saml.sign_metadata`, `security.saml.want_assertions_encrypted` or `security.saml.want_nameid_encrypted` is enabled. The remaining signing and encryption properties do not use the service provider key. |
+| security.saml.sp_keystore_password | Conditional | Password of the keyStore, also used to unlock the key entry. Supports [encrypted configuration properties](secure-configuration-properties.md). The property is required if `security.saml.sp_keystore` is set. |
+| security.saml.sp_key_alias | Conditional | Alias of the key in the keyStore. The property is required if `security.saml.sp_keystore` is set. |
 
 ##### SAML configuration examples
 
@@ -99,6 +114,38 @@ security.saml.idp_entity_id=https://sts.windows.net/{46-id-example}/
 # Do not send LogoutResponse back to Azure AD, it does not expect it
 security.saml.send_logout_response=false
 ```
+
+###### Example of signed and encrypted SAML communication
+
+By default **CloverDX Server** neither signs the messages it sends nor requires the messages it receives to be signed. Signing what the server sends, and decrypting what it receives, needs a service provider private key and certificate, which are read from a keyStore. Verifying signatures created by the Identity Provider needs no keyStore, only `security.saml.idp_x509cert`.
+
+Create the keyStore before configuring the properties. Use the PKCS12 format, because it keeps one password for the store and for the key entry, which is what `security.saml.sp_keystore_password` is:
+
+```
+keytool -genkeypair -alias clover-sp -keyalg RSA -keysize 2048 -sigalg SHA256withRSA \
+        -validity 3650 -storetype PKCS12 -keystore saml-sp.p12 \
+        -dname "CN=clover-server.example.com, O=Example, C=US"
+```
+
+The following example signs the authentication request sent to the Identity Provider and requires the assertions received from it to be both signed and encrypted. The keyStore password is stored [encrypted](secure-configuration-properties.md):
+
+```properties
+# Sign the authentication request sent to the Identity Provider
+security.saml.authnrequest_signed=true
+# Require the assertions received from the Identity Provider to be signed and encrypted
+security.saml.want_assertions_signed=true
+security.saml.want_assertions_encrypted=true
+# Reject messages signed with a deprecated algorithm such as SHA-1
+security.saml.reject_deprecated_alg=true
+# Service provider private key and certificate
+security.saml.sp_keystore=/opt/clover/conf/saml-sp.p12
+security.saml.sp_keystore_password=conf#xLndKgzwP7DxAbWuhztvt/vHIvtUFjnB7MnL6pJIWpRw0gVJPghBr4HUnp0GE0Ym
+security.saml.sp_key_alias=clover-sp
+```
+
+**Relation to `security.saml.strict`:** the `want_*` properties say **what** is required, while `security.saml.strict` decides **whether a message that does not meet the requirement is rejected**. With `security.saml.strict=false` the requirements are only advertised to the Identity Provider and a message that fails them is still accepted, so keep `security.saml.strict=true` (the default) whenever you enable any of them.
+
+**Note:****CloverDX Server** publishes its service provider metadata at the `/saml/metadata` path, for example `http://clover-server:8080/clover/saml/metadata`. Once a keyStore is configured, the published metadata contains the service provider certificate and reflects the signing properties, so the Identity Provider may need the metadata re-imported for signing to work.
 
 ##### SAML troubleshooting
 

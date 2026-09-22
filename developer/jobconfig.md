@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Execution properties -->
 
-## 31. Execution properties
+## 32. Execution properties
 
 Each graph or jobflow can have a set of execution properties which are applied during its execution, for example to change the log level, number of parallel executions etc. The execution properties can be set both in the **Designer** and **Server**. When set in the **Designer** they are stored in the graph XML file, and so they are moved, versioned etc. with the job file itself. The execution properties stored in the graph XML are used as default values of the properties for the job. When the properties are set in the **Server Console** (on job or sandbox level - see [Sandboxes](../operations/sandboxes.md) for more information), they have higher priority than then those in the job XML. Typically you would set the property in the job XML file as a default value, and only override it in the **Server Console** when needed (e.g. to fix an incident).
 

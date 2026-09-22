@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Writers -->
 
-## 37. Writers
+## 38. Writers
 
 | [Common properties of Writers](common-of-writers.md) |
 | --- |

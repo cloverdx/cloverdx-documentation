@@ -69,7 +69,7 @@ The very basics of mapping are:
   - **Arrays** - arrays are ordered sets of values. To learn how to map them in, see [Writing arrays](mapwriter.md#javamapwriter-example-arrays).
   - [Wildcard elements](extxmlwriter.md#wildcard-element) - another option to mapping elements explicitly. You use the **Include** and **Exclude** patterns to generate element names from respective metadata.
 - Connect input records to output (wildcard) elements to create [Binding](extxmlwriter.md#creating-the-mapping-mapping-ports-and-fields).
-  Example 379. Creating Binding
+  Example 391. Creating Binding
   ![JavaMapWriter mappingWithBindings](../figures/JavaMapWriter-mappingWithBindings.png)
   *Figure 393. Example mapping in JavaMapWriter*
   In the example above, you can see the employees are joined with projects they work on. Fields in bold (their content) will be printed to the output dictionary.
@@ -90,7 +90,7 @@ The very basics of mapping are:
   >     customers=[Nestele, Traincorp, AnotherBank, Intershop], end=in progress}],
   >     lastName=Morrison, firstName=Brandon}]}]
   > ```
-  Example 380. Writing arrays
+  Example 392. Writing arrays
   Let us have the following mapping of the input file which contains information about actors. For explanatory reasons, we will part actors' personal data from their countries of origin. The summary of all countries will then be written into an array:
   ![JavaMapWriter mappingArrays](../figures/JavaMapWriter-mappingArrays.png)
   *Figure 394. Mapping arrays in JavaMapWriter - notice the array contains a dummy element’State' which you bind the input field to.*

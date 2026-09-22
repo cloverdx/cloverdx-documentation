@@ -23,6 +23,8 @@ Note that users who should have access to the **Users** section need to be assig
 | [Assign users to groups](users.md#assign-users-to-groups) |
 | [Reset passwords validity](users.md#reset-passwords-validity) |
 
+The detail of a user also shows what the user has authorized for AI clients, on the **MCP Authorizations** tab. See [MCP authorizations of a user](server-config-mcp.md#mcp-authorizations-of-a-user) for what the tab lists and how to revoke an authorization.
+
 ##### Create new user
 
 Only users assigned to a user group that has the **Create user** permission enabled can create new users. To create a new user, click on the **New user** button. See below for a list of required and optional user attributes and additional options when creating new user records:
@@ -78,7 +80,7 @@ To disable or enable a user either click on the **⋮** button at the end of the
 To display disabled users in the list of users, click on the **Display Disabled** button in the right upper corner of the **Users** section. Disabled users come up in grey font in the user list.
 
 ![users groups display disabled](../figures/users-groups-display-disabled.png)
-*Figure 88. Displaying disabled users*
+*Figure 89. Displaying disabled users*
 
 ##### Unlock user
 
@@ -89,7 +91,7 @@ Once a user’s account is locked, you will see a little yellow lock icon next t
 To unlock a locked user, click on the **⋮** button in the respective row, click on **Unlock** and confirm your action.
 
 ![Locked user](../figures/users-groups-locked-user.png)
-*Figure 89. Unlocking a locked user*
+*Figure 90. Unlocking a locked user*
 
 ##### Send welcome email
 
@@ -112,9 +114,9 @@ Assignment to User groups gives users appropriate permissions. Only users assign
 If your [password policy](user-password-policy.md) is configured to enforce password validity, users with the [Change passwords permission](groups.md#permission-change-password) can reset the password age globally for all users at once. This will extend the validity of each user’s current password by the number of days specified in the [`password.policy.max_age`](list-of-properties.md#lop-security-password-policy-max-age) property.
 
 ![user reset passwords validity](../figures/user-reset-passwords-validity.png)
-*Figure 90. Reset passwords validity option*
+*Figure 91. Reset passwords validity option*
 
 You can see the current password validity in the **Security** section of a user’s detail. Each user can see their password validity in their [user menu](user-profile.md).
 
 ![user detail password info](../figures/user-detail-password-info.png)
-*Figure 91. User detail showing password validity*
+*Figure 92. User detail showing password validity*

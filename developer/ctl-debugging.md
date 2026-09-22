@@ -1,6 +1,6 @@
 <!-- Development > CTL2 - CloverDX Transformation Language > CTL debugging -->
 
-## 34. CTL debugging
+## 35. CTL debugging
 
 **CloverDX** lets you debug CTL code in the same way as development tools do it for other programming languages.
 

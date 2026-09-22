@@ -5,7 +5,7 @@
 This guide provides an overview of CloverDX Wrangler and Data Manager, helping users effectively use the platform for data transformation and management.
 
 - **Wrangler user guide**:
-  - [**Tutorial**](wrangler-tutorial.md): A tutorial to help you how to create jobs using Clover AI Assistant as well as without it.
+  - [**Tutorial**](wrangler-tutorial.md): A tutorial to help you how to create jobs using the Wrangler Assistant as well as without it.
   - [**Data sources and targets**](data-sources-data-targets.md): Discover how to add [data sources](data-sources-data-targets.md#data-sources) and create [data targets](data-sources-data-targets.md#data-targets) for output.
   - [**Data Catalog**](data-catalog.md): Explore the Data Catalog for browsing, searching, and adding data sources created by your company.
   - [**Transforming data**](transforming-data.md): Understand the principles of data transformations, including [using formulas](transforming-data.md#using-formulas), [error handling](transforming-data.md#error-handling-in-wrangler), [data cleansing](transforming-data.md#fixing-errors), and [formatting](transforming-data.md#formatting-your-data).
@@ -17,7 +17,7 @@ This guide provides an overview of CloverDX Wrangler and Data Manager, helping u
 
 ---
 
-*This guide refers to CloverDX 7.5.1 release.*
+*This guide refers to CloverDX 7.6.0 release.*
 
 *Copyright © 2010-2026 CloverDX a.s. All rights reserved.*
 

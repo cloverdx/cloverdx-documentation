@@ -9,7 +9,7 @@ CloverDX Designer offers many configuration options that allow you to configure 
 All CloverDX settings are grouped together in one node of the settings tree accessible via menu **Window** ****Preferences**:
 
 ![configuration cloverdx 0010](../figures/configuration-cloverdx-0010.png)
-*Figure 62. CloverDX-specific configuration in CloverDX Designer.*
+*Figure 61. CloverDX-specific configuration in CloverDX Designer.*
 
 | Option | Description | Default value |
 | --- | --- | --- |
@@ -24,7 +24,7 @@ All CloverDX settings are grouped together in one node of the settings tree acce
 | Auto-resize components | Automatically adjusts components' size to fit their name. | enabled |
 | Show component description | Displays or hides components' description in a graph. If **Display default component description** is disabled, only user-defined description is visible. | enabled |
 | Display default component description | When **Show component description** is enabled, it shows the components' default description (e.g. path to the file in **Readers** or **Writers**). | enabled |
-| Route edges to avoid overlap | Enables or disables different edge-routing algorithm. | enabled |
+| Use advanced collision avoidance when automatically routing edges | Enables or disables different edge-routing algorithm. | enabled |
 | Show rich tooltips | Enables or disables detailed tooltips on edges. | enabled |
 | **Other** |  |  |
 | Check graph configuration | Enables or disables graph configuration validation. When this validation is disabled, error icons on components are not shown. | enabled |
@@ -39,18 +39,14 @@ All CloverDX settings are grouped together in one node of the settings tree acce
 
 ### CloverDX AI Assistant configuration
 
-The **AI Assistant** pages allow you configure **Clover Assistant**. The most important part is the connection to a 3rd party LLM (Large Language Model) provider such as OpenAI or Anthropic which powers Clover Assistant. On top of that you decide which model each agent runs on, and additional options allow you to configure agent behavior, logging and more.
+The **AI Assistant** pages allow you to configure the **CloverDX AI Assistant** in Designer. The most important part is the connection to a 3rd party LLM (Large Language Model) provider such as OpenAI or Anthropic which powers the Assistant. On top of that you decide which model each agent runs on, and additional options allow you to configure agent behavior, logging and more.
 > [!NOTE]
-> CloverDX AI Assistant is released as a **technology preview** in CloverDX 7.5.0. It is present in Designer but remains inert until you apply an Assistant license key and configure an LLM connection in Designer preferences (it will not do anything on its own).
->
-> As a technology preview, it is under active development. Its behavior, interfaces, and defaults may change in future releases, sometimes in incompatible ways. **Use it in dev/test environments only, not in production.** Treat it as a tool for evaluation and non-critical work, and review everything it produces before relying on it. Use it with caution: the Assistant can read and modify files and run jobs in the CloverDX Server project you connect it to.
->
-> Gathering feedback on how teams want to govern the Assistant is one of the goals of this technology preview. Contact your Account representative if you wish to provide feedback that could help us improve future versions of the Assistant.
+> The pages configure only the Designer side of the Assistant – the AI provider and models it runs on. Whether a user may use the Assistant at all is decided by the CloverDX Server through [AI Authoring seats](server-config-mcp.md#ai-authoring-seats); see [Enabling CloverDX AI Assistant](part-installation-instructions.md#enabling-cloverdx-ai-assistant).
 
-The main **AI Assistant** page holds two groups: **Connections**, the named LLM connections available to the Assistant, and **Model profiles**, which decides what each agent runs on. **At least one connection is required before the Assistant can be used.**
+The main **AI Assistant** page holds two groups: **AI provider connections**, the named LLM connections available to the Assistant, and **Model selection**, which configures models for each agent. **At least one connection is required before the Assistant can be used.**
 
 ![designer config ai assistant general](../figures/designer-config-ai-assistant-general.png)
-*Figure 63. General settings for Clover Assistant.*
+*Figure 62. General settings for the AI Assistant.*
 
 #### Connections
 
@@ -58,57 +54,75 @@ A **connection** describes one LLM endpoint: its provider, the API key and whate
 
 The table lists the connection **Name**, its **Provider** and the **Endpoint** it points at (empty for providers that have a single fixed endpoint). The buttons on the right manage the list. Removing a connection also deletes its API key from the secure storage, once you confirm the page with **OK** or **Apply**.
 
-Each connection is edited in its own dialog. Enter a **Name** – it is what you will pick from in the agents grid, so name connections after what they are for – choose a **Provider**, and fill in the fields that provider requires. Every field carries an info icon with a description of what belongs in it.
+Each connection is edited in its own dialog. Enter a **Name** – it is what you will pick from in the agents’ grid, so name connections after what they are for – choose a **Provider**, and fill in the fields that provider requires. Every field carries an info icon with a description of what belongs in it.
 
 The following providers are available:
 
 | Provider | Connects to |
 | --- | --- |
+| **Amazon Bedrock** | Models hosted in your own AWS account through Amazon Bedrock. |
+| **Anthropic** | Claude models such as Opus or Sonnet provided by Anthropic. |
+| **DeepSeek** | Models provided by DeepSeek. |
+| **Google AI** | Gemini models provided by Google AI. |
+| **Microsoft Foundry (Azure OpenAI)** | OpenAI GPT models hosted by Microsoft in Azure cloud. |
+| **Microsoft Foundry via Azure AI Gateway** | Microsoft Foundry models via API endpoints provided by Azure API Management. |
 | **OpenAI** | GPT models provided by OpenAI. |
 | **OpenAI compatible** | A tool exposing an OpenAI-compatible API, such as Ollama, vLLM or a custom proxy. The **Base URL** is the address of that API, e.g. `http://localhost:11434/v1`; the API key is optional, so an endpoint that requires no credentials can be used as well. |
-| **Anthropic** | Claude models such as Opus or Sonnet provided by Anthropic. |
-| **Google AI** | Gemini models provided by Google AI. |
-| **Microsoft Foundry (Azure OpenAI)** | OpenAI GPT models hosted by Microsoft in the Azure cloud. |
-| **Microsoft Foundry via Azure AI Gateway** | Microsoft Foundry models via API endpoints provided by Azure API Management. |
 | **OpenAI-compatible via Azure AI Gateway** | Azure-hosted endpoints exposing OpenAI-compatible APIs of non-Microsoft providers. |
 
-The **Test connection** button verifies the connection: it loads the list of models the endpoint offers and sends a short request to check the credentials. The loaded models are remembered and offered in the agents grid afterwards.
+The **Test connection** button verifies the connection: it loads the list of models the endpoint offers and sends a short request to check the credentials. The loaded models are remembered and offered in the agents’ grid afterwards.
 > [!NOTE]
 > For the three Azure variants the model is part of the connection itself – the **Deployment name**, or the **Model name** for the OpenAI-compatible gateway – because a deployment serves exactly one model. Such a connection offers that single model to the agents. The remaining providers serve their whole catalogue, so their models are listed separately for each agent.
+> [!NOTE]
+> **Amazon Bedrock** model IDs are not the plain model names shown in the AWS console. Most current models can only be invoked through a *cross-region inference profile*, whose ID carries a geography prefix matching the connection’s region – `us.`, `eu.` or `apac.`, for example `us.anthropic.claude-sonnet-4-5-20250929-v1:0`. Picking the model from the drop-down always gives you an invocable ID; a plain ID pasted from the AWS console fails with *"Invocation of model ID …​ with on-demand throughput isn’t supported"*.
+>
+> Bedrock also requires model access to be granted to the AWS account for each region (**Amazon Bedrock > Model access** in the AWS console), and the Anthropic models additionally require a one-time use-case form. The drop-down lists the models the region offers, which is not necessarily what the account is already entitled to invoke.
+>
+> The **AWS region** is required. Credentials are taken from the **Access key ID** and **Secret access key** pair, or from a named **AWS profile**, or – when all three are left empty – from the AWS default credential chain (IAM role, environment variables, SSO). Leaving them empty is the recommended setup on a machine that already has an AWS identity, because no secret is then stored in Designer at all.
 
-#### Model profiles
+#### Model selection
 
-A **profile** is a named set of choices – which connection and which model each agent uses, plus optional per-agent model properties. You can keep several profiles side by side, for example a fast and cheap one for everyday work and a frontier-model one for hard design tasks, and switch between them.
+Different agents can use different models – this approach allows you to optimize agent capabilities and its cost (frontier models are more expensive, but not every task requires them).
 
-The bar at the top of the group selects the **Profile** you are editing – it is also the profile the Assistant runs on – and manages the list with **New…​**, **Duplicate**, **Rename…​** and **Delete**. At least one profile always remains.
+AI Assistant uses two types of agents – **reasoning agents** and **task agents** – which serve different purposes. Reasoning agents are the ones running larger and more complex tasks such as work planning, requirements analysis and so on. Task agents are typically smaller and perform more limited tasks such as documentation search, data analysis, etc.
 
-The grid below configures the agents of the selected profile. See [Agent types](../developer/designer-ai-assistant.md#agent-types) for more details about the individual agents, their requirements and usage patterns.
+The basic configuration allows you to configure connection and exact model for each agent type as well as fine-tune advanced model properties:
 **Connection**
-The connection the agent’s model is called on. Leave the cell blank to inherit; the inherited connection is then shown greyed.
+The connection the agent’s model is called on. You must select one of the provider connections defined in the upper half of the dialog here.
 **Model**
-The model to use. The drop-down offers the models the agent’s connection reported – press **Reload models** to refresh them – but you can also type a model name the list does not contain. Leave the cell blank to inherit.
+The model to use. The drop-down offers the models the agent’s connection reported – press **Reload models** to refresh them – but you can also type a model name the list does not contain.
 **Properties**
-Per-agent model settings, see [Model properties](designer-configuration.md#model-properties) below. The button reads *Default* while the agent overrides nothing and *Custom…​* once it does.
+Per-agent model settings, see [Model properties](designer-configuration.md#model-properties) below. The button caption will be bolded if you’ve changed these settings.
 
-Values are inherited along the agent hierarchy: the **Sub-agent** row is the default for every sub-agent and inherits from **Master**, and each specific agent below it inherits from **Sub-agent**. Configuring the Master row is therefore enough to run the whole Assistant, and the rows below are there for the cases where one agent should differ. The Master is the root of the hierarchy – it cannot inherit and always carries its own connection and model.
+A good approach is to select more powerful models for reasoning agents and select smaller (and usually faster and cheaper) models for task agents. You can even use local models for task agents to significantly reduce the cost of running AI Assistant.
 
-In general, we recommend largest ("frontier") models for Master and Architect, and medium-size models or models from previous generation for other agents.
+![designer config ai assistant local models](../figures/designer-config-ai-assistant-local-models.png)
+*Figure 63. AI Assistant configuration showing combination of cloud reasoning models with local models.*
 
-The two buttons below the grid work on the whole active profile:
-**Reload models**
-Connects to every connection the profile uses and downloads the list of models you have currently available. The lists are remembered between Designer sessions, so this is only needed when a provider’s offer changes.
-**Test connection**
-Sends a short request to every distinct connection/model pair the profile uses and reports the result of each. This is the quickest check that a profile is fully usable.
+You can configure models on a per-agent basis if you’d like by opening detailed agent configuration with **Per-agent models (advanced)** button.
+
+![designer config ai assistant per agent settings](../figures/designer-config-ai-assistant-per-agent-settings.png)
+*Figure 64. Expanded per-model settings showing model details for each agent.*
+
+The configuration for each agent works in the same way as for agent types above – select a provider connection and pick a model for each agent. To learn more about each agent and their usage, see [Agent types](../developer/designer-ai-assistant.md#agent-types).
+
+To make configurations easier to manage, you can create **profiles**. A **profile** is a named set of choices – which connection and which model each agent uses, plus optional per-agent model properties. You can keep several profiles side by side, for example a fast and cheap one for everyday work and a frontier-model one for hard design tasks, and switch between them.
+
+You can use **Export** button below these settings to export the configuration as json file. This can be very useful if you need to copy the configuration to another machine or as a simple backup. Use **Import** button to import the json file.
+
+Use the **Test configuration** button to verify your settings. Assistant will connect with every provider used in current set-up and will test each model as configured for different agents. This is the quickest way of verifying that the configuration you have is valid.
 
 ##### Model properties
 
-The **Properties** button of a row opens the model properties of that agent. Leave a field blank to inherit it – the greyed value shows what would apply.
+The **Properties** button of a configuration row opens the model properties of that agent. Leave a field blank to inherit it – the greyed value shows what would apply. The properties that will be available in the dialog depend on the model. Following is the full list of properties you can see:
 **Temperature**
-How focused or creative the answers are: 0.0 for the most focused ones, higher values for more creative ones. When left blank, the model’s own default applies. The accepted range depends on the provider (up to 1.0 for Anthropic, up to 2.0 elsewhere).
+How focused or creative the answers are: 0.0 for the most focused ones, higher values for more creative ones. When left blank, the model’s own default applies. The typical range depends on the provider (up to 1.0 for Anthropic and Amazon Bedrock, up to 2.0 elsewhere) – it is no longer enforced, so a higher value is sent to the model as entered, and the model may reject it with a message naming the setting and the value sent.
+**Reasoning effort**
+Select reasoning level for given model. Higher reasoning levels provide better output, but are slower and more expensive. The levels available here depend on your provider – you can either select one of the levels from the dropdown or type a level name your provider will understand.
 **Max output tokens**
 Maximum number of tokens this agent’s model may generate in a single reply. When left blank, the global value from the [Advanced configuration](designer-configuration.md#advanced-configuration) applies.
-
-Only the properties the agent’s provider actually accepts are shown.
+**Context window (tokens)**
+Configure the size of the context window for your model. This should not be necessary for common models that the Assistant know.If you are using local models, configure this to the number of tokens in your context. This will help Assistant understand when to compact the context.
 
 ##### Switching the profile from chat
 
@@ -121,7 +135,7 @@ The switch applies to that chat view only and is not persisted – it is a way t
 Advanced configuration allows you to configure additional settings that tune the behavior of Assistant, its token consumption, logging details or even zoom level for Assistant view.
 
 ![designer config ai assistant advanced](../figures/designer-config-ai-assistant-advanced.png)
-*Figure 64. Advanced configuration of Clover Assistant.*
+*Figure 65. Advanced configuration of the AI Assistant.*
 
 The configuration uses few basic terms:
 **Turn**
@@ -155,7 +169,7 @@ Location of the Assistant log file. By default, this will be a file within `.met
 
 ##### Appearance
 
-The **Appearance** section allows you to configure the appearance of the Clover Assistant panel.
+The **Appearance** section allows you to configure the appearance of the AI Assistant panel.
 **Chat zoom**
 Configure the zoom level of the chat panel. This is useful especially if you are using high-DPI screen and wish to present your work to others to allow them to read even on regular screen sizes. Default value is 100%, larger values make the text bigger, smaller values make the text smaller.
 
@@ -178,7 +192,7 @@ When changing Runtime settings, Runtime will need to be restarted for the settin
 #### Basic settings
 
 ![configuration runtime general](../figures/configuration-runtime-general.png)
-*Figure 65. Basic settings for CloverDX Runtime.*
+*Figure 66. Basic settings for CloverDX Runtime.*
 
 - **Start Runtime on Designer startup**: when checked, Runtime will automatically start when you run CloverDX Designer. This is recommended to ensure that you can use all features of the Designer since some of the functionality depends on the Runtime being available (running any job, metadata propagation, and more).
 - **Working directory** allows you to change where temporary files are stored when jobs run in the Runtime. By default, this is set to a directory within the workspace and this is the recommended setting. You can also select your own directory if needed via **Use specified directory** option.
@@ -200,7 +214,7 @@ When changing Runtime settings, Runtime will need to be restarted for the settin
 CloverDX Runtime writes its logs into **Console** tab. This screen allows you to configure the severity of the log messages that will be shown.
 
 ![configuration runtime logging](../figures/configuration-runtime-logging.png)
-*Figure 66. CloverDX Runtime – Logging settings.*
+*Figure 67. CloverDX Runtime – Logging settings.*
 
 #### Master Password
 
@@ -209,7 +223,7 @@ CloverDX Runtime writes its logs into **Console** tab. This screen allows you to
 You need to set up the **Master Password** to be able to use the **Secure parameters** in **CloverDX Designer**.
 
 ![configuration runtime master password](../figures/configuration-runtime-master-password.png)
-*Figure 67. Setting the Master password.*
+*Figure 68. Setting the Master password.*
 
 Note that jobs running in Server project will use Master password configured on the Server and not the one configured in the Designer’s Runtime.
 
@@ -218,14 +232,14 @@ Note that jobs running in Server project will use Master password configured on 
 You can add your own libraries to the CloverDX Runtime classpath. Usually, you do not need to add any libraries here.
 
 ![configuration runtime user classpath](../figures/configuration-runtime-user-classpath.png)
-*Figure 68. CloverDX Runtime - User Classpath*
+*Figure 69. CloverDX Runtime - User Classpath*
 
 ### CloverDX Server integration
 
 **Preferences of CloverDX Server Integration** allow you to tweak communication between **Designer** and **Server**.
 
 ![configuration server integration](../figures/configuration-server-integration.png)
-*Figure 69. CloverDX Server Integration*
+*Figure 70. CloverDX Server Integration*
 
 | Option | Description | Default Value |
 | --- | --- | --- |
@@ -251,14 +265,14 @@ This is a global (workspace-scope) configuration template. When a new project is
 See also [Ignored files](designer-configuration.md#ignored-files) in project configuration.
 
 ![configuration server integration ignored files](../figures/configuration-server-integration-ignored-files.png)
-*Figure 70. CloverDX Server Integration*
+*Figure 71. CloverDX Server Integration*
 
 ### Execution monitoring
 
 **Execution Monitoring** lets you set up status and log update intervals. Monitoring intervals do not affect runtime of jobs, just the frequency at which logs and status information are refreshed in the Designer.
 
 ![configuration execution monitoring](../figures/configuration-execution-monitoring.png)
-*Figure 71. Execution Monitoring*
+*Figure 72. Execution Monitoring*
 
 Refreshing the `data-out` folder is described in [Refresh operation](designer-configuration.md#refresh-operation).
 
@@ -269,7 +283,7 @@ Refreshing the `data-out` folder is described in [Refresh operation](designer-co
 The refresh operation configuration is accessible from the main menu under **Window** ****Preferences**. Choose **CloverDX** ****Refresh Operation** in **Preferences** window.
 
 ![configuration refresh operation](../figures/configuration-refresh-operation.png)
-*Figure 72. Refresh Operation*
+*Figure 73. Refresh Operation*
 
 Choose the project in the middle part of the dialog and specify which resources should be updated.
 
@@ -293,16 +307,16 @@ If you want to switch to a different JDK, perform the steps below:
 
 1. Open preference via **Windows** ****Preferences** menu and then navigate to **Java** ****Installed JREs**. By default, you will see the Java version selected during the Designer installation.
    ![configuration java installed jres](../figures/configuration-java-installed-jres.png)
-   *Figure 73. List of Java environments showing two Java versions – JDK 17 and JDK 21. The JDK 21 is the default one bundled with CloverDX Designer 7.5.*
+   *Figure 74. List of Java environments showing two Java versions – JDK 17 and JDK 21. The JDK 21 is the default one bundled with CloverDX Designer 7.5.*
 2. To add a new Java installation click on **Add**, select **Standard VM**, and hit **Next**.
    ![configuration java add jre](../figures/configuration-java-add-jre.png)
-   *Figure 74. Adding new JRE via Add JRE wizard.*
+   *Figure 75. Adding new JRE via Add JRE wizard.*
 3. Select the directory of the desired JDK and click on **Finish**.
    ![configuration java add jre definition](../figures/configuration-java-add-jre-definition.png)
-   *Figure 75. Configuring the new JDK – select JDK via the Directory button. All the other settings should be auto-detected for you.*
+   *Figure 76. Configuring the new JDK – select JDK via the Directory button. All the other settings should be auto-detected for you.*
 4. To start using the JDK, select the checkbox next to it. After saving this change, the JDK is automatically added to the build path of your projects.
    ![configuration java jre added](../figures/configuration-java-jre-added.png)
-   *Figure 76. New JDK added to the list (the JDK 21 – second item from the top).*
+   *Figure 77. New JDK added to the list (the JDK 21 – second item from the top).*
 
 ### Configuring two-way authentication
 
@@ -363,17 +377,17 @@ keytool -exportcert -alias cloverdxdesigner -file cloverdxdesigner.crt -keystore
 Open your keystore, right-click your key pair, and navigate to **Export > Export Certificate Chain.**
 
 ![keystore 17 cert export](../figures/keystore-17-cert-export.png)
-*Figure 77. Export certificate chain*
+*Figure 78. Export certificate chain*
 
 Switch to the **Entire Chain** option and select an export path.
 
 ![keystore 18 cert export](../figures/keystore-18-cert-export.png)
-*Figure 78. Export certificate chain*
+*Figure 79. Export certificate chain*
 
 The certificate is exported to the specified path.
 
 ![keystore 19 export success](../figures/keystore-19-export-success.png)
-*Figure 79. Successful export*
+*Figure 80. Successful export*
 
 #### Create server truststore and import client certificate
 
@@ -403,30 +417,30 @@ keytool -importcert -alias cloverdxdesigner -file cloverdxdesigner.crt -keystore
 Open the KeyStore Explorer and click on the **New** button or use the Ctrl+N shortcut. You will be prompted to select the keystore type. Select the `JKS` (Java Key Store) type.
 
 ![truststore 01 create](../figures/truststore-01-create.png)
-*Figure 80. Create new truststore*
+*Figure 81. Create new truststore*
 
 Use the **Import Trusted Certificate** button (or press Ctrl+T) and select the `.crt` file to import.
 
 ![truststore 02 import trusted](../figures/truststore-02-import-trusted.png)
-*Figure 81. Select the certificate to import*
+*Figure 82. Select the certificate to import*
 
 Leave the pre-filled alias or modify it as needed. The alias can always be changed by right-clicking on the key pair and selecting the *Rename* option.
 
 ![truststore 03 alias](../figures/truststore-03-alias.png)
-*Figure 82. Enter an alias name for the certificate*
+*Figure 83. Enter an alias name for the certificate*
 
 ![truststore 04 import success](../figures/truststore-04-import-success.png)
-*Figure 83. Successful import*
+*Figure 84. Successful import*
 
 Now save the truststore (click on Save or press Ctrl+S). You will be prompted to enter and confirm a password.
 
 ![truststore 05 set password](../figures/truststore-05-set-password.png)
-*Figure 84. Creating truststore password*
+*Figure 85. Creating truststore password*
 
 Save the truststore as a keystore file.
 
 ![truststore 06 save](../figures/truststore-06-save.png)
-*Figure 85. Saving the .jks file*
+*Figure 86. Saving the .jks file*
 
 #### Server configuration
 

@@ -14,6 +14,7 @@
 | [Maximum number of processes or threads](postinstallation-configuration.md#maximum-number-of-processes-or-threads) |
 | [Firewall exceptions](postinstallation-configuration.md#firewall-exceptions) |
 | [Reverse proxy configuration](postinstallation-configuration.md#reverse-proxy-configuration) |
+| [Redirecting the OAuth2 discovery documents](postinstallation-configuration.md#redirecting-the-oauth2-discovery-documents) |
 
 ##### JVM configuration guidelines for Core and Worker processes
 > [!NOTE]
@@ -217,5 +218,42 @@ http {
 }
 ```
 
+###### Overwriting the headers at the proxy
+
+Have the proxy **set**`X-Forwarded-Host` and `X-Forwarded-Prefix` rather than pass on whatever arrived with the request, as the examples above do with `RequestHeader set` and `proxy_set_header`.
+
+Proxies and load balancers commonly manage `X-Forwarded-For` and `X-Forwarded-Proto` by themselves while leaving these two alone, so a value the client sent reaches the application untouched. Most applications ignore it; CloverDX Server does not. Besides the URLs shown in the Console, it builds the OAuth2 callback and the address that identifies the [MCP Server](server-config-mcp.md) in the access tokens it issues from the same request, so whoever sets the header decides more than what a URL looks like on screen.
+
+##### Redirecting the OAuth2 discovery documents
+
+A client of the [CloverDX MCP Server](server-config-mcp.md) works out where to authenticate from the endpoint URL alone. It derives the address of the authorization server metadata and looks for it at the **root of the host**, above the servlet context CloverDX is deployed under – `https://your-server.example.com/.well-known/oauth-authorization-server/clover/mcp`. A web application cannot answer above its own context, so the container, or the reverse proxy in front of it, has to redirect such a request into the context. Without that redirect, discovery stops at the first step and no MCP client connects.
+
+A Server installed from the CloverDX Tomcat bundle or from the Designer+Server installer, and a Server run from the CloverDX Docker image, answer there with nothing configured by hand. Set the redirect up yourself only when you deploy `clover.war` into a container of your own, or when a reverse proxy stands in front.
+> [!TIP]
+> To check a deployment, request `http://your-server.example.com:8080/.well-known/oauth-authorization-server/clover/mcp`. It should answer `302` pointing at `/clover/mcp/.well-known/oauth-authorization-server`, and that address should return the metadata document.
+
+###### In your own Tomcat
+
+1. Take `rewrite.config` from the Server distribution you downloaded – it ships alongside `clover.war`, so the rules are never written by hand.
+2. Copy it into `[Tomcat_home]/conf/Catalina/localhost/` – the **Engine** and **Host** names of a default Tomcat installation.
+3. Declare the valve on that **Host** in `[Tomcat_home]/conf/server.xml`:
+   ```xml
+   <Valve className="org.apache.catalina.valves.rewrite.RewriteValve" />
+   ```
+4. Restart Tomcat.
+
+The valve has to sit on the **Host**, not on the web application: the request never reaches a servlet context, so a context-level valve would not run. The rules take the context out of the request, so nothing in the copied file is edited – the same file serves any context, `/clover` and a Server deployed as the root application alike.
+
+###### On a reverse proxy
+
+A deployment behind a reverse proxy can put the redirect there instead, and then the container needs neither the valve nor the file. Reproduce the two rules CloverDX ships:
+
+```ctl
+RewriteRule ^/\.well-known/(oauth-authorization-server|oauth-protected-resource)((?:/.+?)?/mcp)(/.+)$ $2/.well-known/$1$3 [R=302,L]
+RewriteRule ^/\.well-known/(oauth-authorization-server|oauth-protected-resource)((?:/.+?)?/mcp)$ $2/.well-known/$1 [R=302,L]
+```
+
+> [!CAUTION]
+> Match the two OAuth2 documents by name, as the rules above do. A blanket rule over the whole `/.well-known/` namespace also captures the ACME challenge and breaks certificate renewal on any host that renews its certificates automatically.
 > [!NOTE]
 > ![arrow](../figures/arrow.png) Continue with: [System database configuration](examples-db-connection-configuration.md)

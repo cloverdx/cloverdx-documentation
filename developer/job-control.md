@@ -1,6 +1,6 @@
 <!-- Development > Component reference > Job Control -->
 
-## 41. Job Control
+## 42. Job Control
 
 | [Common properties of Job Control](common-of-job-control.md) |
 | --- |

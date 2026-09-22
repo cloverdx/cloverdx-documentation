@@ -54,7 +54,7 @@ You may need a metadata for the accumulator record in rollup transformation.
 | --- | --- | --- | --- |
 | Basic |  |  |  |
 | Group key |  | Key according to which the records are considered to be included into one group. Expressed as a sequence of individual input field names separated from each other by a semicolon. For more information, see [Group key](components.md#group-key).  If not specified, all records are considered to be members of a single group. | e.g. `first_name;last_name;salary` |
-| Group accumulator |  | The ID of metadata that serves to create group accumulators. Metadata serves to store values used for transformation of individual groups of data records. | no metadata (default) \| any metadata |
+| Group accumulator |  | The ID of metadata that serves to create group accumulators. Metadata serves to store values used for transformation of individual groups of data records.  A CTL transformation can declare the structure in the code instead of using this attribute, see [Group accumulator structure](rollup.md#group-accumulator-structure). | no metadata (default) \| any metadata |
 | Transform | [[1]](rollup.md#rollup-attributes-fn01) | Definition of the transformation written in the graph in CTL or Java. |  |
 | Transform URL | [[1]](rollup.md#rollup-attributes-fn01) | The name of an external file, including the path, containing the definition of the transformation written in CTL or Java. |  |
 | Transform class | [[1]](rollup.md#rollup-attributes-fn01) | The name of an external class defining the transformation. |  |
@@ -74,7 +74,17 @@ The flow of function calls in a rollup transformation is depicted below. If any 
 ![Rollup diagram](../figures/Rollup-diagram.png)
 *Figure 429. Rollup code workflow*
 
-If you do not define **Group accumulator** metadata, **VoidMetadata** is used in transformation functions.
+##### Group accumulator structure
+
+The structure of the group accumulator comes from one of two places.
+
+The **Group accumulator** attribute names metadata of the graph. A CTL transformation can declare the structure in the code instead: declare a record type, see [Declaring a record type in CTL](language-reference-ctl2.md#declaring-a-record-type-in-ctl), and use its name as the type of the `groupAccumulator` parameter of `initGroup()`, `updateGroup()` and `finishGroup()`. The graph then needs neither the attribute nor a metadata element for the accumulator.
+
+If neither is used, **VoidMetadata** is used in the transformation functions and the accumulator has no fields.
+
+Two group functions naming different record types are an error.
+
+When the attribute is set and the code declares a type as well, the attribute takes precedence - but only if the two describe the same structure, that is the same number of fields of the same data and container types, in the same order. The field names are not compared. Otherwise the component refuses to start, because the transformation addresses the accumulator fields against the type it declares.
 
 #### CTL interface
 
@@ -229,6 +239,8 @@ Following is the list of the `RecordRollup` interface methods:
 
 - `void init(Properties parameters, DataRecordMetadata inputMetadata, DataRecordMetadata accumulatorMetadata, DataRecordMetadata[] outputMetadata)`
   Initializes the rollup transform. This method is called only once at the beginning of the life-cycle of the rollup transform. Any internal allocation/initialization code should be placed here.
+- `DataRecordMetadata getAccumulatorMetadata()`
+  Returns the metadata the transform itself declares for the group accumulator, or `null` when it declares none. It is a default method returning `null`, so a transform which takes the structure from the **Group accumulator** attribute does not implement it. Called after `init()`, see [Group accumulator structure](rollup.md#group-accumulator-structure).
 - `void initGroup(DataRecord inputRecord, DataRecord groupAccumulator)`
   This method is called for the first data record in a group. Any initialization of the group accumulator should be placed here.
 - `void initGroupOnError(Exception exception, DataRecord inputRecord, DataRecord groupAccumulator)`

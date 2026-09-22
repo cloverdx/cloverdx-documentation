@@ -1,6 +1,6 @@
 <!-- Development > Projects > Types of CloverDX projects -->
 
-## 9. Types of CloverDX projects
+## 10. Types of CloverDX projects
 
 | [CloverDX (local) project](cloverdx-projects-type.md#cloverdx-local-project) |
 | --- |

@@ -6,6 +6,7 @@ This section is intended for developers and technical staff responsible for crea
 
 - [**First steps with CloverDX Designer**](part-tutorial.md): A tutorial, which will guide you step-by-step through your first graph creation.
 - [**CloverDX AI Assistant**](designer-ai-assistant.md): An overview of CloverDX AI Assistant including [Quick start guide](designer-ai-assistant.md#ai-assistant-quick-start) and more to help you understand how the Assistant works.
+- [**Assistant company knowledge**](assistant-company-knowledge.md): How to give the Assistant your own rules and reference material, and how to address an entry to a single agent role.
 - [**Designer user interface**](part1.md): An overview of the CloverDX Designer interface, including [its layout](designer-layout.md), [keyboard shortcuts](keyboard-shortcuts.md), and [common dialogs](common-dialogs.md).
 - [**Projects**](part2.md): Information on [project types](cloverdx-projects-type.md), how to [work with server projects](server-projects-usage.md), or how to [export project as library](export-library.md).
 - [**Job types**](part3.md): Introduction to job types available in CloverDX - learn about [graphs](part-graph-elements-structures-tools.md), [subgraphs](subgraphs.md), [jobflows](part-jobflow.md), and [Data Services](data-service.md).
@@ -16,7 +17,7 @@ This section is intended for developers and technical staff responsible for crea
 
 ---
 
-*This guide refers to CloverDX 7.5.1 release.*
+*This guide refers to CloverDX 7.6.0 release.*
 
 *Copyright © 2010-2026 CloverDX a.s. All rights reserved.*
 

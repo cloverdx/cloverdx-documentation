@@ -18,7 +18,7 @@ The *Validate with formula* step works by evaluating the validation formula for 
 The values are considered invalid if the formula returned `false`. In such case, values from all columns that are referenced in the formula will be marked as invalid.
 
 ![step validate with formula](../figures/step-validate-with-formula.png)
-*Figure 107. Simple configuration to validate that last name is at least 1 character long.*
+*Figure 111. Simple configuration to validate that last name is at least 1 character long.*
 
 See below for additional examples of how to use the step to validate your data in common situations.
 

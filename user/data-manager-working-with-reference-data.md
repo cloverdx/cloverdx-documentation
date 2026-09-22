@@ -29,7 +29,7 @@ Reference data usually follows a simple lifecycle where new records must be appr
 Reference data sets have been designed to support master data management of reference data as used by the organization. Reference data sets are shown on a **Reference Data Sets** screen in the Data Manager.
 
 ![data manager reference data sets](../figures/data-manager-reference-data-sets.png)
-*Figure 160. A Reference Data Sets screen shows a list of existing reference data sets with basic information about each of them.*
+*Figure 174. A Reference Data Sets screen shows a list of existing reference data sets with basic information about each of them.*
 
 The screen shows the following information for each data set:
 
@@ -50,7 +50,7 @@ The columns can be **strings** (representing text), **numbers** (integers as wel
 All rows within the data set have the same data layout which allows the data set to be displayed as a simple table. The data is shown on the **Data editor** screen which allows you to see and edit the data in the data set. The data in the data editor is shown in the **data grid** (or just grid).
 
 ![data manager reference data set editor](../figures/data-manager-reference-data-set-editor.png)
-*Figure 161. An editor showing data in the Product catalog reference data set.*
+*Figure 175. An editor showing data in the Product catalog reference data set.*
 
 To learn more about how to work with data in the data set – how to view or approve changes, edit the data and more – see the [Editing data in Data Manager](data-manager-editing-data.md) section.
 
@@ -59,7 +59,7 @@ To learn more about how to work with data in the data set – how to view or app
 Rows in a reference data set can be either Enabled or Disabled. Disabled rows are skipped when the reference data set is used as a lookup. For example, in **CountryCodes** reference table this can be used to store country codes for countries that no longer exist.
 
 ![data manager reference data set disabled row](../figures/data-manager-reference-data-set-disabled-row.png)
-*Figure 162. An example showing a disabled row representing Czechoslovakia in CountryCodes reference table. The country does not exist since 1993, and the row is therefore disabled but it may be useful to keep it around.*
+*Figure 176. An example showing a disabled row representing Czechoslovakia in CountryCodes reference table. The country does not exist since 1993, and the row is therefore disabled but it may be useful to keep it around.*
 
 The Enabled/Disabled status or a row is stored in a column called **Enabled**. This column is always present in the data set and cannot be removed.
 
@@ -70,7 +70,7 @@ Note that changing the Enabled status of the row is the same as changing any oth
 You can click a status in the progress bar to quickly filter rows by that status.
 
 ![rds progress bar filter](../figures/rds-progress-bar-filter.gif)
-*Figure 163. Progress bar filters*
+*Figure 177. Progress bar filters*
 
 ##### Row lifecycle
 
@@ -83,14 +83,14 @@ When performing lookups into the data set, change rows are ignored. This means t
 Whenever **Approve** action is called on the change row, the original row is replaced with the change row and the change row is removed. The change row therefore becomes the approved row. All changes are visible to queries into the data set from that point (audit log is updated as well).
 
 ![data manager reference row lifecycle](../figures/data-manager-reference-row-lifecycle.png)
-*Figure 164. Diagram showing reference data set row lifecycle. All rows start as Changed and must be Approved before they are visible to lookups.*
+*Figure 178. Diagram showing reference data set row lifecycle. All rows start as Changed and must be Approved before they are visible to lookups.*
 
 ##### Editing reference data
 
 When working with reference data sets, several actions are available in the data editor:
 
 ![data editor ui elements with labels reference data sets](../figures/data-editor-ui-elements-with-labels-reference-data-sets.png)
-*Figure 165. Row actions available in data editor when working with reference data sets.*
+*Figure 179. Row actions available in data editor when working with reference data sets.*
 
 Following row actions are available:
 
@@ -109,7 +109,7 @@ Following row actions are available:
 To help users navigate reference data sets, four different view modes are available when working with reference data. View modes can be switched via view mode drop down in the top right corner of the screen:
 
 ![data manager reference data set view mode selector](../figures/data-manager-reference-data-set-view-mode-selector.png)
-*Figure 166. View mode selector showing all four view modes.*
+*Figure 180. View mode selector showing all four view modes.*
 
 View modes do not affect data in the reference data set but help users see the data and changes in a way that makes it easier to accomplish certain tasks. The following view modes are available:
 
@@ -129,12 +129,12 @@ In these cases, it would be possible to set-up the reference data set so that it
 To support such use cases, reference data sets in Data Manager support **effective dates** for each row. Effective dates for a row are a time period defined by two date columns. The first date column called **Valid from** defines the start of the period while the column called **Valid to** defines the end of the period in which the given row is applicable.
 
 ![data manager reference data set with effective dates](../figures/data-manager-reference-data-set-with-effective-dates.png)
-*Figure 167. An example showing five different rows (the selected ones) from the product catalog all with the same key (name column) but with different effective dates. The effective dates define one-year long intervals where the product has different prices.*
+*Figure 181. An example showing five different rows (the selected ones) from the product catalog all with the same key (name column) but with different effective dates. The effective dates define one-year long intervals where the product has different prices.*
 
 Note that time periods defined by the **Valid from** and **Valid to** columns must not overlap for rows that have the same values of their key columns. Data Manager will not allow you to approve rows if this is the case and will show you an error on rows that are in conflict.
 
 ![data manager reference data set error overlap](../figures/data-manager-reference-data-set-error-overlap.png)
-*Figure 168. Data editor showing conflicting rows with the red markers in the corners. The conflicts shown on this screenshot are caused by the highlighted row – the Valid from value was changed to 1st December 2024 which overlaps with the interval defined in the previous row.*
+*Figure 182. Data editor showing conflicting rows with the red markers in the corners. The conflicts shown on this screenshot are caused by the highlighted row – the Valid from value was changed to 1st December 2024 which overlaps with the interval defined in the previous row.*
 
 If you tried to approve any of the rows with such a conflict, you’ll get an error message and the approval will fail. This way Data Manager guarantees that overlapping rows which cause lookup ambiguities do not get into the data set and cannot cause issues in the processes where the data is used.
 
@@ -155,17 +155,17 @@ To be able to use a reference data set as a lookup, it must satisfy the followin
   - **Label column**: this column defines the value that is shown to users in the data editor. It must be a string column. The selected label is used only for display; the value stored in the data set is still the lookup key.
 
 ![data manager reference data set lookup column config](../figures/data-manager-reference-data-set-lookup-column-config.png)
-*Figure 169. Configuration of the Letter column in the Alphabet reference data set. The column is restricted to lookup values from the Numbers data set, and Label is used as the value shown to users.*
+*Figure 183. Configuration of the Letter column in the Alphabet reference data set. The column is restricted to lookup values from the Numbers data set, and Label is used as the value shown to users.*
 
 To use this data set, configure it in the target column using **Restrict to lookup**. In the same Lookup section, use Lookup label to select which field from the lookup data set should be shown in the dropdown.
 
 ![data manager using reference data set lookup](../figures/data-manager-using-reference-data-set-lookup.png)
-*Figure 170. Selecting the lookup label for the Letter column. The Lookup label setting defines which value from the lookup data set is displayed.*
+*Figure 184. Selecting the lookup label for the Letter column. The Lookup label setting defines which value from the lookup data set is displayed.*
 
 When configured like this, the values of the target column are shown as a dropdown populated by values from the selected reference data set.
 
 ![data manager lookup single column](../figures/data-manager-lookup-single-column.png)
-*Figure 171. The Alphabet data set opened in the data editor. The Letter column is configured with lookup values from the Numbers reference data set.*
+*Figure 185. The Alphabet data set opened in the data editor. The Letter column is configured with lookup values from the Numbers reference data set.*
 
 The value stored in the edited data set is the lookup key. Data Manager shows the selected label instead, making the data easier to understand when the stored values are technical codes, IDs, or other values that are not clear .
 
@@ -190,7 +190,7 @@ You can create any number of data sets in Data Manager as long as you have *Crea
 Reference data sets can be created from **Reference data sets** screen using the **New** button in the top right corner of the screen. Once you click the **New** button, a **New Reference Data Set** wizard will be shown and will guide you through the rest of the process.
 
 ![data manager create reference data set](../figures/data-manager-create-reference-data-set.png)
-*Figure 172. Reference Data Sets page offers a New button in the top-right corner when logged in as a user with Admin privileges.*
+*Figure 186. Reference Data Sets page offers a New button in the top-right corner when logged in as a user with Admin privileges.*
 
 When creating a data set, you will have to configure its basic properties, data layout, permissions, and other settings. These are all configured on separate pages in the wizard.
 
@@ -199,7 +199,7 @@ When creating a data set, you will have to configure its basic properties, data 
 The first screen of the wizard allows you to configure basic settings for the data set like its name, description, and more.
 
 ![data manager create reference data set basic settings](../figures/data-manager-create-reference-data-set-basic-settings.png)
-*Figure 173. Basic settings page of the New Reference Data Set wizard.*
+*Figure 187. Basic settings page of the New Reference Data Set wizard.*
 
 The following settings can be configured on the **Basic settings** page:
 
@@ -216,7 +216,7 @@ The following settings can be configured on the **Basic settings** page:
 **Data layout** specifies the structure of each row in the data set – the column names, types, and other properties.
 
 ![data manager create reference data set data layout](../figures/data-manager-create-reference-data-set-data-layout.png)
-*Figure 174. Data layout page of the wizard with the column editor shown in the side bar. The first column has been added by the user while the remaining two columns are system columns which are shown in the table before any user-defined columns are added.*
+*Figure 188. Data layout page of the wizard with the column editor shown in the side bar. The first column has been added by the user while the remaining two columns are system columns which are shown in the table before any user-defined columns are added.*
 
 All rows in the data set have the same layout. The layout can contain any number of user-defined columns and will also contain a set of system-defined columns that are always present and cannot be removed (but can be moved around to a different place within the row).
 
@@ -236,7 +236,7 @@ Columns in the data set can have one of the following data types:
 When you create a new column, the following column settings are shown in a **Create a new column** side bar:
 
 ![data manager create reference data set new column](../figures/data-manager-create-reference-data-set-new-column.png)
-*Figure 175. Column setting shown in a Create a new column side bar.*
+*Figure 189. Column setting shown in a Create a new column side bar.*
 
 The following settings can be configured for the new column:
 
@@ -260,21 +260,21 @@ To configure a key, use the Key columns page of the wizard. You can add any numb
 The system `_id` column can also be selected as a key column when you need an automatically generated unique key. Reference data sets that use `_id` as part of the key cannot have *Effective dates* enabled.
 
 ![data manager create reference data set key columns](../figures/data-manager-create-reference-data-set-key-columns.png)
-*Figure 176. Key columns configuration shown on a separate page of the wizard.*
+*Figure 190. Key columns configuration shown on a separate page of the wizard.*
 
 The order of the keys specified on this page of the wizard is important as it defines the order of the keys as used when lookups are performed in the reference data set.
 
 Note that if you create a row which has a duplicate key, you will not be able to approve it. The rows with duplicate keys will be highlighted with the red marker. To see all conflicts, you can use the [**Show rows with errors only** view mode](data-manager-working-with-reference-data.md#view-modes-in-data-editor) in the data editor.
 
 ![data manager reference data set error duplicate key](../figures/data-manager-reference-data-set-error-duplicate-key.png)
-*Figure 177. An example of an error caused by duplicate keys in a data set without effective dates.*
+*Figure 191. An example of an error caused by duplicate keys in a data set without effective dates.*
 
 When working with data set which has effective dates enabled, an extra “column” is added to the data set key. This column called **timestamp** must be used whenever a lookup is performed to ensure that the correct version of the data set row is found. For example, consider a reference data set representing product catalog where each product can have different prices at different date. To find the product price, you have to supply the product code as well as the timestamp for when you want the price to be valid. The timestamp is then matched to effective dates intervals for rows that have the same product code as the code you are trying to find.
 
 Since effective dates must not overlap for rows with the same keys, Data Manager will not allow you to approve rows where this condition is not satisfied. As with duplicate keys, the rows that overlap are highlighted with red markers in *Valid from* and *Valid to* columns.
 
 ![data manager reference data set error overlap](../figures/data-manager-reference-data-set-error-overlap.png)
-*Figure 178. An example of an error caused by having overlapping intervals defined by effective dates columns.*
+*Figure 192. An example of an error caused by having overlapping intervals defined by effective dates columns.*
 
 ##### User roles and permissions
 
@@ -283,7 +283,7 @@ Each data set has its own set of **permissions** – list of users and their rol
 Roles are configured on a **User roles** page when creating a new data set:
 
 ![data manager create reference data set user roles](../figures/data-manager-create-reference-data-set-user-roles.png)
-*Figure 179. User roles page in the new data set configuration.*
+*Figure 193. User roles page in the new data set configuration.*
 
 Clicking on a dropdown for each role will give you a list of all users on the Server and you can select any number of users in each role.
 
@@ -298,7 +298,7 @@ Data set configuration can be edited even after the data set has been created an
 When editing a data set, additional options are available on the **Basic settings** page:
 
 ![data manager edit reference data set basic settings](../figures/data-manager-edit-reference-data-set-basic-settings.png)
-*Figure 180. Additional settings are available in the existing data set when its configuration is edited. Note that the data set on the screenshot has Effective dates enabled. Since it is not empty, Effective dates cannot be disabled.*
+*Figure 194. Additional settings are available in the existing data set when its configuration is edited. Note that the data set on the screenshot has Effective dates enabled. Since it is not empty, Effective dates cannot be disabled.*
 
 You can **Disable data set** to prevent anyone from using it without deleting any data. Disabled data set cannot be used in CloverDX jobs and data in disabled data set cannot be edited in the Data Manager’s editor.
 
@@ -330,7 +330,7 @@ The layout changes are only applied after you click on the **Save** button and a
 Key columns cannot be changed if the data set contains any data. This is to ensure that there are no conflicts in the data caused by duplicate keys or overlapping effective dates intervals.
 
 ![data manager reference data set changing key columns](../figures/data-manager-reference-data-set-changing-key-columns.png)
-*Figure 181. A note shown on a non-empty data set when Key columns configuration page is open.*
+*Figure 195. A note shown on a non-empty data set when Key columns configuration page is open.*
 
 ##### Changing permissions
 

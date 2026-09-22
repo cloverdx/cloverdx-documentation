@@ -1,6 +1,6 @@
 <!-- Development > Advanced > Library development best practices -->
 
-## 47. Library development best practices
+## 48. Library development best practices
 > [!TIP]
 > If you’re interested in learning more about this subject, we offer the [Libraries, Reusable Functionality & Packaging](https://academy.cloverdx.com/courses/subgraph-libraries) and [Publishing Data to Data Catalog and Underlying Theory](https://academy.cloverdx.com/courses/publishing-data) courses in our CloverDX Academy.
 

@@ -1,6 +1,6 @@
 <!-- Development > Job elements > Dictionary -->
 
-## 30. Dictionary
+## 31. Dictionary
 
 Dictionary is a data storage object associated with each run of a graph in **CloverDX**. Its purpose is to provide a simple and type-safe storage of various parameters required by a graph.
 
