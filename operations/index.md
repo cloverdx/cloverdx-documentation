@@ -22,7 +22,7 @@
 
 ---
 
-*This guide refers to CloverDX 7.6.0 release.*
+*This guide refers to CloverDX 7.6.1 release.*
 
 *Copyright © 2010-2026 CloverDX a.s. All rights reserved.*
 
